@@ -14,6 +14,7 @@ export default [
       semi: ["error", "always"],
       "no-console": "warn",
       "no-multiple-empty-lines": ["error", { max: 1 }],
+      "prefer-const": "warn",
     },
   },
 

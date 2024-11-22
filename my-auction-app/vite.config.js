@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [
     eslintPlugin({
       include: ["src/**/*.{js}, src/js/**/*.{js}"],
-      lintOnSave: true,
     }),
   ],
 });
