@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
+    "format": "prettier --write .",
     "lint:fix": "eslint --fix .",
     "dev": "vite",
     "build": "npm run lint && vite build",
