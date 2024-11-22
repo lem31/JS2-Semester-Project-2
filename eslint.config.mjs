@@ -1,13 +1,19 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
+import prettierConfig from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
   // Define your language options
   {
     languageOptions: {
-      globals: globals.browser,
-      ecmaVersion: "latest", // Ensures modern JavaScript support
-      sourceType: "module", // Enables ES Module syntax
+      ecmaVersion: "latest",
+      sourceType: "module",
+
+      globals: {
+        ...globals.browser,
+        module: "readonly",
+      },
     },
     rules: {
       "no-unused-vars": "warn",
@@ -16,7 +22,11 @@ export default [
       "no-multiple-empty-lines": ["error", { max: 1 }],
       "prefer-const": "warn",
     },
+    plugins: {
+      prettier: prettierPlugin,
+    },
   },
 
   pluginJs.configs.recommended,
+  prettierConfig,
 ];
