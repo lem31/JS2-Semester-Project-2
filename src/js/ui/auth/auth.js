@@ -1,4 +1,4 @@
-const SIGN_IN_BTN_NAV = document.getElementById('sign-in-btn-nav');
+const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
@@ -40,9 +40,9 @@ function displayRegForm() {
 export function displaySignInBtnNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    SIGN_IN_BTN_NAV.style.display = 'none';
+    SIGN_IN_LINK_NAV.style.display = 'none';
   } else {
-    SIGN_IN_BTN_NAV.style.display = 'block';
+    SIGN_IN_LINK_NAV.style.display = 'block';
   }
 }
 
