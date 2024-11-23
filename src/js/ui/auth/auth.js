@@ -1,5 +1,7 @@
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
+const MY_LISTINGS_LINK_NAV = document.getElementById('my-listings-link-nav');
+
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
 const SIGN_IN_FORM = document.getElementById('sign-in-form');
@@ -52,5 +54,14 @@ export function displayRegLinkNav() {
     REG_LINK_NAV.style.display = 'none';
   } else {
     REG_LINK_NAV.style.display = 'block';
+  }
+}
+
+export function displayMyListingsLinkNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
+  if (ACCESS_TOKEN) {
+    MY_LISTINGS_LINK_NAV.style.display = 'block';
+  } else {
+    MY_LISTINGS_LINK_NAV.style.display = 'none';
   }
 }
