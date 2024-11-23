@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Art Auction App - Edit a Listing</title>
+    <title>My Art Auction App - Auction listing</title>
     <script type="module" src="../src/app.js" defer></script>
   </head>
   <body>
@@ -31,7 +31,7 @@
             </li>
 
             <li>
-              <a href="">
+              <a href="/my_listings/">
                 <img
                   src="../images/icons8-my-listings-desktop.png"
                   alt="my listings icon"
@@ -40,7 +40,7 @@
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/my_bids/">
                 <img
                   src="../images/icons8-bids-Desktop.png"
                   alt="bids icon"
@@ -48,14 +48,14 @@
               >
             </li>
             <li>
-              <a href="">
+              <a href="/listing/create/">
                 <img src="../images/icons8-add-desktop.png" alt="add icon" />
 
                 Create Listing</a
               >
             </li>
             <li>
-              <a href="">
+              <a href="/auth/">
                 <img
                   src="../images/icons8-register-desktop.png"
                   alt="register icon"
@@ -63,7 +63,7 @@
                 Register
               </a>
             </li>
-            <a href="">
+            <a href="/auth/">
               <img src="../images/sign-in-desktop.png" alt="sign in icon" />
               Sign in
             </a>
@@ -79,41 +79,7 @@
       </div>
     </header>
     <main>
-      <div class="edit-form-container">
-        <h1>Edit Listing</h1>
-        <form name="edit" id="edit-form">
-          <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" />
-          </div>
-
-          <div>
-            <label for="description">Description</label>
-            <textarea
-              id="description"
-              type="text"
-              name="description"
-            ></textarea>
-          </div>
-
-          <div>
-            <label for="mediaUrl">Media url</label>
-            <input type="url" name="mediaUrl" id="mediaUrl" />
-          </div>
-          <div>
-            <label for="mediaAlt">Media alt</label>
-            <input id="mediaAlt" type="text" name="mediaAlt" />
-          </div>
-          <div>
-            <label for="endsAt">Ends at</label>
-            <input id="endsAt" type="datetime-local" name="endsAt" />
-          </div>
-          <div class="button-container">
-            <button>Save</button>
-            <button>Cancel</button>
-          </div>
-        </form>
-      </div>
+      <div class="listing-container"></div>
     </main>
     <footer>
       <div>
