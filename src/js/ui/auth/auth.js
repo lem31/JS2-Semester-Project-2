@@ -1,6 +1,5 @@
 const SIGN_IN_BTN = document.getElementById('sign-in-btn');
 const REG_BTN = document.getElementById('reg-btn');
-const SIGN_OUT_BTN = document.getElementById('sign-out-btn');
 const SIGN_IN_FORM = document.getElementById('sign-in-form');
 const REG_FORM = document.getElementById('register-form');
 
