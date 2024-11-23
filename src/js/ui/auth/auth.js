@@ -88,3 +88,12 @@ export function displayMyBidsLinkNav() {
     MY_BIDS_LINK_NAV.style.display = 'none';
   }
 }
+
+export function displayCreateListingLinkNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
+  if (ACCESS_TOKEN) {
+    CREATE_LISTING_LINK_NAV.style.display = 'block';
+  } else {
+    CREATE_LISTING_LINK_NAV.style.display = 'none';
+  }
+}
