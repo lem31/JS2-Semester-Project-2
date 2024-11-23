@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Art Auction App - Auth</title>
+    <script type="module" src="../src/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="side-bar">
+        <img src="../images/Logo.png" alt="Art logo" />
+        <nav>
+          <ul>
+            <li>
+              <a href="/">
+                <img src="../images/icons8-home-Desktop.png" alt="home icon" />
+
+                Home</a
+              >
+            </li>
+            <li>
+              <a href="/profile/">
+                <img
+                  src="../images/icons8-user-desktop.png"
+                  alt="profile icon"
+                />
+                Profile</a
+              >
+            </li>
+
+            <li>
+              <a href="">
+                <img
+                  src="../images/icons8-my-listings-desktop.png"
+                  alt="my listings icon"
+                />
+                My Listings
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="../images/icons8-bids-Desktop.png"
+                  alt="bids icon"
+                />My Bids</a
+              >
+            </li>
+            <li>
+              <a href="">
+                <img src="../images/icons8-add-desktop.png" alt="add icon" />
+
+                Create Listing</a
+              >
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="../images/icons8-register-desktop.png"
+                  alt="register icon"
+                />
+                Register
+              </a>
+            </li>
+            <a href="">
+              <img src="../images/sign-in-desktop.png" alt="sign in icon" />
+              Sign in
+            </a>
+            <a href="">
+              <img
+                src="../images/icons8-sign-out-desktop.png"
+                alt="sign out icon"
+              />
+              Sign out
+            </a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <h1>Sign in or Register an Account</h1>
+
+      <div>
+        <button>Sign in</button>
+        <button>Register</button>
+      </div>
+
+      <form name="login" id="login-form">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <button>Login</button>
+      </form>
+
+      <form name="register" id="register-form">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" required />
+        </div>
+
+        <div>
+          <label for="email-reg">Email</label>
+          <input id="email-reg" type="email" name="email-reg" required />
+        </div>
+
+        <div>
+          <label for="password-reg">Password</label>
+          <input
+            type="password"
+            name="password-reg"
+            id="password-reg"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="avatarUrl">Avatar url</label>
+          <input id="avatarUrl" type="url" name="avatarUrl" required />
+        </div>
+        <div>
+          <label for="avatarAlt">Avatar alt</label>
+          <input id="avatarAlt" type="text" name="avatarAlt" required />
+        </div>
+        <div>
+          <label for="bannerUrl">Banner url</label>
+          <input id="bannerUrl" type="url" name="bannerUrl" required />
+        </div>
+        <div>
+          <label for="bannerAlt">Banner alt</label>
+          <input id="bannerAlt" type="text" name="bannerAlt" required />
+        </div>
+        <button>Register</button>
+      </form>
+    </main>
+    <footer>
+      <div>
+        <a href="">Contact</a>
+        <a href="">About</a>
+        <a href="">Policies</a>
+        <a href="">Terms and Conditions</a>
+      </div>
+      <div>
+        <a href="">
+          <img
+            src="../images/icons8-facebook-desktop.png"
+            alt="facebook icon"
+          />
+        </a>
+        <a href="">
+          <img
+            src="../images/icons8-instagram-desktop.png"
+            alt="instagram icon"
+          />
+        </a>
+        <a href="">
+          <img src="../images/icons8-twitter-desktop.png" alt="twitter icon" />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
