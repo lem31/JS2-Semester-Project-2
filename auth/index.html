@@ -70,13 +70,13 @@
               </a>
             </li>
             <li>
-              <a href="">
+              <button id="sign-out-btn">
                 <img
                   src="../images/icons8-sign-out-desktop.png"
                   alt="sign out icon"
                 />
                 Sign out
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
@@ -86,12 +86,13 @@
       <h1>Sign in or Register an Account</h1>
 
       <div>
-        <button>Sign in</button>
-        <button>Register</button>
+        <button id="sign-in-btn">Sign in</button>
+        <button id="reg-btn">Register</button>
       </div>
 
-      <div>
-        <form name="login" id="login-form">
+      <div id="sign-in-form">
+        <h2>Sign in</h2>
+        <form class="hidden" name="sign-in">
           <div>
             <label for="email">Email</label>
             <input id="email" type="email" name="email" required />
@@ -101,11 +102,12 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required />
           </div>
-          <button>Login</button>
+          <button>Sign in</button>
         </form>
       </div>
-      <div>
-        <form name="register" id="register-form">
+      <div id="register-form">
+        <h2>Register</h2>
+        <form class="hidden" name="register">
           <div>
             <label for="name">Name</label>
             <input
