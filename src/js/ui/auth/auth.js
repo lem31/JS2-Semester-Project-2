@@ -1,9 +1,9 @@
 const SIGN_IN_BTN_NAV = document.getElementById('sign-in-btn-nav');
+const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
 const SIGN_IN_FORM = document.getElementById('sign-in-form');
 const REG_FORM = document.getElementById('register-form');
-const ACCESS_TOKEN = localStorage.getItem('accessToken');
 
 export function onclickRegBtnTab() {
   REG_BTN_TAB.addEventListener('click', displayRegForm);
@@ -38,9 +38,19 @@ function displayRegForm() {
 }
 
 export function displaySignInBtnNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
     SIGN_IN_BTN_NAV.style.display = 'none';
   } else {
     SIGN_IN_BTN_NAV.style.display = 'block';
+  }
+}
+
+export function displayRegLinkNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
+  if (ACCESS_TOKEN) {
+    REG_LINK_NAV.style.display = 'none';
+  } else {
+    REG_LINK_NAV.style.display = 'block';
   }
 }
