@@ -86,58 +86,98 @@
         <button>Register</button>
       </div>
 
-      <form name="login" id="login-form">
-        <div>
-          <label for="email">Email</label>
-          <input id="email" type="email" name="email" required />
-        </div>
+      <div>
+        <form name="login" id="login-form">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required />
+          </div>
 
-        <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" required />
-        </div>
-        <button>Login</button>
-      </form>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+          <button>Login</button>
+        </form>
+      </div>
+      <div>
+        <form name="register" id="register-form">
+          <div>
+            <label for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              pattern="^[a-zA-Z0-9_]+$"
+              required
+            />
+          </div>
 
-      <form name="register" id="register-form">
-        <div>
-          <label for="name">Name</label>
-          <input id="name" type="text" name="name" required />
-        </div>
+          <div>
+            <label for="email-reg">Email</label>
+            <input
+              id="email-reg"
+              type="email"
+              name="email-reg"
+              pattern="^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$"
+              required
+            />
+          </div>
 
-        <div>
-          <label for="email-reg">Email</label>
-          <input id="email-reg" type="email" name="email-reg" required />
-        </div>
+          <div>
+            <label for="password-reg">Password</label>
+            <input
+              type="password"
+              name="password-reg"
+              id="password-reg"
+              minlength="8"
+              required
+            />
+          </div>
+          <div>
+            <label for="bio">Bio</label>
+            <input id="bio" type="text" name="bio" maxlength="160" required />
+          </div>
+          <div>
+            <label for="avatarUrl">Avatar url</label>
+            <input
+              id="avatarUrl"
+              type="url"
+              name="avatarUrl"
+              pattern="https?://.+"
+            />
+          </div>
 
-        <div>
-          <label for="password-reg">Password</label>
-          <input
-            type="password"
-            name="password-reg"
-            id="password-reg"
-            required
-          />
-        </div>
-
-        <div>
-          <label for="avatarUrl">Avatar url</label>
-          <input id="avatarUrl" type="url" name="avatarUrl" required />
-        </div>
-        <div>
-          <label for="avatarAlt">Avatar alt</label>
-          <input id="avatarAlt" type="text" name="avatarAlt" required />
-        </div>
-        <div>
-          <label for="bannerUrl">Banner url</label>
-          <input id="bannerUrl" type="url" name="bannerUrl" required />
-        </div>
-        <div>
-          <label for="bannerAlt">Banner alt</label>
-          <input id="bannerAlt" type="text" name="bannerAlt" required />
-        </div>
-        <button>Register</button>
-      </form>
+          <div>
+            <label for="avatarAlt">Avatar alt</label>
+            <input
+              id="avatarAlt"
+              type="text"
+              name="avatarAlt"
+              maxlength="120"
+            />
+          </div>
+          <div>
+            <label for="bannerUrl">Banner url</label>
+            <input
+              id="bannerUrl"
+              type="url"
+              name="bannerUrl"
+              pattern="https?://.+"
+            />
+          </div>
+          <div>
+            <label for="bannerAlt">Banner alt</label>
+            <input
+              id="bannerAlt"
+              type="text"
+              name="bannerAlt"
+              maxlength="120"
+            />
+          </div>
+          <button>Register</button>
+        </form>
+      </div>
     </main>
     <footer>
       <div>
