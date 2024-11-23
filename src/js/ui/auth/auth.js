@@ -1,6 +1,11 @@
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const MY_LISTINGS_LINK_NAV = document.getElementById('my-listings-link-nav');
+const PROFILE_LINK_NAV = document.getElementById('profile-link-nav');
+const MY_BIDS_LINK_NAV = document.getElementById('my-bids-link-nav');
+const CREATE_LISTING_LINK_NAV = document.getElementById(
+  'create-listing-link-nav'
+);
 
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
@@ -63,5 +68,23 @@ export function displayMyListingsLinkNav() {
     MY_LISTINGS_LINK_NAV.style.display = 'block';
   } else {
     MY_LISTINGS_LINK_NAV.style.display = 'none';
+  }
+}
+
+export function displayProfileLinkNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
+  if (ACCESS_TOKEN) {
+    PROFILE_LINK_NAV.style.display = 'block';
+  } else {
+    PROFILE_LINK_NAV.style.display = 'none';
+  }
+}
+
+export function displayMyBidsLinkNav() {
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
+  if (ACCESS_TOKEN) {
+    MY_BIDS_LINK_NAV.style.display = 'block';
+  } else {
+    MY_BIDS_LINK_NAV.style.display = 'none';
   }
 }
