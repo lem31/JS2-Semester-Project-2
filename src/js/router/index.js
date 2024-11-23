@@ -14,31 +14,31 @@
 
 export default async function router(pathname = window.location.pathname) {
   switch (pathname) {
-    case "/":
-      await import("./views/home.js");
+    case '/':
+      await import('./views/home.js');
       break;
-    case "/auth/":
-      await import("./views/auth.js");
+    case '/auth/':
+      await import('./views/auth.js');
       break;
-    case "/listing/":
-      await import("./views/listing.js");
+    case '/listing/':
+      await import('./views/listing.js');
       break;
-    case "/my_listings/":
-      await import("./views/myListings.js");
+    case '/my_listings/':
+      await import('./views/myListings.js');
       break;
-    case "/create/listing/":
-      await import("./views/createListing.js");
+    case '/listing/create':
+      await import('./views/createListing.js');
       break;
-    case "/edit/listing/":
-      await import("./views/editListing.js");
+    case '/edit/listing/':
+      await import('./views/editListing.js');
       break;
-    case "/my_bids/":
-      await import("./views/myBids.js");
+    case '/my_bids/':
+      await import('./views/myBids.js');
       break;
-    case "/profile/":
-      await import("./views/profile.js");
+    case '/profile/':
+      await import('./views/profile.js');
       break;
     default:
-      await import("./views/notFound.js");
+      await import('./views/notFound.js');
   }
 }
