@@ -58,14 +58,12 @@ export async function register(event) {
         'You have successfully registered, please sign in to view your profile or place any bids';
       ERROR_MESSAGE.style.color = 'green';
 
-      // Show loading symbol
       const loadingSymbol = document.createElement('div');
       loadingSymbol.className = 'loading-symbol';
       loadingSymbol.classList.add('loading-symbol');
       loadingSymbol.textContent = 'Loading...';
       document.body.appendChild(loadingSymbol);
 
-      // Delay redirection
       setTimeout(() => {
         window.location.href = '/auth/';
       }, 2000);
