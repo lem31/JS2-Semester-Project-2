@@ -12,4 +12,8 @@ export const API_AUTH_REGISTER = `${API_BASE}${AUTH_REGISTER}`;
 
 export const API_AUTH_SIGN_IN = `${API_BASE}${AUTH_SIGN_IN}`;
 
+const PROFILE_ENDPOINT = 'social/profiles/';
+
+const API_PROFILE = `${API_BASE}${PROFILE_ENDPOINT}`;
+
 export const API_KEY = '2cb38805-7bd6-46d6-92d0-086c83471763';
