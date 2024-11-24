@@ -11,11 +11,11 @@ import { displayCreateListingLinkNav } from './js/ui/auth/auth.js';
 
 await router(window.location.pathname);
 
+displayMyListingsLinkNav();
 displayLogoutBtn();
 onclickLogoutBtn();
 displaySignInBtnNav();
 displayRegLinkNav();
-displayMyListingsLinkNav();
 displayProfileLinkNav();
 displayMyBidsLinkNav();
 displayCreateListingLinkNav();

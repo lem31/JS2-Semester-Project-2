@@ -74,7 +74,6 @@ export function displayMyListingsLinkNav() {
     MY_LISTINGS_LINK_NAV.style.display = 'none';
   }
 }
-
 export function displayProfileLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
