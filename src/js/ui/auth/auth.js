@@ -1,4 +1,5 @@
 import { register } from '../../api/auth/auth';
+import { signIn } from '../../api/auth/auth';
 
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
@@ -11,8 +12,9 @@ const CREATE_LISTING_LINK_NAV = document.getElementById(
 
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
-const SIGN_IN_FORM = document.getElementById('sign-in-form');
+const SIGN_IN_FORM_BOX = document.getElementById('sign-in-form');
 const REG_FORM = document.getElementById('register-form');
+const SIGN_IN_FORM = document.querySelector('.sign-in-form');
 
 export function onclickRegBtnTab() {
   REG_BTN_TAB.addEventListener('click', displayRegForm);
@@ -23,13 +25,13 @@ export function onclickSignInBtnTab() {
 }
 
 function displaySignInForm() {
-  if (SIGN_IN_FORM.style.display === 'none') {
-    SIGN_IN_FORM.style.display = 'block';
+  if (SIGN_IN_FORM_BOX.style.display === 'none') {
+    SIGN_IN_FORM_BOX.style.display = 'block';
     REG_FORM.style.display = 'none';
-  } else if (SIGN_IN_FORM.style.display === 'block') {
-    SIGN_IN_FORM.style.display = 'none';
+  } else if (SIGN_IN_FORM_BOX.style.display === 'block') {
+    SIGN_IN_FORM_BOX.style.display = 'none';
   } else {
-    SIGN_IN_FORM.style.display = 'none';
+    SIGN_IN_FORM_BOX.style.display = 'none';
     REG_FORM.style.display = 'none';
   }
 }
@@ -103,4 +105,8 @@ export function displayCreateListingLinkNav() {
 
 export async function onRegister() {
   REG_FORM.addEventListener('submit', register);
+}
+
+export async function onSignIn() {
+  SIGN_IN_FORM.addEventListener('submit', signIn);
 }

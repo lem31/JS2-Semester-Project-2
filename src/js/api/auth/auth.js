@@ -1,8 +1,54 @@
 import { API_AUTH_REGISTER } from '../constants.js';
+import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
+const SIGN_IN_FORM = document.querySelector('.sign-in-form');
+const ERROR_MESSAGE_SIGN_IN = document.getElementById(
+  'error-message-sign-in-form'
+);
+
+export async function signIn(event) {
+  event.preventDefault();
+
+  const SIGN_IN_FORM_OBJECT = new FormData(SIGN_IN_FORM);
+  const SIGN_IN_FORM_DATA = Object.fromEntries(SIGN_IN_FORM_OBJECT);
+
+  const REQUEST_BODY_SIGN_IN = {
+    email: SIGN_IN_FORM_DATA.email,
+    password: SIGN_IN_FORM_DATA.password,
+  };
+
+  try {
+    const RESPONSE = await fetch(API_AUTH_SIGN_IN, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify(REQUEST_BODY_SIGN_IN),
+    });
+
+    if (!REQUEST_BODY_SIGN_IN.email) {
+      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Email is required';
+      return;
+    }
+    if (!REQUEST_BODY_SIGN_IN.password) {
+      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Password is required';
+      return;
+    }
+    if (RESPONSE.ok) {
+      const TOKEN = RESPONSE.headers.get('Authorization');
+      localStorage.setItem('accessToken', TOKEN);
+      window.location.href = '/profile/';
+    } else if (RESPONSE.status === 401) {
+      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Invalid email or password';
+    } else {
+      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Something went wrong';
+    }
+  } catch (error) {
+    ERROR_MESSAGE_SIGN_IN.textContent =
+      'Error: Unable to connect to the server';
+  }
+}
 
 export async function register(event) {
   event.preventDefault();
