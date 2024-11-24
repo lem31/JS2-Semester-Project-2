@@ -54,9 +54,21 @@ export async function register(event) {
     }
 
     if (RESPONSE.ok) {
-      window.location.href = '/auth/';
       ERROR_MESSAGE.textContent =
-        'You have successfully registered, please login';
+        'You have successfully registered, please sign in to view your profile or place any bids';
+      ERROR_MESSAGE.style.color = 'green';
+
+      // Show loading symbol
+      const loadingSymbol = document.createElement('div');
+      loadingSymbol.className = 'loading-symbol';
+      loadingSymbol.classList.add('loading-symbol');
+      loadingSymbol.textContent = 'Loading...';
+      document.body.appendChild(loadingSymbol);
+
+      // Delay redirection
+      setTimeout(() => {
+        window.location.href = '/auth/';
+      }, 2000);
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       ERROR_MESSAGE.textContent = 'Error: User already exists';
     } else {

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loading-symbol {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
+}
