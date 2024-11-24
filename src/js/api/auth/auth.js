@@ -1,28 +1,28 @@
 import { API_AUTH_REGISTER } from '../constants.js';
+
+// Ensure the API endpoint is correct
+
 import { headers } from '../headers.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.querySelector('.error-message-reg-form');
 
 export async function register() {
-  if (REG_FORM) {
-    REG_FORM.onsubmit = (e) => e.preventDefault();
-  }
   const REG_FORM_OBJECT = new FormData(REG_FORM);
   const REG_FORM_DATA = Object.fromEntries(REG_FORM_OBJECT);
 
   const REQUEST_BODY_REG = {
-    name: REG_FORM_DATA.name,
-    email: REG_FORM_DATA.email,
-    password: REG_FORM_DATA.password,
-    bio: REG_FORM_DATA.bio,
+    name: REG_FORM_DATA.name || '',
+    email: REG_FORM_DATA.email || '',
+    password: REG_FORM_DATA.password || '',
+    bio: REG_FORM_DATA.bio || '',
     avatar: {
-      url: REG_FORM_DATA.avatarUrl,
-      alt: REG_FORM_DATA.avatarAlt,
+      url: REG_FORM_DATA.avatarUrl || '',
+      alt: REG_FORM_DATA.avatarAlt || '',
     },
     banner: {
-      url: REG_FORM_DATA.bannerUrl,
-      alt: REG_FORM_DATA.bannerAlt,
+      url: REG_FORM_DATA.bannerUrl || '',
+      alt: REG_FORM_DATA.bannerAlt || '',
     },
   };
 

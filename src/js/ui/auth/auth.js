@@ -1,3 +1,5 @@
+import { register } from '../../api//auth/auth.js';
+
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const MY_LISTINGS_LINK_NAV = document.getElementById('my-listings-link-nav');
@@ -98,4 +100,8 @@ export function displayCreateListingLinkNav() {
   } else {
     CREATE_LISTING_LINK_NAV.style.display = 'none';
   }
+}
+
+export function onSubmitRegForm() {
+  REG_FORM.addEventListener('submit', register);
 }

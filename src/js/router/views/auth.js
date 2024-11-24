@@ -1,6 +1,6 @@
 import { onclickSignInBtnTab, onclickRegBtnTab } from '../../ui/auth/auth';
-import { register } from '../../api/auth/auth.js';
+import { onSubmitRegForm } from '../../ui/auth/auth';
 
 onclickSignInBtnTab();
 onclickRegBtnTab();
-register();
+onSubmitRegForm();
