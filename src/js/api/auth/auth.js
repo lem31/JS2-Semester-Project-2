@@ -37,9 +37,7 @@ export async function register() {
     if (RESPONSE.ok) {
       ERROR_MESSAGE.textContent = 'Registration successful';
       ERROR_MESSAGE.style.color = 'green';
-      setTimeout(() => {
-        window.location.href = '/profile/';
-      }, 2000);
+      window.location.href = '/profile/';
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       ERROR_MESSAGE.textContent = 'Error: User already exists';
       ERROR_MESSAGE.style.color = 'red';

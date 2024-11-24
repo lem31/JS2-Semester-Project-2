@@ -1,4 +1,4 @@
-import { register } from '../../api//auth/auth.js';
+import { register } from '../../api/auth/auth.js';
 
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
