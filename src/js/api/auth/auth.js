@@ -35,9 +35,13 @@ export async function signIn(event) {
       ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Password is required';
       return;
     }
+
+    const USER_DATA = await RESPONSE.json();
+    const INFO = USER_DATA.data;
     if (RESPONSE.ok) {
-      const TOKEN = RESPONSE.headers.get('Authorization');
+      const TOKEN = INFO.accessToken;
       localStorage.setItem('accessToken', TOKEN);
+      localStorage.setItem('user', JSON.stringify(INFO));
       ERROR_MESSAGE.textContent =
         'You have successfully signed in, you will be redirected to your profile';
       ERROR_MESSAGE.style.color = 'green';
