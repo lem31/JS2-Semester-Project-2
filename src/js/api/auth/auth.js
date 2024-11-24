@@ -2,7 +2,7 @@ import { API_AUTH_REGISTER } from '../constants.js';
 import { headers } from '../headers.js';
 
 const REG_FORM = document.getElementById('reg-form');
-const ERROR_MESSAGE = document.querySelector('.error-message');
+const ERROR_MESSAGE = document.querySelector('.error-message-reg-form');
 
 export async function register() {
   if (REG_FORM) {
@@ -32,6 +32,7 @@ export async function register() {
       headers: headers(),
       body: JSON.stringify(REQUEST_BODY_REG),
     });
+    ERROR_MESSAGE.textContent = '';
 
     if (RESPONSE.ok) {
       ERROR_MESSAGE.textContent = 'Registration successful';

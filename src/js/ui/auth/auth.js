@@ -11,6 +11,7 @@ const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
 const SIGN_IN_FORM = document.getElementById('sign-in-form');
 const REG_FORM = document.getElementById('register-form');
+const ERROR_MESSAGE = document.querySelector('.error-message-reg-form');
 
 export function onclickRegBtnTab() {
   REG_BTN_TAB.addEventListener('click', displayRegForm);
@@ -33,6 +34,7 @@ function displaySignInForm() {
 }
 
 function displayRegForm() {
+  ERROR_MESSAGE.textContent = '';
   if (REG_FORM.style.display === 'none') {
     REG_FORM.style.display = 'block';
     SIGN_IN_FORM.style.display = 'none';
