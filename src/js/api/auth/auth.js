@@ -38,7 +38,19 @@ export async function signIn(event) {
     if (RESPONSE.ok) {
       const TOKEN = RESPONSE.headers.get('Authorization');
       localStorage.setItem('accessToken', TOKEN);
-      window.location.href = '/profile/';
+      ERROR_MESSAGE.textContent =
+        'You have successfully signed in, you will be redirected to your profile';
+      ERROR_MESSAGE.style.color = 'green';
+
+      const loadingSymbol = document.createElement('div');
+      loadingSymbol.className = 'loading-symbol';
+      loadingSymbol.classList.add('loading-symbol');
+      loadingSymbol.textContent = 'Loading...';
+      document.body.appendChild(loadingSymbol);
+
+      setTimeout(() => {
+        window.location.href = '/profile/';
+      }, 2000);
     } else if (RESPONSE.status === 401) {
       ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Invalid email or password';
     } else {
