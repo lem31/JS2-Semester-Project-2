@@ -39,17 +39,30 @@ export async function register(event) {
       body: JSON.stringify(REQUEST_BODY_REG),
     });
 
+    if (!REQUEST_BODY_REG.email) {
+      ERROR_MESSAGE.textContent = 'Error: Email is required';
+      return;
+    }
+    if (!REQUEST_BODY_REG.password) {
+      ERROR_MESSAGE.textContent = 'Error: Password is required';
+      return;
+    }
+    if (REQUEST_BODY_REG.password.length < 8) {
+      ERROR_MESSAGE.textContent =
+        'Error: Password must be at least 8 characters long';
+      return;
+    }
+
     if (RESPONSE.ok) {
-      alert('Registration successful');
       window.location.href = '/auth/';
-      ERROR_MESSAGE.textContent = '';
+      ERROR_MESSAGE.textContent =
+        'You have successfully registered, please login';
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       ERROR_MESSAGE.textContent = 'Error: User already exists';
     } else {
       ERROR_MESSAGE.textContent = 'Error: Something went wrong';
     }
   } catch (error) {
-    console.error('Error:', error);
     ERROR_MESSAGE.textContent = 'Error: Unable to connect to the server';
   }
 }
