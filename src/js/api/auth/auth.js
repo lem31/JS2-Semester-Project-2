@@ -1,4 +1,4 @@
-const API_AUTH_REGISTER = `https://v2.api.noroff.dev/auth/register`;
+import { API_AUTH_REGISTER } from '../constants.js';
 import { headers } from '../headers.js';
 
 const REG_FORM = document.getElementById('reg-form');
