@@ -1,3 +1,5 @@
+import { register } from '../../api/auth/auth';
+
 const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const MY_LISTINGS_LINK_NAV = document.getElementById('my-listings-link-nav');
@@ -34,6 +36,7 @@ function displaySignInForm() {
 }
 
 function displayRegForm() {
+  const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
   ERROR_MESSAGE.textContent = '';
   if (REG_FORM.style.display === 'none') {
     REG_FORM.style.display = 'block';
@@ -98,4 +101,8 @@ export function displayCreateListingLinkNav() {
   } else {
     CREATE_LISTING_LINK_NAV.style.display = 'none';
   }
+}
+
+export async function onRegister() {
+  REG_FORM.addEventListener('submit', register);
 }
