@@ -1,11 +1,16 @@
 export function displayUserProfile(PROFILE) {
   const USER_PROFILE = document.getElementById('my-profile');
   const USER_NAME = document.createElement('h2');
-
   const BIO = document.createElement('p');
   const BANNER = document.createElement('img');
   const AVATAR = document.createElement('img');
   const CREDITS = document.createElement('p');
+  const SHOW_UPDATE_PROFILE_BTN = document.getElementById(
+    'show-update-form-btn'
+  );
+
+  const UPDATE_PROFILE_FORM = document.getElementById('update-profile-form');
+  const SAVE_UPDATE_PROFILE_BTN = document.createElement('button');
 
   BANNER.classList.add('profile-banner');
   AVATAR.classList.add('profile-avatar');
@@ -32,4 +37,16 @@ export function displayUserProfile(PROFILE) {
   CREDITS.innerHTML = `My Credits:${PROFILE.credits}` || 'N/A';
 
   return USER_PROFILE;
+}
+
+function displayUpdateProfileForm() {
+  if (UPDATE_PROFILE_FORM.style.display === 'none') {
+    UPDATE_PROFILE_FORM.style.display = 'block';
+  } else if (UPDATE_PROFILE_FORM.style.display === 'block') {
+    UPDATE_PROFILE_FORM.style.display = 'none';
+  }
+}
+
+export function onClickUpdateProfileBtn() {
+  SHOW_UPDATE_PROFILE_BTN.addEventListener('click', displayUpdateProfileForm);
 }
