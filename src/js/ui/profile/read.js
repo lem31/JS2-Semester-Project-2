@@ -15,6 +15,8 @@ export function displayUserProfile(PROFILE) {
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(CREDITS);
 
+  console.log(PROFILE.credits);
+
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
   BANNER.src =
@@ -26,7 +28,8 @@ export function displayUserProfile(PROFILE) {
     PROFILE.avatar && PROFILE.avatar.url
       ? PROFILE.avatar.url
       : '../../../ui/images/default-avatar.jpg';
-  CREDITS.innerHTML = PROFILE.credits ? PROFILE.credits.length : 0;
+
+  CREDITS.innerHTML = `My Credits:${PROFILE.credits}` || 'N/A';
 
   return USER_PROFILE;
 }

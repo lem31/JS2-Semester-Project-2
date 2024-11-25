@@ -12,7 +12,7 @@ export const API_AUTH_REGISTER = `${API_BASE}${AUTH_REGISTER}`;
 
 export const API_AUTH_SIGN_IN = `${API_BASE}${AUTH_SIGN_IN}`;
 
-export const PROFILE_ENDPOINT = 'social/profiles/';
+export const PROFILE_ENDPOINT = 'auction/profiles/';
 
 export const API_PROFILE = `${API_BASE}${PROFILE_ENDPOINT}`;
 

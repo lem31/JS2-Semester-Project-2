@@ -1,6 +1,7 @@
 import { API_AUTH_REGISTER } from '../constants.js';
 import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
+import { updateUserProfileCredits } from '../profile/read.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
@@ -129,6 +130,8 @@ export async function register(event) {
       setTimeout(() => {
         window.location.href = '/auth/';
       }, 2000);
+
+      updateUserProfileCredits();
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       ERROR_MESSAGE.textContent = 'Error: User already exists';
     } else {
