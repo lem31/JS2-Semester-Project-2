@@ -1,5 +1,6 @@
 import { headers } from '../headers';
 import { API_PROFILE } from '../constants';
+import { displayUserProfile } from '../../ui/profile/read';
 
 export async function getUserProfile() {
   try {
