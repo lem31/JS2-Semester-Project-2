@@ -16,8 +16,6 @@ export function displayUserProfile(PROFILE) {
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(CREDITS);
 
-  console.log(PROFILE.credits);
-
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
   BANNER.src =
