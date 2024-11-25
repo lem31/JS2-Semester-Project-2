@@ -87,6 +87,41 @@
         <h1>My Profile</h1>
         <div id="my-profile"></div>
       </div>
+
+      <div class="hidden" id="update-profile-form">
+        <h2>Update Profile</h2>
+        <form class="update-profile-form" name="update-profile">
+          <button>X</button>
+          <div>
+            <label for="bio">Bio</label>
+            <textarea id="bio" type="text" name="bio" maxlength="160">
+            </textarea>
+          </div>
+
+          <div>
+            <label for="avatarUrl">Avatar Url</label>
+            <input type="avatarUrl" name="avatarUrl" id="avatarUrl" />
+          </div>
+
+          <div>
+            <label for="avatarAlt">Avatar Alt</label>
+            <input type="url" name="avatarUrl" id="avatarAlt" />
+          </div>
+
+          <div>
+            <label for="bannerUrl">Banner Url</label>
+            <input type="url" name="bannerUrl" id="bannerUrl" />
+          </div>
+
+          <div>
+            <label for="bannerAlt">Banner Alt</label>
+            <input type="url" name="bannerAlt" id="bannerAlt" />
+          </div>
+
+          <button>Save</button>
+        </form>
+        <div id="error-message-sign-in-form"></div>
+      </div>
     </main>
     <footer>
       <div>
