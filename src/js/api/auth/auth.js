@@ -1,7 +1,7 @@
 import { API_AUTH_REGISTER } from '../constants.js';
 import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
-import { updateUserProfileCredits } from '../profile/read.js';
+import { updateUserProfileCredits } from '../profile/update.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
