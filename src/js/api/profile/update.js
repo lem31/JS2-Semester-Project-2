@@ -77,7 +77,6 @@ export async function updateUserProfileCredits() {
     }
 
     console.log('Profile updated successfully:', data);
-    await getUserProfile();
   } catch (error) {
     console.error('Error updating profile:', error);
   }

@@ -47,6 +47,11 @@ export async function signIn(event) {
         'You have successfully signed in, you will be redirected to your profile';
       ERROR_MESSAGE.style.color = 'green';
 
+      if (!localStorage.getItem('firstLogin')) {
+        updateUserProfileCredits();
+        localStorage.setItem('firstLogin', 'true');
+      }
+
       const loadingSymbol = document.createElement('div');
       loadingSymbol.className = 'loading-symbol';
       loadingSymbol.classList.add('loading-symbol');
@@ -130,8 +135,6 @@ export async function register(event) {
       setTimeout(() => {
         window.location.href = '/auth/';
       }, 2000);
-
-      updateUserProfileCredits();
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       ERROR_MESSAGE.textContent = 'Error: User already exists';
     } else {

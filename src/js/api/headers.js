@@ -1,7 +1,7 @@
 import { API_KEY } from './constants.js';
 
 export function headers() {
-  const ACCESS_TOKEN = localStorage.getItem('accessToken') || '';
+  const ACCESS_TOKEN = localStorage.getItem('accessToken');
   const headers = new Headers();
 
   headers.append('Content-Type', 'application/json');
