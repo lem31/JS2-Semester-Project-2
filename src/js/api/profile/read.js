@@ -2,6 +2,15 @@ import { headers } from '../headers';
 import { API_PROFILE } from '../constants';
 import { displayUserProfile } from '../../ui/profile/read';
 
+/**
+ * @async
+ * @function getUserProfile
+ * @returns {Promise<void>}
+ * @exports getUserProfile
+ * @description This function sends a request to the server to get the user's profile. If the request is successful, the user's profile is displayed.
+ * If the request fails, an error message is logged to the console.
+ */
+
 export async function getUserProfile() {
   try {
     const USER = JSON.parse(localStorage.getItem('user'));
