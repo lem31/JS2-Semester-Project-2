@@ -1,7 +1,6 @@
 import { API_AUTH_REGISTER } from '../constants.js';
 import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
-import { updateUserProfileCredits } from '../profile/update.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
@@ -46,11 +45,6 @@ export async function signIn(event) {
       ERROR_MESSAGE.textContent =
         'You have successfully signed in, you will be redirected to your profile';
       ERROR_MESSAGE.style.color = 'green';
-
-      if (!localStorage.getItem('firstLogin')) {
-        updateUserProfileCredits();
-        localStorage.setItem('firstLogin', 'true');
-      }
 
       const loadingSymbol = document.createElement('div');
       loadingSymbol.className = 'loading-symbol';
