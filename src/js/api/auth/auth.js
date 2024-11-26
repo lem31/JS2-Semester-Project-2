@@ -9,6 +9,19 @@ const ERROR_MESSAGE_SIGN_IN = document.getElementById(
   'error-message-sign-in-form'
 );
 
+/**
+ *
+ *
+ * @param {*} event
+ * @returns {Promise<void>}
+ * @async
+ * @function signIn
+ * @exports signIn
+ * @description This function handles the sign in request to the server. It prevents the default form submission behavior, collects the form data
+ * and sends a sign-in request to the server. If the sign-in request is successful, the user is redirected to their profile page.
+ * If the request fails, the user is presented with an error message.
+ */
+
 export async function signIn(event) {
   event.preventDefault();
 
@@ -65,6 +78,17 @@ export async function signIn(event) {
       'Error: Unable to connect to the server';
   }
 }
+
+/**
+ * @param {*} event
+ * @returns {Promise<void>}
+ * @async
+ * @function register
+ * @exports register
+ * @description This function handles the registration request to the server. It prevents the default form submission behavior, collects the form data
+ * and sends a registration request to the server. If the registration request is successful, the user is redirected to the sign-in page.
+ * If the request fails, the user is presented with an error message.
+ */
 
 export async function register(event) {
   event.preventDefault();
