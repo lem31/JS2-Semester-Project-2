@@ -8,9 +8,13 @@ export const AUTH_REGISTER = 'auth/register';
 
 const AUTH_SIGN_IN = 'auth/login';
 
+const CREATE_LISTING = 'auction/listings';
+
 export const API_AUTH_REGISTER = `${API_BASE}${AUTH_REGISTER}`;
 
 export const API_AUTH_SIGN_IN = `${API_BASE}${AUTH_SIGN_IN}`;
+
+export const API_CREATE_LISTING = `${API_BASE}${CREATE_LISTING}`;
 
 export const PROFILE_ENDPOINT = 'auction/profiles/';
 

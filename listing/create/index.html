@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="../../vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Art Auction App - Create a Listing</title>
     <script type="module" src="../../src/app.js" defer></script>
@@ -92,19 +92,20 @@
     <main>
       <div class="create-form-container">
         <h1>Create a Listing</h1>
-        <form name="create" id="create-form">
+        <form name="create-listing" method="post" id="create-listing-form">
           <div>
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" />
+            <input id="title" type="text" name="title" required />
           </div>
 
           <div>
             <label for="description">Description</label>
-            <textarea
-              id="description"
-              type="text"
-              name="description"
-            ></textarea>
+            <textarea id="description" name="description"></textarea>
+          </div>
+
+          <div>
+            <label for="tags">Tags</label>
+            <input id="tags" type="text" name="tags" />
           </div>
 
           <div>
@@ -117,10 +118,12 @@
           </div>
           <div>
             <label for="endsAt">Ends at</label>
-            <input id="endsAt" type="datetime-local" name="endsAt" />
+            <input id="endsAt" type="datetime-local" name="endsAt" required />
           </div>
 
-          <button>Create New Listing</button>
+          <button id="create-listing-btn" type="submit">
+            Create New Listing
+          </button>
         </form>
       </div>
     </main>
