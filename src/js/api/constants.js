@@ -21,3 +21,11 @@ export const PROFILE_ENDPOINT = 'auction/profiles/';
 export const API_PROFILE = `${API_BASE}${PROFILE_ENDPOINT}`;
 
 export const API_KEY = '2cb38805-7bd6-46d6-92d0-086c83471763';
+
+const USER_NAME = JSON.parse(localStorage.getItem('user')) || {};
+
+const NAME = USER_NAME.name || 'defaultName';
+
+export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings`;
+
+export const MY_LISTINGS_API = `${API_BASE}${MY_LISTINGS_ENDPOINT}`;

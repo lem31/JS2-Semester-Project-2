@@ -10,6 +10,22 @@ import { headers } from '../headers';
 
 function createListingRequestBody(formElement) {
   const formData = new FormData(formElement);
+  const urlsString = formData.get('urls') || '';
+  const altsString = formData.get('alts') || '';
+
+  const urls = urlsString
+    .split(',')
+    .map((url) => url.trim())
+    .filter(Boolean);
+  const alts = altsString
+    .split(',')
+    .map((alt) => alt.trim())
+    .filter(Boolean);
+
+  if (urls.length !== alts.length) {
+    throw new Error('The number of URLs must match the number of alt texts.');
+  }
+
   const listingRequestBody = {
     title: formData.get('title'),
     description: formData.get('description'),
@@ -17,14 +33,13 @@ function createListingRequestBody(formElement) {
       .get('tags')
       .split(',')
       .map((tag) => tag.trim()),
-    media: [
-      {
-        url: formData.get('url'),
-        alt: formData.get('alt'),
-      },
-    ],
+    media: urls.map((url, index) => ({
+      url: url,
+      alt: alts[index],
+    })),
     endsAt: formData.get('endsAt'),
   };
+
   return listingRequestBody;
 }
 
