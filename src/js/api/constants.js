@@ -6,9 +6,9 @@ export const API_KEY_ENDPOINT = `${API_BASE}auth/create-api-key`;
 
 export const AUTH_REGISTER = 'auth/register';
 
-const AUTH_SIGN_IN = 'auth/login';
+export const AUTH_SIGN_IN = 'auth/login';
 
-const CREATE_LISTING = 'auction/listings';
+export const CREATE_LISTING = 'auction/listings';
 
 export const API_AUTH_REGISTER = `${API_BASE}${AUTH_REGISTER}`;
 
