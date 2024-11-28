@@ -1,6 +1,13 @@
 import { API_CREATE_LISTING } from '../constants';
 import { headers } from '../headers';
 
+/**
+ * @function createListingRequestBody
+ * @param {Element} formElement
+ * @returns {Object} - The listing request body
+ * @description This function creates a request body for a new listing.
+ */
+
 function createListingRequestBody(formElement) {
   const formData = new FormData(formElement);
   const listingRequestBody = {
@@ -20,6 +27,13 @@ function createListingRequestBody(formElement) {
   };
   return listingRequestBody;
 }
+
+/**
+ * @function postCreateFormDataToAPI
+ * @param {Element} formElement
+ * @returns {Promise<Object>} - The response data
+ * @description This function sends a POST request to the API to create a new listing
+ */
 
 export async function postCreateFormDataToAPI(formElement) {
   try {
