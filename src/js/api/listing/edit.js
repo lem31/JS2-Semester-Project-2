@@ -1,6 +1,26 @@
 import { headers } from '../headers';
 
-async function editListingInAPI(LISTING_ID, EDIT_FORM_DATA) {
+export async function editListingInAPI() {
+  const URL_PARAMS = new URLSearchParams(window.location.search);
+  const LISTING_ID = URL_PARAMS.get('id');
+
+  const EDIT_FORM_DATA = {
+    title: document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    tags: document
+      .getElementById('tags')
+      .value.split(',')
+      .map((tag) => tag.trim()),
+    endsAt: document.getElementById('endsAt').value,
+    media: document
+      .getElementById('urls')
+      .value.split(',')
+      .map((url, index) => ({
+        url: url.trim(),
+        alt: document.getElementById('alts').value.split(',')[index].trim(),
+      })),
+  };
+
   try {
     const RESPONSE = await fetch(
       `https://v2.api.noroff.dev/auction/listings/${LISTING_ID}`,

@@ -1,4 +1,5 @@
 import { headers } from '../../api/headers';
+import { editListingInAPI } from '../../api/listing/edit';
 
 export function displayListingIdInUrlOnEditPage(event) {
   const LISTING_ID = event.target.dataset.id;
@@ -11,7 +12,6 @@ export function onClickAddMoreImages() {
     ADD_MORE_IMAGES_BTN.addEventListener('click', (event) => {
       event.preventDefault();
       const EDIT_FORM = document.getElementById('edit-form');
-
       const URL_INPUT = document.createElement('input');
       URL_INPUT.setAttribute('type', 'url');
       URL_INPUT.setAttribute('name', 'urls');
@@ -25,6 +25,17 @@ export function onClickAddMoreImages() {
       ALT_INPUT.setAttribute('class', 'input');
       EDIT_FORM.insertBefore(ALT_INPUT, ADD_MORE_IMAGES_BTN);
       EDIT_FORM.insertBefore(URL_INPUT, ALT_INPUT);
+    });
+  }
+}
+
+export function onClickSaveListingBtn() {
+  const SAVE_LISTING_BTN = document.getElementById('save-listing-btn');
+
+  if (SAVE_LISTING_BTN) {
+    SAVE_LISTING_BTN.addEventListener('click', async (event) => {
+      event.preventDefault();
+      editListingInAPI();
     });
   }
 }
