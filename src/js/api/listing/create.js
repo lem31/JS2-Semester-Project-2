@@ -23,7 +23,12 @@ function createListingRequestBody(formElement) {
     .filter(Boolean);
 
   if (urls.length !== alts.length) {
-    throw new Error('The number of URLs must match the number of alt texts.');
+    const errorMessage = 'Please enter alt text for each of your images';
+    const errorElement = document.createElement('div');
+    errorElement.textContent = errorMessage;
+    errorElement.style.color = 'red';
+    formElement.appendChild(errorElement);
+    throw new Error(errorMessage);
   }
 
   const listingRequestBody = {
