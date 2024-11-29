@@ -10,37 +10,22 @@ import { headers } from '../headers';
 
 function createListingRequestBody(formElement) {
   const formData = new FormData(formElement);
-  const urlsString = formData.get('urls') || '';
-  const altsString = formData.get('alts') || '';
 
-  const urls = urlsString
-    .split(',')
-    .map((url) => url.trim())
-    .filter(Boolean);
-  const alts = altsString
-    .split(',')
-    .map((alt) => alt.trim())
-    .filter(Boolean);
-
-  if (urls.length !== alts.length) {
-    const errorMessage = 'Please enter alt text for each of your images';
-    const errorElement = document.createElement('div');
-    errorElement.textContent = errorMessage;
-    errorElement.style.color = 'red';
-    formElement.appendChild(errorElement);
-    throw new Error(errorMessage);
-  }
+  const urls = formData.getAll('urls');
+  const alts = formData.getAll('alts');
 
   const listingRequestBody = {
     title: formData.get('title'),
     description: formData.get('description'),
-    tags: formData
-      .get('tags')
-      .split(',')
-      .map((tag) => tag.trim()),
+    tags: formData.get('tags')
+      ? formData
+          .get('tags')
+          .split(',')
+          .map((tag) => tag.trim())
+      : [],
     media: urls.map((url, index) => ({
       url: url,
-      alt: alts[index],
+      alt: alts[index] || '',
     })),
     endsAt: formData.get('endsAt'),
   };
@@ -69,7 +54,7 @@ export async function postCreateFormDataToAPI(formElement) {
       window.location.href = '/my_listings/';
       return DATA;
     } else {
-      throw new Error('Failed to create post');
+      throw new Error('Failed to create listing');
     }
   } catch (error) {
     throw new Error(`HTTP error: ${error.message}`);
