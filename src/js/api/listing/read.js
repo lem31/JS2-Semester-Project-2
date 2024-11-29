@@ -15,7 +15,6 @@ export async function getMyListings() {
     });
 
     if (!RESPONSE.ok) {
-      console.error('HTTP error response:', RESPONSE);
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
 
@@ -32,11 +31,11 @@ export async function getMyListings() {
         try {
           new createMyListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
-          console.error('Error creating post elements:', error, listing);
+          throw new Error('Error creating post elements');
         }
       });
     }
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    throw new Error('Error fetching posts');
   }
 }
