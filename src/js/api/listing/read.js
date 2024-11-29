@@ -29,7 +29,7 @@ export async function getMyListings() {
 
     const LISTINGS = DATA.data || [];
 
-    localStorage.setItem('posts', JSON.stringify(LISTINGS));
+    localStorage.setItem('listings', JSON.stringify(LISTINGS));
 
     const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
     if (LISTINGS_CONTAINER) {
