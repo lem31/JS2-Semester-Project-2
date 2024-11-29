@@ -19,7 +19,7 @@ export function createMyListingsElements(listing) {
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
 
   EDIT_BUTTON.addEventListener('click', () => {
-    window.location.href = `/edit/listing/`;
+    window.location.href = `/listing/edit/`;
   });
 
   EDIT_BUTTON.textContent = 'Edit';
