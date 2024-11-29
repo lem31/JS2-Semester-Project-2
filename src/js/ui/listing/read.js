@@ -1,3 +1,10 @@
+/**
+ * @function createMyListingsElements
+ * @description Creates elements for each listing in the My Listings page
+ * @param {Object} listing - The listing object
+ * @returns {HTMLElement} - The listing container element
+ */
+
 export function createMyListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
@@ -35,6 +42,13 @@ export function createMyListingsElements(listing) {
 
   return LISTING_CONTAINER;
 }
+
+/**
+ * @function fetchListingImages
+ * @description Fetches and displays images for a listing
+ * @param {Object} listing - The listing object
+ * @param {HTMLElement} LISTING_CONTAINER - The listing container element
+ */
 
 function fetchListingImages(listing, LISTING_CONTAINER) {
   const IMAGES = listing.media || [];

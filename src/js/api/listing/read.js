@@ -2,6 +2,13 @@ import { headers } from '../headers';
 import { MY_LISTINGS_API } from '../constants';
 import { createMyListingsElements } from '../../ui/listing/read.js';
 
+/**
+ * @function getMyListings
+ * @description Fetches all listings created by the logged in user
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+
 export async function getMyListings() {
   try {
     const ACCESS_TOKEN = localStorage.getItem('accessToken');
