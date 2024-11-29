@@ -18,6 +18,10 @@ export function createMyListingsElements(listing) {
   const DELETE_BUTTON = document.createElement('button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
 
+  EDIT_BUTTON.addEventListener('click', () => {
+    window.location.href = `/edit/listing/`;
+  });
+
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
   LISTING_BIDS.textContent = `No. of bids: ${listing._count.bids}`;
