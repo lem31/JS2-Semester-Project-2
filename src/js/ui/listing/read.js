@@ -20,6 +20,7 @@ export function createMyListingsElements(listing) {
   const BUTTON_CONTAINER = document.createElement('div');
   const EDIT_BUTTON = document.createElement('button');
   const DELETE_BUTTON = document.createElement('button');
+  const VIEW_BIDS_BUTTON = document.createElement('button');
   DELETE_BUTTON.classList.add('delete-button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
 
@@ -29,7 +30,7 @@ export function createMyListingsElements(listing) {
 
   DELETE_BUTTON.dataset.id = listing.id;
   EDIT_BUTTON.dataset.id = listing.id;
-
+  VIEW_BIDS_BUTTON.textContent = 'View Bids';
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
   LISTING_BIDS.textContent = `No. of bids: ${listing._count.bids}`;
@@ -45,6 +46,7 @@ export function createMyListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(EDIT_BUTTON);
   BUTTON_CONTAINER.appendChild(DELETE_BUTTON);
+  BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
 
   fetchListingImages(listing, LISTING_CONTAINER);
