@@ -1,5 +1,6 @@
 import { removeListingFromAPI } from '../../api/listing/delete';
 import { deleteListing } from './delete';
+import { displayListingIdInUrlOnEditPage } from './edit';
 
 /**
  * @function createMyListingsElements
@@ -22,11 +23,12 @@ export function createMyListingsElements(listing) {
   DELETE_BUTTON.classList.add('delete-button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
 
-  EDIT_BUTTON.addEventListener('click', () => {
-    window.location.href = `/listing/edit/`;
+  EDIT_BUTTON.addEventListener('click', (event) => {
+    displayListingIdInUrlOnEditPage(event);
   });
 
   DELETE_BUTTON.dataset.id = listing.id;
+  EDIT_BUTTON.dataset.id = listing.id;
 
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
