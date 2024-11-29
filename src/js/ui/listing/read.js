@@ -1,3 +1,6 @@
+import { removeListingFromAPI } from '../../api/listing/delete';
+import { deleteListing } from './delete';
+
 /**
  * @function createMyListingsElements
  * @description Creates elements for each listing in the My Listings page
@@ -16,11 +19,14 @@ export function createMyListingsElements(listing) {
   const BUTTON_CONTAINER = document.createElement('div');
   const EDIT_BUTTON = document.createElement('button');
   const DELETE_BUTTON = document.createElement('button');
+  DELETE_BUTTON.classList.add('delete-button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
 
   EDIT_BUTTON.addEventListener('click', () => {
     window.location.href = `/listing/edit/`;
   });
+
+  DELETE_BUTTON.dataset.id = listing.id;
 
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
@@ -43,6 +49,8 @@ export function createMyListingsElements(listing) {
 
   const OUTER_CONTAINER = document.getElementById('my-auction-listings');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
+
+  DELETE_BUTTON.addEventListener('click', deleteListing);
 
   return LISTING_CONTAINER;
 }

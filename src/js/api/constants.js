@@ -16,6 +16,9 @@ export const API_AUTH_SIGN_IN = `${API_BASE}${AUTH_SIGN_IN}`;
 
 export const API_CREATE_LISTING = `${API_BASE}${CREATE_LISTING}`;
 
+export const DELETE_LISTING_ENDPOINT = 'auction/listings/';
+export const DELETE_LISTING = '${API_BASE}${DELETE_LISTING_ENDPOINT}';
+
 export const PROFILE_ENDPOINT = 'auction/profiles/';
 
 export const API_PROFILE = `${API_BASE}${PROFILE_ENDPOINT}`;
