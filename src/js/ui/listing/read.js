@@ -2,6 +2,10 @@ import { removeListingFromAPI } from '../../api/listing/delete';
 import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
 
+function isLoggedIn() {
+  return localStorage.getItem('accessToken') !== null;
+}
+
 /**
  * @function createMyListingsElements
  * @description Creates elements for each listing in the My Listings page
@@ -23,6 +27,8 @@ export function createMyListingsElements(listing) {
   const VIEW_BIDS_BUTTON = document.createElement('button');
   DELETE_BUTTON.classList.add('delete-button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
+  const VIEW_BIDS_CONTAINER = document.createElement('div');
+  const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
 
   EDIT_BUTTON.addEventListener('click', (event) => {
     displayListingIdInUrlOnEditPage(event);
@@ -30,10 +36,12 @@ export function createMyListingsElements(listing) {
 
   DELETE_BUTTON.dataset.id = listing.id;
   EDIT_BUTTON.dataset.id = listing.id;
+  if (isLoggedIn()) {
+    LISTING_BIDS_COUNT_TOTAL.textContent = `Total bids: ${listing._count.bids}`;
+  }
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
-  LISTING_BIDS.textContent = `No. of bids: ${listing._count.bids}`;
   LISTING_TITLE.textContent = listing.title || 'No title available';
   LISTING_DESCRIPTION.textContent =
     listing.description || 'No description available';
@@ -48,8 +56,9 @@ export function createMyListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(DELETE_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   fetchListingImages(listing, LISTING_CONTAINER);
+  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
   const OUTER_CONTAINER = document.getElementById('my-auction-listings');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
