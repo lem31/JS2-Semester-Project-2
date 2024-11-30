@@ -29,6 +29,6 @@ const USER_NAME = JSON.parse(localStorage.getItem('user')) || {};
 
 const NAME = USER_NAME.name || 'defaultName';
 
-export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings`;
+export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings?_bids=true`;
 
 export const MY_LISTINGS_API = `${API_BASE}${MY_LISTINGS_ENDPOINT}`;

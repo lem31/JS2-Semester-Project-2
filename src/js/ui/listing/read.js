@@ -29,6 +29,10 @@ export function createMyListingsElements(listing) {
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
   const VIEW_BIDS_CONTAINER = document.createElement('div');
   const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
+  const LISTING_BIDDERS_NAME = document.createElement('p');
+  const BIDDER_AVATAR = document.createElement('img');
+  const BIDDER_CONTAINER = document.createElement('div');
+  const BID_AMOUNT = document.createElement('p');
 
   EDIT_BUTTON.addEventListener('click', (event) => {
     displayListingIdInUrlOnEditPage(event);
@@ -36,9 +40,21 @@ export function createMyListingsElements(listing) {
 
   DELETE_BUTTON.dataset.id = listing.id;
   EDIT_BUTTON.dataset.id = listing.id;
-  if (isLoggedIn()) {
+  if (isLoggedIn() && listing._count && listing._count.bids !== undefined) {
     LISTING_BIDS_COUNT_TOTAL.textContent = `Total bids: ${listing._count.bids}`;
   }
+  LISTING_BIDDERS_NAME.textContent =
+    listing.bids && listing.bids.length > 0
+      ? `Bidder: ${listing.bids[0].bidder.name}`
+      : 'No bidders';
+  BIDDER_AVATAR.src =
+    listing.bids && listing.bids.length > 0
+      ? listing.bids[0].bidder.avatar.url
+      : '';
+  BID_AMOUNT.textContent =
+    listing.bids && listing.bids.length > 0
+      ? `Bid amount: ${listing.bids[0].amount}`
+      : 'No bids';
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
   EDIT_BUTTON.textContent = 'Edit';
   DELETE_BUTTON.textContent = 'Delete';
@@ -60,6 +76,23 @@ export function createMyListingsElements(listing) {
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
+  if (listing.bids && listing.bids.length > 0) {
+    listing.bids.forEach((bid) => {
+      const BIDDER_CONTAINER = document.createElement('div');
+      const BIDDER_NAME = document.createElement('p');
+      const BIDDER_AVATAR = document.createElement('img');
+      const BID_AMOUNT = document.createElement('p');
+
+      BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
+      BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
+      BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
+
+      BIDDER_CONTAINER.appendChild(BIDDER_AVATAR);
+      BIDDER_CONTAINER.appendChild(BIDDER_NAME);
+      BIDDER_CONTAINER.appendChild(BID_AMOUNT);
+      VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
+    });
+  }
   const OUTER_CONTAINER = document.getElementById('my-auction-listings');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
