@@ -39,3 +39,13 @@ export function onClickSaveListingBtn() {
     });
   }
 }
+
+export function onClickCancelBtn() {
+  const CANCEL_BTN = document.getElementById('cancel-btn');
+  if (CANCEL_BTN) {
+    CANCEL_BTN.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = '/my_listings/';
+    });
+  }
+}
