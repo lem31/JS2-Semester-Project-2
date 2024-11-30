@@ -1,3 +1,4 @@
+import { list } from 'postcss';
 import { headers } from '../headers';
 
 export async function editListingInAPI() {
@@ -12,13 +13,7 @@ export async function editListingInAPI() {
       .value.split(',')
       .map((tag) => tag.trim()),
     endsAt: document.getElementById('endsAt').value,
-    media: document
-      .getElementById('urls')
-      .value.split(',')
-      .map((url, index) => ({
-        url: url.trim(),
-        alt: document.getElementById('alts').value.split(',')[index].trim(),
-      })),
+    media: document.getElementById('urls').value,
   };
 
   try {
@@ -71,18 +66,15 @@ export async function populateEditForm() {
         0,
         16
       );
-      const media = LISTING.data.media;
-      if (media && media.length > 0) {
-        document.getElementById('urls').value = media
-          .map((item) => item.url)
-          .join(', ');
-        document.getElementById('alts').value = media
-          .map((item) => item.alt)
-          .join(', ');
-      } else {
-        document.getElementById('urls').value = '';
-        document.getElementById('alts').value = '';
-      }
+      LISTING.data.media.forEach((element) => {
+        const urlInput = document.createElement('input');
+        urlInput.value = `Image Url: ${element.url}`;
+        document.getElementById('mediaInputs').appendChild(urlInput);
+
+        const altInput = document.createElement('input');
+        altInput.value = `Alt: ${element.alt}`;
+        document.getElementById('mediaInputs').appendChild(altInput);
+      });
     } catch (error) {
       throw new Error('Error fetching post: ' + error.message);
     }

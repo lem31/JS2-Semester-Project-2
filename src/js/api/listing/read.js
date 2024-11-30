@@ -29,9 +29,42 @@ export async function getMyListings() {
 
     const LISTINGS = DATA.data || [];
 
-    localStorage.setItem('listings', JSON.stringify(LISTINGS));
+    localStorage.setItem('myListings', JSON.stringify(LISTINGS));
 
     const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
+    if (LISTINGS_CONTAINER) {
+      LISTINGS_CONTAINER.innerHTML = '';
+      LISTINGS.forEach((listing) => {
+        try {
+          new createMyListingsElements(listing, LISTINGS_CONTAINER);
+        } catch (error) {
+          throw new Error('Error creating post elements');
+        }
+      });
+    }
+  } catch (error) {
+    throw new Error('Error fetching posts');
+  }
+}
+
+export async function getAllListings() {
+  try {
+    const RESPONSE = await fetch(ALL_LISTINGS_API, {
+      method: 'GET',
+      headers: headers(),
+    });
+
+    if (!RESPONSE.ok) {
+      throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
+    }
+
+    const DATA = await RESPONSE.json();
+
+    const LISTINGS = DATA.data || [];
+
+    localStorage.setItem('allListings', JSON.stringify(LISTINGS));
+
+    const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
     if (LISTINGS_CONTAINER) {
       LISTINGS_CONTAINER.innerHTML = '';
       LISTINGS.forEach((listing) => {
