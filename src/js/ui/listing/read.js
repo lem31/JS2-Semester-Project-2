@@ -74,6 +74,7 @@ export function createMyListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+  VIEW_BIDS_CONTAINER.classList.add('hidden');
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -96,6 +97,17 @@ export function createMyListingsElements(listing) {
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
   DELETE_BUTTON.addEventListener('click', deleteListing);
+
+  VIEW_BIDS_BUTTON.addEventListener('click', () => {
+    if (
+      VIEW_BIDS_CONTAINER.style.display === 'none' ||
+      !VIEW_BIDS_CONTAINER.style.display
+    ) {
+      VIEW_BIDS_CONTAINER.style.display = 'block';
+    } else {
+      VIEW_BIDS_CONTAINER.style.display = 'none';
+    }
+  });
 
   return LISTING_CONTAINER;
 }
