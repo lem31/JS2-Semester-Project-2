@@ -31,7 +31,6 @@ export function createMyListingsElements(listing) {
   const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
-  const BIDDER_CONTAINER = document.createElement('div');
   const BID_AMOUNT = document.createElement('p');
 
   EDIT_BUTTON.addEventListener('click', (event) => {
