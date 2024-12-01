@@ -31,7 +31,7 @@ const NAME = USER_NAME.name || 'defaultName';
 
 export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings?_bids=true`;
 
-export const ALL_LISTINGS_ENDPOINT = `auction/listings?_tag=ArtAuctionApp&_bids=true`;
+export const ALL_LISTINGS_ENDPOINT = `auction/listings?_tag=ArtAuctionApp&_bids=true&_seller=true`;
 
 export const ALL_LISTINGS_API = `${API_BASE}${ALL_LISTINGS_ENDPOINT}`;
 
