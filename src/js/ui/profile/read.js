@@ -25,8 +25,8 @@ export function displayUserProfile(PROFILE) {
 
   BANNER.classList.add('profile-banner');
   AVATAR.classList.add('profile-avatar');
-  USER_PROFILE.appendChild(AVATAR);
   USER_PROFILE.appendChild(BANNER);
+  USER_PROFILE.appendChild(AVATAR);
   USER_PROFILE.appendChild(USER_NAME);
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(CREDITS);
