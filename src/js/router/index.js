@@ -8,8 +8,6 @@
  * @example
  * // Example of how to call the function
  * router();
- *
- *
  */
 
 export default async function router(pathname = window.location.pathname) {

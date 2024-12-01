@@ -1,6 +1,8 @@
 import { headers } from '../headers';
 import { MY_LISTINGS_API } from '../constants';
+import { ALL_LISTINGS_API } from '../constants';
 import { createMyListingsElements } from '../../ui/listing/read.js';
+import { createAllListingsElements } from '../../ui/listing/read.js';
 
 /**
  * @function getMyListings
@@ -38,7 +40,7 @@ export async function getMyListings() {
         try {
           new createMyListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
-          throw new Error('Error creating post elements');
+          throw new Error('Error creating listing elements');
         }
       });
     }
@@ -47,7 +49,7 @@ export async function getMyListings() {
   }
 }
 
-export async function getAllListings() {
+export async function getAllArtAuctionListings() {
   try {
     const RESPONSE = await fetch(ALL_LISTINGS_API, {
       method: 'GET',
@@ -60,22 +62,25 @@ export async function getAllListings() {
 
     const DATA = await RESPONSE.json();
 
-    const LISTINGS = DATA.data || [];
+    const ALL_LISTINGS = DATA.data || [];
 
-    localStorage.setItem('allListings', JSON.stringify(LISTINGS));
+    localStorage.setItem('allListings', JSON.stringify(ALL_LISTINGS));
+
+    const LISTINGS = JSON.parse(localStorage.getItem('allListings') || '[]');
 
     const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
     if (LISTINGS_CONTAINER) {
       LISTINGS_CONTAINER.innerHTML = '';
       LISTINGS.forEach((listing) => {
         try {
-          new createMyListingsElements(listing, LISTINGS_CONTAINER);
+          new createAllListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
-          throw new Error('Error creating post elements');
+          throw new Error('Error creating listing elements');
         }
       });
     }
   } catch (error) {
-    throw new Error('Error fetching posts');
+    console.error('Error fetching listings:', error);
+    throw new Error('Error fetching listings');
   }
 }
