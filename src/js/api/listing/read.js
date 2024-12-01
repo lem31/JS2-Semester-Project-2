@@ -49,6 +49,13 @@ export async function getMyListings() {
   }
 }
 
+/**
+ * @function getAllArtAuctionListings
+ * @description Fetches all listings tagged with 'ArtAuctionApp'
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+
 export async function getAllArtAuctionListings() {
   try {
     const RESPONSE = await fetch(ALL_LISTINGS_API, {

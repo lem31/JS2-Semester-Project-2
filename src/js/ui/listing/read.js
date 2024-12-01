@@ -141,6 +141,13 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
   });
 }
 
+/**
+ * @function createAllListingsElements
+ * @description Creates elements for each listing on the home page
+ * @param {Object} listing - The listing object
+ * @returns {HTMLElement} - The listing container element
+ */
+
 export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
