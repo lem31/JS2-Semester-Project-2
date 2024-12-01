@@ -2,7 +2,7 @@ import { removeListingFromAPI } from '../../api/listing/delete';
 import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
 
-function isLoggedIn() {
+export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
 }
 
