@@ -39,7 +39,7 @@ export function onClickSearchButton() {
  */
 
 async function searchListings(query) {
-  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(query)}&_tag=ArtAuctionApp&bids=true`;
+  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(query)}&_tag=ArtAuctionApp&bids=true&_seller=true`;
 
   try {
     const response = await fetch(API_URL, {
@@ -85,6 +85,8 @@ function displayResults(listings) {
     listings.forEach((listing) => {
       const LISTING_ELEMENT = document.createElement('div');
       LISTING_ELEMENT.classList.add('listing');
+      const SELLER_NAME = document.createElement('p');
+      const SELLER_AVATAR = document.createElement('img');
       const LISTING_TITLE = document.createElement('h2');
       const LISTING_DESCRIPTION = document.createElement('p');
       const LISTING_BIDS = document.createElement('p');
@@ -100,6 +102,9 @@ function displayResults(listings) {
       const BID_AMOUNT = document.createElement('p');
 
       PLACE_BID_BUTTON.textContent = 'Place Bid';
+
+      SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
+      SELLER_AVATAR.src = listing.seller.avatar.url || '';
 
       LISTING_TITLE.textContent = listing.title
         ? listing.title
@@ -131,6 +136,8 @@ function displayResults(listings) {
       TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
       TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
       TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
+      TEXT_BUTTON_CONTAINER.appendChild(SELLER_NAME);
+      TEXT_BUTTON_CONTAINER.appendChild(SELLER_AVATAR);
       TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
       BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
       BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
