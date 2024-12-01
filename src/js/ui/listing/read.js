@@ -124,7 +124,7 @@ export function createMyListingsElements(listing) {
  * @param {HTMLElement} LISTING_CONTAINER - The listing container element
  */
 
-function fetchListingImages(listing, LISTING_CONTAINER) {
+export function fetchListingImages(listing, LISTING_CONTAINER) {
   const IMAGES = listing.media || [];
   console.log('Images:', IMAGES);
 

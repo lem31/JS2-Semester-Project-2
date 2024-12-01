@@ -1,5 +1,16 @@
 import { headers } from '../api/headers.js';
 import { isLoggedIn } from '../ui/listing/read.js';
+import { fetchListingImages } from '../ui/listing/read.js';
+
+/**
+ * @function onClickSearchButton
+ * @description Adds an event listener to the search button
+ * @returns {void}
+ * @listens search-button
+ * @fires searchListings
+ * @fires displayResults
+ * @exports onClickSearchButton
+ */
 
 export function onClickSearchButton() {
   document
@@ -17,6 +28,15 @@ export function onClickSearchButton() {
       displayResults(results);
     });
 }
+
+/**
+ * @function searchListings
+ * @description Searches for listings based on a query
+ * @param {string} query - The search query
+ * @returns {Promise<Array>} - The search results
+ * @requires headers
+ * @requires fetch
+ */
 
 async function searchListings(query) {
   const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(query)}&_tag=ArtAuctionApp&bids=true`;
@@ -39,6 +59,16 @@ async function searchListings(query) {
     return [];
   }
 }
+
+/**
+ * @function displayResults
+ * @description Displays search results on the page
+ * @param {Array} listings - The search results
+ * @returns {void}
+ * @exports displayResults
+ * @requires isLoggedIn
+ * @requires fetchListingImages
+ */
 
 function displayResults(listings) {
   const LISTING_CONTAINER = document.createElement('div');
@@ -152,20 +182,4 @@ function displayResults(listings) {
   } else {
     resultsContainer.textContent = 'No listings found.';
   }
-}
-
-function fetchListingImages(listing, LISTING_CONTAINER) {
-  const IMAGES = listing.media || [];
-
-  IMAGES.forEach((image) => {
-    console.log('Processing image:', image);
-    const IMAGE_ELEMENT = document.createElement('img');
-    IMAGE_ELEMENT.src = image.url;
-    IMAGE_ELEMENT.alt = image.alt || 'No image available';
-    IMAGE_ELEMENT.classList.add('listing-image');
-    const IMAGE_GALLERY_CONTAINER = document.createElement('div');
-    IMAGE_GALLERY_CONTAINER.classList.add('listing-image-container');
-    IMAGE_GALLERY_CONTAINER.appendChild(IMAGE_ELEMENT);
-    LISTING_CONTAINER.appendChild(IMAGE_GALLERY_CONTAINER);
-  });
 }
