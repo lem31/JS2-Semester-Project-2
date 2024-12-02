@@ -5,9 +5,10 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
   resolve: {
-    alias: {
-      'source-map-js': resolve(__dirname, 'node_modules/source-map-js'),
-    },
+    alias: {},
+  },
+  optimizeDeps: {
+    exclude: ['source-map-js'],
   },
   plugins: [
     eslintPlugin({
