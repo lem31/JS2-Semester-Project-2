@@ -178,6 +178,8 @@ export function createAllListingsElements(listing) {
   PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
   CLOSE_BUTTON.textContent = 'X';
 
+  //LISTING DETAILS
+
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
   const LISTING_TITLE = document.createElement('h2');
