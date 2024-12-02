@@ -1,7 +1,9 @@
 import { removeListingFromAPI } from '../../api/listing/delete';
 import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
-import { togglePlaceBidForm } from '../bids/place';
+import { postBidToAPI } from '../../api/bids/place';
+
+import { closePlaceBidForm } from '../bids/place';
 
 export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
@@ -153,6 +155,29 @@ export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
 
+  //PLACE BID FORM
+  const PLACE_BID_FORM = document.createElement('form');
+
+  const PLACE_BID_INPUT = document.createElement('input');
+  const CLOSE_BUTTON = document.createElement('button');
+  const PLACE_BID_SUBMIT = document.createElement('button');
+
+  PLACE_BID_FORM.classList.add('place-bid-form');
+  PLACE_BID_INPUT.classList.add('place-bid-input');
+  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+  CLOSE_BUTTON.classList.add('close-btn');
+
+  PLACE_BID_FORM.style.display = 'none';
+
+  PLACE_BID_INPUT.placeholder = 'Enter bid amount';
+  PLACE_BID_SUBMIT.textContent = 'Place bid';
+  PLACE_BID_SUBMIT.type = 'submit';
+
+  PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
+  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
+  PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
+  CLOSE_BUTTON.textContent = 'X';
+
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
   const LISTING_TITLE = document.createElement('h2');
@@ -170,12 +195,27 @@ export function createAllListingsElements(listing) {
   const BID_AMOUNT = document.createElement('p');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
-  PLACE_BID_BUTTON.addEventListener('click', togglePlaceBidForm);
+  PLACE_BID_BUTTON.addEventListener('click', () => {
+    if (PLACE_BID_FORM.style.display === 'none') {
+      PLACE_BID_FORM.style.display = 'block';
+    } else {
+      PLACE_BID_FORM.style.display = 'none';
+    }
+  });
+
+  PLACE_BID_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
+
+    postBidToAPI(listing.id, BID_AMOUNT, event);
+  });
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
   SELLER_AVATAR.src = listing.seller.avatar.url || '';
 
   PLACE_BID_BUTTON.textContent = 'Place Bid';
+  PLACE_BID_BUTTON.dataset.id = listing.id;
 
   if (isLoggedIn() && listing._count && listing._count.bids !== undefined) {
     LISTING_BIDS_COUNT_TOTAL.textContent = `No. of bids: ${listing._count.bids}`;
@@ -210,6 +250,8 @@ export function createAllListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+
+  LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
