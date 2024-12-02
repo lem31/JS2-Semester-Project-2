@@ -21,8 +21,6 @@ export function displayUserProfile(PROFILE) {
   const AVATAR = document.createElement('img');
   const CREDITS = document.createElement('p');
 
-  const SAVE_UPDATE_PROFILE_BTN = document.createElement('button');
-
   BANNER.classList.add('profile-banner');
   AVATAR.classList.add('profile-avatar');
   USER_PROFILE.appendChild(BANNER);
