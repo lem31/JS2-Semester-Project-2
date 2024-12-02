@@ -89,12 +89,13 @@ function displayResults(listings) {
       const SELLER_AVATAR = document.createElement('img');
       const LISTING_TITLE = document.createElement('h2');
       const LISTING_DESCRIPTION = document.createElement('p');
+      const LISTING_CONTAINER = document.createElement('div');
       const LISTING_BIDS = document.createElement('p');
       const LISTING_END_DATE = document.createElement('p');
       const BUTTON_CONTAINER = document.createElement('div');
       const PLACE_BID_BUTTON = document.createElement('button');
       const VIEW_BIDS_BUTTON = document.createElement('button');
-      const TEXT_BUTTON_CONTAINER = document.createElement('div');
+      const TEXT_CONTAINER = document.createElement('div');
       const VIEW_BIDS_CONTAINER = document.createElement('div');
       const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
       const LISTING_BIDDERS_NAME = document.createElement('p');
@@ -132,19 +133,21 @@ function displayResults(listings) {
         listing.description || 'No description available';
       LISTING_END_DATE.textContent = listing.endsAt || 'No end date available';
 
-      TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-      TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
-      TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
-      TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
-      TEXT_BUTTON_CONTAINER.appendChild(SELLER_NAME);
-      TEXT_BUTTON_CONTAINER.appendChild(SELLER_AVATAR);
-      TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+      TEXT_CONTAINER.appendChild(LISTING_TITLE);
+      TEXT_CONTAINER.appendChild(LISTING_DESCRIPTION);
+      TEXT_CONTAINER.appendChild(LISTING_BIDS);
+      TEXT_CONTAINER.appendChild(LISTING_END_DATE);
+      TEXT_CONTAINER.appendChild(SELLER_NAME);
+      TEXT_CONTAINER.appendChild(SELLER_AVATAR);
+
       BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
       BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
-      LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-      TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+      LISTING_CONTAINER.appendChild(TEXT_CONTAINER);
+      LISTING_CONTAINER.appendChild(BUTTON_CONTAINER);
+      LISTING_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
       fetchListingImages(listing, LISTING_CONTAINER);
       VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+
       VIEW_BIDS_CONTAINER.classList.add('hidden');
 
       if (listing.bids && listing.bids.length > 0) {
@@ -165,10 +168,7 @@ function displayResults(listings) {
         });
       }
 
-      LISTING_ELEMENT.appendChild(TEXT_BUTTON_CONTAINER);
       LISTING_ELEMENT.appendChild(LISTING_CONTAINER);
-      LISTING_ELEMENT.insertBefore(VIEW_BIDS_CONTAINER, LISTING_CONTAINER);
-
       VIEW_BIDS_BUTTON.addEventListener('click', () => {
         if (!isLoggedIn()) {
           alert('You need to be logged in to view bids.');

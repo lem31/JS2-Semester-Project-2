@@ -1,6 +1,7 @@
 import { removeListingFromAPI } from '../../api/listing/delete';
 import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
+import { togglePlaceBidForm } from '../bids/place';
 
 export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
@@ -167,6 +168,9 @@ export function createAllListingsElements(listing) {
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
+
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
+  PLACE_BID_BUTTON.addEventListener('click', togglePlaceBidForm);
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
   SELLER_AVATAR.src = listing.seller.avatar.url || '';
