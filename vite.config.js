@@ -1,17 +1,25 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import eslintPlugin from 'vite-plugin-eslint';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      'source-map-js': resolve(__dirname, 'node_modules/source-map-js'),
+    },
+  },
   plugins: [
     eslintPlugin({
       include: ['src/**/*.{js}', 'src/js/**/*.{js}'],
     }),
+    nodePolyfills(),
   ],
   appType: 'mpa',
   base: '',
   build: {
     target: 'esnext',
+
     rollupOptions: {
       input: {
         main: resolve(__dirname, './index.html'),
