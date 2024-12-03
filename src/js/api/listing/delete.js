@@ -2,6 +2,14 @@ import { DELETE_LISTING } from '../constants';
 
 import { headers } from '../headers';
 
+/**
+ * @function removeListingFromAPI
+ * @param {string} LISTING_ID
+ * @description This function sends a DELETE request to the server to remove a listing from the database.
+ * If the request is successful, a success message is displayed and the user is redirected to the my_listings page.
+ * If the request fails, an error message is displayed.
+ */
+
 export async function removeListingFromAPI(LISTING_ID) {
   try {
     const RESPONSE = await fetch(
