@@ -195,9 +195,14 @@ export function createAllListingsElements(listing) {
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
+  const VIEW_LISTING_BTN = document.createElement('button');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
   PLACE_BID_BUTTON.addEventListener('click', () => {
+    if (!isLoggedIn()) {
+      alert('You need to be logged in to place a bid.');
+      return;
+    }
     if (PLACE_BID_FORM.style.display === 'none') {
       PLACE_BID_FORM.style.display = 'block';
     } else {
@@ -212,6 +217,8 @@ export function createAllListingsElements(listing) {
 
     postBidToAPI(listing.id, BID_AMOUNT, event);
   });
+
+  VIEW_LISTING_BTN.textContent = 'View Listing';
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
   SELLER_AVATAR.src =
@@ -251,9 +258,9 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
+  BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
-
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
@@ -279,10 +286,11 @@ export function createAllListingsElements(listing) {
   const OUTER_CONTAINER = document.getElementById('all-auction-listings');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
-  LISTING_CONTAINER.dataset.id = listing.id;
+  VIEW_LISTING_BTN.dataset.id = listing.id;
+  VIEW_LISTING_BTN.classList.add('view-listing-btn');
 
-  LISTING_CONTAINER.addEventListener('click', (event) => {
-    const target = event.target.closest('.listing-box');
+  VIEW_LISTING_BTN.addEventListener('click', (event) => {
+    const target = event.target.closest('.view-listing-btn');
     if (target) {
       displayListingIdInUrlOnListingPage(target.dataset.id);
     }
