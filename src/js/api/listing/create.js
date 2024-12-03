@@ -51,9 +51,21 @@ export async function postCreateFormDataToAPI(formElement) {
 
     if (response.ok) {
       const DATA = await response.json();
-      window.location.href = '/my_listings/';
+      const SUCCESS_MESSAGE = document.createElement('div');
+      SUCCESS_MESSAGE.textContent = 'Listing created successfully!';
+      SUCCESS_MESSAGE.style.color = 'green';
+      document.body.appendChild(SUCCESS_MESSAGE);
+
+      setTimeout(() => {
+        window.location.href = '/my_listings/';
+      }, 3000);
+
       return DATA;
     } else {
+      const ERROR_MESSAGE = document.createElement('div');
+      ERROR_MESSAGE.textContent = 'Failed to create listing. Please try again.';
+      ERROR_MESSAGE.style.color = 'red';
+      document.body.appendChild(ERROR_MESSAGE);
       throw new Error('Failed to create listing');
     }
   } catch (error) {
