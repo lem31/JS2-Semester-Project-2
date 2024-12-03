@@ -13,20 +13,21 @@ export async function removeListingFromAPI(LISTING_ID) {
     );
 
     if (RESPONSE.ok) {
-      const successMessage = document.createElement('div');
-      successMessage.textContent = 'Post deleted successfully';
-      successMessage.style.color = 'green';
-      document.body.appendChild(successMessage);
-      alert('Post deleted successfully');
-      window.location.href = '/my_listings/';
+      const SUCCESS_MESSAGE = document.createElement('div');
+      SUCCESS_MESSAGE.textContent = 'Post deleted successfully';
+      SUCCESS_MESSAGE.style.color = 'green';
+      document.body.appendChild(SUCCESS_MESSAGE);
+      setTimeout(() => {
+        window.location.href = '/my_listings/';
+      }, 3000);
     } else {
       const ERROR_DATA = await RESPONSE.json();
       throw new Error(ERROR_DATA.message || 'Failed to delete post');
     }
   } catch (error) {
-    const errorMessage = document.createElement('div');
-    errorMessage.textContent = error.message;
-    errorMessage.style.color = 'red';
-    document.body.appendChild(errorMessage);
+    const ERROR_MESSAGE = document.createElement('div');
+    ERROR_MESSAGE.textContent = error.message;
+    ERROR_MESSAGE.style.color = 'red';
+    document.body.appendChild(ERROR_MESSAGE);
   }
 }
