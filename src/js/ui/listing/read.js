@@ -214,7 +214,165 @@ export function createAllListingsElements(listing) {
   });
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
-  SELLER_AVATAR.src = listing.seller.avatar.url || '';
+  SELLER_AVATAR.src =
+    listing.seller && listing.seller.avatar ? listing.seller.avatar.url : '';
+
+  PLACE_BID_BUTTON.textContent = 'Place Bid';
+  PLACE_BID_BUTTON.dataset.id = listing.id;
+
+  if (isLoggedIn() && listing._count && listing._count.bids !== undefined) {
+    LISTING_BIDS_COUNT_TOTAL.textContent = `No. of bids: ${listing._count.bids}`;
+  }
+  LISTING_BIDDERS_NAME.textContent =
+    listing.bids && listing.bids.length > 0
+      ? `Bidder: ${listing.bids[0].bidder.name}`
+      : 'No bidders';
+  BIDDER_AVATAR.src =
+    listing.bids && listing.bids.length > 0
+      ? listing.bids[0].bidder.avatar.url
+      : '';
+  BID_AMOUNT.textContent =
+    listing.bids && listing.bids.length > 0
+      ? `Bid amount: ${listing.bids[0].amount}`
+      : 'No bids';
+  VIEW_BIDS_BUTTON.textContent = 'View Bids';
+
+  LISTING_TITLE.textContent = listing.title || 'No title available';
+  LISTING_DESCRIPTION.textContent =
+    listing.description || 'No description available';
+  LISTING_END_DATE.textContent = listing.endsAt || 'No end date available';
+
+  TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
+  TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
+  TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
+  TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
+  TEXT_BUTTON_CONTAINER.appendChild(SELLER_NAME);
+  TEXT_BUTTON_CONTAINER.appendChild(SELLER_AVATAR);
+  TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+  BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
+  BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+
+  LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
+  fetchListingImages(listing, LISTING_CONTAINER);
+  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+  VIEW_BIDS_CONTAINER.classList.add('hidden');
+
+  if (listing.bids && listing.bids.length > 0) {
+    listing.bids.forEach((bid) => {
+      const BIDDER_CONTAINER = document.createElement('div');
+      const BIDDER_NAME = document.createElement('p');
+      const BIDDER_AVATAR = document.createElement('img');
+      const BID_AMOUNT = document.createElement('p');
+
+      BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
+      BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
+      BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
+
+      BIDDER_CONTAINER.appendChild(BIDDER_AVATAR);
+      BIDDER_CONTAINER.appendChild(BIDDER_NAME);
+      BIDDER_CONTAINER.appendChild(BID_AMOUNT);
+      VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
+    });
+  }
+  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
+  OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
+
+  LISTING_CONTAINER.dataset.id = listing.id;
+
+  LISTING_CONTAINER.addEventListener('click', (event) => {
+    const target = event.target.closest('.listing-box');
+    if (target) {
+      displayListingIdInUrlOnListingPage(target.dataset.id);
+    }
+  });
+
+  VIEW_BIDS_BUTTON.addEventListener('click', () => {
+    if (!isLoggedIn()) {
+      alert('You need to be logged in to view bids.');
+      return;
+    }
+    if (
+      VIEW_BIDS_CONTAINER.style.display === 'none' ||
+      !VIEW_BIDS_CONTAINER.style.display
+    ) {
+      VIEW_BIDS_CONTAINER.style.display = 'block';
+    } else {
+      VIEW_BIDS_CONTAINER.style.display = 'none';
+    }
+  });
+}
+
+export function displayListingIdInUrlOnListingPage(listingId) {
+  window.location.href = `/listing/?id=${listingId}`;
+}
+
+export function createIndividualListingElement() {
+  const LISTING_CONTAINER = document.createElement('div');
+  LISTING_CONTAINER.classList.add('listing-box');
+
+  //PLACE BID FORM
+  const PLACE_BID_FORM = document.createElement('form');
+
+  const PLACE_BID_INPUT = document.createElement('input');
+  const CLOSE_BUTTON = document.createElement('button');
+  const PLACE_BID_SUBMIT = document.createElement('button');
+
+  PLACE_BID_FORM.classList.add('place-bid-form');
+  PLACE_BID_INPUT.classList.add('place-bid-input');
+  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+  CLOSE_BUTTON.classList.add('close-btn');
+
+  PLACE_BID_FORM.style.display = 'none';
+
+  PLACE_BID_INPUT.placeholder = 'Enter bid amount';
+  PLACE_BID_SUBMIT.textContent = 'Place bid';
+  PLACE_BID_SUBMIT.type = 'submit';
+
+  PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
+  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
+  PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
+  CLOSE_BUTTON.textContent = 'X';
+
+  //LISTING DETAILS
+
+  const SELLER_NAME = document.createElement('p');
+  const SELLER_AVATAR = document.createElement('img');
+  const LISTING_TITLE = document.createElement('h2');
+  const LISTING_DESCRIPTION = document.createElement('p');
+  const LISTING_BIDS = document.createElement('p');
+  const LISTING_END_DATE = document.createElement('p');
+  const BUTTON_CONTAINER = document.createElement('div');
+  const PLACE_BID_BUTTON = document.createElement('button');
+  const VIEW_BIDS_BUTTON = document.createElement('button');
+  const TEXT_BUTTON_CONTAINER = document.createElement('div');
+  const VIEW_BIDS_CONTAINER = document.createElement('div');
+  const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
+  const LISTING_BIDDERS_NAME = document.createElement('p');
+  const BIDDER_AVATAR = document.createElement('img');
+  const BID_AMOUNT = document.createElement('p');
+
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
+  PLACE_BID_BUTTON.addEventListener('click', () => {
+    if (PLACE_BID_FORM.style.display === 'none') {
+      PLACE_BID_FORM.style.display = 'block';
+    } else {
+      PLACE_BID_FORM.style.display = 'none';
+    }
+  });
+
+  PLACE_BID_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
+
+    postBidToAPI(listing.id, BID_AMOUNT, event);
+  });
+
+  SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
+  SELLER_AVATAR.src =
+    listing.seller && listing.seller.avatar ? listing.seller.avatar.url : '';
 
   PLACE_BID_BUTTON.textContent = 'Place Bid';
   PLACE_BID_BUTTON.dataset.id = listing.id;
@@ -292,6 +450,4 @@ export function createAllListingsElements(listing) {
       VIEW_BIDS_CONTAINER.style.display = 'none';
     }
   });
-
-  return LISTING_CONTAINER;
 }

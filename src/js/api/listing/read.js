@@ -3,6 +3,7 @@ import { MY_LISTINGS_API } from '../constants';
 import { ALL_LISTINGS_API } from '../constants';
 import { createMyListingsElements } from '../../ui/listing/read.js';
 import { createAllListingsElements } from '../../ui/listing/read.js';
+import { createIndividualListingElement } from '../../ui/listing/read.js';
 
 /**
  * @function getMyListings
@@ -89,5 +90,44 @@ export async function getAllArtAuctionListings() {
   } catch (error) {
     console.error('Error fetching listings:', error);
     throw new Error('Error fetching listings');
+  }
+}
+
+export async function displayIndividualListing() {
+  const URL_PARAMS = new URLSearchParams(window.location.search);
+  const LISTING_ID = URL_PARAMS.get('id');
+
+  if (LISTING_ID) {
+    try {
+      const RESPONSE = await fetch(
+        `https://v2.api.noroff.dev/auction/listings/${LISTING_ID}?_seller=true&_bids=true`,
+        {
+          headers: headers(),
+        }
+      );
+
+      if (!RESPONSE.ok) {
+        const ERROR_MESSAGE = document.createElement('div');
+        ERROR_MESSAGE.textContent = 'Failed to fetch listing';
+        ERROR_MESSAGE.style.color = 'red';
+        document.body.appendChild(ERROR_MESSAGE);
+        throw new Error('Failed to fetch listing');
+      }
+
+      const LISTING = await RESPONSE.json();
+
+      const LISTING_CONTAINER = document.getElementById('listing-container');
+      if (LISTING_CONTAINER) {
+        LISTING_CONTAINER.innerHTML = '';
+        createIndividualListingElement(LISTING, LISTING_CONTAINER);
+      } else {
+        throw new Error('Listing container not found');
+      }
+    } catch (error) {
+      console.error('Error fetching listing:', error);
+      throw new Error('Error fetching listing');
+    }
+  } else {
+    throw new Error('No listing ID found');
   }
 }
