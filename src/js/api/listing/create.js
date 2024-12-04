@@ -9,25 +9,24 @@ import { headers } from '../headers';
  */
 
 function createListingRequestBody(formElement) {
-  const formData = new FormData(formElement);
+  const FORM_DATA = new FormData(formElement);
 
-  const urls = formData.getAll('urls');
-  const alts = formData.getAll('alts');
+  const URLS = FORM_DATA.getAll('urls');
+  const ALTS = FORM_DATA.getAll('alts');
 
   const listingRequestBody = {
-    title: formData.get('title'),
-    description: formData.get('description'),
-    tags: formData.get('tags')
-      ? formData
-          .get('tags')
+    title: FORM_DATA.get('title'),
+    description: FORM_DATA.get('description'),
+    tags: FORM_DATA.get('tags')
+      ? FORM_DATA.get('tags')
           .split(',')
           .map((tag) => tag.trim())
       : [],
-    media: urls.map((url, index) => ({
+    media: URLS.map((url, index) => ({
       url: url,
-      alt: alts[index] || '',
+      alt: ALTS[index] || '',
     })),
-    endsAt: formData.get('endsAt'),
+    endsAt: FORM_DATA.get('endsAt'),
   };
 
   return listingRequestBody;
@@ -42,11 +41,11 @@ function createListingRequestBody(formElement) {
 
 export async function postCreateFormDataToAPI(formElement) {
   try {
-    const listingRequestBody = createListingRequestBody(formElement);
+    const LISTING_REQUEST_BODY = createListingRequestBody(formElement);
     const response = await fetch(API_CREATE_LISTING, {
       method: 'POST',
       headers: headers(),
-      body: JSON.stringify(listingRequestBody),
+      body: JSON.stringify(LISTING_REQUEST_BODY),
     });
 
     if (response.ok) {
