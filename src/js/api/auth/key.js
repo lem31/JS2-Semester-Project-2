@@ -23,9 +23,9 @@ export async function getAPIKey() {
       localStorage.setItem('apiKey', DATA.key);
     } else {
       const ERROR_MESSAGE = await RESPONSE.text();
-      console.error('Error:', RESPONSE.status, ERROR_MESSAGE);
+      throw new Error(`Error: ${RESPONSE.status} ${ERROR_MESSAGE}`);
     }
   } catch (error) {
-    console.error('Error:', error);
+    throw error;
   }
 }
