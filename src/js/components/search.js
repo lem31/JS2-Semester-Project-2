@@ -16,7 +16,7 @@ function filterListingsByCategory(category) {
   );
   if (categoryElement) {
     categoryElement.addEventListener('click', async (event) => {
-      event.preventDefault(); // Prevent default link behavior
+      event.preventDefault();
       console.log(`Category clicked: ${category}`); // Debug log
 
       const resultsContainer = document.getElementById('all-auction-listings');
@@ -28,7 +28,7 @@ function filterListingsByCategory(category) {
         if (category) {
           const results = await filterListings(category);
           displayResults(results);
-          console.log('Results:', results); // Debug log
+          console.log('Results:', results);
           displayResults(results);
         } else {
           console.error('Category is empty');
