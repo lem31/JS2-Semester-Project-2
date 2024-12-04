@@ -3,6 +3,52 @@ import { isLoggedIn } from '../ui/listing/read.js';
 import { fetchListingImages } from '../ui/listing/read.js';
 
 /**
+ * @function filterListingsByCategory
+ * @description Filters listings based on a category tag
+ * @param {string} category - The category tag to filter by
+ * @returns {void}
+ * @exports filterListingsByCategory
+ */
+
+function filterListingsByCategory(category) {
+  const categoryElement = document.querySelector(
+    `.category[data-category="${category}"]`
+  );
+  if (categoryElement) {
+    categoryElement.addEventListener('click', async (event) => {
+      event.preventDefault(); // Prevent default link behavior
+      console.log(`Category clicked: ${category}`); // Debug log
+
+      const resultsContainer = document.getElementById('all-auction-listings');
+      if (resultsContainer) {
+        resultsContainer.innerHTML = '';
+      }
+
+      try {
+        if (category) {
+          const results = await filterListings(category);
+          displayResults(results);
+          console.log('Results:', results); // Debug log
+          displayResults(results);
+        } else {
+          console.error('Category is empty');
+        }
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+      }
+    });
+  } else {
+    console.error(`Element not found for category: ${category}`);
+  }
+}
+
+const CATEGORIES = ['photography', 'sculpture', 'modern', 'contemporary'];
+
+CATEGORIES.forEach((category) => {
+  filterListingsByCategory(category);
+});
+
+/**
  * @function onClickSearchButton
  * @description Adds an event listener to the search button
  * @returns {void}
@@ -22,11 +68,32 @@ export function onClickSearchButton() {
         return;
       }
       const query = searchBar.value;
-      console.log('Search query:', query);
-      const results = await searchListings(query);
+
+      const results = await filterListings(query);
       console.log('Search results:', results);
       displayResults(results);
     });
+}
+
+async function filterListings(category) {
+  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(category)}&_tag=ArtAuctionApp&bids=true&_seller=true}`;
+  try {
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      headers: headers(),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('API response data:', data);
+    return data.data;
+  } catch (error) {
+    console.error('Error searching listings:', error);
+    return [];
+  }
 }
 
 /**
@@ -39,8 +106,7 @@ export function onClickSearchButton() {
  */
 
 async function searchListings(query) {
-  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(query)}&_tag=ArtAuctionApp&bids=true&_seller=true`;
-
+  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(query)}&_tag=ArtAuctionApp&bids=true&_seller=true}`;
   try {
     const response = await fetch(API_URL, {
       method: 'GET',
@@ -104,8 +170,14 @@ function displayResults(listings) {
 
       PLACE_BID_BUTTON.textContent = 'Place Bid';
 
-      SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
-      SELLER_AVATAR.src = listing.seller.avatar.url || '';
+      SELLER_NAME.textContent =
+        listing.seller && listing.seller.name
+          ? `Seller: ${listing.seller.name}`
+          : 'Seller: Unknown';
+      SELLER_AVATAR.src =
+        listing.seller && listing.seller.avatar && listing.seller.avatar.url
+          ? listing.seller.avatar.url
+          : '';
 
       LISTING_TITLE.textContent = listing.title
         ? listing.title
