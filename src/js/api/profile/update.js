@@ -47,7 +47,7 @@ export async function updateProfile() {
 
     if (RESPONSE.ok) {
       const data = await RESPONSE.json();
-      console.log('Profile updated successfully:', data);
+
       const profileContainer = document.querySelector('#my-profile');
       if (profileContainer) {
         profileContainer.innerHTML = '';

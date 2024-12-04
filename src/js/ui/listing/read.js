@@ -129,10 +129,8 @@ export function createMyListingsElements(listing) {
 
 export function fetchListingImages(listing, LISTING_CONTAINER) {
   const IMAGES = listing.media || [];
-  console.log('Images:', IMAGES);
 
   IMAGES.forEach((image) => {
-    console.log('Processing image:', image);
     const IMAGE_ELEMENT = document.createElement('img');
     IMAGE_ELEMENT.src = image.url;
     IMAGE_ELEMENT.alt = image.alt || 'No image available';

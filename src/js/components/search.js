@@ -17,7 +17,6 @@ function filterListingsByCategory(category) {
   if (categoryElement) {
     categoryElement.addEventListener('click', async (event) => {
       event.preventDefault();
-      console.log(`Category clicked: ${category}`); // Debug log
 
       const resultsContainer = document.getElementById('all-auction-listings');
       if (resultsContainer) {
@@ -28,7 +27,7 @@ function filterListingsByCategory(category) {
         if (category) {
           const results = await filterListings(category);
           displayResults(results);
-          console.log('Results:', results);
+
           displayResults(results);
         } else {
           console.error('Category is empty');
@@ -70,7 +69,7 @@ export function onClickSearchButton() {
       const query = searchBar.value;
 
       const results = await filterListings(query);
-      console.log('Search results:', results);
+
       displayResults(results);
     });
 }
@@ -88,7 +87,7 @@ async function filterListings(category) {
     }
 
     const data = await response.json();
-    console.log('API response data:', data);
+
     return data.data;
   } catch (error) {
     console.error('Error searching listings:', error);
@@ -118,7 +117,7 @@ async function searchListings(query) {
     }
 
     const data = await response.json();
-    console.log('API response data:', data);
+
     return data.data;
   } catch (error) {
     console.error('Error searching listings:', error);
@@ -144,8 +143,6 @@ function displayResults(listings) {
     return;
   }
   resultsContainer.innerHTML = '';
-
-  console.log('Listings to display:', listings);
 
   if (listings && listings.length > 0) {
     listings.forEach((listing) => {

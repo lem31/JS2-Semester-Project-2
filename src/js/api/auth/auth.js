@@ -116,9 +116,6 @@ export async function register(event) {
   };
 
   try {
-    console.log('Sending request to:', API_AUTH_REGISTER);
-    console.log('Request body:', REQUEST_BODY_REG);
-
     const RESPONSE = await fetch(API_AUTH_REGISTER, {
       method: 'POST',
       headers: headers(),

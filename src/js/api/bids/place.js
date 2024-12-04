@@ -14,7 +14,7 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
   event.preventDefault();
 
   const URL = `https://v2.api.noroff.dev/auction/listings/${LISTING_ID}/bids`;
-  console.log('Posting bid to URL:', URL);
+
   try {
     const RESPONSE = await fetch(URL, {
       method: 'POST',
