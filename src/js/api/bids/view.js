@@ -42,6 +42,6 @@ export async function fetchUserBidsFromApi() {
       });
     }
   } catch (error) {
-    console.error('Error fetching listings:', error);
+    throw new Error(`Error fetching listings: ${error.message}`);
   }
 }
