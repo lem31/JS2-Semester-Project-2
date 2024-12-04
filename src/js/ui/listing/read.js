@@ -312,11 +312,11 @@ export function createAllListingsElements(listing) {
   });
 }
 
-export function displayListingIdInUrlOnListingPage(listingId) {
-  window.location.href = `/listing/?id=${listingId}`;
+export function displayListingIdInUrlOnListingPage(LISTING) {
+  window.location.href = `/listing/?id=${LISTING}`;
 }
 
-export function createIndividualListingElement() {
+export function createIndividualListingElement(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
 
@@ -441,7 +441,7 @@ export function createIndividualListingElement() {
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
     });
   }
-  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
+  const OUTER_CONTAINER = document.getElementById('listing-container');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {

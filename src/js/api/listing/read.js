@@ -114,12 +114,13 @@ export async function displayIndividualListing() {
         throw new Error('Failed to fetch listing');
       }
 
-      const LISTING = await RESPONSE.json();
+      const LISTING_DATA = await RESPONSE.json();
+      const LISTING = LISTING_DATA.data;
 
       const LISTING_CONTAINER = document.getElementById('listing-container');
       if (LISTING_CONTAINER) {
         LISTING_CONTAINER.innerHTML = '';
-        createIndividualListingElement(LISTING, LISTING_CONTAINER);
+        createIndividualListingElement(LISTING);
       } else {
         throw new Error('Listing container not found');
       }
