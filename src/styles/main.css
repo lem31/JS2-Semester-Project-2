@@ -39,6 +39,21 @@
   @apply flex flex-col items-center justify-center gap-2;
 }
 
+.nav-styles-hover {
+  @apply flex flex-col items-start justify-center gap-2;
+}
 .sidebar-li-layout {
+  @apply flex flex-row;
+}
+
+.span-text-hover {
+  @apply flex flex-row text-[var(--secondary-color)];
+}
+
+.nav-hover {
+  @apply w-[150px];
+}
+
+.link-flex {
   @apply flex flex-row items-center justify-center;
 }

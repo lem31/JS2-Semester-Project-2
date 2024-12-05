@@ -18,7 +18,7 @@ export function displaySignInBtnNav() {
   if (ACCESS_TOKEN) {
     SIGN_IN_LINK_NAV.style.display = 'none';
   } else {
-    SIGN_IN_LINK_NAV.style.display = 'block';
+    SIGN_IN_LINK_NAV.classList.add('sidebar-li-layout');
   }
 }
 
@@ -33,7 +33,7 @@ export function displayRegLinkNav() {
   if (ACCESS_TOKEN) {
     REG_LINK_NAV.style.display = 'none';
   } else {
-    REG_LINK_NAV.style.display = 'block';
+    REG_LINK_NAV.classList.add('sidebar-li-layout');
   }
 }
 
@@ -46,9 +46,10 @@ export function displayRegLinkNav() {
 export function displayMyListingsLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    MY_LISTINGS_LINK_NAV.style.display = 'block';
+    MY_LISTINGS_LINK_NAV.classList.add('sidebar-li-layout');
   } else {
-    MY_LISTINGS_LINK_NAV.style.display = 'none';
+    MY_LISTINGS_LINK_NAV.classList.remove('sidebar-li-layout');
+    MY_LISTINGS_LINK_NAV.classList.add('hidden');
   }
 }
 
@@ -61,9 +62,10 @@ export function displayMyListingsLinkNav() {
 export function displayProfileLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    PROFILE_LINK_NAV.style.display = 'block';
+    PROFILE_LINK_NAV.classList.add('sidebar-li-layout');
   } else {
-    PROFILE_LINK_NAV.style.display = 'none';
+    PROFILE_LINK_NAV.classList.remove('sidebar-li-layout');
+    PROFILE_LINK_NAV.classList.add('hidden');
   }
 }
 
@@ -76,9 +78,10 @@ export function displayProfileLinkNav() {
 export function displayMyBidsLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    MY_BIDS_LINK_NAV.style.display = 'block';
+    MY_BIDS_LINK_NAV.classList.add('sidebar-li-layout');
   } else {
-    MY_BIDS_LINK_NAV.style.display = 'none';
+    MY_BIDS_LINK_NAV.classList.remove('sidebar-li-layout');
+    MY_BIDS_LINK_NAV.classList.add('hidden');
   }
 }
 
@@ -91,8 +94,48 @@ export function displayMyBidsLinkNav() {
 export function displayCreateListingLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    CREATE_LISTING_LINK_NAV.style.display = 'block';
+    CREATE_LISTING_LINK_NAV.classList.add('sidebar-li-layout');
   } else {
-    CREATE_LISTING_LINK_NAV.style.display = 'none';
+    CREATE_LISTING_LINK_NAV.classList.remove('sidebar-li-layout');
+    CREATE_LISTING_LINK_NAV.classList.add('hidden');
   }
+}
+
+export function displayNav() {
+  const NAV_MENU = document.getElementById('nav-menu');
+  const HAMBURGER_BTN = document.getElementById('hamburger-btn');
+  HAMBURGER_BTN.addEventListener('click', () => {
+    if (NAV_MENU.classList.contains('hidden')) {
+      NAV_MENU.classList.remove('hidden');
+      NAV_MENU.classList.add('nav-styles');
+    } else {
+      NAV_MENU.classList.add('hidden');
+      NAV_MENU.classList.remove('nav-styles');
+    }
+  });
+}
+
+export function onHoverNavLink() {
+  const NAV_LINKS = document.querySelectorAll('.nav-link');
+  const SPAN_TEXT = document.querySelectorAll('.span-text');
+  const NAV = document.querySelector('.nav');
+  const NAV_MENU = document.getElementById('nav-menu');
+  NAV_LINKS.forEach((link) => {
+    link.addEventListener('mouseover', () => {
+      SPAN_TEXT.forEach((span) => {
+        span.classList.remove('hidden');
+        span.classList.add('span-text-hover');
+        NAV.classList.add('nav-hover');
+        NAV_MENU.classList.add('nav-styles-hover');
+      });
+    });
+    link.addEventListener('mouseout', () => {
+      SPAN_TEXT.forEach((span) => {
+        span.classList.remove('span-text-hover');
+        span.classList.add('hidden');
+        NAV.classList.remove('nav-hover');
+        NAV_MENU.classList.remove('nav-styles-hover');
+      });
+    });
+  });
 }

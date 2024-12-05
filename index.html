@@ -19,70 +19,78 @@
           src="images/Logo.png"
           alt="Art logo"
         />
-        <img
-          id="hamburger-icon"
-          class="w-16 h-16 md:w-20 md:h-20"
-          src="images/Hamburger-icon.png"
-          alt=""
-        />
-        <nav class="nav-styles">
-          <ul class="hidden">
+        <button id="hamburger-btn">
+          <img
+            id="hamburger-icon"
+            class="w-16 h-16 md:w-20 md:h-20"
+            src="images/Hamburger-icon.png"
+            alt=""
+          />
+        </button>
+        <nav class="nav nav-styles">
+          <ul id="nav-menu" class="hidden">
             <li class="sidebar-li-layout">
-              <a href="/">
+              <a class="nav-link link-flex" href="/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-home-Desktop.png"
                   alt="home icon"
                 />
-                <span class="hidden">Home</span>
+                <span class="span-text hidden">Home</span>
               </a>
             </li>
-            <li
-              class="sidebar-li-layout w-[70px] h-[70px] md:w-[50px] md:h-[50px]"
-            >
-              <a id="profile-link-nav" href="/profile/">
+            <li id="profile-link-nav">
+              <a class="nav-link link-flex" href="/profile/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-user-desktop.png"
                   alt="profile icon"
                 />
-                <span class="hidden">My Profile</span></a
+                <span class="span-text hidden">My Profile</span></a
               >
             </li>
 
-            <li class="sidebar-li-layout">
-              <a id="my-listings-link-nav" href="/my_listings/">
+            <li id="my-listings-link-nav" class="">
+              <a class="nav-link link-flex" href="/my_listings/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-my-listings-desktop.png"
                   alt="my listings icon"
                 />
-                <span class="hidden">My Listings</span>
+                <span class="span-text hidden">My Listings</span>
               </a>
             </li>
-            <li class="sidebar-li-layout">
-              <a id="my-bids-link-nav" href="/my_bids/">
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="my-bids-link-nav"
+                href="/my_bids/"
+              >
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-bids-Desktop.png"
                   alt="bids icon"
                 />
-                <span class="hidden">My Bids</span>
+                <span class="hidden span-text">My Bids</span>
               </a>
             </li>
-            <li class="sidebar-li-layout">
-              <a id="create-listing-link-nav" href="/listing/create/">
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="create-listing-link-nav"
+                href="/listing/create/"
+              >
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-add-desktop.png"
                   alt="add icon"
                 />
 
-                <span class="hidden">Create Listing</span></a
+                <span class="hidden span-text">Create Listing</span></a
               >
             </li>
-            <li class="sidebar-li-layout">
-              <a id="reg-link-nav" href="/auth/">
+            <li class="">
+              <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-register-desktop.png"
@@ -91,24 +99,24 @@
                 <span class="hidden">Register</span>
               </a>
             </li>
-            <li class="sidebar-li-layout">
-              <a id="sign-in-link-nav" href="/auth/">
+            <li id="sign-in-link-nav" class="">
+              <a class="nav-link link-flex" href="/auth/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/sign-in-desktop.png"
                   alt="sign in icon"
                 />
-                <span class="hidden">Sign in</span>
+                <span class="hidden span-text">Sign in</span>
               </a>
             </li>
             <li class="sidebar-li-layout">
-              <button class="sign-out-btn">
+              <button class="sign-out-btn nav-link link-flex">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
                   src="images/icons8-sign-out-desktop.png"
                   alt="sign out icon"
                 />
-                <span class="hidden">Sign Out</span>
+                <span class="hidden span-text">Sign Out</span>
               </button>
             </li>
           </ul>
