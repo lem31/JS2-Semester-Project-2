@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&family=Sen:wght@400..800&display=swap');
+
+:root {
+  --primary-color: #e4b022;
+  --secondary-color: #ffffff;
+  --tertiary-color: #000000;
+  --H1-Desktop-font-size: 30px;
+  --H1-Mobile-font-size: 25px;
+  --H2-Desktop-font-size: 25px;
+  --H2-Mobile-font-size: 20px;
+  --Button-and-Input-desktop-font-size: 14px;
+  --Button-and-Input-mobile-font-size: 16px;
+  --Nav-Desktop-font-size: 16px;
+  --Labels-and-footer-mobile-font-size: 14px;
+  --Labels-and-footer-desktop-font-size: 16px;
+  --Font-1: 'Charm', cursive;
+  --Font-2: 'Sen', sans-serif;
+}
+
 .loading-symbol {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
 }

@@ -14,7 +14,7 @@ function createListingRequestBody(formElement) {
   const URLS = FORM_DATA.getAll('urls');
   const ALTS = FORM_DATA.getAll('alts');
 
-  const listingRequestBody = {
+  const LISTING_REQUEST_BODY = {
     title: FORM_DATA.get('title'),
     description: FORM_DATA.get('description'),
     tags: FORM_DATA.get('tags')
@@ -29,7 +29,7 @@ function createListingRequestBody(formElement) {
     endsAt: FORM_DATA.get('endsAt'),
   };
 
-  return listingRequestBody;
+  return LISTING_REQUEST_BODY;
 }
 
 /**
@@ -62,10 +62,11 @@ export async function postCreateFormDataToAPI(formElement) {
       return DATA;
     } else {
       const ERROR_MESSAGE = document.createElement('div');
-      ERROR_MESSAGE.textContent = 'Failed to create listing. Please try again.';
+      const ERROR_DATA = await response.json();
+      ERROR_MESSAGE.textContent = `Failed to create listing. Error: ${ERROR_DATA.message}`;
       ERROR_MESSAGE.style.color = 'red';
       document.body.appendChild(ERROR_MESSAGE);
-      throw new Error('Failed to create listing');
+      throw new Error(`Failed to create listing: ${ERROR_DATA.message}`);
     }
   } catch (error) {
     throw new Error(`HTTP error: ${error.message}`);
