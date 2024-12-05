@@ -68,7 +68,7 @@ export function onClickSearchButton() {
       }
       const query = searchBar.value;
 
-      const results = await filterListings(query);
+      const results = await searchListings(query);
 
       displayResults(results);
     });
