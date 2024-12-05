@@ -27,6 +27,18 @@
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
 }
 
-.logo-desktop {
-  @apply rounded-full border-2 border-[var(--primary-color)] w-20 h-20;
+.logo {
+  @apply rounded-full border-2 border-[var(--primary-color)];
+}
+
+.sidebar-styles {
+  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] max-h-screen fixed overflow-y-auto;
+}
+
+.nav-styles {
+  @apply flex flex-col items-center justify-center gap-2;
+}
+
+.sidebar-li-layout {
+  @apply flex flex-row items-center justify-center;
 }
