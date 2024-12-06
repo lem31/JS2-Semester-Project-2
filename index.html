@@ -10,20 +10,22 @@
   <body>
     <header class="w-full h-32">
       <div class="search-bar search-bar-layout">
-        <div class="">
+        <div class="flex flex-col justify-center">
           <img
             src="./images/icons8-search-50.png"
             alt="search icon"
-            class="search-icon w-8 h-8 absolute"
+            class="search-icon w-8 h-8 absolute ml-2"
           />
         </div>
         <input
           type="text"
           id="search-bar"
-          class="search-input"
+          class="search-input gold-labels"
           placeholder="Search listings..."
         />
-        <button id="search-button">Search</button>
+        <button id="search-button" class="button-styles pl-8 pr-8">
+          Search
+        </button>
       </div>
       <div class="side-bar sidebar-styles">
         <img

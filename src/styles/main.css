@@ -23,12 +23,19 @@
   --Font-2: 'Sen', sans-serif;
 }
 
+.button-styles {
+  @apply bg-[var(--primary-color)] text-[var(--secondary-color)] font-[var(--Font-2)] rounded-lg;
+}
+.gold-labels {
+  @apply text-[var(--primary-color)] font-[var(--Font-1)];
+}
+
 .search-bar-layout {
   @apply flex flex-row items-center justify-center gap-2;
 }
 
 .search-input {
-  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-8 pr-32;
+  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-12 pr-32;
 }
 .loading-symbol {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
