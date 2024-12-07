@@ -197,26 +197,8 @@ export function createAllListingsElements(listing) {
   const BID_AMOUNT = document.createElement('p');
   const VIEW_LISTING_BTN = document.createElement('button');
 
-  SELLER_NAME.classList.add('h2-mobile');
-  LISTING_TITLE.classList.add('h2-mobile');
-
-  function updateListingText() {
-    if (window.innerWidth >= 768) {
-      SELLER_NAME.classList.remove('h2-mobile');
-      LISTING_TITLE.classList.remove('h2-mobile');
-      SELLER_NAME.classList.add('h2-desktop');
-      LISTING_TITLE.classList.add('h2-desktop');
-    } else {
-      SELLER_NAME.classList.remove('h2-desktop');
-      LISTING_TITLE.classList.remove('h2-desktop');
-      SELLER_NAME.classList.add('h2-mobile');
-      LISTING_TITLE.classList.add('h2-mobile');
-    }
-  }
-
-  window.addEventListener('resize', updateListingText);
-
-  updateListingText();
+  VIEW_BIDS_BUTTON.classList.add('view-bids-btn');
+  VIEW_BIDS_BUTTON.classList.add('button-styles');
 
   SELLER_AVATAR.classList.add('seller-avatar-img');
 
@@ -270,9 +252,32 @@ export function createAllListingsElements(listing) {
   LISTING_TITLE.textContent = listing.title || 'No title available';
   LISTING_DESCRIPTION.textContent =
     listing.description || 'No description available';
-  LISTING_END_DATE.textContent = listing.endsAt || 'No end date available';
+  const END_DATE = new Date(listing.endsAt);
+  const OPTIONS = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  const FORMATTED_DATE = END_DATE.toLocaleDateString('en-US', OPTIONS);
+  const FORMATTED_TIME = END_DATE.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  });
+  LISTING_END_DATE.textContent =
+    `Ends At: ${FORMATTED_TIME} on ${FORMATTED_DATE}` ||
+    'No end date available';
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
+
+  const BIDS_IMAGE = document.createElement('img');
+  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
+  const BIDS_CONTAINER = document.createElement('div');
+  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
+  BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+  BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
@@ -283,11 +288,14 @@ export function createAllListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
-  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+
   VIEW_BIDS_CONTAINER.classList.add('hidden');
+
+  BIDS_CONTAINER.classList.add('flex-row-center');
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -304,6 +312,8 @@ export function createAllListingsElements(listing) {
       BIDDER_CONTAINER.appendChild(BIDDER_NAME);
       BIDDER_CONTAINER.appendChild(BID_AMOUNT);
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
+
+      BIDDER_AVATAR.classList.add('seller-avatar-img');
     });
   }
   const OUTER_CONTAINER = document.getElementById('all-auction-listings');
@@ -333,11 +343,50 @@ export function createAllListingsElements(listing) {
       VIEW_BIDS_CONTAINER.style.display = 'none';
     }
   });
+
+  SELLER_NAME.classList.add('h2-mobile');
+  LISTING_TITLE.classList.add('h2-mobile');
+  LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
+  LISTING_END_DATE.classList.add('h2-mobile');
+
+  function updateListingText() {
+    if (window.innerWidth >= 768) {
+      SELLER_NAME.classList.remove('h2-mobile');
+      LISTING_TITLE.classList.remove('h2-mobile');
+      LISTING_BIDS_COUNT_TOTAL.classList.remove('h2-mobile');
+      LISTING_END_DATE.classList.remove('h2-mobile');
+      SELLER_NAME.classList.add('h2-desktop');
+      LISTING_TITLE.classList.add('h2-desktop');
+      LISTING_BIDS_COUNT_TOTAL.classList.add('h2-desktop');
+      LISTING_END_DATE.classList.add('h2-desktop');
+    } else {
+      SELLER_NAME.classList.remove('h2-desktop');
+      LISTING_TITLE.classList.remove('h2-desktop');
+      LISTING_BIDS.classList.remove('h2-desktop');
+      LISTING_END_DATE.classList.remove('h2-desktop');
+      SELLER_NAME.classList.add('h2-mobile');
+      LISTING_TITLE.classList.add('h2-mobile');
+      LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
+      LISTING_END_DATE.classList.add('h2-mobile');
+    }
+  }
+
+  window.addEventListener('resize', updateListingText);
+
+  updateListingText();
 }
 
 export function displayListingIdInUrlOnListingPage(LISTING) {
   window.location.href = `/listing/?id=${LISTING}`;
 }
+
+/**
+ * @function createIndividualListingElement
+ * @param {Object} listing - The listing object
+ * @returns {HTMLElement} - The listing container element
+ * @returns {void}
+ * @description This function creates the elements for an individual listing on the individual listing page
+ */
 
 export function createIndividualListingElement(listing) {
   const LISTING_CONTAINER = document.createElement('div');
