@@ -135,6 +135,7 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
     IMAGE_ELEMENT.src = image.url;
     IMAGE_ELEMENT.alt = image.alt || 'No image available';
     IMAGE_ELEMENT.classList.add('listing-image');
+    IMAGE_ELEMENT.classList.add('listing-image-styles');
     const IMAGE_GALLERY_CONTAINER = document.createElement('div');
     IMAGE_GALLERY_CONTAINER.classList.add('listing-image-container');
     IMAGE_GALLERY_CONTAINER.appendChild(IMAGE_ELEMENT);
@@ -153,9 +154,10 @@ export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
 
+  LISTING_CONTAINER.classList.add('listing-container-styles');
+
   //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
-
   const PLACE_BID_INPUT = document.createElement('input');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
@@ -194,6 +196,29 @@ export function createAllListingsElements(listing) {
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
   const VIEW_LISTING_BTN = document.createElement('button');
+
+  SELLER_NAME.classList.add('h2-mobile');
+  LISTING_TITLE.classList.add('h2-mobile');
+
+  function updateListingText() {
+    if (window.innerWidth >= 768) {
+      SELLER_NAME.classList.remove('h2-mobile');
+      LISTING_TITLE.classList.remove('h2-mobile');
+      SELLER_NAME.classList.add('h2-desktop');
+      LISTING_TITLE.classList.add('h2-desktop');
+    } else {
+      SELLER_NAME.classList.remove('h2-desktop');
+      LISTING_TITLE.classList.remove('h2-desktop');
+      SELLER_NAME.classList.add('h2-mobile');
+      LISTING_TITLE.classList.add('h2-mobile');
+    }
+  }
+
+  window.addEventListener('resize', updateListingText);
+
+  updateListingText();
+
+  SELLER_AVATAR.classList.add('seller-avatar-img');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
   PLACE_BID_BUTTON.addEventListener('click', () => {

@@ -119,3 +119,15 @@
 .link-flex {
   @apply flex flex-row items-center justify-center;
 }
+
+.listing-container-styles {
+  @apply flex flex-col items-center  justify-center gap-2;
+}
+
+.listing-image-styles {
+  @apply w-[20rem]  rounded-lg;
+}
+
+.seller-avatar-img {
+  @apply w-[3rem] h-[3rem] rounded-full;
+}
