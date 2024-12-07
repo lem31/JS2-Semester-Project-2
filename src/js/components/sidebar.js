@@ -103,13 +103,16 @@ export function displayCreateListingLinkNav() {
 
 export function displayNav() {
   const NAV_MENU = document.getElementById('nav-menu');
+  const SIDEBAR = document.querySelector('.side-bar');
   const HAMBURGER_BTN = document.getElementById('hamburger-btn');
   HAMBURGER_BTN.addEventListener('click', () => {
     if (NAV_MENU.classList.contains('hidden')) {
+      SIDEBAR.classList.remove('sidebar-height');
       NAV_MENU.classList.remove('hidden');
       NAV_MENU.classList.add('nav-styles');
     } else {
       NAV_MENU.classList.add('hidden');
+      SIDEBAR.classList.add('sidebar-height');
       NAV_MENU.classList.remove('nav-styles');
     }
   });

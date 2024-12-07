@@ -24,7 +24,13 @@
 }
 
 .button-styles {
-  @apply bg-[var(--primary-color)] text-[var(--secondary-color)] font-[var(--Font-2)] rounded-lg;
+  @apply bg-[var(--primary-color)] text-[var(--secondary-color)] font-[var(--Font-2)] rounded-lg hover:shadow-[0_4px_6px_rgba(255,255,255,0.5)];
+}
+
+.button-styles:active {
+  box-shadow:
+    0 4px 6px rgba(255, 255, 255, 1),
+    inset 0 0 25px rgba(0, 0, 0, 0.5);
 }
 .gold-labels {
   @apply text-[var(--primary-color)] font-[var(--Font-1)];
@@ -35,8 +41,16 @@
 }
 
 .search-input {
-  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-12 pr-32;
+  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-12 pr-32 text-[var(--primary-color)];
+
+  &:hover,
+  &:focus-within,
+  &:active,
+  &:focus {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-[0_8px_12px_rgba(228,176,34,0.75)];
+  }
 }
+
 .loading-symbol {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
 }
@@ -46,7 +60,11 @@
 }
 
 .sidebar-styles {
-  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] max-h-screen fixed overflow-y-auto;
+  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] h-screen fixed top-0 overflow-y-auto;
+}
+
+.sidebar-height {
+  @apply max-h-[40%];
 }
 
 .nav-styles {
