@@ -132,14 +132,14 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
 
   IMAGES.forEach((image) => {
     const IMAGE_ELEMENT = document.createElement('img');
+
     IMAGE_ELEMENT.src = image.url;
     IMAGE_ELEMENT.alt = image.alt || 'No image available';
     IMAGE_ELEMENT.classList.add('listing-image');
-    IMAGE_ELEMENT.classList.add('listing-image-styles');
-    const IMAGE_GALLERY_CONTAINER = document.createElement('div');
-    IMAGE_GALLERY_CONTAINER.classList.add('listing-image-container');
-    IMAGE_GALLERY_CONTAINER.appendChild(IMAGE_ELEMENT);
-    LISTING_CONTAINER.appendChild(IMAGE_GALLERY_CONTAINER);
+
+    LISTING_CONTAINER.appendChild(IMAGE_ELEMENT);
+
+    IMAGE_ELEMENT.classList.add('w-full');
   });
 }
 
@@ -196,6 +196,9 @@ export function createAllListingsElements(listing) {
   const BID_AMOUNT = document.createElement('p');
   const VIEW_LISTING_BTN = document.createElement('button');
   const VIEW_LISTING_BTN_CONTAINER = document.createElement('div');
+  const CAROUSEL = document.createElement('div');
+  const CAROUSEL_INNER = document.createElement('div');
+  const IMAGE_CONTAINER = document.createElement('div');
 
   LISTING_CONTAINER.classList.add('listing-container-styles');
   LISTING_CONTAINER.classList.add('flex-col-center-layout');
@@ -292,8 +295,16 @@ export function createAllListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_LISTING_BTN);
-  fetchListingImages(listing, LISTING_CONTAINER);
+  CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
+  CAROUSEL.appendChild(CAROUSEL_INNER);
+
+  IMAGE_CONTAINER.classList.add('image-container');
+  IMAGE_CONTAINER.classList.add('carouselItem');
+  CAROUSEL_INNER.classList.add('carouselInner');
+  LISTING_CONTAINER.appendChild(CAROUSEL);
+  fetchListingImages(listing, IMAGE_CONTAINER);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+
   LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);

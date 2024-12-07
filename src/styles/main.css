@@ -137,3 +137,19 @@
 .seller-avatar-img {
   @apply w-[3rem] h-[3rem] rounded-full;
 }
+
+.carousel {
+  @apply flex w-full max-w-[600px] mx-auto relative overflow-hidden;
+}
+
+.carouselInner {
+  @apply flex transition-transform duration-500 ease-in-out overflow-x-hidden;
+}
+
+.carouselItem {
+  @apply flex flex-row min-w-full box-border;
+}
+
+.carousel-control {
+  cursor: pointer;
+}
