@@ -30,10 +30,10 @@ export default {
         custom2: 'var(--Font-2)',
       },
       boxShadow: {
-        custom: '0 4px 6px rgba(0, 0, 0, 0.5)',
+        custom: '0 8px 12px rgba(228, 176, 34, 0.5)',
         custom2: [
-          '0 4px 6px rgba(0, 0, 0, 0.5)',
-          'inset 0 0 10px rgba(0, 0, 0, 0.7)',
+          '0 8px 12px rgba(228, 176, 34, 0.5)',
+          'inset 0 0 20px rgba(0, 0, 0, 1)',
         ],
       },
     },

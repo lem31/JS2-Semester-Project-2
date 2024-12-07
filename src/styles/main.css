@@ -24,34 +24,34 @@
 }
 
 .h1-desktop {
-  @apply text-secondary;
+  color: var(--secondary-color);
   font-size: var(--H1-Desktop-font-size);
-  font-family: var(--Font-1);
+  @apply font-custom;
 }
 
 .h1-mobile {
-  @apply text-secondary;
+  color: var(--secondary-color);
   font-size: var(--H1-Mobile-font-size);
-  font-family: var(--Font-1);
+  @apply font-custom;
 }
 
 .h2-desktop {
-  @apply text-secondary;
+  color: var(--secondary-color);
   font-size: var(--H2-Desktop-font-size);
-  font-family: var(--Font-1);
+  @apply font-custom;
 }
 
 .h2-mobile {
-  @apply text-secondary;
+  color: var(--secondary-color);
   font-size: var(--H2-Mobile-font-size);
-  font-family: var(--Font-1);
+  @apply font-custom;
 }
 .button-styles {
   @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom;
 }
 
 .button-styles:active {
-  @apply shadow-custom;
+  @apply shadow-custom2;
 }
 .gold-labels {
   @apply text-[var(--primary-color)] font-[var(--Font-1)];
@@ -62,9 +62,20 @@
 }
 
 .search-input {
-  @apply border-2 rounded-lg p-2 pl-12 pr-32 text-primary hover:bg-black hover:shadow-custom active:bg-black active:shadow-custom focus:bg-black focus:shadow-custom2 focus-within:bg-black focus-within:shadow-custom2;
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-12 pr-32 text-[var(--primary-color)];
+
+  &:hover {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:active {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus-within {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
 }
 
 .flex-row-center {
