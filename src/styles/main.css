@@ -23,6 +23,17 @@
   --Font-2: 'Sen', sans-serif;
 }
 
+.h1-desktop {
+  @apply text-[var(--secondary-color)] font-[var(--Font-1)];
+  font-size: var(--H1-Desktop-font-size);
+  font-family: var(--Font-1);
+}
+
+.h1-mobile {
+  @apply text-[var(--secondary-color)] font-[var(--Font-1)];
+  font-size: var(--H1-Mobile-font-size);
+  font-family: var(--Font-1);
+}
 .button-styles {
   @apply bg-[var(--primary-color)] text-[var(--secondary-color)] font-[var(--Font-2)] rounded-lg hover:shadow-[0_4px_6px_rgba(255,255,255,0.5)];
 }
@@ -51,6 +62,9 @@
   }
 }
 
+.flex-row-center {
+  @apply flex flex-row items-center justify-center w-full;
+}
 .loading-symbol {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;
 }
@@ -60,11 +74,15 @@
 }
 
 .sidebar-styles {
-  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] h-screen fixed top-0 overflow-y-auto;
+  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0 overflow-y-auto;
 }
 
-.sidebar-height {
+.sidebar-height-when-closed {
   @apply max-h-[40%];
+}
+
+.sidebar-height-when-open {
+  @apply h-screen;
 }
 
 .nav-styles {
