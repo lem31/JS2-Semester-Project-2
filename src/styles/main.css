@@ -23,13 +23,11 @@
   --Font-2: 'Sen', sans-serif;
 }
 
-.h1-desktop {
-  color: var(--secondary-color);
-  font-size: var(--H1-Desktop-font-size);
-  @apply font-custom;
+.two-column-layout {
+  @apply grid grid-cols-2 gap-4;
 }
 
-.h1-mobile {
+.h1-styles {
   color: var(--secondary-color);
   font-size: var(--H1-Mobile-font-size);
   @apply font-custom;
@@ -62,7 +60,7 @@
 }
 
 .search-input {
-  @apply border-2 border-[var(--primary-color)] rounded-lg p-2 pl-12 pr-32 text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -80,6 +78,10 @@
 
 .flex-row-center {
   @apply flex flex-row items-center justify-center w-full;
+}
+
+.flex-col-center-layout {
+  @apply flex flex-col items-center justify-center w-full;
 }
 .loading-symbol {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-black;

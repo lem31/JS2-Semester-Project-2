@@ -154,8 +154,6 @@ export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
 
-  LISTING_CONTAINER.classList.add('listing-container-styles');
-
   //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_INPUT = document.createElement('input');
@@ -182,6 +180,7 @@ export function createAllListingsElements(listing) {
 
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
+  const SELLER_INFO_BOX = document.createElement('div');
   const LISTING_TITLE = document.createElement('h2');
   const LISTING_DESCRIPTION = document.createElement('p');
   const LISTING_BIDS = document.createElement('p');
@@ -196,13 +195,19 @@ export function createAllListingsElements(listing) {
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
   const VIEW_LISTING_BTN = document.createElement('button');
+  const VIEW_LISTING_BTN_CONTAINER = document.createElement('div');
 
+  LISTING_CONTAINER.classList.add('listing-container-styles');
+  LISTING_CONTAINER.classList.add('flex-col-center-layout');
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   VIEW_BIDS_BUTTON.classList.add('view-bids-btn');
   VIEW_BIDS_BUTTON.classList.add('button-styles');
-
   SELLER_AVATAR.classList.add('seller-avatar-img');
-
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
+  PLACE_BID_BUTTON.classList.add('button-styles');
+  VIEW_LISTING_BTN.classList.add('button-styles');
+  LISTING_END_DATE.classList.add('max-w-[250px]');
+
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
       alert('You need to be logged in to place a bid.');
@@ -281,20 +286,21 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
-  TEXT_BUTTON_CONTAINER.appendChild(SELLER_NAME);
-  TEXT_BUTTON_CONTAINER.appendChild(SELLER_AVATAR);
+  TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
-  BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN);
-  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-
-  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
-  LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
+  VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_LISTING_BTN);
   fetchListingImages(listing, LISTING_CONTAINER);
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
+  LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
+  SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
+  SELLER_INFO_BOX.appendChild(SELLER_NAME);
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
-
+  SELLER_INFO_BOX.classList.add('flex-row-center');
   BIDS_CONTAINER.classList.add('flex-row-center');
 
   if (listing.bids && listing.bids.length > 0) {
