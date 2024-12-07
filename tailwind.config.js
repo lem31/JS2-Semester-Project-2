@@ -26,8 +26,15 @@ export default {
         LabelsFooterMobile: 'var(--Labels-and-footer-mobile-font-size)',
       },
       fontFamily: {
-        Font1: 'var(--Font-1)',
-        Font2: 'var(--Font-2)',
+        custom: 'var(--Font-1)',
+        custom2: 'var(--Font-2)',
+      },
+      boxShadow: {
+        custom: '0 4px 6px rgba(0, 0, 0, 0.5)',
+        custom2: [
+          '0 4px 6px rgba(0, 0, 0, 0.5)',
+          'inset 0 0 10px rgba(0, 0, 0, 0.7)',
+        ],
       },
     },
   },
