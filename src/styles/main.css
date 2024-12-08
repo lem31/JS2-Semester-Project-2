@@ -163,9 +163,9 @@
   }
 }
 .carousel-control-left {
-  @apply absolute left-24;
+  @apply absolute left-24 md:left-56 transform translate-y-0;
 }
 
 .carousel-control-right {
-  @apply absolute right-24;
+  @apply absolute right-24 md:right-56 transform translate-y-0;
 }
