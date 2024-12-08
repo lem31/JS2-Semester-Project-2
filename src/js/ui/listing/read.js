@@ -3,6 +3,8 @@ import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
 import { postBidToAPI } from '../../api/bids/place';
 
+let currentIndex = 0;
+
 import { closePlaceBidForm } from '../bids/place';
 
 export function isLoggedIn() {
@@ -74,10 +76,12 @@ export function createMyListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(DELETE_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
-  fetchListingImages(listing, LISTING_CONTAINER);
+
+  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
+  fetchListingImages(listing, LISTING_CONTAINER);
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -131,15 +135,14 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
   const IMAGES = listing.media || [];
 
   IMAGES.forEach((image) => {
-    const IMAGE_ELEMENT = document.createElement('img');
+    const IMAGE = document.createElement('img');
+    IMAGE.src = image.url;
+    IMAGE.alt = image.alt || 'No image available';
+    IMAGE.classList.add('listing-image');
 
-    IMAGE_ELEMENT.src = image.url;
-    IMAGE_ELEMENT.alt = image.alt || 'No image available';
-    IMAGE_ELEMENT.classList.add('listing-image');
+    LISTING_CONTAINER.appendChild(IMAGE);
 
-    LISTING_CONTAINER.appendChild(IMAGE_ELEMENT);
-
-    IMAGE_ELEMENT.classList.add('w-full');
+    IMAGE.classList.add('w-full');
   });
 }
 
@@ -175,8 +178,6 @@ export function createAllListingsElements(listing) {
   PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
   PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
   CLOSE_BUTTON.textContent = 'X';
-
-  //LISTING DETAILS
 
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
@@ -278,7 +279,6 @@ export function createAllListingsElements(listing) {
     'No end date available';
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-
   const BIDS_IMAGE = document.createElement('img');
   BIDS_IMAGE.src = '/images/icons8-coins-64.png';
   const BIDS_CONTAINER = document.createElement('div');
@@ -295,8 +295,24 @@ export function createAllListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_LISTING_BTN);
+
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
   CAROUSEL.appendChild(CAROUSEL_INNER);
+
+  const PREV_BUTTON = document.createElement('button');
+  const NEXT_BUTTON = document.createElement('button');
+  const PREV_BUTTON_IMG = document.createElement('img');
+  const NEXT_BUTTON_IMG = document.createElement('img');
+  PREV_BUTTON.appendChild(PREV_BUTTON_IMG);
+  NEXT_BUTTON.appendChild(NEXT_BUTTON_IMG);
+  IMAGE_CONTAINER.appendChild(PREV_BUTTON);
+  IMAGE_CONTAINER.appendChild(NEXT_BUTTON);
+
+  PREV_BUTTON_IMG.src = '/images/icons8-left-100.png';
+  NEXT_BUTTON_IMG.src = '/images/icons8-right-100.png';
+
+  PREV_BUTTON.classList.add('absolute');
+  NEXT_BUTTON.classList.add('absolute');
 
   IMAGE_CONTAINER.classList.add('image-container');
   IMAGE_CONTAINER.classList.add('carouselItem');
@@ -507,7 +523,6 @@ export function createIndividualListingElement(listing) {
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
-
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
