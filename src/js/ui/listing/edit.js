@@ -14,7 +14,6 @@ export function onClickAddMoreImages() {
       const EDIT_FORM = document.getElementById('edit-form');
       const URL_INPUT = document.createElement('input');
       URL_INPUT.setAttribute('type', 'url');
-      URL_INPUT.setAttribute('id', 'urls');
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
       URL_INPUT.setAttribute('class', 'input');
@@ -24,24 +23,22 @@ export function onClickAddMoreImages() {
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Image Alt');
       ALT_INPUT.setAttribute('class', 'input');
-      EDIT_FORM.insertBefore(ALT_INPUT, ADD_MORE_IMAGES_BTN);
-      EDIT_FORM.insertBefore(URL_INPUT, ALT_INPUT);
+      EDIT_FORM.insertBefore(URL_INPUT, ADD_MORE_IMAGES_BTN);
+      EDIT_FORM.insertBefore(ALT_INPUT, URL_INPUT);
     });
   }
 }
 export function onClickSaveListingBtn() {
-  const SAVE_LISTING_BTN = document.getElementById('save-listing-btn');
+  const EDIT_FORM = document.getElementById('edit-form');
 
-  if (SAVE_LISTING_BTN) {
-    SAVE_LISTING_BTN.addEventListener('click', async (event) => {
+  if (EDIT_FORM) {
+    EDIT_FORM.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const EDIT_FORM = document.getElementById('edit-form');
-      if (EDIT_FORM) {
-        await editListingInAPI(event);
-      } else {
-        console.error('Edit form not found');
-      }
+
+      editListingInAPI(event);
     });
+  } else {
+    console.error('Edit form not found');
   }
 }
 

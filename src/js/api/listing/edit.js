@@ -45,9 +45,9 @@ export async function editListingInAPI(event) {
 
     if (RESPONSE.ok) {
       alert('Post edited successfully');
-      // setTimeout(() => {
-      //   window.location.href = '/my_listings/';
-      // }, 3000);
+      setTimeout(() => {
+        window.location.href = '/my_listings/';
+      }, 3000);
     } else {
       console.log('Response not OK:', RESPONSE);
       const ERROR_DATA = await RESPONSE.json();
@@ -100,19 +100,21 @@ export async function populateEditForm() {
         : '';
 
       const mediaInputsContainer = document.getElementById('mediaInputs');
-      mediaInputsContainer.innerHTML = '';
-      LISTING.data.media.forEach((element) => {
-        const URL_INPUT = document.createElement('input');
-        URL_INPUT.value = element.data.url;
-        URL_INPUT.setAttribute('id', 'urls');
-        mediaInputsContainer.appendChild(URL_INPUT);
 
-        const ALT_INPUT = document.createElement('input');
-        ALT_INPUT.value = element.data.alt || '';
-        ALT_INPUT.setAttribute('id', 'alts');
+      if (LISTING.data.media && Array.isArray(LISTING.data.media)) {
+        LISTING.data.media.forEach((element) => {
+          const URL_INPUT = document.createElement('input');
+          URL_INPUT.value = element.url;
+          URL_INPUT.setAttribute('name', 'urls');
+          mediaInputsContainer.appendChild(URL_INPUT);
 
-        mediaInputsContainer.appendChild(ALT_INPUT);
-      });
+          const ALT_INPUT = document.createElement('input');
+          ALT_INPUT.value = element.alt || '';
+          ALT_INPUT.setAttribute('name', 'alts');
+
+          mediaInputsContainer.appendChild(ALT_INPUT);
+        });
+      }
     } catch (error) {
       throw new Error('Error fetching listing: ' + error.message);
     }
