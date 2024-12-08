@@ -41,7 +41,7 @@ export async function getMyListings() {
         try {
           new createMyListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
-          throw new Error('Error creating listing elements');
+          console.error('Error creating listing elements:', error);
         }
       });
     }
@@ -82,7 +82,7 @@ export async function getAllArtAuctionListings() {
         try {
           createAllListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
-          throw new Error('Error creating listing elements');
+          console.error('Error creating listing elements:', error);
         }
       });
     }

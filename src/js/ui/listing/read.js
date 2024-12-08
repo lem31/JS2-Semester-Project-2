@@ -27,7 +27,6 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
       IMAGE.classList.add('listing-image');
       IMAGE.classList.add('carouselItem');
       LISTING_CONTAINER.appendChild(IMAGE);
-      LISTING_CONTAINER.classList.add('w-[200px]');
     }
   });
 }
@@ -102,7 +101,7 @@ export function createMyListingsElements(listing) {
 
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
-  fetchListingImages(listing, LISTING_CONTAINER);
+  listing, LISTING_CONTAINER;
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -152,9 +151,13 @@ export function createMyListingsElements(listing) {
  * @returns {HTMLElement} - The listing container element
  */
 
+//
+
 export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
+  LISTING_CONTAINER.classList.add('listing-container-styles');
+
   const IMAGE_CONTAINER = document.createElement('div');
   //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
@@ -178,6 +181,8 @@ export function createAllListingsElements(listing) {
   PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
   CLOSE_BUTTON.textContent = 'X';
 
+  fetchListingImages(listing, IMAGE_CONTAINER);
+
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
   const SELLER_INFO_BOX = document.createElement('div');
@@ -198,24 +203,21 @@ export function createAllListingsElements(listing) {
   const VIEW_LISTING_BTN_CONTAINER = document.createElement('div');
   const CAROUSEL = document.createElement('div');
   const CAROUSEL_INNER = document.createElement('div');
-
+  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
   const PREV_BUTTON = document.createElement('button');
   const NEXT_BUTTON = document.createElement('button');
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
+  const BIDS_CONTAINER = document.createElement('div');
   PREV_IMG.src = '/images/icons8-left-100.png';
   NEXT_IMG.src = '/images/icons8-right-100.png';
 
-  NEXT_BUTTON.appendChild(NEXT_IMG);
-  PREV_BUTTON.appendChild(PREV_IMG);
   PREV_BUTTON.classList.add('absolute');
   PREV_BUTTON.classList.add('left-0');
 
   NEXT_BUTTON.classList.add('absolute');
   NEXT_BUTTON.classList.add('right-0');
 
-  LISTING_CONTAINER.classList.add('listing-container-styles');
-  LISTING_CONTAINER.classList.add('flex-col-center-layout');
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   VIEW_BIDS_BUTTON.classList.add('view-bids-btn');
   VIEW_BIDS_BUTTON.classList.add('button-styles');
@@ -225,44 +227,16 @@ export function createAllListingsElements(listing) {
   VIEW_LISTING_BTN.classList.add('button-styles');
   LISTING_END_DATE.classList.add('max-w-[250px]');
 
-  IMAGE_CONTAINER.style.transition = 'transform 0.5s ease-in-out';
-  IMAGE_CONTAINER.style.display = 'flex';
-  IMAGE_CONTAINER.style.overflow = 'hidden';
+  VIEW_LISTING_BTN.dataset.id = listing.id;
+  VIEW_LISTING_BTN.classList.add('view-listing-btn');
+  SELLER_NAME.classList.add('h2-mobile');
+  LISTING_TITLE.classList.add('h2-mobile');
+  LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
+  LISTING_END_DATE.classList.add('h2-mobile');
 
-  let currentIndex = 0;
-
-  PREV_BUTTON.addEventListener('click', () => {
-    const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
-    if (items.length > 0) {
-      items[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      items.forEach((item, index) => {
-        item.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
-      });
-      items[currentIndex].classList.add('active');
-    }
-  });
-
-  NEXT_BUTTON.addEventListener('click', () => {
-    const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
-    if (items.length > 0) {
-      items[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % items.length;
-      items.forEach((item, index) => {
-        item.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
-      });
-      items[currentIndex].classList.add('active');
-    }
-  });
-
-  const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
-  if (items.length > 0) {
-    IMAGE_CONTAINER.style.width = `${items.length * 100}%`;
-    items.forEach((item) => {
-      item.style.width = `${100 / items.length}%`;
-    });
-    items[0].classList.add('active');
-  }
+  VIEW_BIDS_CONTAINER.classList.add('hidden');
+  SELLER_INFO_BOX.classList.add('flex-row-center');
+  BIDS_CONTAINER.classList.add('flex-row-center');
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
@@ -330,10 +304,13 @@ export function createAllListingsElements(listing) {
     `Ends At: ${FORMATTED_TIME} on ${FORMATTED_DATE}` ||
     'No end date available';
 
+  NEXT_BUTTON.appendChild(NEXT_IMG);
+  PREV_BUTTON.appendChild(PREV_IMG);
+
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
   const BIDS_IMAGE = document.createElement('img');
   BIDS_IMAGE.src = '/images/icons8-coins-64.png';
-  const BIDS_CONTAINER = document.createElement('div');
+
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   BIDS_CONTAINER.appendChild(BIDS_IMAGE);
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
@@ -354,19 +331,23 @@ export function createAllListingsElements(listing) {
   IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
 
   CAROUSEL_INNER.classList.add('carouselInner');
+
+  const INNER_CONTAINER = document.createElement('div');
+
   LISTING_CONTAINER.appendChild(CAROUSEL);
-  fetchListingImages(listing, IMAGE_CONTAINER);
-  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
+
+  INNER_CONTAINER.appendChild(LISTING_CONTAINER);
+
+  INNER_CONTAINER.classList.add('flex-col-center-layout');
+  LISTING_CONTAINER.classList.add('inner-container-styles');
+
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
   CAROUSEL_INNER.appendChild(PREV_BUTTON);
   CAROUSEL_INNER.appendChild(NEXT_BUTTON);
-  VIEW_BIDS_CONTAINER.classList.add('hidden');
-  SELLER_INFO_BOX.classList.add('flex-row-center');
-  BIDS_CONTAINER.classList.add('flex-row-center');
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -387,11 +368,8 @@ export function createAllListingsElements(listing) {
       BIDDER_AVATAR.classList.add('seller-avatar-img');
     });
   }
-  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
-  OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
-  VIEW_LISTING_BTN.dataset.id = listing.id;
-  VIEW_LISTING_BTN.classList.add('view-listing-btn');
+  OUTER_CONTAINER.appendChild(INNER_CONTAINER);
 
   VIEW_LISTING_BTN.addEventListener('click', (event) => {
     const target = event.target.closest('.view-listing-btn');
@@ -414,11 +392,6 @@ export function createAllListingsElements(listing) {
       VIEW_BIDS_CONTAINER.style.display = 'none';
     }
   });
-
-  SELLER_NAME.classList.add('h2-mobile');
-  LISTING_TITLE.classList.add('h2-mobile');
-  LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
-  LISTING_END_DATE.classList.add('h2-mobile');
 
   function updateListingText() {
     if (window.innerWidth >= 768) {
@@ -445,10 +418,6 @@ export function createAllListingsElements(listing) {
   window.addEventListener('resize', updateListingText);
 
   updateListingText();
-}
-
-export function displayListingIdInUrlOnListingPage(LISTING) {
-  window.location.href = `/listing/?id=${LISTING}`;
 }
 
 /**
@@ -559,7 +528,7 @@ export function createIndividualListingElement(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
-  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  Child(TEXT_BUTTON_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
@@ -600,4 +569,13 @@ export function createIndividualListingElement(listing) {
       VIEW_BIDS_CONTAINER.style.display = 'none';
     }
   });
+}
+
+/**
+ * @function displayListingIdInUrlOnListingPage
+ * @description Displays the listing ID in the URL on the listing page
+ * @param {string} listingId - The ID of the listing
+ */
+export function displayListingIdInUrlOnListingPage(listingId) {
+  window.location.href = `/listing/?id=${listingId}`;
 }
