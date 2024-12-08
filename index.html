@@ -8,23 +8,24 @@
     <script type="module" src="./src/app.js" defer></script>
   </head>
   <body class="bg-black">
-    <header class="w-full h-32 pt-6">
+    <header class="w-full h-42 pt-6">
       <div class="search-bar search-bar-layout sidebar-height-when-closed">
-        <div class="flex flex-col justify-center">
-          <img
-            src="./images/icons8-search-50.png"
-            alt="search icon"
-            class="search-icon w-8 h-8 absolute ml-2"
-          />
-        </div>
-        <div class="flex-col-center-layout md:flex md:flex-row gap-2">
+        <div class="flex-col-center-layout md:flex md:flex-row gap-2 relative">
           <input
             type="text"
             id="search-bar"
-            class="search-input pl-6 pr-22 p-2 md:pl-12 md:pr-32 gold-labels"
+            class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
             placeholder="Search listings..."
           />
-
+          <div
+            class="absolute w-[220px] mb-16 md:w-[480px] md:mb-8 flex flex-row"
+          >
+            <img
+              src="./images/icons8-search-50.png"
+              alt="search icon"
+              class="search-icon w-8 h-8 absolute"
+            />
+          </div>
           <button
             id="search-button"
             class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
