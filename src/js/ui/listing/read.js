@@ -201,6 +201,20 @@ export function createAllListingsElements(listing) {
   const CAROUSEL_INNER = document.createElement('div');
   const IMAGE_CONTAINER = document.createElement('div');
 
+  const PREV_BUTTON = document.createElement('button');
+  const NEXT_BUTTON = document.createElement('button');
+
+  PREV_BUTTON.textContent = 'Prev';
+  NEXT_BUTTON.textContent = 'Next';
+
+  PREV_BUTTON.classList.add(
+    'absolute',
+    'text-white',
+    'carousel-control.prev',
+    'carousel-control'
+  );
+  NEXT_BUTTON.classList.add('absolute', 'text-white', 'carousel-control.next');
+
   LISTING_CONTAINER.classList.add('listing-container-styles');
   LISTING_CONTAINER.classList.add('flex-col-center-layout');
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
@@ -299,33 +313,19 @@ export function createAllListingsElements(listing) {
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
   CAROUSEL.appendChild(CAROUSEL_INNER);
 
-  const PREV_BUTTON = document.createElement('button');
-  const NEXT_BUTTON = document.createElement('button');
-  const PREV_BUTTON_IMG = document.createElement('img');
-  const NEXT_BUTTON_IMG = document.createElement('img');
-  PREV_BUTTON.appendChild(PREV_BUTTON_IMG);
-  NEXT_BUTTON.appendChild(NEXT_BUTTON_IMG);
-  IMAGE_CONTAINER.appendChild(PREV_BUTTON);
-  IMAGE_CONTAINER.appendChild(NEXT_BUTTON);
-
-  PREV_BUTTON_IMG.src = '/images/icons8-left-100.png';
-  NEXT_BUTTON_IMG.src = '/images/icons8-right-100.png';
-
-  PREV_BUTTON.classList.add('absolute');
-  NEXT_BUTTON.classList.add('absolute');
-
   IMAGE_CONTAINER.classList.add('image-container');
   IMAGE_CONTAINER.classList.add('carouselItem');
   CAROUSEL_INNER.classList.add('carouselInner');
   LISTING_CONTAINER.appendChild(CAROUSEL);
   fetchListingImages(listing, IMAGE_CONTAINER);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
-
+  LISTING_CONTAINER.appendChild(PREV_BUTTON);
+  LISTING_CONTAINER.appendChild(NEXT_BUTTON);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   SELLER_INFO_BOX.classList.add('flex-row-center');
   BIDS_CONTAINER.classList.add('flex-row-center');

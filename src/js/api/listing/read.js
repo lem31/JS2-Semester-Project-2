@@ -78,10 +78,9 @@ export async function getAllArtAuctionListings() {
 
     const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
     if (LISTINGS_CONTAINER) {
-      LISTINGS_CONTAINER.innerHTML = '';
       LISTINGS.forEach((listing) => {
         try {
-          new createAllListingsElements(listing, LISTINGS_CONTAINER);
+          createAllListingsElements(listing, LISTINGS_CONTAINER);
         } catch (error) {
           throw new Error('Error creating listing elements');
         }
