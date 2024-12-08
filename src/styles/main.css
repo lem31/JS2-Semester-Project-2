@@ -146,7 +146,7 @@
   @apply flex transition-transform duration-500 ease-in-out overflow-x-hidden;
 }
 
-.carouselItem {
+.imageContainer {
   @apply flex flex-row min-w-full box-border;
 }
 @layer utilities {

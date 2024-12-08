@@ -3,12 +3,33 @@ import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
 import { postBidToAPI } from '../../api/bids/place';
 
-let currentIndex = 0;
-
 import { closePlaceBidForm } from '../bids/place';
 
 export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
+}
+
+/**
+ * @function fetchListingImages
+ * @description Fetches and displays images for a listing
+ * @param {Object} listing - The listing object
+ * @param {HTMLElement} LISTING_CONTAINER - The listing container element
+ */
+
+export function fetchListingImages(listing, LISTING_CONTAINER) {
+  const IMAGES = listing.media || [];
+
+  IMAGES.forEach((image) => {
+    if (image.url) {
+      const IMAGE = document.createElement('img');
+      IMAGE.src = image.url || '/images/Logo.png';
+      IMAGE.alt = image.alt || 'No image available';
+      IMAGE.classList.add('listing-image');
+      IMAGE.classList.add('carouselItem');
+      LISTING_CONTAINER.appendChild(IMAGE);
+      LISTING_CONTAINER.classList.add('w-[200px]');
+    }
+  });
 }
 
 /**
@@ -125,28 +146,6 @@ export function createMyListingsElements(listing) {
 }
 
 /**
- * @function fetchListingImages
- * @description Fetches and displays images for a listing
- * @param {Object} listing - The listing object
- * @param {HTMLElement} LISTING_CONTAINER - The listing container element
- */
-
-export function fetchListingImages(listing, LISTING_CONTAINER) {
-  const IMAGES = listing.media || [];
-
-  IMAGES.forEach((image) => {
-    const IMAGE = document.createElement('img');
-    IMAGE.src = image.url;
-    IMAGE.alt = image.alt || 'No image available';
-    IMAGE.classList.add('listing-image');
-
-    LISTING_CONTAINER.appendChild(IMAGE);
-
-    IMAGE.classList.add('w-full');
-  });
-}
-
-/**
  * @function createAllListingsElements
  * @description Creates elements for each listing on the home page
  * @param {Object} listing - The listing object
@@ -156,7 +155,7 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
 export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
-
+  const IMAGE_CONTAINER = document.createElement('div');
   //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_INPUT = document.createElement('input');
@@ -199,7 +198,6 @@ export function createAllListingsElements(listing) {
   const VIEW_LISTING_BTN_CONTAINER = document.createElement('div');
   const CAROUSEL = document.createElement('div');
   const CAROUSEL_INNER = document.createElement('div');
-  const IMAGE_CONTAINER = document.createElement('div');
 
   const PREV_BUTTON = document.createElement('button');
   const NEXT_BUTTON = document.createElement('button');
@@ -226,6 +224,45 @@ export function createAllListingsElements(listing) {
   PLACE_BID_BUTTON.classList.add('button-styles');
   VIEW_LISTING_BTN.classList.add('button-styles');
   LISTING_END_DATE.classList.add('max-w-[250px]');
+
+  IMAGE_CONTAINER.style.transition = 'transform 0.5s ease-in-out';
+  IMAGE_CONTAINER.style.display = 'flex';
+  IMAGE_CONTAINER.style.overflow = 'hidden';
+
+  let currentIndex = 0;
+
+  PREV_BUTTON.addEventListener('click', () => {
+    const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
+    if (items.length > 0) {
+      items[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      items.forEach((item, index) => {
+        item.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
+      });
+      items[currentIndex].classList.add('active');
+    }
+  });
+
+  NEXT_BUTTON.addEventListener('click', () => {
+    const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
+    if (items.length > 0) {
+      items[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % items.length;
+      items.forEach((item, index) => {
+        item.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
+      });
+      items[currentIndex].classList.add('active');
+    }
+  });
+
+  const items = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
+  if (items.length > 0) {
+    IMAGE_CONTAINER.style.width = `${items.length * 100}%`;
+    items.forEach((item) => {
+      item.style.width = `${100 / items.length}%`;
+    });
+    items[0].classList.add('active');
+  }
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
@@ -314,8 +351,8 @@ export function createAllListingsElements(listing) {
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
   CAROUSEL.appendChild(CAROUSEL_INNER);
 
-  IMAGE_CONTAINER.classList.add('image-container');
-  IMAGE_CONTAINER.classList.add('carouselItem');
+  IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
+
   CAROUSEL_INNER.classList.add('carouselInner');
   LISTING_CONTAINER.appendChild(CAROUSEL);
   fetchListingImages(listing, IMAGE_CONTAINER);
