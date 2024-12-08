@@ -203,17 +203,18 @@ export function createAllListingsElements(listing) {
 
   const PREV_BUTTON = document.createElement('button');
   const NEXT_BUTTON = document.createElement('button');
+  const PREV_IMG = document.createElement('img');
+  const NEXT_IMG = document.createElement('img');
+  PREV_IMG.src = '/images/icons8-left-100.png';
+  NEXT_IMG.src = '/images/icons8-right-100.png';
 
-  PREV_BUTTON.textContent = 'Prev';
-  NEXT_BUTTON.textContent = 'Next';
+  NEXT_BUTTON.appendChild(NEXT_IMG);
+  PREV_BUTTON.appendChild(PREV_IMG);
+  PREV_BUTTON.classList.add('absolute');
+  PREV_BUTTON.classList.add('left-0');
 
-  PREV_BUTTON.classList.add(
-    'absolute',
-    'text-white',
-    'carousel-control.prev',
-    'carousel-control'
-  );
-  NEXT_BUTTON.classList.add('absolute', 'text-white', 'carousel-control.next');
+  NEXT_BUTTON.classList.add('absolute');
+  NEXT_BUTTON.classList.add('right-0');
 
   LISTING_CONTAINER.classList.add('listing-container-styles');
   LISTING_CONTAINER.classList.add('flex-col-center-layout');
@@ -324,8 +325,8 @@ export function createAllListingsElements(listing) {
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
-  LISTING_CONTAINER.appendChild(PREV_BUTTON);
-  LISTING_CONTAINER.appendChild(NEXT_BUTTON);
+  CAROUSEL_INNER.appendChild(PREV_BUTTON);
+  CAROUSEL_INNER.appendChild(NEXT_BUTTON);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   SELLER_INFO_BOX.classList.add('flex-row-center');
   BIDS_CONTAINER.classList.add('flex-row-center');
