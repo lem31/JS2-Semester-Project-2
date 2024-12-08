@@ -106,10 +106,7 @@ export function displayNav() {
   const SIDEBAR = document.querySelector('.side-bar');
   const HAMBURGER_BTN = document.getElementById('hamburger-btn');
   HAMBURGER_BTN.addEventListener('click', () => {
-    if (
-      NAV_MENU.classList.contains('hidden') &&
-      SIDEBAR.classList.contains('sidebar-height-when-closed')
-    ) {
+    if (NAV_MENU.classList.contains('hidden')) {
       SIDEBAR.classList.remove('sidebar-height-when-closed');
       SIDEBAR.classList.add('sidebar-height-when-open');
       NAV_MENU.classList.remove('hidden');

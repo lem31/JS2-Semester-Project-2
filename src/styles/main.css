@@ -92,15 +92,15 @@
 }
 
 .sidebar-styles {
-  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] fixed;
+  @apply flex flex-col items-center justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
 }
 
 .sidebar-height-when-closed {
-  @apply max-h-[55%] top-0 overflow-y-hidden pt-0;
+  @apply max-h-[200px] top-0 bottom-0 pt-0 overflow-y-hidden;
 }
 
 .sidebar-height-when-open {
-  @apply h-screen top-0 pt-0 overflow-y-scroll;
+  @apply h-auto top-0 bottom-0 pt-0 overflow-y-scroll;
 }
 
 .nav-styles {
