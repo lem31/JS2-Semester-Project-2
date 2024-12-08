@@ -156,7 +156,6 @@ export function createMyListingsElements(listing) {
 export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
-  LISTING_CONTAINER.classList.add('listing-container-styles');
 
   const IMAGE_CONTAINER = document.createElement('div');
   //PLACE BID FORM
@@ -211,13 +210,8 @@ export function createAllListingsElements(listing) {
   const BIDS_CONTAINER = document.createElement('div');
   PREV_IMG.src = '/images/icons8-left-100.png';
   NEXT_IMG.src = '/images/icons8-right-100.png';
-
-  PREV_BUTTON.classList.add('absolute');
-  PREV_BUTTON.classList.add('left-0');
-
-  NEXT_BUTTON.classList.add('absolute');
-  NEXT_BUTTON.classList.add('right-0');
-
+  PREV_BUTTON.classList.add('carousel-control-left');
+  NEXT_BUTTON.classList.add('carousel-control-right');
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   VIEW_BIDS_BUTTON.classList.add('view-bids-btn');
   VIEW_BIDS_BUTTON.classList.add('button-styles');
@@ -332,9 +326,17 @@ export function createAllListingsElements(listing) {
 
   CAROUSEL_INNER.classList.add('carouselInner');
 
+  SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
+  SELLER_INFO_BOX.appendChild(SELLER_NAME);
+
   const INNER_CONTAINER = document.createElement('div');
 
+  IMAGE_CONTAINER.appendChild(PREV_BUTTON);
+  IMAGE_CONTAINER.appendChild(NEXT_BUTTON);
+
   LISTING_CONTAINER.appendChild(CAROUSEL);
+  LISTING_CONTAINER.appendChild(IMAGE_CONTAINER);
+
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
@@ -342,12 +344,8 @@ export function createAllListingsElements(listing) {
   INNER_CONTAINER.appendChild(LISTING_CONTAINER);
 
   INNER_CONTAINER.classList.add('flex-col-center-layout');
-  LISTING_CONTAINER.classList.add('inner-container-styles');
-
-  SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
-  SELLER_INFO_BOX.appendChild(SELLER_NAME);
-  CAROUSEL_INNER.appendChild(PREV_BUTTON);
-  CAROUSEL_INNER.appendChild(NEXT_BUTTON);
+  INNER_CONTAINER.classList.add('inner-container-styles');
+  LISTING_CONTAINER.classList.add('listing-container-styles');
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
