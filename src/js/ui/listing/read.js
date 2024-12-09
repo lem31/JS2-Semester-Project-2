@@ -10,6 +10,36 @@ export function isLoggedIn() {
 }
 
 /**
+ * @function toggleCarouselImages
+ * @description Toggles back and forth between images in the carousel
+ * @param {HTMLElement} carouselInner - The inner container of the carousel
+ * @param {HTMLElement} prevButton - The button to go to the previous image
+ * @param {HTMLElement} nextButton - The button to go to the next image
+ */
+function toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON) {
+  let currentIndex = 0;
+  const images = IMAGE_CONTAINER.querySelectorAll('.carouselItem');
+
+  function showImage(index) {
+    images.forEach((image, i) => {
+      image.style.display = i === index ? 'block' : 'none';
+    });
+  }
+
+  PREV_BUTTON.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  });
+
+  NEXT_BUTTON.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  });
+
+  showImage(currentIndex);
+}
+
+/**
  * @function fetchListingImages
  * @description Fetches and displays images for a listing
  * @param {Object} listing - The listing object
@@ -155,30 +185,24 @@ export function createMyListingsElements(listing) {
 
 export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
-  LISTING_CONTAINER.classList.add('listing-box');
-
   const IMAGE_CONTAINER = document.createElement('div');
-  //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_INPUT = document.createElement('input');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
 
-  PLACE_BID_FORM.classList.add('place-bid-form');
-  PLACE_BID_INPUT.classList.add('place-bid-input');
-  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
-  CLOSE_BUTTON.classList.add('close-btn');
+  const BIDS_IMAGE = document.createElement('img');
+  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
 
   PLACE_BID_FORM.style.display = 'none';
-
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
   PLACE_BID_SUBMIT.type = 'submit';
+  CLOSE_BUTTON.textContent = 'X';
 
   PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
   PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
   PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
-  CLOSE_BUTTON.textContent = 'X';
 
   fetchListingImages(listing, IMAGE_CONTAINER);
 
@@ -210,27 +234,10 @@ export function createAllListingsElements(listing) {
   const BIDS_CONTAINER = document.createElement('div');
   PREV_IMG.src = '/images/icons8-left-100.png';
   NEXT_IMG.src = '/images/icons8-right-100.png';
-  PREV_BUTTON.classList.add('carousel-control-left');
-  NEXT_BUTTON.classList.add('carousel-control-right');
-  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
-  VIEW_BIDS_BUTTON.classList.add('view-bids-btn');
-  VIEW_BIDS_BUTTON.classList.add('button-styles');
-  SELLER_AVATAR.classList.add('seller-avatar-img');
-  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
-  PLACE_BID_BUTTON.classList.add('button-styles');
-  VIEW_LISTING_BTN.classList.add('button-styles');
-  LISTING_END_DATE.classList.add('max-w-[250px]');
+
+  const INNER_CONTAINER = document.createElement('div');
 
   VIEW_LISTING_BTN.dataset.id = listing.id;
-  VIEW_LISTING_BTN.classList.add('view-listing-btn');
-  SELLER_NAME.classList.add('h2-mobile');
-  LISTING_TITLE.classList.add('h2-mobile');
-  LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
-  LISTING_END_DATE.classList.add('h2-mobile');
-
-  VIEW_BIDS_CONTAINER.classList.add('hidden');
-  SELLER_INFO_BOX.classList.add('flex-row-center');
-  BIDS_CONTAINER.classList.add('flex-row-center');
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
@@ -253,11 +260,9 @@ export function createAllListingsElements(listing) {
   });
 
   VIEW_LISTING_BTN.textContent = 'View Listing';
-
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
   SELLER_AVATAR.src =
     listing.seller && listing.seller.avatar ? listing.seller.avatar.url : '';
-
   PLACE_BID_BUTTON.textContent = 'Place Bid';
   PLACE_BID_BUTTON.dataset.id = listing.id;
 
@@ -281,6 +286,7 @@ export function createAllListingsElements(listing) {
   LISTING_TITLE.textContent = listing.title || 'No title available';
   LISTING_DESCRIPTION.textContent =
     listing.description || 'No description available';
+
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
     weekday: 'long',
@@ -302,8 +308,6 @@ export function createAllListingsElements(listing) {
   PREV_BUTTON.appendChild(PREV_IMG);
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-  const BIDS_IMAGE = document.createElement('img');
-  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   BIDS_CONTAINER.appendChild(BIDS_IMAGE);
@@ -315,6 +319,7 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_LISTING_BTN);
@@ -322,14 +327,8 @@ export function createAllListingsElements(listing) {
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
   CAROUSEL.appendChild(CAROUSEL_INNER);
 
-  IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
-
-  CAROUSEL_INNER.classList.add('carouselInner');
-
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
-
-  const INNER_CONTAINER = document.createElement('div');
 
   IMAGE_CONTAINER.appendChild(PREV_BUTTON);
   IMAGE_CONTAINER.appendChild(NEXT_BUTTON);
@@ -338,14 +337,10 @@ export function createAllListingsElements(listing) {
   LISTING_CONTAINER.appendChild(IMAGE_CONTAINER);
 
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-  LISTING_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
+
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
 
   INNER_CONTAINER.appendChild(LISTING_CONTAINER);
-
-  INNER_CONTAINER.classList.add('flex-col-center-layout');
-  INNER_CONTAINER.classList.add('inner-container-styles');
-  LISTING_CONTAINER.classList.add('listing-container-styles');
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -391,31 +386,34 @@ export function createAllListingsElements(listing) {
     }
   });
 
-  function updateListingText() {
-    if (window.innerWidth >= 768) {
-      SELLER_NAME.classList.remove('h2-mobile');
-      LISTING_TITLE.classList.remove('h2-mobile');
-      LISTING_BIDS_COUNT_TOTAL.classList.remove('h2-mobile');
-      LISTING_END_DATE.classList.remove('h2-mobile');
-      SELLER_NAME.classList.add('h2-desktop');
-      LISTING_TITLE.classList.add('h2-desktop');
-      LISTING_BIDS_COUNT_TOTAL.classList.add('h2-desktop');
-      LISTING_END_DATE.classList.add('h2-desktop');
-    } else {
-      SELLER_NAME.classList.remove('h2-desktop');
-      LISTING_TITLE.classList.remove('h2-desktop');
-      LISTING_BIDS.classList.remove('h2-desktop');
-      LISTING_END_DATE.classList.remove('h2-desktop');
-      SELLER_NAME.classList.add('h2-mobile');
-      LISTING_TITLE.classList.add('h2-mobile');
-      LISTING_BIDS_COUNT_TOTAL.classList.add('h2-mobile');
-      LISTING_END_DATE.classList.add('h2-mobile');
-    }
-  }
-
-  window.addEventListener('resize', updateListingText);
-
-  updateListingText();
+  addStylesToElements(
+    SELLER_NAME,
+    LISTING_TITLE,
+    LISTING_BIDS_COUNT_TOTAL,
+    LISTING_END_DATE,
+    LISTING_BIDS,
+    PLACE_BID_BUTTON,
+    INNER_CONTAINER,
+    LISTING_CONTAINER,
+    IMAGE_CONTAINER,
+    CAROUSEL_INNER,
+    PLACE_BID_FORM,
+    PLACE_BID_INPUT,
+    PLACE_BID_SUBMIT,
+    CLOSE_BUTTON,
+    PREV_BUTTON,
+    NEXT_BUTTON,
+    TEXT_BUTTON_CONTAINER,
+    VIEW_BIDS_BUTTON,
+    SELLER_AVATAR,
+    VIEW_LISTING_BTN,
+    VIEW_BIDS_CONTAINER,
+    SELLER_INFO_BOX,
+    BIDS_CONTAINER,
+    OUTER_CONTAINER,
+    BIDS_IMAGE
+  );
+  toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON);
 }
 
 /**
@@ -430,20 +428,12 @@ export function createIndividualListingElement(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
 
-  //PLACE BID FORM
   const PLACE_BID_FORM = document.createElement('form');
-
   const PLACE_BID_INPUT = document.createElement('input');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
 
-  PLACE_BID_FORM.classList.add('place-bid-form');
-  PLACE_BID_INPUT.classList.add('place-bid-input');
-  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
-  CLOSE_BUTTON.classList.add('close-btn');
-
   PLACE_BID_FORM.style.display = 'none';
-
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
   PLACE_BID_SUBMIT.type = 'submit';
@@ -471,21 +461,12 @@ export function createIndividualListingElement(listing) {
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
 
-  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (PLACE_BID_FORM.style.display === 'none') {
       PLACE_BID_FORM.style.display = 'block';
     } else {
       PLACE_BID_FORM.style.display = 'none';
     }
-  });
-
-  PLACE_BID_FORM.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
-
-    postBidToAPI(listing.id, BID_AMOUNT, event);
   });
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
@@ -526,8 +507,9 @@ export function createIndividualListingElement(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
-  Child(TEXT_BUTTON_CONTAINER);
+
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
@@ -576,4 +558,114 @@ export function createIndividualListingElement(listing) {
  */
 export function displayListingIdInUrlOnListingPage(listingId) {
   window.location.href = `/listing/?id=${listingId}`;
+}
+
+/**
+ * @function addStylesToElements
+ * @description Adds styles to create all listings elements
+ * @returns {void}
+ * @throws {void}
+ * @listens window:resize
+ * @listens document:DOMContentLoaded
+ * @listens document:load
+ *
+ *
+ */
+
+function addStylesToElements(
+  SELLER_NAME,
+  LISTING_TITLE,
+  LISTING_BIDS_COUNT_TOTAL,
+  LISTING_END_DATE,
+  LISTING_BIDS,
+  PLACE_BID_BUTTON,
+  INNER_CONTAINER,
+  LISTING_CONTAINER,
+  IMAGE_CONTAINER,
+  CAROUSEL_INNER,
+  PLACE_BID_FORM,
+  PLACE_BID_INPUT,
+  PLACE_BID_SUBMIT,
+  CLOSE_BUTTON,
+  PREV_BUTTON,
+  NEXT_BUTTON,
+  TEXT_BUTTON_CONTAINER,
+  VIEW_BIDS_BUTTON,
+  SELLER_AVATAR,
+  VIEW_LISTING_BTN,
+  VIEW_BIDS_CONTAINER,
+  SELLER_INFO_BOX,
+  BIDS_CONTAINER,
+  OUTER_CONTAINER,
+  BIDS_IMAGE
+) {
+  SELLER_NAME.classList.add('labels-mobile', 'md:text-md');
+  LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
+  LISTING_BIDS_COUNT_TOTAL.classList.add('labels-mobile', 'md:text-md');
+  LISTING_END_DATE.classList.add(
+    'labels-mobile',
+    'md:text-md',
+    'max-w-[250px]'
+  );
+  LISTING_BIDS.classList.add('h2-mobile', 'md:text-2xl');
+
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
+
+  INNER_CONTAINER.classList.add(
+    'flex-col-center-layout',
+    'inner-container-styles'
+  );
+
+  IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
+
+  CAROUSEL_INNER.classList.add('carouselInner');
+
+  LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
+
+  PLACE_BID_FORM.classList.add('place-bid-form');
+  PLACE_BID_INPUT.classList.add('place-bid-input');
+  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+  CLOSE_BUTTON.classList.add('close-btn');
+
+  PREV_BUTTON.classList.add('carousel-control-left');
+  NEXT_BUTTON.classList.add('carousel-control-right');
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
+  VIEW_BIDS_BUTTON.classList.add(
+    'view-bids-btn',
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+  SELLER_AVATAR.classList.add('seller-avatar-img');
+  PLACE_BID_BUTTON.classList.add(
+    'display-place-bid-form-btn',
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+  VIEW_LISTING_BTN.classList.add(
+    'button-styles',
+    'view-listing-btn',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+
+  VIEW_BIDS_CONTAINER.classList.add('hidden');
+  SELLER_INFO_BOX.classList.add('flex-row-center');
+  BIDS_CONTAINER.classList.add('flex-row-center');
+
+  OUTER_CONTAINER.classList.add('outer-container');
+
+  BIDS_IMAGE.classList.add(
+    'w-[30px]',
+    'h-[30px]',
+    'md:w-[50px]',
+    'md:h-[50px]'
+  );
 }

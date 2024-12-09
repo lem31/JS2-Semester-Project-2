@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&display=swap';
 
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&family=Sen:wght@400..800&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Charm:wght@400;700&family=Sen:wght@400..800&display=swap';
 
 :root {
   --primary-color: #e4b022;
@@ -39,17 +39,25 @@
   @apply font-custom;
 }
 
+.labels-desktop {
+  color: var(--secondary-color);
+  font-size: var(--Labels-and-footer-desktop-font-size);
+  @apply font-custom;
+}
+
+.labels-mobile {
+  color: var(--secondary-color);
+  font-size: var(--Labels-and-footer-mobile-font-size);
+  @apply font-custom;
+}
+
 .h2-mobile {
   color: var(--secondary-color);
   font-size: var(--H2-Mobile-font-size);
   @apply font-custom;
 }
 .button-styles {
-  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom;
-}
-
-.button-styles:active {
-  @apply shadow-custom2;
+  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2 text-base md:text-sm;
 }
 .gold-labels {
   @apply text-[var(--primary-color)] font-[var(--Font-1)];
@@ -122,12 +130,16 @@
   @apply w-[150px];
 }
 
+.outer-container {
+  @apply flex flex-col w-[100%] items-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-2 md:gap-y-4;
+}
+
 .link-flex {
   @apply flex flex-row items-center justify-center;
 }
 
 .listing-container-styles {
-  @apply flex flex-col items-center  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center md:w-[380px] md:h-[400px] justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .inner-container-styles {
@@ -151,7 +163,7 @@
 }
 
 .imageContainer {
-  @apply flex  items-center overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
+  @apply flex  items-center relative overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
 }
 
 .carousel-container {
@@ -163,9 +175,9 @@
   }
 }
 .carousel-control-left {
-  @apply absolute left-24 md:left-56 transform translate-y-0;
+  @apply absolute right-28  w-[50px] h-[50px] md:w-[80px] md:h-[80px] md:right-24  transform translate-y-0;
 }
 
 .carousel-control-right {
-  @apply absolute right-24 md:right-56 transform translate-y-0;
+  @apply absolute w-[50px] h-[50px] md:w-[80px] md:h-[80px]  left-28 md:left-24  transform translate-y-0;
 }
