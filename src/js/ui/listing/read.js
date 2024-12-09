@@ -3,10 +3,21 @@ import { deleteListing } from './delete';
 import { displayListingIdInUrlOnEditPage } from './edit';
 import { postBidToAPI } from '../../api/bids/place';
 
-import { closePlaceBidForm } from '../bids/place';
-
 export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
+}
+
+/**
+ * @function closePlaceBidForm
+ * @description Closes the place bid form
+ * @param {Event} event - The event object
+ * @param {HTMLElement} PLACE_BID_FORM - The place bid form element
+ */
+
+export function closePlaceBidForm(event, PLACE_BID_FORM) {
+  event.preventDefault();
+
+  PLACE_BID_FORM.style.display = 'none';
 }
 
 /**
@@ -204,8 +215,9 @@ export function createAllListingsElements(listing) {
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
-  PLACE_BID_SUBMIT.type = 'Place bid';
+  PLACE_BID_SUBMIT.type = 'submit';
   CLOSE_BUTTON.textContent = 'X';
+  CLOSE_BUTTON.type = 'button';
   PLACE_BID_TITLE.textContent = 'Place Bid';
   PLACE_BID_LABEL.textContent = 'Your bid';
 
@@ -441,6 +453,11 @@ export function createAllListingsElements(listing) {
     PREV_IMG,
     NEXT_IMG
   );
+
+  CLOSE_BUTTON.addEventListener('click', (event) =>
+    closePlaceBidForm(event, PLACE_BID_FORM)
+  );
+
   toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON);
   showArrowsOnHover(
     LISTING_CONTAINER,
@@ -670,7 +687,14 @@ function addStylesToElements(
   PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
   PLACE_BID_INPUT.classList.add('place-bid-input');
   PLACE_BID_SUBMIT.classList.add('place-bid-submit');
-  CLOSE_BUTTON.classList.add('close-btn');
+  CLOSE_BUTTON.classList.add(
+    'close-btn',
+    'button-styles',
+    'pl-2',
+    'pr-2',
+    'p-t-1',
+    'p-b-1'
+  );
   PLACE_BID_TITLE.classList.add(
     'h2-mobile',
     'md:text-2xl',
@@ -768,11 +792,11 @@ function addHoverEffectToButtons(prevImage, nextImage) {
 
 /**
  * @function showArrowsOnHover
- * @description Shows the prev and next arrows only when hovering over the listing container and only if there is more than one image
+ * @description Shows the prev and next arrows only when hovering over the listing container
+ * and only if there is more than one image
  * @param {HTMLElement} listingContainer - The listing container element
  * @param {HTMLElement} prevButton - The button to go to the previous image
  * @param {HTMLElement} nextButton - The button to go to the next image
- * @param {NodeList} images - The list of images in the carousel
  */
 function showArrowsOnHover(listingContainer, prevButton, nextButton, images) {
   if (images.length > 1) {

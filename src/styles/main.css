@@ -163,7 +163,7 @@
 }
 
 .imageContainer {
-  @apply flex  items-center relative overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
+  @apply flex items-center relative overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
 }
 
 .carousel-container {
