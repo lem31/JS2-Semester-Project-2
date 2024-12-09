@@ -131,7 +131,7 @@
 }
 
 .outer-container {
-  @apply flex flex-col w-[100%] items-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-2 md:gap-y-4;
+  @apply flex flex-col w-[100%] mt-6 items-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
 }
 
 .link-flex {
@@ -139,7 +139,7 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center md:w-[380px] md:h-[400px] justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center w-[300px] h-[auto] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .inner-container-styles {

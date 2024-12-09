@@ -436,9 +436,18 @@ export function createAllListingsElements(listing) {
     PLACE_BID_TITLE_BOX,
     PLACE_BID_SUBMIT_CONTAINER,
     FORM_INPUT_LABEL_BOX,
-    BIDS_IMAGE_INPUT_CONTAINER
+    BIDS_IMAGE_INPUT_CONTAINER,
+    BUTTON_CONTAINER,
+    PREV_IMG,
+    NEXT_IMG
   );
   toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON);
+  showArrowsOnHover(
+    LISTING_CONTAINER,
+    PREV_BUTTON,
+    NEXT_BUTTON,
+    IMAGE_CONTAINER.querySelectorAll('.carouselItem')
+  );
 }
 
 /**
@@ -629,7 +638,10 @@ function addStylesToElements(
   PLACE_BID_TITLE_BOX,
   PLACE_BID_SUBMIT_CONTAINER,
   FORM_INPUT_LABEL_BOX,
-  BIDS_IMAGE_INPUT_CONTAINER
+  BIDS_IMAGE_INPUT_CONTAINER,
+  BUTTON_CONTAINER,
+  PREV_IMG,
+  NEXT_IMG
 ) {
   SELLER_NAME.classList.add('labels-mobile', 'md:text-md');
   LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
@@ -637,7 +649,8 @@ function addStylesToElements(
   LISTING_END_DATE.classList.add(
     'labels-mobile',
     'md:text-md',
-    'max-w-[250px]'
+    'max-w-[150px]',
+    'mb-2'
   );
   LISTING_BIDS.classList.add('h2-mobile', 'md:text-2xl');
 
@@ -690,7 +703,8 @@ function addStylesToElements(
     'pl-3',
     'pr-3',
     'pt-1',
-    'pb-1'
+    'pb-1',
+    'mb-2'
   );
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
@@ -716,9 +730,63 @@ function addStylesToElements(
     'pb-1'
   );
   PLACE_BID_FORM_CONTAINER.classList.add('relative');
-  PLACE_BID_TITLE_BOX.classList.add('flex-row-center', 'mb-6', 'text-center');
+  PLACE_BID_TITLE_BOX.classList.add('flex-row-center', 'mb-4', 'text-center');
   PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
   FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
   PLACE_BID_INPUT.classList.add('place-bid-input-styles');
   BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
+  BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
+
+  addHoverEffectToButtons(PREV_IMG, NEXT_IMG);
+}
+
+/**
+ * @function addHoverEffectToButtons
+ * @description Adds a black drop shadow to the prev and next buttons on hover
+ * @param {HTMLElement} prevButton - The button to go to the previous image
+ * @param {HTMLElement} nextButton - The button to go to the next image
+ */
+function addHoverEffectToButtons(prevImage, nextImage) {
+  const addShadow = (image) => {
+    image.style.boxShadow = '0 14px 18px rgba(0, 0, 0, 0.5)';
+    image.style.backgroundColor = 'white';
+  };
+
+  const removeShadow = (image) => {
+    image.style.boxShadow = 'none';
+    image.style.backgroundColor = 'transparent';
+  };
+
+  prevImage.addEventListener('mouseover', () => addShadow(prevImage));
+  prevImage.addEventListener('mouseout', () => removeShadow(prevImage));
+
+  if (nextImage) {
+    nextImage.addEventListener('mouseover', () => addShadow(nextImage));
+    nextImage.addEventListener('mouseout', () => removeShadow(nextImage));
+  }
+}
+
+/**
+ * @function showArrowsOnHover
+ * @description Shows the prev and next arrows only when hovering over the listing container and only if there is more than one image
+ * @param {HTMLElement} listingContainer - The listing container element
+ * @param {HTMLElement} prevButton - The button to go to the previous image
+ * @param {HTMLElement} nextButton - The button to go to the next image
+ * @param {NodeList} images - The list of images in the carousel
+ */
+function showArrowsOnHover(listingContainer, prevButton, nextButton, images) {
+  if (images.length > 1) {
+    listingContainer.addEventListener('mouseover', () => {
+      prevButton.style.display = 'block';
+      nextButton.style.display = 'block';
+    });
+
+    listingContainer.addEventListener('mouseout', () => {
+      prevButton.style.display = 'none';
+      nextButton.style.display = 'none';
+    });
+  } else {
+    prevButton.style.display = 'none';
+    nextButton.style.display = 'none';
+  }
 }
