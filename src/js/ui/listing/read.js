@@ -187,13 +187,17 @@ export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   const IMAGE_CONTAINER = document.createElement('div');
   const PLACE_BID_FORM = document.createElement('form');
+  const PLACE_BID_TITLE_BOX = document.createElement('div');
   const PLACE_BID_TITLE = document.createElement('h2');
   const PLACE_BID_INPUT = document.createElement('input');
   const PLACE_BID_LABEL = document.createElement('label');
   const CLOSE_BUTTON_CONTAINER = document.createElement('div');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
-
+  const PLACE_BID_FORM_CONTAINER = document.createElement('div');
+  const PLACE_BID_SUBMIT_CONTAINER = document.createElement('div');
+  const FORM_INPUT_LABEL_BOX = document.createElement('div');
+  const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
   const BIDS_IMAGE = document.createElement('img');
   BIDS_IMAGE.src = '/images/icons8-coins-64.png';
 
@@ -204,13 +208,20 @@ export function createAllListingsElements(listing) {
   CLOSE_BUTTON.textContent = 'X';
   PLACE_BID_TITLE.textContent = 'Place Bid';
   PLACE_BID_LABEL.textContent = 'Your bid';
+
+  PLACE_BID_SUBMIT_CONTAINER.appendChild(PLACE_BID_SUBMIT);
   CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
   PLACE_BID_FORM.appendChild(CLOSE_BUTTON_CONTAINER);
-  PLACE_BID_FORM.appendChild(PLACE_BID_TITLE);
-  PLACE_BID_FORM.appendChild(PLACE_BID_LABEL);
-  PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
-  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
+  PLACE_BID_TITLE_BOX.appendChild(PLACE_BID_TITLE);
+  PLACE_BID_FORM.appendChild(PLACE_BID_TITLE_BOX);
+  FORM_INPUT_LABEL_BOX.appendChild(PLACE_BID_LABEL);
+  FORM_INPUT_LABEL_BOX.appendChild(BIDS_IMAGE_INPUT_CONTAINER);
+  BIDS_IMAGE_INPUT_CONTAINER.appendChild(BIDS_IMAGE);
+  BIDS_IMAGE_INPUT_CONTAINER.appendChild(PLACE_BID_INPUT);
 
+  PLACE_BID_FORM.appendChild(FORM_INPUT_LABEL_BOX);
+  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT_CONTAINER);
+  PLACE_BID_FORM_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, IMAGE_CONTAINER);
 
   const SELLER_NAME = document.createElement('p');
@@ -420,7 +431,12 @@ export function createAllListingsElements(listing) {
     OUTER_CONTAINER,
     BIDS_IMAGE,
     PLACE_BID_TITLE,
-    PLACE_BID_LABEL
+    PLACE_BID_LABEL,
+    PLACE_BID_FORM_CONTAINER,
+    PLACE_BID_TITLE_BOX,
+    PLACE_BID_SUBMIT_CONTAINER,
+    FORM_INPUT_LABEL_BOX,
+    BIDS_IMAGE_INPUT_CONTAINER
   );
   toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON);
 }
@@ -608,7 +624,12 @@ function addStylesToElements(
   OUTER_CONTAINER,
   BIDS_IMAGE,
   PLACE_BID_TITLE,
-  PLACE_BID_LABEL
+  PLACE_BID_LABEL,
+  PLACE_BID_FORM_CONTAINER,
+  PLACE_BID_TITLE_BOX,
+  PLACE_BID_SUBMIT_CONTAINER,
+  FORM_INPUT_LABEL_BOX,
+  BIDS_IMAGE_INPUT_CONTAINER
 ) {
   SELLER_NAME.classList.add('labels-mobile', 'md:text-md');
   LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
@@ -685,6 +706,19 @@ function addStylesToElements(
     'md:h-[50px]'
   );
 
-  PLACE_BID_LABEL.classList.add('gold-labels');
-  PLACE_BID_SUBMIT.classList.add('button-styles');
+  PLACE_BID_LABEL.classList.add('gold-labels', 'ml-8');
+  PLACE_BID_SUBMIT.classList.add(
+    'button-styles',
+    'mt-4',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+  PLACE_BID_FORM_CONTAINER.classList.add('relative');
+  PLACE_BID_TITLE_BOX.classList.add('flex-row-center', 'mb-6', 'text-center');
+  PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
+  FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
+  PLACE_BID_INPUT.classList.add('place-bid-input-styles');
+  BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
 }

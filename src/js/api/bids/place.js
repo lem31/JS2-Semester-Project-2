@@ -32,13 +32,44 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       window.location.href = '/';
     }
     if (!RESPONSE.ok) {
-      throw new Error('Failed to post bid');
+      return RESPONSE.json().then((errorResponse) => {
+        displayErrorMessage(JSON.stringify(errorResponse));
+        throw new Error('Failed to post bid');
+      });
     }
   } catch (error) {
-    const ERROR_MESSAGE = document.createElement('p');
-    ERROR_MESSAGE.textContent = 'Error posting bid: ' + error.message;
-    ERROR_MESSAGE.style.color = 'red';
-    document.body.appendChild(ERROR_MESSAGE);
+    console.error('Network response was not ok:', RESPONSE);
+
     throw new Error('Error posting bid: ' + error.message);
   }
+}
+
+/**
+ * @function displayErrorMessage
+ * @param {string} message
+ * @description This function displays an error message to the user.
+ */
+export function displayErrorMessage(message) {
+  const ERROR_MESSAGE_CONTAINER = document.createElement('div');
+  ERROR_MESSAGE_CONTAINER.classList.add(
+    'error-message',
+    'text-red-500',
+    'fixed',
+    'top-1/2',
+    'left-1/2',
+    'transform',
+    '-translate-x-1/2',
+    '-translate-y-1/2',
+    'bg-white',
+    'p-4',
+    'border',
+    'border-red-500',
+    'z-50'
+  );
+  ERROR_MESSAGE_CONTAINER.textContent = message;
+  document.body.appendChild(ERROR_MESSAGE_CONTAINER);
+
+  setTimeout(() => {
+    ERROR_MESSAGE_CONTAINER.remove();
+  }, 5000);
 }

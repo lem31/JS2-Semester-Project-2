@@ -187,5 +187,9 @@
 }
 
 .place-bid-form-styles {
-  @apply absolute bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[280px] h-[218px];
+  @apply absolute border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[280px] h-[218px];
+}
+
+.place-bid-input-styles {
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[51px];
 }
