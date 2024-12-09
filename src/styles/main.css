@@ -181,3 +181,11 @@
 .carousel-control-right {
   @apply absolute w-[50px] h-[50px] md:w-[80px] md:h-[80px]  left-28 md:left-24  transform translate-y-0;
 }
+
+.place-bid-title-styles {
+  @apply bg-[var(--primary-color)] w-[100px] shadow-lg shadow-white;
+}
+
+.place-bid-form-styles {
+  @apply absolute bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[280px] h-[218px];
+}

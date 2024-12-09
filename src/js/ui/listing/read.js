@@ -187,7 +187,10 @@ export function createAllListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   const IMAGE_CONTAINER = document.createElement('div');
   const PLACE_BID_FORM = document.createElement('form');
+  const PLACE_BID_TITLE = document.createElement('h2');
   const PLACE_BID_INPUT = document.createElement('input');
+  const PLACE_BID_LABEL = document.createElement('label');
+  const CLOSE_BUTTON_CONTAINER = document.createElement('div');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
 
@@ -197,12 +200,16 @@ export function createAllListingsElements(listing) {
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
-  PLACE_BID_SUBMIT.type = 'submit';
+  PLACE_BID_SUBMIT.type = 'Place bid';
   CLOSE_BUTTON.textContent = 'X';
-
+  PLACE_BID_TITLE.textContent = 'Place Bid';
+  PLACE_BID_LABEL.textContent = 'Your bid';
+  CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
+  PLACE_BID_FORM.appendChild(CLOSE_BUTTON_CONTAINER);
+  PLACE_BID_FORM.appendChild(PLACE_BID_TITLE);
+  PLACE_BID_FORM.appendChild(PLACE_BID_LABEL);
   PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
   PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
-  PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
 
   fetchListingImages(listing, IMAGE_CONTAINER);
 
@@ -411,7 +418,9 @@ export function createAllListingsElements(listing) {
     SELLER_INFO_BOX,
     BIDS_CONTAINER,
     OUTER_CONTAINER,
-    BIDS_IMAGE
+    BIDS_IMAGE,
+    PLACE_BID_TITLE,
+    PLACE_BID_LABEL
   );
   toggleCarouselImages(IMAGE_CONTAINER, PREV_BUTTON, NEXT_BUTTON);
 }
@@ -597,7 +606,9 @@ function addStylesToElements(
   SELLER_INFO_BOX,
   BIDS_CONTAINER,
   OUTER_CONTAINER,
-  BIDS_IMAGE
+  BIDS_IMAGE,
+  PLACE_BID_TITLE,
+  PLACE_BID_LABEL
 ) {
   SELLER_NAME.classList.add('labels-mobile', 'md:text-md');
   LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
@@ -622,10 +633,15 @@ function addStylesToElements(
 
   LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
 
-  PLACE_BID_FORM.classList.add('place-bid-form');
+  PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
   PLACE_BID_INPUT.classList.add('place-bid-input');
   PLACE_BID_SUBMIT.classList.add('place-bid-submit');
   CLOSE_BUTTON.classList.add('close-btn');
+  PLACE_BID_TITLE.classList.add(
+    'h2-mobile',
+    'md:text-2xl',
+    'place-bid-title-styles'
+  );
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
@@ -668,4 +684,7 @@ function addStylesToElements(
     'md:w-[50px]',
     'md:h-[50px]'
   );
+
+  PLACE_BID_LABEL.classList.add('gold-labels');
+  PLACE_BID_SUBMIT.classList.add('button-styles');
 }
