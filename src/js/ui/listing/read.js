@@ -342,6 +342,7 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   BIDS_CONTAINER.appendChild(BIDS_IMAGE);
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
@@ -375,6 +376,8 @@ export function createAllListingsElements(listing) {
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
       const BIDDER_CONTAINER = document.createElement('div');
+      const BIDDER_AVATAR_NAME_BOX = document.createElement('div');
+      const BIDDER_COIN_BID_BOX = document.createElement('div');
       const BIDDER_NAME = document.createElement('p');
       const BIDDER_AVATAR = document.createElement('img');
       const BID_AMOUNT = document.createElement('p');
@@ -382,13 +385,33 @@ export function createAllListingsElements(listing) {
       BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
+      const COIN_IMAGE = document.createElement('img');
+      COIN_IMAGE.src = '/images/icons8-coins-64.png';
+      COIN_IMAGE.alt = 'Coin icon';
+      COIN_IMAGE.classList.add('coin-icon');
 
-      BIDDER_CONTAINER.appendChild(BIDDER_AVATAR);
-      BIDDER_CONTAINER.appendChild(BIDDER_NAME);
-      BIDDER_CONTAINER.appendChild(BID_AMOUNT);
+      BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_AVATAR);
+      BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_NAME);
+
+      BIDDER_CONTAINER.appendChild(BIDDER_AVATAR_NAME_BOX);
+      BIDDER_COIN_BID_BOX.appendChild(COIN_IMAGE);
+      BIDDER_COIN_BID_BOX.appendChild(BID_AMOUNT);
+      BIDDER_CONTAINER.appendChild(BIDDER_COIN_BID_BOX);
+
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
 
+      BIDDER_NAME.classList.add('labels-mobile', 'md:text-md');
+      BIDDER_AVATAR_NAME_BOX.classList.add('flex-row-center');
+      BID_AMOUNT.classList.add('labels-mobile', 'md:text-md');
+
       BIDDER_AVATAR.classList.add('seller-avatar-img');
+      COIN_IMAGE.classList.add(
+        'w-[30px]',
+        'h-[30px]',
+        'md:w-[50px]',
+        'md:h-[50px]'
+      );
+      BIDDER_COIN_BID_BOX.classList.add('flex-row-center');
     });
   }
 
@@ -407,12 +430,14 @@ export function createAllListingsElements(listing) {
       return;
     }
     if (
-      VIEW_BIDS_CONTAINER.style.display === 'none' ||
-      !VIEW_BIDS_CONTAINER.style.display
+      VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
+      !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
     ) {
-      VIEW_BIDS_CONTAINER.style.display = 'block';
+      VIEW_BIDS_CONTAINER.classList.remove('hidden');
+      VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
     } else {
-      VIEW_BIDS_CONTAINER.style.display = 'none';
+      VIEW_BIDS_CONTAINER.classList.add('hidden');
+      VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
     }
   });
 
