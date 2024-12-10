@@ -754,7 +754,12 @@ function addStylesToElements(
     'pb-1'
   );
   PLACE_BID_FORM_CONTAINER.classList.add('relative');
-  PLACE_BID_TITLE_BOX.classList.add('flex-row-center', 'mb-4', 'text-center');
+  PLACE_BID_TITLE_BOX.classList.add(
+    'flex-row-center',
+    'mb-4',
+    'text-center',
+    'mt-[-18px]'
+  );
   PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
   FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
   PLACE_BID_INPUT.classList.add('place-bid-input-styles');
