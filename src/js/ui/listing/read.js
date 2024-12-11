@@ -503,6 +503,7 @@ export function createAllListingsElements(listing) {
 export function createIndividualListingElement(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
+  const IMAGE_CONTAINER = document.createElement('div');
 
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_TITLE_BOX = document.createElement('div');
@@ -612,8 +613,9 @@ export function createIndividualListingElement(listing) {
 
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  LISTING_CONTAINER.appendChild(IMAGE_CONTAINER);
+  fetchListingImages(listing, IMAGE_CONTAINER);
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
-  fetchListingImages(listing, LISTING_CONTAINER);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
 
@@ -634,6 +636,8 @@ export function createIndividualListingElement(listing) {
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
     });
   }
+
+  const LISTING_IMAGES = IMAGE_CONTAINER.querySelectorAll('img');
   const OUTER_CONTAINER = document.getElementById('listing-container');
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
@@ -660,7 +664,10 @@ export function createIndividualListingElement(listing) {
     LISTING_END_DATE,
     SELLER_AVATAR,
     SELLER_NAME,
-    SELLER_INFO_BOX
+    SELLER_INFO_BOX,
+    IMAGE_CONTAINER,
+    LISTING_CONTAINER,
+    LISTING_IMAGES
   );
 }
 
@@ -839,7 +846,10 @@ function addStylesToIndividualListingElements(
   LISTING_END_DATE,
   SELLER_AVATAR,
   SELLER_NAME,
-  SELLER_INFO_BOX
+  SELLER_INFO_BOX,
+  IMAGE_CONTAINER,
+  LISTING_CONTAINER,
+  LISTING_IMAGES
 ) {
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
@@ -850,6 +860,13 @@ function addStylesToIndividualListingElements(
   SELLER_AVATAR.classList.add('seller-avatar-img');
   SELLER_NAME.classList.add('labels-mobile', 'md:text-[16px]');
   SELLER_INFO_BOX.classList.add('flex-row-center');
+
+  IMAGE_CONTAINER.classList.add('image-container-individual-listing');
+
+  LISTING_CONTAINER.classList.add('listing-container-individual-listing');
+  LISTING_IMAGES.forEach((image) => {
+    image.classList.add('listing-images-individual-listing');
+  });
 }
 
 /**

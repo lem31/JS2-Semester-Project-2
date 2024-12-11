@@ -227,3 +227,15 @@
 .footer-text-layout {
   @apply flex flex-row md:grid md:grid-cols-2 items-start justify-start gap-2 md:gap-0;
 }
+
+.image-container-individual-listing {
+  @apply grid grid-cols-2 md:grid-cols-3 w-[80%] h-[auto] rounded-lg border-2 border-[var(--primary-color)];
+}
+
+.listing-container-individual-listing {
+  @apply flex flex-col items-center justify-center;
+}
+
+.listing-images-individual-listing {
+  @apply border-2 border-[var(--primary-color)] rounded-lg;
+}
