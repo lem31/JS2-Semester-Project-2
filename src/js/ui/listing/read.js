@@ -505,24 +505,48 @@ export function createIndividualListingElement(listing) {
   LISTING_CONTAINER.classList.add('listing-box');
 
   const PLACE_BID_FORM = document.createElement('form');
+  const PLACE_BID_TITLE_BOX = document.createElement('div');
+  const PLACE_BID_TITLE = document.createElement('h2');
   const PLACE_BID_INPUT = document.createElement('input');
+  const PLACE_BID_LABEL = document.createElement('label');
+  const CLOSE_BUTTON_CONTAINER = document.createElement('div');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
+  const PLACE_BID_FORM_CONTAINER = document.createElement('div');
+  const PLACE_BID_SUBMIT_CONTAINER = document.createElement('div');
+  const FORM_INPUT_LABEL_BOX = document.createElement('div');
+  const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
+  const BIDS_IMAGE = document.createElement('img');
+  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
   PLACE_BID_SUBMIT.type = 'submit';
-
-  PLACE_BID_FORM.appendChild(PLACE_BID_INPUT);
-  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT);
-  PLACE_BID_FORM.appendChild(CLOSE_BUTTON);
   CLOSE_BUTTON.textContent = 'X';
+  CLOSE_BUTTON.type = 'button';
+  PLACE_BID_TITLE.textContent = 'Place Bid';
+  PLACE_BID_LABEL.textContent = 'Your bid';
+
+  PLACE_BID_SUBMIT_CONTAINER.appendChild(PLACE_BID_SUBMIT);
+  CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
+  PLACE_BID_FORM.appendChild(CLOSE_BUTTON_CONTAINER);
+  PLACE_BID_TITLE_BOX.appendChild(PLACE_BID_TITLE);
+  PLACE_BID_FORM.appendChild(PLACE_BID_TITLE_BOX);
+  FORM_INPUT_LABEL_BOX.appendChild(PLACE_BID_LABEL);
+  FORM_INPUT_LABEL_BOX.appendChild(BIDS_IMAGE_INPUT_CONTAINER);
+  BIDS_IMAGE_INPUT_CONTAINER.appendChild(BIDS_IMAGE);
+  BIDS_IMAGE_INPUT_CONTAINER.appendChild(PLACE_BID_INPUT);
+
+  PLACE_BID_FORM.appendChild(FORM_INPUT_LABEL_BOX);
+  PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT_CONTAINER);
+  PLACE_BID_FORM_CONTAINER.appendChild(PLACE_BID_FORM);
 
   //LISTING DETAILS
 
   const SELLER_NAME = document.createElement('p');
   const SELLER_AVATAR = document.createElement('img');
+  const SELLER_INFO_BOX = document.createElement('div');
   const LISTING_TITLE = document.createElement('h2');
   const LISTING_DESCRIPTION = document.createElement('p');
   const LISTING_BIDS = document.createElement('p');
@@ -578,8 +602,10 @@ export function createIndividualListingElement(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
-  TEXT_BUTTON_CONTAINER.appendChild(SELLER_NAME);
-  TEXT_BUTTON_CONTAINER.appendChild(SELLER_AVATAR);
+  TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
+  SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
+  SELLER_INFO_BOX.appendChild(SELLER_NAME);
+
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
@@ -625,6 +651,17 @@ export function createIndividualListingElement(listing) {
       VIEW_BIDS_CONTAINER.style.display = 'none';
     }
   });
+
+  addStylesToIndividualListingElements(
+    TEXT_BUTTON_CONTAINER,
+    LISTING_TITLE,
+    LISTING_DESCRIPTION,
+    LISTING_BIDS,
+    LISTING_END_DATE,
+    SELLER_AVATAR,
+    SELLER_NAME,
+    SELLER_INFO_BOX
+  );
 }
 
 /**
@@ -792,6 +829,27 @@ function addStylesToElements(
   BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
 
   addHoverEffectToButtons(PREV_IMG, NEXT_IMG);
+}
+
+function addStylesToIndividualListingElements(
+  TEXT_BUTTON_CONTAINER,
+  LISTING_TITLE,
+  LISTING_DESCRIPTION,
+  LISTING_BIDS,
+  LISTING_END_DATE,
+  SELLER_AVATAR,
+  SELLER_NAME,
+  SELLER_INFO_BOX
+) {
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
+  LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
+  LISTING_DESCRIPTION.classList.add('body-text-mobile', 'md:text-lg');
+  LISTING_BIDS.classList.add('h2-mobile', 'md:text-2xl');
+  LISTING_END_DATE.classList.add('labels-mobile', 'md:text-[16px]');
+
+  SELLER_AVATAR.classList.add('seller-avatar-img');
+  SELLER_NAME.classList.add('labels-mobile', 'md:text-[16px]');
+  SELLER_INFO_BOX.classList.add('flex-row-center');
 }
 
 /**

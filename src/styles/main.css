@@ -19,6 +19,8 @@
   --Nav-Desktop-font-size: 16px;
   --Labels-and-footer-mobile-font-size: 14px;
   --Labels-and-footer-desktop-font-size: 16px;
+  --Body-text-mobile-font-size: 16px;
+  --Body-text-desktop-font-size: 18px;
   --Font-1: 'Charm', cursive;
   --Font-2: 'Sen', sans-serif;
 }
@@ -37,6 +39,18 @@
   color: var(--secondary-color);
   font-size: var(--H2-Desktop-font-size);
   @apply font-custom;
+}
+
+.body-text-desktop {
+  color: var(--secondary-color);
+  font-size: var(--Body-text-desktop-font-size);
+  @apply font-custom2;
+}
+
+.body-text-mobile {
+  color: var(--secondary-color);
+  font-size: var(--Body-text-mobile-font-size);
+  @apply font-custom2;
 }
 
 .labels-desktop {
@@ -151,7 +165,7 @@
 }
 
 .seller-avatar-img {
-  @apply w-[3rem] h-[3rem] rounded-full;
+  @apply w-[3rem] h-[3rem] rounded-full border-2 border-[var(--primary-color)];
 }
 
 .carousel {

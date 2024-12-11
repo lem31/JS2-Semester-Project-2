@@ -24,6 +24,8 @@ export default {
         NavDesktop: 'var(--Nav-Desktop-font-size)',
         LabelsFooterDesktop: 'var(--Labels-and-footer-desktop-font-size)',
         LabelsFooterMobile: 'var(--Labels-and-footer-mobile-font-size)',
+        BodyDesktop: 'var(--Body-Desktop-font-size)',
+        BodyMobile: 'var(--Body-Mobile-font-size)',
       },
       fontFamily: {
         custom: 'var(--Font-1)',
