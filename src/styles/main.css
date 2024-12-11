@@ -17,12 +17,16 @@
   --Button-and-Input-desktop-font-size: 14px;
   --Button-and-Input-mobile-font-size: 16px;
   --Nav-Desktop-font-size: 16px;
-  --Labels-and-footer-mobile-font-size: 14px;
-  --Labels-and-footer-desktop-font-size: 16px;
+  --Labels-mobile-font-size: 14px;
+  --Labels-desktop-font-size: 16px;
   --Body-text-mobile-font-size: 16px;
   --Body-text-desktop-font-size: 18px;
   --Font-1: 'Charm', cursive;
   --Font-2: 'Sen', sans-serif;
+}
+
+.body-styles {
+  @apply flex flex-col min-h-[100vh] m-0;
 }
 
 .two-column-layout {
@@ -49,7 +53,7 @@
 
 .labels {
   color: var(--secondary-color);
-  font-size: var(--Labels-and-footer-mobile-font-size);
+  font-size: var(--Labels-mobile-font-size);
   @apply font-custom md:text-base;
 }
 
@@ -59,7 +63,8 @@
   @apply font-custom md:text-[25px];
 }
 .button-styles {
-  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2 text-base md:text-sm;
+  font-size: var(--Button-and-Input-mobile-font-size);
+  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
 }
 .gold-labels {
   @apply text-[var(--primary-color)] font-[var(--Font-1)];
@@ -201,7 +206,7 @@
 }
 
 .footer {
-  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[var(--secondary-color)] font-[var(--Font-1)];
+  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[14px] md:text-base text-[var(--secondary-color)] font-[var(--Font-1)];
 }
 
 .social-media-icons {
@@ -217,7 +222,7 @@
 }
 
 .image-container-individual-listing {
-  @apply grid grid-cols-2 md:grid w-[80%] h-[auto] rounded-lg border-2 border-[var(--primary-color)];
+  @apply grid grid-cols-2 md:grid w-[360px] md:grid-cols-3 md:w-[730px] h-[auto] rounded-lg border-2 border-[var(--primary-color)];
 }
 
 .listing-container-individual-listing {

@@ -607,14 +607,15 @@ export function createIndividualListingElement(listing) {
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
 
-  TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+  fetchListingImages(listing, IMAGE_CONTAINER);
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  LISTING_CONTAINER.appendChild(IMAGE_CONTAINER);
+  LISTING_CONTAINER.appendChild(BUTTON_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
 
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
-  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-  LISTING_CONTAINER.appendChild(IMAGE_CONTAINER);
-  fetchListingImages(listing, IMAGE_CONTAINER);
+
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
@@ -667,7 +668,16 @@ export function createIndividualListingElement(listing) {
     SELLER_INFO_BOX,
     IMAGE_CONTAINER,
     LISTING_CONTAINER,
-    LISTING_IMAGES
+    LISTING_IMAGES,
+    PLACE_BID_BUTTON,
+    VIEW_BIDS_BUTTON,
+    BUTTON_CONTAINER,
+    PLACE_BID_FORM,
+    PLACE_BID_INPUT,
+    PLACE_BID_SUBMIT,
+    CLOSE_BUTTON,
+    PLACE_BID_TITLE,
+    PLACE_BID_TITLE_BOX
   );
 }
 
@@ -840,8 +850,37 @@ function addStylesToIndividualListingElements(
   SELLER_INFO_BOX,
   IMAGE_CONTAINER,
   LISTING_CONTAINER,
-  LISTING_IMAGES
+  LISTING_IMAGES,
+  PLACE_BID_BUTTON,
+  VIEW_BIDS_BUTTON,
+  BUTTON_CONTAINER,
+  PLACE_BID_FORM,
+  PLACE_BID_INPUT,
+  PLACE_BID_SUBMIT,
+  CLOSE_BUTTON,
+  PLACE_BID_TITLE,
+  PLACE_BID_TITLE_BOX
 ) {
+  PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
+  PLACE_BID_INPUT.classList.add('place-bid-input');
+  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+  CLOSE_BUTTON.classList.add(
+    'close-btn',
+    'button-styles',
+    'pl-2',
+    'pr-2',
+    'p-t-1',
+    'p-b-1'
+  );
+  PLACE_BID_TITLE.classList.add('h2-styles', 'place-bid-title-styles');
+
+  PLACE_BID_TITLE_BOX.classList.add(
+    'flex-row-center',
+    'mb-4',
+    'text-center',
+    'mt-[-18px]'
+  );
+
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   LISTING_TITLE.classList.add('h2-styles');
   LISTING_DESCRIPTION.classList.add('body-text-mobile', 'md:text-lg');
@@ -858,6 +897,27 @@ function addStylesToIndividualListingElements(
   LISTING_IMAGES.forEach((image) => {
     image.classList.add('listing-images-individual-listing');
   });
+
+  PLACE_BID_BUTTON.classList.add(
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+  VIEW_BIDS_BUTTON.classList.add(
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+
+  BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
+
+  CLOSE_BUTTON.addEventListener('click', (event) =>
+    closePlaceBidForm(event, PLACE_BID_FORM)
+  );
 }
 
 /**
