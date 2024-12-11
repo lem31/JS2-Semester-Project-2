@@ -140,7 +140,6 @@ export function createMyListingsElements(listing) {
 
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
-  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   listing, LISTING_CONTAINER;
 
@@ -202,6 +201,7 @@ export function createAllListingsElements(listing) {
   const PLACE_BID_TITLE = document.createElement('h2');
   const PLACE_BID_INPUT = document.createElement('input');
   const PLACE_BID_LABEL = document.createElement('label');
+  const BIDS_IMAGE = document.createElement('img');
   const CLOSE_BUTTON_CONTAINER = document.createElement('div');
   const CLOSE_BUTTON = document.createElement('button');
   const PLACE_BID_SUBMIT = document.createElement('button');
@@ -209,8 +209,11 @@ export function createAllListingsElements(listing) {
   const PLACE_BID_SUBMIT_CONTAINER = document.createElement('div');
   const FORM_INPUT_LABEL_BOX = document.createElement('div');
   const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
-  const BIDS_IMAGE = document.createElement('img');
+
+  const COIN_IMAGE = document.createElement('img');
+
   BIDS_IMAGE.src = '/images/icons8-coins-64.png';
+  COIN_IMAGE.src = '/images/icons8-coins-64.png';
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -227,11 +230,13 @@ export function createAllListingsElements(listing) {
   PLACE_BID_TITLE_BOX.appendChild(PLACE_BID_TITLE);
   PLACE_BID_FORM.appendChild(PLACE_BID_TITLE_BOX);
   FORM_INPUT_LABEL_BOX.appendChild(PLACE_BID_LABEL);
-  FORM_INPUT_LABEL_BOX.appendChild(BIDS_IMAGE_INPUT_CONTAINER);
-  BIDS_IMAGE_INPUT_CONTAINER.appendChild(BIDS_IMAGE);
+  PLACE_BID_FORM.appendChild(FORM_INPUT_LABEL_BOX);
+  PLACE_BID_FORM.appendChild(BIDS_IMAGE_INPUT_CONTAINER);
+
+  BIDS_IMAGE_INPUT_CONTAINER.appendChild(COIN_IMAGE);
+
   BIDS_IMAGE_INPUT_CONTAINER.appendChild(PLACE_BID_INPUT);
 
-  PLACE_BID_FORM.appendChild(FORM_INPUT_LABEL_BOX);
   PLACE_BID_FORM.appendChild(PLACE_BID_SUBMIT_CONTAINER);
   PLACE_BID_FORM_CONTAINER.appendChild(PLACE_BID_FORM);
   fetchListingImages(listing, IMAGE_CONTAINER);
@@ -476,7 +481,8 @@ export function createAllListingsElements(listing) {
     BIDS_IMAGE_INPUT_CONTAINER,
     BUTTON_CONTAINER,
     PREV_IMG,
-    NEXT_IMG
+    NEXT_IMG,
+    COIN_IMAGE
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -518,8 +524,8 @@ export function createIndividualListingElement(listing) {
   const FORM_INPUT_LABEL_BOX = document.createElement('div');
   const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
   const BIDS_IMAGE = document.createElement('img');
-  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
 
+  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
   PLACE_BID_SUBMIT.textContent = 'Place bid';
@@ -563,11 +569,23 @@ export function createIndividualListingElement(listing) {
   const BID_AMOUNT = document.createElement('p');
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
+    if (!isLoggedIn()) {
+      alert('You need to be logged in to place a bid.');
+      return;
+    }
     if (PLACE_BID_FORM.style.display === 'none') {
       PLACE_BID_FORM.style.display = 'block';
     } else {
       PLACE_BID_FORM.style.display = 'none';
     }
+  });
+
+  PLACE_BID_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
+
+    postBidToAPI(listing.id, BID_AMOUNT, event);
   });
 
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
@@ -603,6 +621,7 @@ export function createIndividualListingElement(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
+  TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
   SELLER_INFO_BOX.appendChild(SELLER_AVATAR);
   SELLER_INFO_BOX.appendChild(SELLER_NAME);
@@ -617,7 +636,7 @@ export function createIndividualListingElement(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
 
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
-  VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+
   VIEW_BIDS_CONTAINER.classList.add('hidden');
 
   if (listing.bids && listing.bids.length > 0) {
@@ -677,7 +696,15 @@ export function createIndividualListingElement(listing) {
     PLACE_BID_SUBMIT,
     CLOSE_BUTTON,
     PLACE_BID_TITLE,
-    PLACE_BID_TITLE_BOX
+    PLACE_BID_TITLE_BOX,
+    BIDS_IMAGE_INPUT_CONTAINER,
+    PLACE_BID_SUBMIT_CONTAINER,
+    BIDS_IMAGE,
+    VIEW_BIDS_CONTAINER,
+    FORM_INPUT_LABEL_BOX,
+    PLACE_BID_LABEL,
+    PLACE_BID_FORM_CONTAINER,
+    LISTING_BIDS_COUNT_TOTAL
   );
 }
 
@@ -737,7 +764,8 @@ function addStylesToElements(
   BIDS_IMAGE_INPUT_CONTAINER,
   BUTTON_CONTAINER,
   PREV_IMG,
-  NEXT_IMG
+  NEXT_IMG,
+  COIN_IMAGE
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles');
@@ -759,8 +787,7 @@ function addStylesToElements(
   LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
 
   PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
-  PLACE_BID_INPUT.classList.add('place-bid-input');
-  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+
   CLOSE_BUTTON.classList.add(
     'close-btn',
     'button-styles',
@@ -814,8 +841,16 @@ function addStylesToElements(
     'md:h-[50px]'
   );
 
+  COIN_IMAGE.classList.add(
+    'w-[30px]',
+    'h-[30px]',
+    'md:w-[50px]',
+    'md:h-[50px]'
+  );
+
   PLACE_BID_LABEL.classList.add('gold-labels', 'ml-8');
   PLACE_BID_SUBMIT.classList.add(
+    'place-bid-submit',
     'button-styles',
     'mt-4',
     'pl-3',
@@ -832,7 +867,7 @@ function addStylesToElements(
   );
   PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
   FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
-  PLACE_BID_INPUT.classList.add('place-bid-input-styles');
+  PLACE_BID_INPUT.classList.add('place-bid-input', 'place-bid-input-styles');
   BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
   BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
 
@@ -859,11 +894,28 @@ function addStylesToIndividualListingElements(
   PLACE_BID_SUBMIT,
   CLOSE_BUTTON,
   PLACE_BID_TITLE,
-  PLACE_BID_TITLE_BOX
+  PLACE_BID_TITLE_BOX,
+  BIDS_IMAGE_INPUT_CONTAINER,
+  PLACE_BID_SUBMIT_CONTAINER,
+  BIDS_IMAGE,
+  VIEW_BIDS_CONTAINER,
+  FORM_INPUT_LABEL_BOX,
+  PLACE_BID_LABEL,
+  PLACE_BID_FORM_CONTAINER,
+  LISTING_BIDS_COUNT_TOTAL
 ) {
   PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
-  PLACE_BID_INPUT.classList.add('place-bid-input');
-  PLACE_BID_SUBMIT.classList.add('place-bid-submit');
+  PLACE_BID_FORM_CONTAINER.classList.add('relative');
+  PLACE_BID_INPUT.classList.add('place-bid-input', 'place-bid-input-styles');
+  PLACE_BID_SUBMIT.classList.add(
+    'place-bid-submit',
+    'button-styles',
+    'mt-4',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
   CLOSE_BUTTON.classList.add(
     'close-btn',
     'button-styles',
@@ -881,11 +933,29 @@ function addStylesToIndividualListingElements(
     'mt-[-18px]'
   );
 
+  BIDS_IMAGE.classList.add(
+    'w-[30px]',
+    'h-[30px]',
+    'md:w-[50px]',
+    'md:h-[50px]'
+  );
+
+  PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
+
+  PLACE_BID_LABEL.classList.add('gold-labels', 'ml-8');
+
+  BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
+
+  FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
+
+  VIEW_BIDS_CONTAINER.classList.add('hidden');
+
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   LISTING_TITLE.classList.add('h2-styles');
   LISTING_DESCRIPTION.classList.add('body-text-mobile', 'md:text-lg');
   LISTING_BIDS.classList.add('h2-styles');
   LISTING_END_DATE.classList.add('labels');
+  LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
 
   SELLER_AVATAR.classList.add('seller-avatar-img');
   SELLER_NAME.classList.add('labels');

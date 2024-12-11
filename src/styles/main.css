@@ -198,7 +198,20 @@
 }
 
 .place-bid-input-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[51px];
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[51px] text-[var(--primary-color)];
+
+  &:hover {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:active {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus-within {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
 }
 
 .view-bids-box {
