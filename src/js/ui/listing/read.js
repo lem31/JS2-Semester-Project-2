@@ -400,9 +400,9 @@ export function createAllListingsElements(listing) {
 
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
 
-      BIDDER_NAME.classList.add('labels-mobile', 'md:text-md');
+      BIDDER_NAME.classList.add('labels');
       BIDDER_AVATAR_NAME_BOX.classList.add('flex-row-center');
-      BID_AMOUNT.classList.add('labels-mobile', 'md:text-md');
+      BID_AMOUNT.classList.add('labels');
 
       BIDDER_AVATAR.classList.add('seller-avatar-img');
       COIN_IMAGE.classList.add(
@@ -729,16 +729,11 @@ function addStylesToElements(
   PREV_IMG,
   NEXT_IMG
 ) {
-  SELLER_NAME.classList.add('labels-mobile', 'md:text-md');
-  LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
-  LISTING_BIDS_COUNT_TOTAL.classList.add('labels-mobile', 'md:text-md');
-  LISTING_END_DATE.classList.add(
-    'labels-mobile',
-    'md:text-md',
-    'max-w-[150px]',
-    'mb-2'
-  );
-  LISTING_BIDS.classList.add('h2-mobile', 'md:text-2xl');
+  SELLER_NAME.classList.add('labels');
+  LISTING_TITLE.classList.add('h2-styles');
+  LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
+  LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
+  LISTING_BIDS.classList.add('h2-styles');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
 
@@ -764,11 +759,7 @@ function addStylesToElements(
     'p-t-1',
     'p-b-1'
   );
-  PLACE_BID_TITLE.classList.add(
-    'h2-mobile',
-    'md:text-2xl',
-    'place-bid-title-styles'
-  );
+  PLACE_BID_TITLE.classList.add('h2-styles', 'place-bid-title-styles');
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
@@ -852,13 +843,13 @@ function addStylesToIndividualListingElements(
   LISTING_IMAGES
 ) {
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
-  LISTING_TITLE.classList.add('h2-mobile', 'md:text-2xl');
+  LISTING_TITLE.classList.add('h2-styles');
   LISTING_DESCRIPTION.classList.add('body-text-mobile', 'md:text-lg');
-  LISTING_BIDS.classList.add('h2-mobile', 'md:text-2xl');
-  LISTING_END_DATE.classList.add('labels-mobile', 'md:text-[16px]');
+  LISTING_BIDS.classList.add('h2-styles');
+  LISTING_END_DATE.classList.add('labels');
 
   SELLER_AVATAR.classList.add('seller-avatar-img');
-  SELLER_NAME.classList.add('labels-mobile', 'md:text-[16px]');
+  SELLER_NAME.classList.add('labels');
   SELLER_INFO_BOX.classList.add('flex-row-center');
 
   IMAGE_CONTAINER.classList.add('image-container-individual-listing');
