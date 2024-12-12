@@ -1,54 +1,10 @@
 import { headers } from '../headers';
-import { MY_LISTINGS_API } from '../constants';
+
 import { ALL_LISTINGS_API } from '../constants';
 import {
-  createMyListingsElements,
   createAllListingsElements,
   createIndividualListingElement,
 } from '../../ui/listing/read.js';
-
-/**
- * @function getMyListings
- * @description Fetches all listings created by the logged in user
- * @returns {Promise<void>}
- * @throws {Error}
- */
-
-export async function getMyListings() {
-  try {
-    const ACCESS_TOKEN = localStorage.getItem('accessToken');
-    if (!ACCESS_TOKEN) {
-      throw new Error('No access token found. Please log in.');
-    }
-
-    const RESPONSE = await fetch(MY_LISTINGS_API, {
-      method: 'GET',
-      headers: headers(),
-    });
-
-    if (!RESPONSE.ok) {
-      throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-    }
-
-    const DATA = await RESPONSE.json();
-    const MY_LISTINGS = DATA.data || [];
-    if (!Array.isArray(MY_LISTINGS)) {
-      throw new Error('Fetched listings are not an array');
-    }
-
-    localStorage.setItem('myListings', JSON.stringify(MY_LISTINGS));
-
-    const ALL_MY_LISTINGS = JSON.parse(
-      localStorage.getItem('myListings') || '[]'
-    );
-    ALL_MY_LISTINGS.forEach((listing) => {
-      createMyListingsElements(listing);
-    });
-  } catch (error) {
-    console.error('Error fetching listings:', error);
-    throw new Error('Error fetching listings');
-  }
-}
 
 /**
  * @function getAllArtAuctionListings
@@ -117,12 +73,15 @@ export async function displayIndividualListing() {
       const LISTING = LISTING_DATA.data;
 
       const LISTING_CONTAINER = document.getElementById('all-auction-listings');
-      if (LISTING_CONTAINER) {
-        LISTING_CONTAINER.innerHTML = '';
-        createIndividualListingElement(LISTING);
-      } else {
+      if (!LISTING_CONTAINER) {
+        const ERROR_MESSAGE = document.createElement('div');
+        ERROR_MESSAGE.textContent = 'Listing container not found';
+        ERROR_MESSAGE.style.color = 'red';
+        document.body.appendChild(ERROR_MESSAGE);
         throw new Error('Listing container not found');
       }
+      LISTING_CONTAINER.innerHTML = '';
+      createIndividualListingElement(LISTING, LISTING_CONTAINER);
     } catch (error) {
       console.error('Error fetching listing:', error);
       throw new Error('Error fetching listing');
