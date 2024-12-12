@@ -1,10 +1,9 @@
 import { headers } from '../headers';
 
 import { ALL_LISTINGS_API } from '../constants';
-import {
-  createAllListingsElements,
-  createIndividualListingElement,
-} from '../../ui/listing/read.js';
+import { createIndividualListingElement } from '../../ui/listing/read.js';
+
+import { createAllListingsElements } from '../../ui/all_listings/read.js';
 
 /**
  * @function getAllArtAuctionListings
