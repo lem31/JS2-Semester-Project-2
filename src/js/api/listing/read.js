@@ -1,7 +1,7 @@
 import { headers } from '../headers';
 import { MY_LISTINGS_API } from '../constants';
 import { ALL_LISTINGS_API } from '../constants';
-import { createMyListingsElements } from '../../ui/listing/read.js';
+import { createMyListingsElements } from '../../ui/listing/read';
 import { createAllListingsElements } from '../../ui/listing/read.js';
 import { createIndividualListingElement } from '../../ui/listing/read.js';
 
@@ -31,22 +31,12 @@ export async function getMyListings() {
     const DATA = await RESPONSE.json();
 
     const LISTINGS = DATA.data || [];
-
-    localStorage.setItem('myListings', JSON.stringify(LISTINGS));
-
-    const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
-    if (LISTINGS_CONTAINER) {
-      LISTINGS_CONTAINER.innerHTML = '';
-      LISTINGS.forEach((listing) => {
-        try {
-          new createMyListingsElements(listing, LISTINGS_CONTAINER);
-        } catch (error) {
-          console.error('Error creating listing elements:', error);
-        }
-      });
-    }
+    LISTINGS.forEach((listing) => {
+      createMyListingsElements(listing);
+    });
   } catch (error) {
-    throw new Error('Error fetching posts');
+    console.error('Error fetching listings:', error);
+    throw new Error('Error fetching listings');
   }
 }
 
