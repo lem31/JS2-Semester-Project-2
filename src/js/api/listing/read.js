@@ -116,7 +116,7 @@ export async function displayIndividualListing() {
       const LISTING_DATA = await RESPONSE.json();
       const LISTING = LISTING_DATA.data;
 
-      const LISTING_CONTAINER = document.getElementById('listing-container');
+      const LISTING_CONTAINER = document.getElementById('all-auction-listings');
       if (LISTING_CONTAINER) {
         LISTING_CONTAINER.innerHTML = '';
         createIndividualListingElement(LISTING);
