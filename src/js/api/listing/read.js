@@ -1,9 +1,11 @@
 import { headers } from '../headers';
 import { MY_LISTINGS_API } from '../constants';
 import { ALL_LISTINGS_API } from '../constants';
-import { createMyListingsElements } from '../../ui/listing/read';
-import { createAllListingsElements } from '../../ui/listing/read.js';
-import { createIndividualListingElement } from '../../ui/listing/read.js';
+import {
+  createMyListingsElements,
+  createAllListingsElements,
+  createIndividualListingElement,
+} from '../../ui/listing/read.js';
 
 /**
  * @function getMyListings
@@ -29,9 +31,17 @@ export async function getMyListings() {
     }
 
     const DATA = await RESPONSE.json();
+    const MY_LISTINGS = DATA.data || [];
+    if (!Array.isArray(MY_LISTINGS)) {
+      throw new Error('Fetched listings are not an array');
+    }
 
-    const LISTINGS = DATA.data || [];
-    LISTINGS.forEach((listing) => {
+    localStorage.setItem('myListings', JSON.stringify(MY_LISTINGS));
+
+    const ALL_MY_LISTINGS = JSON.parse(
+      localStorage.getItem('myListings') || '[]'
+    );
+    ALL_MY_LISTINGS.forEach((listing) => {
       createMyListingsElements(listing);
     });
   } catch (error) {

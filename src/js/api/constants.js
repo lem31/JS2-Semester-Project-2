@@ -29,7 +29,7 @@ const USER_NAME = JSON.parse(localStorage.getItem('user')) || {};
 
 const NAME = USER_NAME.name || 'defaultName';
 
-export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings?_bids=true&_seller=true`;
+export const MY_LISTINGS_ENDPOINT = `auction/profiles/${NAME}/listings?_bids=true`;
 
 export const MY_BIDS_ENDPOINT = `auction/profiles/${NAME}/bids?_listings=true`;
 

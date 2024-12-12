@@ -103,7 +103,7 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
 export function createMyListingsElements(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
-
+  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
   const LISTING_TITLE = document.createElement('h2');
   const LISTING_DESCRIPTION = document.createElement('p');
   const LISTING_BIDS = document.createElement('p');
@@ -119,6 +119,46 @@ export function createMyListingsElements(listing) {
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
+  const NEXT_BUTTON = document.createElement('button');
+  const PREV_BUTTON = document.createElement('button');
+  const PREV_IMG = document.createElement('img');
+  const NEXT_IMG = document.createElement('img');
+  PREV_IMG.src = '/images/icons8-left-100.png';
+  NEXT_IMG.src = '/images/icons8-right-100.png';
+  const IMAGE_CONTAINER = document.createElement('div');
+  const CAROUSEL = document.createElement('div');
+  const CAROUSEL_INNER = document.createElement('div');
+  const BIDS_CONTAINER = document.createElement('div');
+  const BIDS_IMAGE = document.createElement('img');
+  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
+  LISTING_TITLE.style.color = 'blue'; // Example style
+  LISTING_TITLE.style.fontSize = '20px';
+
+  addStylesToMyElements(
+    LISTING_TITLE,
+    LISTING_BIDS_COUNT_TOTAL,
+    LISTING_END_DATE,
+    LISTING_BIDS,
+
+    LISTING_CONTAINER,
+    IMAGE_CONTAINER,
+    CAROUSEL_INNER,
+
+    PREV_BUTTON,
+    NEXT_BUTTON,
+    TEXT_BUTTON_CONTAINER,
+    VIEW_BIDS_BUTTON,
+
+    VIEW_BIDS_CONTAINER,
+
+    BIDS_CONTAINER,
+    OUTER_CONTAINER,
+    BIDS_IMAGE,
+
+    BUTTON_CONTAINER,
+    PREV_IMG,
+    NEXT_IMG
+  );
 
   EDIT_BUTTON.addEventListener('click', (event) => {
     displayListingIdInUrlOnEditPage(event);
@@ -150,6 +190,9 @@ export function createMyListingsElements(listing) {
   LISTING_END_DATE.textContent = listing.endsAt || 'No end date available';
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
+  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
+  BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+  BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
@@ -158,11 +201,16 @@ export function createMyListingsElements(listing) {
   BUTTON_CONTAINER.appendChild(DELETE_BUTTON);
   BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
   LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+  fetchListingImages(listing, IMAGE_CONTAINER);
 
   VIEW_BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
-  listing, LISTING_CONTAINER;
+
+  LISTING_CONTAINER.appendChild(CAROUSEL);
+
+  CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
+  CAROUSEL.appendChild(CAROUSEL_INNER);
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {
@@ -181,7 +229,7 @@ export function createMyListingsElements(listing) {
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
     });
   }
-  const OUTER_CONTAINER = document.getElementById('all-auction-listings');
+
   OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
 
   DELETE_BUTTON.addEventListener('click', deleteListing);
@@ -381,7 +429,6 @@ export function createAllListingsElements(listing) {
   BIDS_CONTAINER.appendChild(BIDS_IMAGE);
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
-  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
@@ -1080,73 +1127,39 @@ export function showArrowsOnHover(
 }
 
 export function addStylesToMyElements(
-  SELLER_NAME,
-  MY_LISTING_TITLES,
+  LISTING_TITLE,
   LISTING_BIDS_COUNT_TOTAL,
   LISTING_END_DATE,
   LISTING_BIDS,
-  PLACE_BID_BUTTON,
-  INNER_CONTAINER,
+
   LISTING_CONTAINER,
   IMAGE_CONTAINER,
   CAROUSEL_INNER,
-  PLACE_BID_FORM,
-  PLACE_BID_INPUT,
-  PLACE_BID_SUBMIT,
-  CLOSE_BUTTON,
+
   PREV_BUTTON,
   NEXT_BUTTON,
   TEXT_BUTTON_CONTAINER,
   VIEW_BIDS_BUTTON,
-  SELLER_AVATAR,
-  VIEW_LISTING_BTN,
+
   VIEW_BIDS_CONTAINER,
-  SELLER_INFO_BOX,
+
   BIDS_CONTAINER,
   OUTER_CONTAINER,
   BIDS_IMAGE,
-  PLACE_BID_TITLE,
-  PLACE_BID_LABEL,
-  PLACE_BID_FORM_CONTAINER,
-  PLACE_BID_TITLE_BOX,
-  PLACE_BID_SUBMIT_CONTAINER,
-  FORM_INPUT_LABEL_BOX,
-  BIDS_IMAGE_INPUT_CONTAINER,
   BUTTON_CONTAINER,
   PREV_IMG,
-  NEXT_IMG,
-  COIN_IMAGE
+  NEXT_IMG
 ) {
-  SELLER_NAME.classList.add('labels');
-  MY_LISTING_TITLES.classList.add('h2-styles');
+  LISTING_TITLE.classList.add('h2-styles');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
   LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
   LISTING_BIDS.classList.add('h2-styles');
-
-  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
-
-  INNER_CONTAINER.classList.add(
-    'flex-col-center-layout',
-    'inner-container-styles'
-  );
 
   IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
 
   CAROUSEL_INNER.classList.add('carouselInner');
 
   LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
-
-  PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
-
-  CLOSE_BUTTON.classList.add(
-    'close-btn',
-    'button-styles',
-    'pl-2',
-    'pr-2',
-    'p-t-1',
-    'p-b-1'
-  );
-  PLACE_BID_TITLE.classList.add('h2-styles', 'place-bid-title-styles');
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
@@ -1159,27 +1172,9 @@ export function addStylesToMyElements(
     'pt-1',
     'pb-1'
   );
-  SELLER_AVATAR.classList.add('seller-avatar-img');
-  PLACE_BID_BUTTON.classList.add(
-    'display-place-bid-form-btn',
-    'button-styles',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
-  VIEW_LISTING_BTN.classList.add(
-    'button-styles',
-    'view-listing-btn',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1',
-    'mb-2'
-  );
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
-  SELLER_INFO_BOX.classList.add('flex-row-center');
+
   BIDS_CONTAINER.classList.add('flex-row-center');
 
   OUTER_CONTAINER.classList.add('outer-container');
@@ -1191,34 +1186,6 @@ export function addStylesToMyElements(
     'md:h-[50px]'
   );
 
-  COIN_IMAGE.classList.add(
-    'w-[30px]',
-    'h-[30px]',
-    'md:w-[50px]',
-    'md:h-[50px]'
-  );
-
-  PLACE_BID_LABEL.classList.add('gold-labels', 'ml-8');
-  PLACE_BID_SUBMIT.classList.add(
-    'place-bid-submit',
-    'button-styles',
-    'mt-4',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
-  PLACE_BID_FORM_CONTAINER.classList.add('relative');
-  PLACE_BID_TITLE_BOX.classList.add(
-    'flex-row-center',
-    'mb-4',
-    'text-center',
-    'mt-[-18px]'
-  );
-  PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
-  FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
-  PLACE_BID_INPUT.classList.add('place-bid-input', 'place-bid-input-styles');
-  BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
   BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
 
   addHoverEffectToButtons(PREV_IMG, NEXT_IMG);
