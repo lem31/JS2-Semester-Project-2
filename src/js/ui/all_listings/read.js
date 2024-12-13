@@ -270,6 +270,32 @@ export function createAllListingsElements(listing) {
       alert('You need to be logged in to view bids.');
       return;
     }
+
+    const openBidsContainer = document.querySelector('.view-bids-box');
+    if (openBidsContainer && openBidsContainer !== VIEW_BIDS_CONTAINER) {
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent =
+        'Please close the current bids before opening another.';
+
+      errorMessage.classList.add(
+        'error-message',
+        'absolute',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'bg-white',
+        'text-red-500',
+        'z-12'
+      );
+      document.body.appendChild(errorMessage);
+      setTimeout(() => {
+        errorMessage.remove();
+      }, 3000);
+      return;
+    }
+
     if (
       VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
       !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
