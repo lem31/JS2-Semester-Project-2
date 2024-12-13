@@ -279,6 +279,8 @@ export function createAllListingsElements(listing) {
 
       errorMessage.classList.add(
         'error-message',
+
+        'no-bids-message',
         'absolute',
         'left-1/2',
         'top-1/2',
@@ -287,7 +289,8 @@ export function createAllListingsElements(listing) {
         '-translate-y-1/2',
         'bg-white',
         'text-red-500',
-        'z-12'
+        'z-12',
+        'text-xl'
       );
       document.body.appendChild(errorMessage);
       setTimeout(() => {
@@ -296,15 +299,35 @@ export function createAllListingsElements(listing) {
       return;
     }
 
-    if (
-      VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
-      !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
-    ) {
-      VIEW_BIDS_CONTAINER.classList.remove('hidden');
-      VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
+    if (listing.bids && listing.bids.length > 0) {
+      if (
+        VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
+        !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
+      ) {
+        VIEW_BIDS_CONTAINER.classList.remove('hidden');
+        VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
+      } else {
+        VIEW_BIDS_CONTAINER.classList.add('hidden');
+        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+      }
     } else {
-      VIEW_BIDS_CONTAINER.classList.add('hidden');
-      VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+      const noBidsMessage = document.createElement('p');
+      noBidsMessage.textContent = 'No bids available.';
+      noBidsMessage.classList.add(
+        'no-bids-message',
+        'bg-white',
+        'text-red-500',
+        'no-bids-message',
+        'absolute',
+
+        'text-red-500',
+        'text-xl',
+        'z-12'
+      );
+      LISTING_CONTAINER.appendChild(noBidsMessage);
+      setTimeout(() => {
+        noBidsMessage.remove();
+      }, 3000);
     }
   });
 
