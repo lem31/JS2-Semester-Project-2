@@ -273,15 +273,64 @@ export function createMyListingsElements(listing) {
       alert('You need to be logged in to view bids.');
       return;
     }
-    if (
-      VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
-      !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
-    ) {
-      VIEW_BIDS_CONTAINER.classList.remove('hidden');
-      VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
+
+    const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
+    if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
+      const ERROR_MESSAGE = document.createElement('p');
+
+      ERROR_MESSAGE.textContent =
+        'Please close the current bids before opening another.';
+
+      ERROR_MESSAGE.classList.add(
+        'error-message',
+        'no-bids-message',
+        'absolute',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'bg-white',
+        'text-red-500',
+        'z-50',
+        'text-xl'
+      );
+      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
+      const RECT = event.target.getBoundingClientRect();
+      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
+      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
+      setTimeout(() => {
+        ERROR_MESSAGE.remove();
+      }, 3000);
+      return;
+    }
+
+    if (listing.bids && listing.bids.length > 0) {
+      if (
+        VIEW_BIDS_CONTAINER.classList.contains('hidden') ||
+        !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
+      ) {
+        VIEW_BIDS_CONTAINER.classList.remove('hidden');
+        VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
+      } else {
+        VIEW_BIDS_CONTAINER.classList.add('hidden');
+        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+      }
     } else {
-      VIEW_BIDS_CONTAINER.classList.add('hidden');
-      VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+      const NO_BIDS_MESSAGE = document.createElement('p');
+      NO_BIDS_MESSAGE.textContent = 'No bids available.';
+      NO_BIDS_MESSAGE.classList.add(
+        'no-bids-message',
+        'bg-white',
+        'text-red-500',
+        'absolute',
+        'text-xl',
+        'z-50'
+      );
+      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
+      setTimeout(() => {
+        NO_BIDS_MESSAGE.remove();
+      }, 3000);
     }
   });
 

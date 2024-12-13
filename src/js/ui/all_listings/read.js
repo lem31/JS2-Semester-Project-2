@@ -271,15 +271,15 @@ export function createAllListingsElements(listing) {
       return;
     }
 
-    const openBidsContainer = document.querySelector('.view-bids-box');
-    if (openBidsContainer && openBidsContainer !== VIEW_BIDS_CONTAINER) {
-      const errorMessage = document.createElement('p');
-      errorMessage.textContent =
+    const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
+    if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
+      const ERROR_MESSAGE = document.createElement('p');
+
+      ERROR_MESSAGE.textContent =
         'Please close the current bids before opening another.';
 
-      errorMessage.classList.add(
+      ERROR_MESSAGE.classList.add(
         'error-message',
-
         'no-bids-message',
         'absolute',
         'left-1/2',
@@ -289,12 +289,15 @@ export function createAllListingsElements(listing) {
         '-translate-y-1/2',
         'bg-white',
         'text-red-500',
-        'z-12',
+        'z-50',
         'text-xl'
       );
-      document.body.appendChild(errorMessage);
+      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
+      const RECT = event.target.getBoundingClientRect();
+      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
+      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
       setTimeout(() => {
-        errorMessage.remove();
+        ERROR_MESSAGE.remove();
       }, 3000);
       return;
     }
@@ -311,22 +314,19 @@ export function createAllListingsElements(listing) {
         VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
-      const noBidsMessage = document.createElement('p');
-      noBidsMessage.textContent = 'No bids available.';
-      noBidsMessage.classList.add(
+      const NO_BIDS_MESSAGE = document.createElement('p');
+      NO_BIDS_MESSAGE.textContent = 'No bids available.';
+      NO_BIDS_MESSAGE.classList.add(
         'no-bids-message',
         'bg-white',
         'text-red-500',
-        'no-bids-message',
         'absolute',
-
-        'text-red-500',
         'text-xl',
-        'z-12'
+        'z-50'
       );
-      LISTING_CONTAINER.appendChild(noBidsMessage);
+      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
       setTimeout(() => {
-        noBidsMessage.remove();
+        NO_BIDS_MESSAGE.remove();
       }, 3000);
     }
   });

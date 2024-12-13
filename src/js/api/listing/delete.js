@@ -22,8 +22,21 @@ export async function removeListingFromAPI(LISTING_ID) {
 
     if (RESPONSE.ok) {
       const SUCCESS_MESSAGE = document.createElement('div');
-      SUCCESS_MESSAGE.textContent = 'Post deleted successfully';
+      SUCCESS_MESSAGE.innerHTML =
+        'Post deleted successfully <br> PLease Wait...';
       SUCCESS_MESSAGE.style.color = 'green';
+      SUCCESS_MESSAGE.classList.add(
+        'text-red-500',
+        'bg-black',
+        'absolute',
+        'text-3xl',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'z-50'
+      );
       document.body.appendChild(SUCCESS_MESSAGE);
       setTimeout(() => {
         window.location.href = '/my_listings/';
