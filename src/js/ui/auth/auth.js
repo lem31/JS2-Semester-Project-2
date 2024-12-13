@@ -14,10 +14,13 @@ const SIGN_IN_FORM = document.querySelector('.sign-in-form');
  */
 
 function displaySignInForm() {
-  if (SIGN_IN_FORM_BOX.classList.contains('hidden')) {
+  if (
+    SIGN_IN_FORM_BOX.classList.contains('hidden') &&
+    REG_FORM.classList.contains('hidden')
+  ) {
     SIGN_IN_FORM_BOX.classList.remove('hidden');
     SIGN_IN_FORM_BOX.classList.add('flex-row-center', 'w-[100%]', 'h-[100%]');
-    REG_FORM.style.display = 'none';
+    REG_FORM.classList.add('hidden');
   } else {
     SIGN_IN_FORM_BOX.classList.add('hidden');
     SIGN_IN_FORM_BOX.classList.remove(
@@ -45,16 +48,17 @@ export function onclickSignInBtnTab() {
  */
 
 function displayRegForm() {
-  const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
-  ERROR_MESSAGE.textContent = '';
-  if (REG_FORM.style.display === 'none') {
-    REG_FORM.style.display = 'block';
-    SIGN_IN_FORM.style.display = 'none';
-  } else if (REG_FORM.style.display === 'block') {
-    REG_FORM.style.display = 'none';
+  if (
+    REG_FORM.classList.contains('hidden') &&
+    SIGN_IN_FORM_BOX.classList.contains('hidden')
+  ) {
+    REG_FORM.classList.remove('hidden');
+    REG_FORM.classList.add('flex-row-center', 'w-[100%]', 'h-[100%]');
+    SIGN_IN_FORM_BOX.classList.add('hidden');
   } else {
-    REG_FORM.style.display = 'none';
-    SIGN_IN_FORM.style.display = 'none';
+    REG_FORM.classList.add('hidden');
+
+    REG_FORM.classList.remove('flex-row-center', 'w-[100%]', 'h-[100%]');
   }
 }
 
