@@ -23,7 +23,7 @@ export async function removeListingFromAPI(LISTING_ID) {
     if (RESPONSE.ok) {
       const SUCCESS_MESSAGE = document.createElement('div');
       SUCCESS_MESSAGE.innerHTML =
-        'Post deleted successfully <br> PLease Wait...';
+        'Post deleted successfully <br> Please Wait...';
       SUCCESS_MESSAGE.style.color = 'green';
       SUCCESS_MESSAGE.classList.add(
         'text-red-500',

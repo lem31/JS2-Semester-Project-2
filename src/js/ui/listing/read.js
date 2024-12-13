@@ -456,9 +456,15 @@ function addStylesToIndividualListingElements(
   OUTER_CONTAINER,
   INNER_CONTAINER
 ) {
-  PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
+  PLACE_BID_FORM.classList.add(
+    'place-bid-form',
+    'form-styles',
+    'w-[280px]',
+    'h-[218px]',
+    'absolute'
+  );
   PLACE_BID_FORM_CONTAINER.classList.add('relative');
-  PLACE_BID_INPUT.classList.add('place-bid-input', 'place-bid-input-styles');
+  PLACE_BID_INPUT.classList.add('place-bid-input', 'input-styles');
   PLACE_BID_SUBMIT.classList.add(
     'place-bid-submit',
     'button-styles',
@@ -476,7 +482,7 @@ function addStylesToIndividualListingElements(
     'p-t-1',
     'p-b-1'
   );
-  PLACE_BID_TITLE.classList.add('h2-styles', 'place-bid-title-styles');
+  PLACE_BID_TITLE.classList.add('h2-styles', 'form-title-styles');
 
   PLACE_BID_TITLE_BOX.classList.add(
     'flex-row-center',

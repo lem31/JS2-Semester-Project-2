@@ -73,7 +73,7 @@
   @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
 }
 .gold-labels {
-  @apply text-[var(--primary-color)] font-[var(--Font-1)];
+  @apply text-[var(--primary-color)] font-custom1;
 }
 
 .search-bar-layout {
@@ -186,6 +186,9 @@
   .z-12 {
     z-index: 12;
   }
+  .font-custom1 {
+    font-family: var(--Font-1);
+  }
 }
 .carousel-control-left {
   @apply absolute right-28  w-[50px] h-[50px] md:w-[80px] md:h-[80px] md:right-24  transform translate-y-0;
@@ -195,16 +198,36 @@
   @apply absolute w-[50px] h-[50px] md:w-[80px] md:h-[80px]  left-28 md:left-24  transform translate-y-0;
 }
 
-.place-bid-title-styles {
-  @apply bg-[var(--primary-color)] w-[100px] shadow-lg shadow-white;
+.form-title-styles {
+  @apply bg-[var(--primary-color)] shadow-lg shadow-white text-center;
 }
 
-.place-bid-form-styles {
-  @apply absolute border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[280px] h-[218px];
+.form-styles {
+  @apply border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center gap-2;
 }
 
-.place-bid-input-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[51px] text-[var(--primary-color)];
+.sign-in-form-styles {
+  @apply p-10;
+}
+
+.text-area-styles {
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[95px] text-[var(--primary-color)];
+
+  &:hover {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:active {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+  &:focus-within {
+    @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
+  }
+}
+.input-styles {
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[31px] text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;

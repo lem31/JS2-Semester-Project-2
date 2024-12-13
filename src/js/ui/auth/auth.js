@@ -14,14 +14,17 @@ const SIGN_IN_FORM = document.querySelector('.sign-in-form');
  */
 
 function displaySignInForm() {
-  if (SIGN_IN_FORM_BOX.style.display === 'none') {
-    SIGN_IN_FORM_BOX.style.display = 'block';
+  if (SIGN_IN_FORM_BOX.classList.contains('hidden')) {
+    SIGN_IN_FORM_BOX.classList.remove('hidden');
+    SIGN_IN_FORM_BOX.classList.add('flex-row-center', 'w-[100%]', 'h-[100%]');
     REG_FORM.style.display = 'none';
-  } else if (SIGN_IN_FORM_BOX.style.display === 'block') {
-    SIGN_IN_FORM_BOX.style.display = 'none';
   } else {
-    SIGN_IN_FORM_BOX.style.display = 'none';
-    REG_FORM.style.display = 'none';
+    SIGN_IN_FORM_BOX.classList.add('hidden');
+    SIGN_IN_FORM_BOX.classList.remove(
+      'flex-row-center',
+      'w-[100%]',
+      'h-[100%]'
+    );
   }
 }
 

@@ -439,7 +439,13 @@ export function addStylesToElements(
 
   LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
 
-  PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
+  PLACE_BID_FORM.classList.add(
+    'place-bid-form',
+    'form-styles',
+    'w-[280px]',
+    'h-[218px]',
+    'absolute'
+  );
 
   CLOSE_BUTTON.classList.add(
     'close-btn',
@@ -449,7 +455,7 @@ export function addStylesToElements(
     'p-t-1',
     'p-b-1'
   );
-  PLACE_BID_TITLE.classList.add('h2-styles', 'place-bid-title-styles');
+  PLACE_BID_TITLE.classList.add('h2-styles', 'form-title-styles');
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
@@ -520,7 +526,7 @@ export function addStylesToElements(
   );
   PLACE_BID_SUBMIT_CONTAINER.classList.add('flex-row-center');
   FORM_INPUT_LABEL_BOX.classList.add('flex', 'flex-col');
-  PLACE_BID_INPUT.classList.add('place-bid-input', 'place-bid-input-styles');
+  PLACE_BID_INPUT.classList.add('place-bid-input', 'input-styles');
   BIDS_IMAGE_INPUT_CONTAINER.classList.add('flex-row-center');
   BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
 

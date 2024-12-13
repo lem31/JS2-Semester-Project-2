@@ -22,6 +22,8 @@ export function onClickAddMoreImages() {
   if (ADD_MORE_IMAGES_BTN) {
     ADD_MORE_IMAGES_BTN.addEventListener('click', () => {
       const CREATE_FORM = document.getElementById('create-form');
+      const URL_CONTAINER = document.getElementById('url-container');
+      const ALT_CONTAINER = document.getElementById('alt-container');
 
       const URL_INPUT = document.createElement('input');
       URL_INPUT.setAttribute('type', 'url');
@@ -34,8 +36,11 @@ export function onClickAddMoreImages() {
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Image Alt');
       ALT_INPUT.setAttribute('class', 'input');
-      CREATE_FORM.insertBefore(ALT_INPUT, ADD_MORE_IMAGES_BTN);
-      CREATE_FORM.insertBefore(URL_INPUT, ALT_INPUT);
+
+      URL_CONTAINER.appendChild(URL_INPUT);
+      ALT_CONTAINER.appendChild(ALT_INPUT);
+      URL_INPUT.classList.add('input-styles', 'mt-2', 'mb-2');
+      ALT_INPUT.classList.add('input-styles', 'mt-2', 'mb-2');
     });
   }
 }

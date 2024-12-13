@@ -15,7 +15,7 @@ function createListingRequestBody(formElement) {
   const ALTS = FORM_DATA.getAll('alts');
 
   const LISTING_REQUEST_BODY = {
-    title: FORM_DATA.get('title'),
+    title: FORM_DATA.get('title') || '',
     description: FORM_DATA.get('description'),
     tags: FORM_DATA.get('tags')
       ? FORM_DATA.get('tags')
@@ -51,10 +51,22 @@ export async function postCreateFormDataToAPI(formElement) {
     if (response.ok) {
       const DATA = await response.json();
       const SUCCESS_MESSAGE = document.createElement('div');
-      SUCCESS_MESSAGE.textContent = 'Listing created successfully!';
-      SUCCESS_MESSAGE.style.color = 'green';
-      document.body.appendChild(SUCCESS_MESSAGE);
+      SUCCESS_MESSAGE.innerHTML =
+        'Listing created successfully!<br> Please wait...';
 
+      document.body.appendChild(SUCCESS_MESSAGE);
+      SUCCESS_MESSAGE.classList.add(
+        'text-green-500',
+        'bg-black',
+        'absolute',
+        'text-3xl',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'z-50'
+      );
       setTimeout(() => {
         window.location.href = '/my_listings/';
       }, 3000);
