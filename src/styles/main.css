@@ -26,7 +26,7 @@
 }
 
 .body-styles {
-  @apply flex flex-col min-h-[100vh] m-0 bg-black overflow-hidden;
+  @apply flex flex-col min-h-[100vh] m-0 bg-black overflow-x-hidden;
 }
 
 .two-column-layout {

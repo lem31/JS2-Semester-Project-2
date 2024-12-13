@@ -331,6 +331,8 @@ export function createAllListingsElements(listing) {
     NEXT_BUTTON,
     IMAGE_CONTAINER.querySelectorAll('.carouselItem')
   );
+
+  addHoverEffectToListing(LISTING_CONTAINER);
 }
 
 export function addStylesToElements(
@@ -529,4 +531,19 @@ export function showArrowsOnHover(
     prevButton.style.display = 'none';
     nextButton.style.display = 'none';
   }
+}
+
+/**
+ * @function addHoverEffectToListing
+ * @description Adds a hover effect to the listing container to add and remove the 'z-12' class
+ * @param {HTMLElement} listingContainer - The listing container element
+ */
+export function addHoverEffectToListing(listingContainer) {
+  listingContainer.addEventListener('mouseover', () => {
+    listingContainer.classList.add('z-12');
+  });
+
+  listingContainer.addEventListener('mouseout', () => {
+    listingContainer.classList.remove('z-12');
+  });
 }

@@ -5,6 +5,7 @@ import {
 import { isLoggedIn } from '../listing/read.js';
 import { fetchListingImages } from '../listing/read.js';
 import { deleteListing } from '../listing/delete.js';
+import { displayListingIdInUrlOnEditPage } from '../../ui/listing/edit.js';
 
 import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
@@ -35,6 +36,15 @@ export function createMyListingsElements(listing) {
   const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
   const EDIT_BUTTON = document.createElement('button');
   const DELETE_BUTTON = document.createElement('button');
+
+  EDIT_BUTTON.addEventListener('click', (event) => {
+    displayListingIdInUrlOnEditPage(event);
+  });
+
+  DELETE_BUTTON.addEventListener('click', deleteListing);
+
+  DELETE_BUTTON.dataset.id = listing.id;
+  EDIT_BUTTON.dataset.id = listing.id;
 
   const COIN_IMAGE = document.createElement('img');
 
@@ -84,7 +94,7 @@ export function createMyListingsElements(listing) {
   const BIDDER_AVATAR = document.createElement('img');
   const BID_AMOUNT = document.createElement('p');
 
-  const VIEW_LISTING_BTN_CONTAINER = document.createElement('div');
+  const VIEW_BIDS_BTN_CONTAINER = document.createElement('div');
   const CAROUSEL = document.createElement('div');
   const CAROUSEL_INNER = document.createElement('div');
   const OUTER_CONTAINER = document.getElementById('my-auction-listings');
@@ -122,8 +132,7 @@ export function createMyListingsElements(listing) {
   SELLER_NAME.textContent = `Seller: ${listing.seller.name}`;
   SELLER_AVATAR.src =
     listing.seller && listing.seller.avatar ? listing.seller.avatar.url : '';
-  PLACE_BID_BUTTON.textContent = 'Edit';
-  PLACE_BID_BUTTON.dataset.id = listing.id;
+  EDIT_BUTTON.textContent = 'Edit';
 
   if (isLoggedIn() && listing._count && listing._count.bids !== undefined) {
     LISTING_BIDS_COUNT_TOTAL.textContent = `No. of bids: ${listing._count.bids}`;
@@ -140,7 +149,7 @@ export function createMyListingsElements(listing) {
     listing.bids && listing.bids.length > 0
       ? `Bid amount: ${listing.bids[0].amount}`
       : 'No bids';
-  VIEW_BIDS_BUTTON.textContent = 'Delete';
+  DELETE_BUTTON.textContent = 'Delete';
 
   LISTING_TITLE.textContent = listing.title || 'No title available';
   LISTING_DESCRIPTION.textContent =
@@ -189,14 +198,12 @@ export function createMyListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
 
-  TEXT_BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
-  BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
-
-  VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
+  VIEW_BIDS_BTN_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
 
   BUTTON_CONTAINER.appendChild(EDIT_BUTTON);
   BUTTON_CONTAINER.appendChild(DELETE_BUTTON);
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_BTN_CONTAINER);
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
 
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
@@ -314,7 +321,9 @@ export function createMyListingsElements(listing) {
     BUTTON_CONTAINER,
     PREV_IMG,
     NEXT_IMG,
-    COIN_IMAGE
+    COIN_IMAGE,
+    DELETE_BUTTON,
+    EDIT_BUTTON
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -365,7 +374,9 @@ export function addStylesToElements(
   BUTTON_CONTAINER,
   PREV_IMG,
   NEXT_IMG,
-  COIN_IMAGE
+  COIN_IMAGE,
+  DELETE_BUTTON,
+  EDIT_BUTTON
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles');
@@ -469,4 +480,24 @@ export function addStylesToElements(
   BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
 
   addHoverEffectToButtons(PREV_IMG, NEXT_IMG);
+
+  BUTTON_CONTAINER.classList.add('flex-row-center', 'gap-4', 'mt-3', 'mb-3');
+
+  DELETE_BUTTON.classList.add(
+    'delete-btn',
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
+
+  EDIT_BUTTON.classList.add(
+    'edit-btn',
+    'button-styles',
+    'pl-3',
+    'pr-3',
+    'pt-1',
+    'pb-1'
+  );
 }
