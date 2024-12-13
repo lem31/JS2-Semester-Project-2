@@ -9,6 +9,7 @@ import { displayListingIdInUrlOnEditPage } from '../../ui/listing/edit.js';
 
 import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
+import { addHoverEffectToListing } from '../all_listings/read.js';
 
 /**
  * @function createMyListingsElements
@@ -223,6 +224,8 @@ export function createMyListingsElements(listing) {
   LISTING_CONTAINER.appendChild(PLACE_BID_FORM);
 
   INNER_CONTAINER.appendChild(LISTING_CONTAINER);
+
+  addHoverEffectToListing(INNER_CONTAINER, LISTING_CONTAINER, IMAGE_CONTAINER);
 
   if (listing.bids && listing.bids.length > 0) {
     listing.bids.forEach((bid) => {

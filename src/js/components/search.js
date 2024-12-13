@@ -1,10 +1,5 @@
 import { headers } from '../api/headers.js';
-import { isLoggedIn } from '../ui/listing/read.js';
-import { fetchListingImages } from '../ui/listing/read.js';
-import { addStylesToElements } from '../ui/all_listings/read.js';
-import { toggleCarouselImages } from '../ui/listing/read.js';
-import { showArrowsOnHover } from '../ui/all_listings/read.js';
-import { closePlaceBidForm } from '../ui/listing/read.js';
+
 import { createAllListingsElements } from '../ui/all_listings/read.js';
 
 /**

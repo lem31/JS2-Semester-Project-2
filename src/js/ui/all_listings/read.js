@@ -591,9 +591,11 @@ export function showArrowsOnHover(
 export function addHoverEffectToListing(listingContainer) {
   listingContainer.addEventListener('mouseover', () => {
     listingContainer.classList.add('z-12');
+    listingContainer.classList.add('bg-black');
   });
 
   listingContainer.addEventListener('mouseout', () => {
     listingContainer.classList.remove('z-12');
+    listingContainer.classList.remove('bg-black');
   });
 }
