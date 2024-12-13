@@ -40,6 +40,9 @@ export async function fetchUserBidsFromApi() {
       MY_BIDS.forEach((bid) => {
         createMyBidListingsElements(bid);
       });
+      if (MY_BIDS.length === 0) {
+        LISTING_CONTAINER.innerHTML = '<p>No bids placed yet.</p>';
+      }
     }
   } catch (error) {
     throw new Error(`Error fetching listings: ${error.message}`);
