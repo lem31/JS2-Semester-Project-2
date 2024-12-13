@@ -78,7 +78,7 @@ export function onClickSearchButton() {
 }
 
 async function filterListings(category) {
-  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(category)}&_bids=true&_seller=true}`;
+  const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(category)}&_seller=true&_bids=true&_active=true}`;
   try {
     const response = await fetch(API_URL, {
       method: 'GET',
