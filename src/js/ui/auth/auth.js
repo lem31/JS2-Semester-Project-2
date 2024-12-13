@@ -2,7 +2,9 @@ import { register } from '../../api/auth/auth';
 import { signIn } from '../../api/auth/auth';
 
 const SIGN_IN_BTN_TAB = document.getElementById('sign-in-btn-tab');
+
 const REG_BTN_TAB = document.getElementById('reg-btn-tab');
+
 const SIGN_IN_FORM_BOX = document.getElementById('sign-in-form');
 const REG_FORM = document.getElementById('register-form');
 const SIGN_IN_FORM = document.querySelector('.sign-in-form');

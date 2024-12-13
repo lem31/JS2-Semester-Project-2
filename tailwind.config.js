@@ -4,6 +4,13 @@ import { Input } from 'postcss';
 export default {
   content: [
     './index.html',
+    './auth/**/*.html',
+    './listing/**/*.html',
+    './profile/**/*.html',
+    './my_bids/**/*.html',
+    '/my_listings/**/*.html',
+    '.listing/create/**/*.html',
+
     './src/**/*.{js,ts,jsx,tsx,vue,html}',
     'index.html',
   ],

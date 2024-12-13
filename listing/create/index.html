@@ -119,10 +119,10 @@
         </nav>
       </div>
     </header>
-    <main class="flex-1">
-      <div class="create-form-container flex-row-center w-[100%] h-[100%]">
+    <main class="flex-1 ml-6 md:ml-0">
+      <div class="mt-8 create-form-container flex-row-center w-[100%] h-[100%]">
         <form
-          class="form-styles w-[283px] h-[580px] p-4"
+          class="form-styles w-[200px] h-[580px] md:w-[283px] p-4"
           name="create-listing"
           id="create-form"
         >
@@ -131,7 +131,7 @@
           <div class="flex-col-center-layout">
             <label class="gold-labels" for="title">Title</label>
             <input
-              class="input-styles"
+              class="input-styles md:w-[201px]"
               id="title"
               type="text"
               name="title"
@@ -150,13 +150,18 @@
 
           <div class="flex-col-center-layout">
             <label class="gold-labels" for="tags">Tags</label>
-            <input class="input-styles" id="tags" type="text" name="tags" />
+            <input
+              class="input-styles md:w-[201px]"
+              id="tags"
+              type="text"
+              name="tags"
+            />
           </div>
 
           <div id="url-container" class="flex-col-center-layout">
             <label class="gold-labels" for="urls">Image Url</label>
             <input
-              class="input-styles"
+              class="input-styles md:w-[201px]"
               type="url"
               name="urls"
               id="urls"
@@ -166,7 +171,7 @@
           <div id="alt-container" class="flex-col-center-layout">
             <label class="gold-labels" for="alts">Image alt</label>
             <input
-              class="input-styles"
+              class="input-styles md:w-[201px]"
               id="alts"
               type="text"
               name="alts"
@@ -193,7 +198,7 @@
           </div>
           <div class="flex-row-center">
             <button
-              class="button-styles mt-2 p-1 pl-2 pr-2"
+              class="button-styles mt-6 p-1 pl-2 pr-2"
               id="create-listing-btn"
               type="submit"
             >
@@ -213,18 +218,21 @@
       <div class="social-media-icons-box">
         <a href="">
           <img
+            class="social-media-icons"
             src="../../images/icons8-facebook-desktop.png"
             alt="facebook icon"
           />
         </a>
         <a href="">
           <img
+            class="social-media-icons"
             src="../../images/icons8-instagram-desktop.png"
             alt="instagram icon"
           />
         </a>
         <a href="">
           <img
+            class="social-media-icons"
             src="../../images/icons8-twitter-desktop.png"
             alt="twitter icon"
           />

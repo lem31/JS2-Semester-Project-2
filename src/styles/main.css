@@ -26,7 +26,10 @@
 }
 
 .body-styles {
-  @apply flex flex-col min-h-[100vh] m-0 bg-black overflow-x-hidden;
+  @apply m-0 flex flex-col min-h-[100vh] bg-black overflow-x-hidden;
+}
+.main-styles {
+  @apply ml-20;
 }
 
 .two-column-layout {
@@ -71,6 +74,10 @@
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
   @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
+}
+
+.close-button-auth {
+  @apply -ml-6 px-3 py-1 md:px-2 md:py-1 mt-2 mb-2;
 }
 .gold-labels {
   @apply text-[var(--primary-color)] font-custom1;
@@ -207,11 +214,14 @@
 }
 
 .sign-in-form-styles {
-  @apply p-10;
+  @apply pl-8 pr-8 pb-4;
 }
 
+.reg-form-styles {
+  @apply pl-8 pr-8 pb-4;
+}
 .text-area-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[95px] text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[150px] h-[95px] md:w-[201px] text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -227,7 +237,7 @@
   }
 }
 .input-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[204px] h-[31px] text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg  text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -260,7 +270,7 @@
 }
 
 .footer-text-layout {
-  @apply flex flex-row md:grid md:grid-cols-2 items-start justify-start gap-2 md:gap-0;
+  @apply grid grid-cols-2 md:flex md:flex-row  items-start justify-start gap-2 md:gap-0;
 }
 
 .image-container-individual-listing {
