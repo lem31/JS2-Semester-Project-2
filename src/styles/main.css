@@ -26,7 +26,7 @@
 }
 
 .body-styles {
-  @apply flex flex-col min-h-[100vh] m-0;
+  @apply flex flex-col min-h-[100vh] m-0 bg-black overflow-hidden;
 }
 
 .two-column-layout {
@@ -37,6 +37,12 @@
   color: var(--secondary-color);
   font-size: var(--H1-Mobile-font-size);
   @apply font-custom md:text-3xl;
+}
+
+.body-text-styles {
+  color: var(--secondary-color);
+  font-size: var(--Body-text-mobile-font-size);
+  @apply font-custom2 md:text-lg;
 }
 
 .body-text-desktop {
@@ -150,7 +156,7 @@
 }
 
 .inner-container-styles {
-  @apply flex flex-row items-center justify-center  rounded-lg;
+  @apply flex flex-row  items-center justify-center  rounded-lg;
 }
 
 .listing-image-styles {

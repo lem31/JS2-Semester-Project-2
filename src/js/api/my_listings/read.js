@@ -1,6 +1,5 @@
-import { headers } from '../headers';
-import { MY_LISTINGS_API } from '../constants';
-
+import { MY_LISTINGS_API } from '../constants.js';
+import { headers } from '../headers.js';
 import { createMyListingsElements } from '../../ui/my_listings/read.js';
 
 /**
@@ -27,19 +26,23 @@ export async function getMyListings() {
     }
 
     const DATA = await RESPONSE.json();
+
     const MY_LISTINGS = DATA.data || [];
-    if (!Array.isArray(MY_LISTINGS)) {
-      throw new Error('Fetched listings are not an array');
-    }
 
     localStorage.setItem('myListings', JSON.stringify(MY_LISTINGS));
 
-    const ALL_MY_LISTINGS = JSON.parse(
-      localStorage.getItem('myListings') || '[]'
-    );
-    ALL_MY_LISTINGS.forEach((listing) => {
-      createMyListingsElements(listing);
-    });
+    const LISTINGS = JSON.parse(localStorage.getItem('myListings') || '[]');
+
+    const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
+    if (LISTINGS_CONTAINER) {
+      LISTINGS.forEach((listing) => {
+        try {
+          createMyListingsElements(listing, LISTINGS_CONTAINER);
+        } catch (error) {
+          console.error('Error creating listing elements:', error);
+        }
+      });
+    }
   } catch (error) {
     console.error('Error fetching listings:', error);
     throw new Error('Error fetching listings');

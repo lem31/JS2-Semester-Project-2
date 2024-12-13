@@ -185,12 +185,15 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
-  TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
-  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
+
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
-  BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
+
   VIEW_LISTING_BTN_CONTAINER.appendChild(VIEW_LISTING_BTN);
+
+  BUTTON_CONTAINER.appendChild(VIEW_BIDS_BUTTON);
+  TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(VIEW_BIDS_CONTAINER);
 
   CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
   CAROUSEL.appendChild(CAROUSEL_INNER);
@@ -376,14 +379,11 @@ export function addStylesToElements(
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
 
-  INNER_CONTAINER.classList.add(
-    'flex-col-center-layout',
-    'inner-container-styles'
-  );
+  INNER_CONTAINER.classList.add('inner-container-styles');
 
   IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
 
-  CAROUSEL_INNER.classList.add('carouselInner', '-inner');
+  CAROUSEL_INNER.classList.add('carouselInner', 'carousel-inner');
 
   LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
 

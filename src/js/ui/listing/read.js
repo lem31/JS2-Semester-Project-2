@@ -102,6 +102,7 @@ export function createIndividualListingElement(listing) {
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('listing-box');
   const IMAGE_CONTAINER = document.createElement('div');
+  const INNER_CONTAINER = document.createElement('div');
 
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_TITLE_BOX = document.createElement('div');
@@ -315,6 +316,8 @@ export function createIndividualListingElement(listing) {
     }
   });
 
+  OUTER_CONTAINER.appendChild(INNER_CONTAINER);
+
   addStylesToIndividualListingElements(
     TEXT_BUTTON_CONTAINER,
     LISTING_TITLE,
@@ -343,7 +346,9 @@ export function createIndividualListingElement(listing) {
     FORM_INPUT_LABEL_BOX,
     PLACE_BID_LABEL,
     PLACE_BID_FORM_CONTAINER,
-    LISTING_BIDS_COUNT_TOTAL
+    LISTING_BIDS_COUNT_TOTAL,
+    INNER_CONTAINER,
+    OUTER_CONTAINER
   );
 }
 
@@ -396,7 +401,9 @@ function addStylesToIndividualListingElements(
   FORM_INPUT_LABEL_BOX,
   PLACE_BID_LABEL,
   PLACE_BID_FORM_CONTAINER,
-  LISTING_BIDS_COUNT_TOTAL
+  LISTING_BIDS_COUNT_TOTAL,
+  OUTER_CONTAINER,
+  INNER_CONTAINER
 ) {
   PLACE_BID_FORM.classList.add('place-bid-form', 'place-bid-form-styles');
   PLACE_BID_FORM_CONTAINER.classList.add('relative');
@@ -446,7 +453,7 @@ function addStylesToIndividualListingElements(
 
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
   LISTING_TITLE.classList.add('h2-styles');
-  LISTING_DESCRIPTION.classList.add('body-text-mobile', 'md:text-lg');
+  LISTING_DESCRIPTION.classList.add('body-text-styles');
   LISTING_BIDS.classList.add('h2-styles');
   LISTING_END_DATE.classList.add('labels');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
@@ -482,4 +489,6 @@ function addStylesToIndividualListingElements(
   CLOSE_BUTTON.addEventListener('click', (event) =>
     closePlaceBidForm(event, PLACE_BID_FORM)
   );
+
+  OUTER_CONTAINER.classList.add('outer-container');
 }
