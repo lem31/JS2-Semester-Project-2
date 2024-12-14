@@ -219,7 +219,7 @@
 }
 
 .text-area-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[150px] h-[95px] md:w-[201px] text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[180px] h-[95px] md:w-[201px] text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
