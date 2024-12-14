@@ -95,12 +95,14 @@ export function displayMyBidsLinkNav() {
 
 export function displayCreateListingLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
-  if (ACCESS_TOKEN) {
-    CREATE_LISTING_LINK_NAV.classList.remove('hidden');
-    CREATE_LISTING_LINK_NAV.classList.add('sidebar-li-layout');
-  } else {
-    CREATE_LISTING_LINK_NAV.classList.add('hidden');
-    CREATE_LISTING_LINK_NAV.classList.remove('sidebar-li-layout');
+  if (CREATE_LISTING_LINK_NAV) {
+    if (ACCESS_TOKEN) {
+      CREATE_LISTING_LINK_NAV.classList.remove('hidden');
+      CREATE_LISTING_LINK_NAV.classList.add('sidebar-li-layout');
+    } else if (!ACCESS_TOKEN) {
+      CREATE_LISTING_LINK_NAV.classList.add('hidden');
+      CREATE_LISTING_LINK_NAV.classList.remove('sidebar-li-layout');
+    }
   }
 }
 

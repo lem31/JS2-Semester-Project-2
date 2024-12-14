@@ -16,10 +16,10 @@ function logout() {
 export function displayLogoutBtn() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (!ACCESS_TOKEN) {
+    LOGOUT_BTN_LI.classList.remove('sidebar-li-layout');
     LOGOUT_BTN_LI.classList.add('hidden');
   } else if (ACCESS_TOKEN) {
+    LOGOUT_BTN_LI.classList.remove('hidden');
     LOGOUT_BTN_LI.classList.add('sidebar-li-layout');
-  } else {
-    LOGOUT_BTN_LI.classList.add('hidden');
   }
 }
