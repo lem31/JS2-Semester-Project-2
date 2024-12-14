@@ -42,19 +42,19 @@ export function displayUserProfile(PROFILE) {
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(COIN_IMAGE_CREDITS_CONTAINER);
 
-  COIN_IMAGE.src = '/images/icons8-coins-64.png';
+  COIN_IMAGE.src = '../../../../../../images/icons8-coins-64.png';
 
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
   BANNER.src =
     PROFILE.banner && PROFILE.banner.url
       ? PROFILE.banner.url
-      : '../../../ui/images/default-banner.jpg';
+      : '../../../../../images/default-banner.jpg';
 
   AVATAR.src =
     PROFILE.avatar && PROFILE.avatar.url
       ? PROFILE.avatar.url
-      : '../../../ui/images/default-avatar.jpg';
+      : '../../../../../images/default-avatar.jpg';
 
   CREDITS.innerHTML = `My Credits:${PROFILE.credits}` || 'N/A';
 
