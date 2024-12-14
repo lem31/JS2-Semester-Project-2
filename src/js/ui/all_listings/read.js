@@ -34,8 +34,8 @@ export function createAllListingsElements(listing) {
 
   const COIN_IMAGE = document.createElement('img');
 
-  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
-  COIN_IMAGE.src = '/images/icons8-coins-64.png';
+  BIDS_IMAGE.src = '../../../../images/icons8-coins-64.png';
+  COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -89,8 +89,8 @@ export function createAllListingsElements(listing) {
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
   const BIDS_CONTAINER = document.createElement('div');
-  PREV_IMG.src = '/images/icons8-left-100.png';
-  NEXT_IMG.src = '/images/icons8-right-100.png';
+  PREV_IMG.src = '../../../../images/icons8-left-100.png';
+  NEXT_IMG.src = '../../../../images/icons8-right-100.png';
 
   const INNER_CONTAINER = document.createElement('div');
 
@@ -230,7 +230,7 @@ export function createAllListingsElements(listing) {
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
       const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '/images/icons8-coins-64.png';
+      COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
       COIN_IMAGE.alt = 'Coin icon';
       COIN_IMAGE.classList.add('coin-icon');
 

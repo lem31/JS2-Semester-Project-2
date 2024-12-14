@@ -42,7 +42,7 @@ export function displayUserProfile(PROFILE) {
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(COIN_IMAGE_CREDITS_CONTAINER);
 
-  COIN_IMAGE.src = '../../../../../../images/icons8-coins-64.png';
+  COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
 
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
