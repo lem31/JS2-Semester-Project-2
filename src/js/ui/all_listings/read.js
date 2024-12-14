@@ -89,8 +89,8 @@ export function createAllListingsElements(listing) {
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
   const BIDS_CONTAINER = document.createElement('div');
-  PREV_IMG.src = '../../../../images/icons8-left-100.png';
-  NEXT_IMG.src = '../../../../images/icons8-right-100.png';
+  PREV_IMG.src = '../../../../../images/icons8-left-100.png';
+  NEXT_IMG.src = '../../../../../images/icons8-right-100.png';
 
   const INNER_CONTAINER = document.createElement('div');
 
