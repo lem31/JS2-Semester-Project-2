@@ -1,4 +1,6 @@
 import { fetchUserBidsFromApi } from '../../api/bids/view';
+import { displayNav } from '../../components/sidebar.js';
+import { onHoverNavLink } from '../../components/sidebar.js';
 import { displayLogoutBtn } from '../../ui/global/logout.js';
 import { onclickLogoutBtn } from '../../ui/global/logout.js';
 import { displaySignInBtnNav } from '../../components/sidebar.js';
@@ -18,3 +20,6 @@ displayMyBidsLinkNav();
 displayCreateListingLinkNav();
 
 fetchUserBidsFromApi();
+
+displayNav();
+onHoverNavLink();

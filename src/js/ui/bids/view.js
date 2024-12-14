@@ -8,6 +8,7 @@ import { fetchListingImages } from '../../ui/listing/read';
  */
 
 export function createMyBidListingsElements(bid) {
+  const OUTER_CONTAINER = document.getElementById('my-bid-listings-container');
   const LISTING_CONTAINER = document.createElement('div');
   LISTING_CONTAINER.classList.add('my-bids-listing-box');
 
@@ -17,6 +18,26 @@ export function createMyBidListingsElements(bid) {
   const BUTTON_CONTAINER = document.createElement('div');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
   const BID_AMOUNT = document.createElement('p');
+  const CAROUSEL = document.createElement('div');
+  const CAROUSEL_INNER = document.createElement('div');
+  const IMAGE_CONTAINER = document.createElement('div');
+  const INNER_CONTAINER = document.createElement('div');
+
+  INNER_CONTAINER.classList.add('inner-container-styles');
+
+  IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
+
+  CAROUSEL_INNER.classList.add('carouselInner', 'carousel-inner');
+
+  LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
+
+  OUTER_CONTAINER.classList.add('outer-container');
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
+
+  LISTING_TITLE.classList.add('h2-styles');
+  LISTING_END_DATE.classList.add('labels');
+  BID_MADE_DATE.classList.add('labels');
+  BID_AMOUNT.classList.add('labels');
 
   BID_AMOUNT.textContent = bid.amount ? `Your bid: ${bid.amount}` : 'No bids';
   LISTING_TITLE.textContent = bid.listing?.title || 'No title available';
@@ -26,17 +47,25 @@ export function createMyBidListingsElements(bid) {
   BID_MADE_DATE.textContent = bid.created
     ? `Bid made on: ${bid.created}`
     : 'No bid made date';
+  fetchListingImages(bid.listing, IMAGE_CONTAINER);
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
   TEXT_BUTTON_CONTAINER.appendChild(BID_AMOUNT);
   TEXT_BUTTON_CONTAINER.appendChild(BID_MADE_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(BUTTON_CONTAINER);
-  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
-  fetchListingImages(bid.listing, LISTING_CONTAINER);
 
-  const OUTER_CONTAINER = document.getElementById('my-bid-listings-container');
-  OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
+  LISTING_CONTAINER.appendChild(CAROUSEL);
+
+  LISTING_CONTAINER.appendChild(TEXT_BUTTON_CONTAINER);
+
+  CAROUSEL_INNER.appendChild(IMAGE_CONTAINER);
+
+  CAROUSEL.appendChild(CAROUSEL_INNER);
+
+  INNER_CONTAINER.appendChild(LISTING_CONTAINER);
+
+  OUTER_CONTAINER.appendChild(INNER_CONTAINER);
 
   return LISTING_CONTAINER;
 }
