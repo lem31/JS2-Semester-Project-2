@@ -13,6 +13,8 @@ export default {
     './src/**/*.{js,ts,jsx,tsx,vue,html}',
     './src/**/**/*.{js,ts,jsx,tsx,vue,html}',
     './src/**/**/**/*.{js,ts,jsx,tsx,vue,html}',
+    './src/js/**/*.{js,ts,jsx,tsx,vue,html}',
+    './src/js/api/**/**/*.{js,ts,jsx,tsx,vue,html}',
     'index.html',
   ],
   theme: {

@@ -69,7 +69,8 @@ export async function signIn(event) {
 
       const loadingSymbol = document.createElement('div');
       loadingSymbol.className = 'loading-symbol';
-      loadingSymbol.classList.add('loading-symbol');
+      loadingSymbol.style.color = 'white';
+      loadingSymbol.classList.add('loading-symbol', 'bg-black');
       loadingSymbol.textContent = 'Loading...';
       document.body.appendChild(loadingSymbol);
 
