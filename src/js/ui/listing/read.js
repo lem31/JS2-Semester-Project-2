@@ -163,7 +163,23 @@ export function createIndividualListingElement(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to place a bid.');
+      const ERROR_MESSAGE = document.createElement('p');
+      ERROR_MESSAGE.textContent = 'You need to be logged in to place a bid.';
+      ERROR_MESSAGE.classList.add(
+        'error-message',
+        'no-bids-message',
+        'absolute',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'bg-white',
+        'text-red-500',
+        'z-50',
+        'text-xl'
+      );
+      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
