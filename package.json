@@ -8,7 +8,7 @@
     "format": "prettier --write .",
     "lint:fix": "eslint --fix .",
     "dev": "vite",
-    "build": "npm run lint && vite build",
+    "build": "echo 'Building from $(pwd)' && npm run lint && vite build",
     "preview": "vite preview",
     "watch-tailwind": "nodemon --watch tailwind.config.js --exec 'npm run dev'"
   },
