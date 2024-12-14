@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Art Auction App - Auth</title>
+    <script type="module" src="../src/app.js" defer></script>
+  </head>
+  <body class="body-styles">
+    <header>
+      <div class="side-bar sidebar-styles">
+        <img
+          class="logo w-16 h-auto md:w-20 md:h-auto"
+          src="../../images/Logo.png"
+          alt="Art logo"
+        />
+        <button id="hamburger-btn">
+          <img
+            id="hamburger-icon"
+            class="w-16 h-16 md:w-20 md:h-20"
+            src="../../images/Hamburger-icon.png"
+            alt=""
+          />
+        </button>
+        <nav class="nav nav-styles">
+          <ul id="nav-menu" class="hidden">
+            <li class="sidebar-li-layout">
+              <a class="nav-link link-flex" href="/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-home-Desktop.png"
+                  alt="home icon"
+                />
+                <span class="span-text hidden">Home</span>
+              </a>
+            </li>
+            <li id="profile-link-nav">
+              <a class="nav-link link-flex" href="/profile/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-user-desktop.png"
+                  alt="profile icon"
+                />
+                <span class="span-text hidden">My Profile</span></a
+              >
+            </li>
+
+            <li id="my-listings-link-nav" class="">
+              <a class="nav-link link-flex" href="/my_listings/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-my-listings-desktop.png"
+                  alt="my listings icon"
+                />
+                <span class="span-text hidden">My Listings</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="my-bids-link-nav"
+                href="/my_bids/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-bids-Desktop.png"
+                  alt="bids icon"
+                />
+                <span class="hidden span-text">My Bids</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="create-listing-link-nav"
+                href="/listing/create/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-add-desktop.png"
+                  alt="add icon"
+                />
+
+                <span class="hidden span-text">Create Listing</span></a
+              >
+            </li>
+            <li class="">
+              <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-register-desktop.png"
+                  alt="register icon"
+                />
+                <span class="hidden span-text">Register</span>
+              </a>
+            </li>
+            <li id="sign-in-link-nav" class="">
+              <a class="nav-link link-flex" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/sign-in-desktop.png"
+                  alt="sign in icon"
+                />
+                <span class="hidden span-text">Sign in</span>
+              </a>
+            </li>
+            <li class="sidebar-li-layout">
+              <button class="sign-out-btn nav-link link-flex">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-sign-out-desktop.png"
+                  alt="sign out icon"
+                />
+                <span class="hidden span-text">Sign Out</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="flex-1">
+      <div class="flex-row-center">
+        <h1 class="h1-styles w-[40%] md:w-[400px] mt-2 mb-4 text-center">
+          Sign in or Register an Account
+        </h1>
+      </div>
+      <div class="flex flex-col items-center md:flex-row-center gap-4 mb-4">
+        <button
+          class="button-styles px-6 md:px-10 text-nowrap"
+          id="sign-in-btn-tab"
+        >
+          Sign in
+        </button>
+        <button class="button-styles px-6 md:px-10" id="reg-btn-tab">
+          Register
+        </button>
+      </div>
+
+      <div class="hidden relative" id="sign-in-form">
+        <form
+          class="sign-in-form sign-in form-padding form-styles"
+          name="sign-in"
+        >
+          <h1 class="h1-styles mb-4 form-title-styles">Sign in</h1>
+          <div class="flex flex-row">
+            <div class="mt-3">
+              <img
+                class="w-[30px] h-[30px] md:w-[40px] md:h-[40px] mt-2"
+                src="/images/icons8-username-64.png"
+                alt=""
+              />
+            </div>
+            <div class="flex flex-col">
+              <label class="gold-labels" for="email">Email</label>
+              <input
+                class="input-styles"
+                id="email"
+                type="email"
+                name="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-row">
+            <div class="mt-4">
+              <img
+                class="w-[30px] h-[30px] md:w-[40px] md:h-[40px]"
+                src="/images/icons8-password-50.png"
+                alt=""
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <label class="gold-labels" for="password">Password</label>
+              <input
+                class="input-styles"
+                type="password"
+                name="password"
+                id="password"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex-row-center mt-2">
+            <button class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1">
+              Sign in
+            </button>
+          </div>
+        </form>
+        <div id="error-message-sign-in-form"></div>
+      </div>
+
+      <div class="hidden relative" id="register-form">
+        <form
+          id="reg-form"
+          method="post"
+          class="form-styles form-padding"
+          name="register"
+        >
+          <div class="flex flex-row relative"></div>
+          <h1 class="h1-styles form-title-styles mb-4">Register</h1>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="name">Name</label>
+            <input
+              class="input-styles"
+              id="name"
+              type="text"
+              name="name"
+              pattern="^[a-zA-Z0-9_]+$"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="emailReg">Email</label>
+            <input
+              class="input-styles"
+              id="emailReg"
+              type="email"
+              name="emailReg"
+              pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="passwordReg">Password</label>
+            <input
+              class="input-styles"
+              type="password"
+              name="passwordReg"
+              id="passwordReg"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bio">Bio</label>
+            <textarea
+              class="text-area-styles"
+              id="bio"
+              type="text"
+              name="bio"
+              maxlength="160"
+            >
+            </textarea>
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatarUrl">Avatar url</label>
+            <input
+              class="input-styles"
+              id="avatarUrl"
+              type="url"
+              name="avatarUrl"
+              pattern="https?://.+"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatarAlt">Avatar alt</label>
+            <input
+              class="input-styles"
+              id="avatarAlt"
+              type="text"
+              name="avatarAlt"
+              maxlength="120"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerUrl">Banner url</label>
+            <input
+              class="input-styles"
+              id="bannerUrl"
+              type="url"
+              name="bannerUrl"
+              pattern="https?://.+"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerAlt">Banner alt</label>
+            <input
+              class="input-styles"
+              id="bannerAlt"
+              type="text"
+              name="bannerAlt"
+              maxlength="120"
+            />
+          </div>
+          <div class="flex-row-center">
+            <button
+              class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1 mt-4"
+            >
+              Register
+            </button>
+          </div>
+          <p id="error-message-reg-form"></p>
+        </form>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-text-layout">
+        <a href="">Contact</a>
+        <a href="">About</a>
+        <a href="">Policies</a>
+        <a href="">Terms and Conditions</a>
+      </div>
+      <div class="social-media-icons-box">
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-facebook-desktop.png"
+            alt="facebook icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-instagram-desktop.png"
+            alt="instagram icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-twitter-desktop.png"
+            alt="twitter icon"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
