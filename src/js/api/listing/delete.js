@@ -1,5 +1,3 @@
-import { DELETE_LISTING } from '../constants';
-
 import { headers } from '../headers';
 
 /**

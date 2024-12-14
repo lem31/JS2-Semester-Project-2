@@ -28,14 +28,14 @@ function filterListingsByCategory(category) {
           const results = await filterListings(category);
           displayResults(results);
         } else {
-          console.error('Category is empty');
+          throw new Error('Category is empty');
         }
       } catch (error) {
-        console.error('Error fetching listings:', error);
+        throw new Error('Error fetching listings:', error);
       }
     });
   } else {
-    console.error(`Element not found for category: ${category}`);
+    throw new Error(`Element not found for category: ${category}`);
   }
 }
 
@@ -60,10 +60,7 @@ export function onClickSearchButton() {
     .getElementById('search-button')
     .addEventListener('click', async () => {
       const searchBar = document.getElementById('search-bar');
-      if (!searchBar) {
-        console.error('Search bar element not found');
-        return;
-      }
+
       const query = searchBar.value;
 
       const results = await searchListings(query);
@@ -88,10 +85,10 @@ async function filterListings(category) {
     const LISTINGS = data.data.filter((listing) =>
       listing.tags.includes('ArtAuctionApp')
     );
-    console.log(LISTINGS);
+
     return LISTINGS;
   } catch (error) {
-    console.error('Error searching listings:', error);
+    throw new Error('Error fetching listings:', error);
     return [];
   }
 }
@@ -123,13 +120,9 @@ async function searchListings(query) {
       listing.tags.includes('ArtAuctionApp')
     );
 
-    console.log(data);
-    if (data.data.length === 0) {
-      console.log('No listings found for the query:', query);
-    }
     return LISTINGS;
   } catch (error) {
-    console.error('Error searching listings:', error);
+    throw new Error('Error searching listings:', error);
     return [];
   }
 }
@@ -146,10 +139,7 @@ async function searchListings(query) {
 
 export function displayResults(listings) {
   const OUTER_CONTAINER = document.getElementById('all-auction-listings');
-  if (!OUTER_CONTAINER) {
-    console.error('Results container element not found');
-    return;
-  }
+
   OUTER_CONTAINER.innerHTML = '';
 
   if (listings && listings.length > 0) {

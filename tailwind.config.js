@@ -1,5 +1,3 @@
-import { Input } from 'postcss';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

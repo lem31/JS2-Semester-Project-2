@@ -29,7 +29,6 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       setTimeout(() => {
         window.location.href = '/';
       }, 3000);
-      window.location.href = '/';
     }
     if (!RESPONSE.ok) {
       const errorResponse = await RESPONSE.json();
@@ -37,8 +36,6 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       throw new Error('Failed to post bid');
     }
   } catch (error) {
-    console.error('Network response was not ok:', RESPONSE);
-
     throw new Error('Error posting bid: ' + error.message);
   }
 }

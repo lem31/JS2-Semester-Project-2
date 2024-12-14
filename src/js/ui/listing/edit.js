@@ -1,4 +1,3 @@
-import { headers } from '../../api/headers';
 import { editListingInAPI } from '../../api/listing/edit';
 
 export function displayListingIdInUrlOnEditPage(event) {
@@ -38,7 +37,7 @@ export function onClickSaveListingBtn() {
       editListingInAPI(event);
     });
   } else {
-    console.error('Edit form not found');
+    throw new Error('Edit form not found');
   }
 }
 

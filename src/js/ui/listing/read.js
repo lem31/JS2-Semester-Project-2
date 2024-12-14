@@ -104,7 +104,6 @@ export function createIndividualListingElement(listing) {
   LISTING_CONTAINER.classList.add('listing-box');
   const IMAGE_CONTAINER = document.createElement('div');
   const INNER_CONTAINER = document.createElement('div');
-
   const PLACE_BID_FORM = document.createElement('form');
   const PLACE_BID_TITLE_BOX = document.createElement('div');
   const PLACE_BID_TITLE = document.createElement('h2');
@@ -296,7 +295,7 @@ export function createIndividualListingElement(listing) {
   if (OUTER_CONTAINER) {
     OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
   } else {
-    console.error("Error: 'listing-container' element not found.");
+    throw new Error("Error: 'listing-container' element not found.");
     return;
   }
 
@@ -398,7 +397,7 @@ export function createIndividualListingElement(listing) {
     PLACE_BID_LABEL,
     PLACE_BID_FORM_CONTAINER,
     LISTING_BIDS_COUNT_TOTAL,
-    INNER_CONTAINER,
+
     OUTER_CONTAINER
   );
 }
@@ -453,8 +452,7 @@ function addStylesToIndividualListingElements(
   PLACE_BID_LABEL,
   PLACE_BID_FORM_CONTAINER,
   LISTING_BIDS_COUNT_TOTAL,
-  OUTER_CONTAINER,
-  INNER_CONTAINER
+  OUTER_CONTAINER
 ) {
   PLACE_BID_FORM.classList.add(
     'place-bid-form',

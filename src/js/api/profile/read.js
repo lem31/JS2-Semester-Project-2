@@ -24,7 +24,6 @@ export async function getUserProfile() {
     });
 
     if (!RESPONSE.ok) {
-      console.error('HTTP error response:', RESPONSE);
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
 
@@ -34,6 +33,6 @@ export async function getUserProfile() {
 
     displayUserProfile(PROFILE);
   } catch (error) {
-    console.error('Error fetching profile:', error);
+    throw error;
   }
 }

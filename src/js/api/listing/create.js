@@ -1,5 +1,6 @@
 import { API_CREATE_LISTING } from '../constants';
 import { headers } from '../headers';
+import { displayErrorMessage } from '../bids/place';
 
 /**
  * @function createListingRequestBody
@@ -73,12 +74,11 @@ export async function postCreateFormDataToAPI(formElement) {
 
       return DATA;
     } else {
-      const ERROR_MESSAGE = document.createElement('div');
-      const ERROR_DATA = await response.json();
-      ERROR_MESSAGE.textContent = `Failed to create listing. Error: ${ERROR_DATA.message}`;
-      ERROR_MESSAGE.style.color = 'red';
-      document.body.appendChild(ERROR_MESSAGE);
-      throw new Error(`Failed to create listing: ${ERROR_DATA.message}`);
+      return response.json().then((errorResponse) => {
+        const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
+        displayErrorMessage(errorMessage);
+        throw new Error(`Failed to create listing: ${errorMessage}`);
+      });
     }
   } catch (error) {
     throw new Error(`HTTP error: ${error.message}`);

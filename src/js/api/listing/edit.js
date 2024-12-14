@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import { headers } from '../headers';
 
 /**
@@ -49,7 +48,6 @@ export async function editListingInAPI(event) {
         window.location.href = '/my_listings/';
       }, 3000);
     } else {
-      console.log('Response not OK:', RESPONSE);
       const ERROR_DATA = await RESPONSE.json();
       throw new Error(ERROR_DATA.message || 'Failed to edit post');
     }

@@ -46,8 +46,6 @@ export async function updateProfile() {
     });
 
     if (RESPONSE.ok) {
-      const data = await RESPONSE.json();
-
       const profileContainer = document.querySelector('#my-profile');
       if (profileContainer) {
         profileContainer.innerHTML = '';
@@ -56,10 +54,9 @@ export async function updateProfile() {
     }
 
     if (!RESPONSE.ok) {
-      console.error('HTTP error response:', RESPONSE);
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
   } catch (error) {
-    console.error('Error updating profile:', error);
+    throw error;
   }
 }

@@ -1,11 +1,9 @@
-import {
-  addHoverEffectToButtons,
-  createAllListingsElements,
-} from '../all_listings/read.js';
+import { addHoverEffectToButtons } from '../all_listings/read.js';
 import { isLoggedIn } from '../listing/read.js';
 import { fetchListingImages } from '../listing/read.js';
 import { deleteListing } from '../listing/delete.js';
 import { displayListingIdInUrlOnEditPage } from '../../ui/listing/edit.js';
+import { closePlaceBidForm } from '../listing/read.js';
 
 import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
@@ -55,6 +53,7 @@ export function createMyListingsElements(listing) {
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
+  PLACE_BID_INPUT.classList.add('place-bid-input');
   PLACE_BID_SUBMIT.textContent = 'Place bid';
   PLACE_BID_SUBMIT.type = 'submit';
   CLOSE_BUTTON.textContent = 'X';

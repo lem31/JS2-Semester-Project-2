@@ -36,11 +36,7 @@ export async function getMyListings() {
     const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
     if (LISTINGS_CONTAINER) {
       LISTINGS.forEach((listing) => {
-        try {
-          createMyListingsElements(listing, LISTINGS_CONTAINER);
-        } catch (error) {
-          console.error('Error creating listing elements:', error);
-        }
+        createMyListingsElements(listing, LISTINGS_CONTAINER);
       });
     }
   } catch (error) {

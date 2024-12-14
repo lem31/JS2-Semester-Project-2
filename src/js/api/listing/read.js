@@ -34,15 +34,10 @@ export async function getAllArtAuctionListings() {
     const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
     if (LISTINGS_CONTAINER) {
       LISTINGS.forEach((listing) => {
-        try {
-          createAllListingsElements(listing, LISTINGS_CONTAINER);
-        } catch (error) {
-          console.error('Error creating listing elements:', error);
-        }
+        createAllListingsElements(listing, LISTINGS_CONTAINER);
       });
     }
   } catch (error) {
-    console.error('Error fetching listings:', error);
     throw new Error('Error fetching listings');
   }
 }
@@ -82,7 +77,6 @@ export async function displayIndividualListing() {
       LISTING_CONTAINER.innerHTML = '';
       createIndividualListingElement(LISTING, LISTING_CONTAINER);
     } catch (error) {
-      console.error('Error fetching listing:', error);
       throw new Error('Error fetching listing');
     }
   } else {
