@@ -16,8 +16,10 @@ const CREATE_LISTING_LINK_NAV = document.getElementById(
 export function displaySignInBtnNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
-    SIGN_IN_LINK_NAV.style.display = 'none';
+    SIGN_IN_LINK_NAV.classList.add('hidden');
+    SIGN_IN_LINK_NAV.classList.remove('sidebar-li-layout');
   } else {
+    SIGN_IN_LINK_NAV.classList.remove('hidden');
     SIGN_IN_LINK_NAV.classList.add('sidebar-li-layout');
   }
 }

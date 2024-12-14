@@ -130,6 +130,12 @@ export async function register(event) {
       body: JSON.stringify(REQUEST_BODY_REG),
     });
 
+    if (!RESPONSE.ok) {
+      const errorResponse = await RESPONSE.json();
+      displayErrorMessage(JSON.stringify(errorResponse).slice(23, -44));
+      throw new Error('Failed to post bid');
+    }
+
     if (!REQUEST_BODY_REG.email) {
       ERROR_MESSAGE.textContent = 'Error: Email is required';
       return;
@@ -145,9 +151,8 @@ export async function register(event) {
     }
 
     if (RESPONSE.ok) {
-      ERROR_MESSAGE.textContent =
-        'You have successfully registered, please sign in to view your profile or place any bids';
-      ERROR_MESSAGE.style.color = 'green';
+      ERROR_MESSAGE.textContent = 'Thank you for registering, please wait';
+      ERROR_MESSAGE.classList.add('text-green-500', 'text-center', 'w-[200px]');
 
       const loadingSymbol = document.createElement('div');
       loadingSymbol.className = 'loading-symbol';

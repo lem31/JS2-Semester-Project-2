@@ -81,7 +81,10 @@ export function onclickRegBtnTab() {
  */
 
 export async function onRegister() {
-  REG_FORM.addEventListener('submit', register);
+  REG_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+    register(event);
+  });
 }
 
 /**
