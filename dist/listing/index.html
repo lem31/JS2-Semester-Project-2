@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Art Auction App - Auction listing</title>
+    <script type="module" crossorigin src="../assets/notFound-C6B2C-C6.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/notFound-izjJFWw4.css">
+  </head>
+  <body class="body-styles">
+    <header>
+      <div class="side-bar sidebar-styles">
+        <img
+          class="logo w-16 h-auto md:w-20 md:h-auto"
+          src="../../images/Logo.png"
+          alt="Art logo"
+        />
+        <button id="hamburger-btn">
+          <img
+            id="hamburger-icon"
+            class="w-16 h-16 md:w-20 md:h-20"
+            src="../../images/Hamburger-icon.png"
+            alt=""
+          />
+        </button>
+        <nav class="nav nav-styles">
+          <ul id="nav-menu" class="hidden">
+            <li class="sidebar-li-layout">
+              <a class="nav-link link-flex" href="/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-home-Desktop.png"
+                  alt="home icon"
+                />
+                <span class="span-text hidden">Home</span>
+              </a>
+            </li>
+            <li id="profile-link-nav">
+              <a class="nav-link link-flex" href="/profile/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-user-desktop.png"
+                  alt="profile icon"
+                />
+                <span class="span-text hidden">My Profile</span></a
+              >
+            </li>
+
+            <li id="my-listings-link-nav" class="">
+              <a class="nav-link link-flex" href="/my_listings/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-my-listings-desktop.png"
+                  alt="my listings icon"
+                />
+                <span class="span-text hidden">My Listings</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="my-bids-link-nav"
+                href="/my_bids/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-bids-Desktop.png"
+                  alt="bids icon"
+                />
+                <span class="hidden span-text">My Bids</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="create-listing-link-nav"
+                href="/listing/create/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-add-desktop.png"
+                  alt="add icon"
+                />
+
+                <span class="hidden span-text">Create Listing</span></a
+              >
+            </li>
+            <li class="">
+              <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-register-desktop.png"
+                  alt="register icon"
+                />
+                <span class="hidden span-text">Register</span>
+              </a>
+            </li>
+            <li id="sign-in-link-nav" class="">
+              <a class="nav-link link-flex" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/sign-in-desktop.png"
+                  alt="sign in icon"
+                />
+                <span class="hidden span-text">Sign in</span>
+              </a>
+            </li>
+            <li class="sign-out-btn-li">
+              <button class="sign-out-btn nav-link link-flex">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-sign-out-desktop.png"
+                  alt="sign out icon"
+                />
+                <span class="hidden span-text">Sign Out</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="flex-1">
+      <div id="all-auction-listings"></div>
+    </main>
+    <footer class="footer">
+      <div class="footer-text-layout">
+        <a href="">Contact</a>
+        <a href="">About</a>
+        <a href="">Policies</a>
+        <a href="">Terms and Conditions</a>
+      </div>
+      <div class="social-media-icons-box">
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="data:image/png;base64,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"
+            alt="facebook icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="data:image/png;base64,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"
+            alt="instagram icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="data:image/png;base64,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"
+            alt="twitter icon"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
