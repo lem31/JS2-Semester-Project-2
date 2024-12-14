@@ -98,7 +98,23 @@ export function createAllListingsElements(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to place a bid.');
+      const ERROR_MESSAGE = document.createElement('p');
+      ERROR_MESSAGE.textContent = 'You need to be logged in to place a bid.';
+      ERROR_MESSAGE.classList.add(
+        'error-message',
+        'no-bids-message',
+        'absolute',
+        'left-1/2',
+        'top-1/2',
+        'transform',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+        'bg-white',
+        'text-red-500',
+        'z-50',
+        'text-xl'
+      );
+      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
@@ -229,10 +245,10 @@ export function createAllListingsElements(listing) {
       BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
-      const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
-      COIN_IMAGE.alt = 'Coin icon';
-      COIN_IMAGE.classList.add('coin-icon');
+      const BID_COIN_IMAGE = document.createElement('img');
+      BID_COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+      BID_COIN_IMAGE.alt = 'Coin icon';
+      BID_COIN_IMAGE.classList.add('coin-icon');
 
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_AVATAR);
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_NAME);

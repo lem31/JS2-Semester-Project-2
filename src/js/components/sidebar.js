@@ -2,7 +2,7 @@ const SIGN_IN_LINK_NAV = document.getElementById('sign-in-link-nav');
 const REG_LINK_NAV = document.getElementById('reg-link-nav');
 const MY_LISTINGS_LINK_NAV = document.getElementById('my-listings-link-nav');
 const PROFILE_LINK_NAV = document.getElementById('profile-link-nav');
-const MY_BIDS_LINK_NAV = document.getElementById('my-bids-link-nav');
+const MY_BIDS_LINK_NAV = document.querySelector('.sidebar-li');
 const CREATE_LISTING_LINK_NAV = document.getElementById(
   'create-listing-link-nav'
 );
@@ -48,10 +48,11 @@ export function displayRegLinkNav() {
 export function displayMyListingsLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
+    MY_LISTINGS_LINK_NAV.classList.remove('hidden');
     MY_LISTINGS_LINK_NAV.classList.add('sidebar-li-layout');
   } else {
-    MY_LISTINGS_LINK_NAV.classList.remove('sidebar-li-layout');
     MY_LISTINGS_LINK_NAV.classList.add('hidden');
+    MY_LISTINGS_LINK_NAV.classList.remove('sidebar-li-layout');
   }
 }
 
@@ -80,10 +81,11 @@ export function displayProfileLinkNav() {
 export function displayMyBidsLinkNav() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (ACCESS_TOKEN) {
+    MY_BIDS_LINK_NAV.classList.remove('hidden');
     MY_BIDS_LINK_NAV.classList.add('sidebar-li-layout');
-  } else {
-    MY_BIDS_LINK_NAV.classList.remove('sidebar-li-layout');
+  } else if (!ACCESS_TOKEN) {
     MY_BIDS_LINK_NAV.classList.add('hidden');
+    MY_BIDS_LINK_NAV.classList.remove('sidebar-li-layout');
   }
 }
 

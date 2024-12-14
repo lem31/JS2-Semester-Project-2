@@ -395,9 +395,7 @@ export function createIndividualListingElement(listing) {
     FORM_INPUT_LABEL_BOX,
     PLACE_BID_LABEL,
     PLACE_BID_FORM_CONTAINER,
-    LISTING_BIDS_COUNT_TOTAL,
-
-    OUTER_CONTAINER
+    LISTING_BIDS_COUNT_TOTAL
   );
 }
 
@@ -450,8 +448,7 @@ function addStylesToIndividualListingElements(
   FORM_INPUT_LABEL_BOX,
   PLACE_BID_LABEL,
   PLACE_BID_FORM_CONTAINER,
-  LISTING_BIDS_COUNT_TOTAL,
-  OUTER_CONTAINER
+  LISTING_BIDS_COUNT_TOTAL
 ) {
   PLACE_BID_FORM.classList.add(
     'place-bid-form',
@@ -543,6 +540,4 @@ function addStylesToIndividualListingElements(
   CLOSE_BUTTON.addEventListener('click', (event) =>
     closePlaceBidForm(event, PLACE_BID_FORM)
   );
-
-  OUTER_CONTAINER.classList.add('outer-container');
 }

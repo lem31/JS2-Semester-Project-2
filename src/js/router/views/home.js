@@ -19,7 +19,6 @@ displayRegLinkNav();
 displayProfileLinkNav();
 displayMyBidsLinkNav();
 displayCreateListingLinkNav();
-
 getAllArtAuctionListings();
 onClickSearchButton();
 displayNav();
