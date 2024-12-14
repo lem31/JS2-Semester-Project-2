@@ -7,148 +7,226 @@
     <title>My Art Auction App - My Profile</title>
     <script type="module" src="../src/app.js" defer></script>
   </head>
-  <body class="">
+  <body class="body-styles">
     <header>
-      <div class="side-bar">
+      <div class="side-bar sidebar-styles">
         <img
-          class="logo w-16 h-16 md:w-24 md:h-24"
-          src="../images/Logo.png"
+          class="logo w-16 h-auto md:w-20 md:h-auto"
+          src="../../images/Logo.png"
           alt="Art logo"
         />
-        <nav>
-          <ul>
-            <li>
-              <a href="/">
-                <img src="../images/icons8-home-Desktop.png" alt="home icon" />
-
-                Home</a
-              >
-            </li>
-            <li>
-              <a id="profile-link-nav" href="/profile/">
+        <button id="hamburger-btn">
+          <img
+            id="hamburger-icon"
+            class="w-16 h-16 md:w-20 md:h-20"
+            src="../../images/Hamburger-icon.png"
+            alt=""
+          />
+        </button>
+        <nav class="nav nav-styles">
+          <ul id="nav-menu" class="hidden">
+            <li class="sidebar-li-layout">
+              <a class="nav-link link-flex" href="/">
                 <img
-                  src="../images/icons8-user-desktop.png"
-                  alt="profile icon"
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-home-Desktop.png"
+                  alt="home icon"
                 />
-                Profile</a
-              >
-            </li>
-
-            <li>
-              <a id="my-listings-link-nav" href="/my_listings/">
-                <img
-                  src="../images/icons8-my-listings-desktop.png"
-                  alt="my listings icon"
-                />
-                My Listings
+                <span class="span-text hidden">Home</span>
               </a>
             </li>
-            <li>
-              <a id="my-bids-link-nav" href="/my_bids/">
+            <li id="profile-link-nav">
+              <a class="nav-link link-flex" href="/profile/">
                 <img
-                  src="../images/icons8-bids-Desktop.png"
-                  alt="bids icon"
-                />My Bids</a
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-user-desktop.png"
+                  alt="profile icon"
+                />
+                <span class="span-text hidden">My Profile</span></a
               >
             </li>
-            <li>
-              <a id="create-listing-link-nav" href="/listing/create/">
-                <img src="../images/icons8-add-desktop.png" alt="add icon" />
 
-                Create Listing</a
+            <li id="my-listings-link-nav" class="">
+              <a class="nav-link link-flex" href="/my_listings/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-my-listings-desktop.png"
+                  alt="my listings icon"
+                />
+                <span class="span-text hidden">My Listings</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="my-bids-link-nav"
+                href="/my_bids/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-bids-Desktop.png"
+                  alt="bids icon"
+                />
+                <span class="hidden span-text">My Bids</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="create-listing-link-nav"
+                href="/listing/create/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-add-desktop.png"
+                  alt="add icon"
+                />
+
+                <span class="hidden span-text">Create Listing</span></a
               >
             </li>
-            <li>
-              <a id="reg-link-nav" href="/auth/">
+            <li class="">
+              <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
                 <img
-                  src="../images/icons8-register-desktop.png"
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-register-desktop.png"
                   alt="register icon"
                 />
-                Register
+                <span class="hidden span-text">Register</span>
               </a>
             </li>
             <li id="sign-in-link-nav" class="sidebar-li-layout">
-              <a href="/auth/">
-                <img src="../images/sign-in-desktop.png" alt="sign in icon" />
-                Sign in
+              <a class="nav-link link-flex" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/sign-in-desktop.png"
+                  alt="sign in icon"
+                />
+                <span class="hidden span-text">Sign in</span>
               </a>
             </li>
-            <li>
-              <button class="sign-out-btn" href="">
+            <li class="sidebar-li-layout">
+              <button class="sign-out-btn nav-link link-flex">
                 <img
-                  src="../images/icons8-sign-out-desktop.png"
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-sign-out-desktop.png"
                   alt="sign out icon"
                 />
-                Sign out
+                <span class="hidden span-text">Sign Out</span>
               </button>
             </li>
           </ul>
         </nav>
       </div>
     </header>
-    <main>
+    <main class="flex-1">
       <div class="my-profile">
-        <h1>My Profile</h1>
-        <div id="my-profile"></div>
+        <div class="flex-row-center mt-4 mb-4">
+          <h1 class="h1-styles">My Profile</h1>
+        </div>
+        <div class="flex-col-center-layout" id="my-profile"></div>
       </div>
-      <button id="show-update-form-btn">Update Profile</button>
-      <div id="update-profile-form">
-        <h2>Update Profile</h2>
-        <form class="update-profile-form" name="update-profile">
-          <button>X</button>
-          <div>
-            <label for="bio">Bio</label>
-            <textarea id="bio" type="text" name="bio" maxlength="160">
+      <div class="flex-row-center mb-2">
+        <button
+          class="button-styles px-2 py-1 md:px-4 md:py-2"
+          id="show-update-form-btn"
+        >
+          Update Profile
+        </button>
+      </div>
+      <div class="hidden relative flex-row-center" id="update-profile-form">
+        <form
+          class="update-profile-form form-styles form-padding"
+          name="update-profile"
+        >
+          <h2 class="h2-styles form-title-styles">Update Profile</h2>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bio">Bio</label>
+            <textarea
+              class="text-area-styles"
+              id="bio"
+              type="text"
+              name="bio"
+              maxlength="160"
+            >
             </textarea>
           </div>
 
-          <div>
-            <label for="avatar">Avatar Url</label>
-            <input type="avatarUrl" name="avatarUrl" id="avatarUrl" />
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatar">Avatar Url</label>
+            <input
+              class="input-styles"
+              type="avatarUrl"
+              name="avatarUrl"
+              id="avatarUrl"
+            />
           </div>
 
-          <div>
-            <label for="avatarAlt">Avatar Alt</label>
-            <input type="url" name="avatarAlt" id="avatarAlt" />
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatarAlt">Avatar Alt</label>
+            <input
+              class="input-styles"
+              type="url"
+              name="avatarAlt"
+              id="avatarAlt"
+            />
           </div>
 
-          <div>
-            <label for="bannerUrl">Banner Url</label>
-            <input type="url" name="bannerUrl" id="bannerUrl" />
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerUrl">Banner Url</label>
+            <input
+              class="input-styles"
+              type="url"
+              name="bannerUrl"
+              id="bannerUrl"
+            />
           </div>
 
-          <div>
-            <label for="bannerAlt">Banner Alt</label>
-            <input type="url" name="bannerAlt" id="bannerAlt" />
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerAlt">Banner Alt</label>
+            <input
+              class="input-styles"
+              type="url"
+              name="bannerAlt"
+              id="bannerAlt"
+            />
           </div>
-
-          <button>Save</button>
+          <div class="flex-row-center mt-2">
+            <button class="button-styles px-2 py-1 md:py-0">Save</button>
+          </div>
         </form>
         <div id="error-message-sign-in-form"></div>
       </div>
     </main>
-    <footer>
-      <div>
+    <footer class="footer">
+      <div class="footer-text-layout">
         <a href="">Contact</a>
         <a href="">About</a>
         <a href="">Policies</a>
         <a href="">Terms and Conditions</a>
       </div>
-      <div>
+      <div class="social-media-icons-box">
         <a href="">
           <img
-            src="../images/icons8-facebook-desktop.png"
+            class="social-media-icons"
+            src="../../images/icons8-facebook-desktop.png"
             alt="facebook icon"
           />
         </a>
         <a href="">
           <img
-            src="../images/icons8-instagram-desktop.png"
+            class="social-media-icons"
+            src="../../images/icons8-instagram-desktop.png"
             alt="instagram icon"
           />
         </a>
         <a href="">
-          <img src="../images/icons8-twitter-desktop.png" alt="twitter icon" />
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-twitter-desktop.png"
+            alt="twitter icon"
+          />
         </a>
       </div>
     </footer>

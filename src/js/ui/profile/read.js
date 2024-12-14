@@ -20,14 +20,29 @@ export function displayUserProfile(PROFILE) {
   const BANNER = document.createElement('img');
   const AVATAR = document.createElement('img');
   const CREDITS = document.createElement('p');
+  const BANNER_AVATAR_CONTAINER = document.createElement('div');
+  const COIN_IMAGE_CREDITS_CONTAINER = document.createElement('div');
+  const COIN_IMAGE = document.createElement('img');
 
+  BANNER.classList.add('banner');
+  AVATAR.classList.add('profile-avatar');
   BANNER.classList.add('profile-banner');
   AVATAR.classList.add('profile-avatar');
-  USER_PROFILE.appendChild(BANNER);
-  USER_PROFILE.appendChild(AVATAR);
+  USER_NAME.classList.add('labels');
+  COIN_IMAGE_CREDITS_CONTAINER.classList.add('flex-row-center');
+  CREDITS.classList.add('labels');
+  BIO.classList.add('body-text-mobile', 'md:body-text-desktop');
+  COIN_IMAGE_CREDITS_CONTAINER.appendChild(COIN_IMAGE);
+  COIN_IMAGE_CREDITS_CONTAINER.appendChild(CREDITS);
+  BANNER_AVATAR_CONTAINER.appendChild(BANNER);
+  BANNER_AVATAR_CONTAINER.appendChild(AVATAR);
+  BANNER_AVATAR_CONTAINER.classList.add('banner-container');
+  USER_PROFILE.appendChild(BANNER_AVATAR_CONTAINER);
   USER_PROFILE.appendChild(USER_NAME);
   USER_PROFILE.appendChild(BIO);
-  USER_PROFILE.appendChild(CREDITS);
+  USER_PROFILE.appendChild(COIN_IMAGE_CREDITS_CONTAINER);
+
+  COIN_IMAGE.src = '/images/icons8-coins-64.png';
 
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
@@ -60,16 +75,16 @@ export function displayUserProfile(PROFILE) {
  * @description This function displays and hides the update profile form on the page
  */
 
-function displayUpdateProfileForm() {
+export function displayUpdateProfileForm() {
   const UPDATE_PROFILE_FORM_BOX = document.getElementById(
     'update-profile-form'
   );
-  if (UPDATE_PROFILE_FORM_BOX.style.display === 'none') {
-    UPDATE_PROFILE_FORM_BOX.style.display = 'block';
-  } else if (UPDATE_PROFILE_FORM_BOX.style.display === 'block') {
-    UPDATE_PROFILE_FORM_BOX.style.display = 'none';
-  } else {
-    UPDATE_PROFILE_FORM_BOX.style.display = 'none';
+  if (UPDATE_PROFILE_FORM_BOX.classList.contains('hidden')) {
+    UPDATE_PROFILE_FORM_BOX.classList.remove('hidden');
+    UPDATE_PROFILE_FORM_BOX.classList.add('flex-row-center');
+  } else if (UPDATE_PROFILE_FORM_BOX.classList.contains('flex-row-center')) {
+    UPDATE_PROFILE_FORM_BOX.classList.remove('flex-row-center');
+    UPDATE_PROFILE_FORM_BOX.classList.add('hidden');
   }
 }
 

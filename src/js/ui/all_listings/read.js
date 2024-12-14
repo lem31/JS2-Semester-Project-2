@@ -179,7 +179,9 @@ export function createAllListingsElements(listing) {
   }
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
-  BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+  if (isLoggedIn()) {
+    BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+  }
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);

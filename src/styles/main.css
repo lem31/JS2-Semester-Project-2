@@ -80,7 +80,8 @@
   @apply -ml-6 px-3 py-1 md:px-2 md:py-1 mt-2 mb-2;
 }
 .gold-labels {
-  @apply text-[var(--primary-color)] font-custom1;
+  font-size: var(--Labels-mobile-font-size);
+  @apply text-[var(--primary-color)] font-custom1 md:text-base;
 }
 
 .search-bar-layout {
@@ -213,13 +214,10 @@
   @apply border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center gap-2;
 }
 
-.sign-in-form-styles {
+.form-padding {
   @apply pl-8 pr-8 pb-4;
 }
 
-.reg-form-styles {
-  @apply pl-8 pr-8 pb-4;
-}
 .text-area-styles {
   @apply border-2 border-[var(--primary-color)] rounded-lg w-[150px] h-[95px] md:w-[201px] text-[var(--primary-color)];
 
@@ -254,7 +252,7 @@
 }
 
 .view-bids-box {
-  @apply flex flex-col fixed z-12  bottom-0 top-0 mr-[200px] md:mr-[300px] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[200px] h-[auto] border-2 border-[#e4b022] rounded-lg;
+  @apply flex flex-col absolute z-12  mr-[200px] md:mr-[300px] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[200px] h-[auto] border-2 border-[#e4b022] rounded-lg;
 }
 
 .footer {
@@ -283,4 +281,16 @@
 
 .listing-images-individual-listing {
   @apply border-2 border-[var(--primary-color)] rounded-lg;
+}
+
+.banner-container {
+  @apply flex flex-col items-center justify-center w-[90%] max-h-screen;
+}
+
+.banner {
+  @apply object-cover w-[90rem] h-[15rem] rounded-lg border-[var(--primary-color)] border-2;
+}
+
+.profile-avatar {
+  @apply absolute w-[127px] h-[127px] md:w-[170px] md:h-[170px] rounded-full border-2 border-[var(--primary-color)];
 }

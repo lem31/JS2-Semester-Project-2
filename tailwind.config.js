@@ -10,8 +10,9 @@ export default {
     './my_bids/**/*.html',
     '/my_listings/**/*.html',
     '.listing/create/**/*.html',
-
     './src/**/*.{js,ts,jsx,tsx,vue,html}',
+    './src/**/**/*.{js,ts,jsx,tsx,vue,html}',
+    './src/**/**/**/*.{js,ts,jsx,tsx,vue,html}',
     'index.html',
   ],
   theme: {
