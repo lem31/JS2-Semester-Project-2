@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/JS2-Semester-Project-2/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Art Auction App - Auth</title>
+    <script type="module" crossorigin src="/JS2-Semester-Project-2/assets/notFound-CbPKQgZ2.js"></script>
+    <link rel="stylesheet" crossorigin href="/JS2-Semester-Project-2/assets/notFound-izjJFWw4.css">
+  </head>
+  <body class="body-styles">
+    <header>
+      <div class="side-bar sidebar-styles">
+        <img
+          class="logo w-16 h-auto md:w-20 md:h-auto"
+          src="../../images/Logo.png"
+          alt="Art logo"
+        />
+        <button id="hamburger-btn">
+          <img
+            id="hamburger-icon"
+            class="w-16 h-16 md:w-20 md:h-20"
+            src="../../images/Hamburger-icon.png"
+            alt=""
+          />
+        </button>
+        <nav class="nav nav-styles">
+          <ul id="nav-menu" class="hidden">
+            <li class="sidebar-li-layout">
+              <a class="nav-link link-flex" href="/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-home-Desktop.png"
+                  alt="home icon"
+                />
+                <span class="span-text hidden">Home</span>
+              </a>
+            </li>
+            <li id="profile-link-nav">
+              <a class="nav-link link-flex" href="/profile/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-user-desktop.png"
+                  alt="profile icon"
+                />
+                <span class="span-text hidden">My Profile</span></a
+              >
+            </li>
+
+            <li id="my-listings-link-nav" class="">
+              <a class="nav-link link-flex" href="/my_listings/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-my-listings-desktop.png"
+                  alt="my listings icon"
+                />
+                <span class="span-text hidden">My Listings</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="my-bids-link-nav"
+                href="/my_bids/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-bids-Desktop.png"
+                  alt="bids icon"
+                />
+                <span class="hidden span-text">My Bids</span>
+              </a>
+            </li>
+            <li class="">
+              <a
+                class="nav-link link-flex"
+                id="create-listing-link-nav"
+                href="/listing/create/"
+              >
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-add-desktop.png"
+                  alt="add icon"
+                />
+
+                <span class="hidden span-text">Create Listing</span></a
+              >
+            </li>
+            <li class="">
+              <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-register-desktop.png"
+                  alt="register icon"
+                />
+                <span class="hidden span-text">Register</span>
+              </a>
+            </li>
+            <li id="sign-in-link-nav" class="">
+              <a class="nav-link link-flex" href="/auth/">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/sign-in-desktop.png"
+                  alt="sign in icon"
+                />
+                <span class="hidden span-text">Sign in</span>
+              </a>
+            </li>
+            <li class="sidebar-li-layout">
+              <button class="sign-out-btn nav-link link-flex">
+                <img
+                  class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
+                  src="../../images/icons8-sign-out-desktop.png"
+                  alt="sign out icon"
+                />
+                <span class="hidden span-text">Sign Out</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="flex-1">
+      <div class="flex-row-center">
+        <h1 class="h1-styles w-[40%] md:w-[400px] mt-2 mb-4 text-center">
+          Sign in or Register an Account
+        </h1>
+      </div>
+      <div class="flex flex-col items-center md:flex-row-center gap-4 mb-4">
+        <button
+          class="button-styles px-6 md:px-10 text-nowrap"
+          id="sign-in-btn-tab"
+        >
+          Sign in
+        </button>
+        <button class="button-styles px-6 md:px-10" id="reg-btn-tab">
+          Register
+        </button>
+      </div>
+
+      <div class="hidden relative" id="sign-in-form">
+        <form
+          class="sign-in-form sign-in form-padding form-styles"
+          name="sign-in"
+        >
+          <h1 class="h1-styles mb-4 form-title-styles">Sign in</h1>
+          <div class="flex flex-row">
+            <div class="mt-3">
+              <img
+                class="w-[30px] h-[30px] md:w-[40px] md:h-[40px] mt-2"
+                src="data:image/png;base64,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"
+                alt=""
+              />
+            </div>
+            <div class="flex flex-col">
+              <label class="gold-labels" for="email">Email</label>
+              <input
+                class="input-styles"
+                id="email"
+                type="email"
+                name="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-row">
+            <div class="mt-4">
+              <img
+                class="w-[30px] h-[30px] md:w-[40px] md:h-[40px]"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACVElEQVR4nO2YS4sTQRDH+6B7cfFxEgQ1XRNdyEV09+J62KsiKH4YH3eNj6OyF2H1AwyYqqwirPGBd48LiiCaqZqVBfWy6k1XatITUIyZ6EzSav+goaGnq6v6X93plDGBfxyh2gwjnGeyDxnhOSN8dE37nRThnLTsQeMrXYI5QftICDaLNA10DaNZ4wvPbs5uZYRFRvjqnHzPBEtCtVOqztuV3du0aT9tR6cZ4ZZ+kwWTzbE3Np8sbJloEN17+3YJ2sfOqU+M9uK7+/Xtw+bpN4xwSQg+5+q8xv07zaSU6KcSWtHUGtUG36kdYoI3PRvwdDVuTFXj7a+cQFh0u5l0ae+e37Wjc4Usuw25Xq6XQxeHOc1vTSeh+uE/tZcuR0c0zZjgi/bNuMhTSs9EaTYJmu6sdcqyOWTB2kx+OxU52EV5FcMOQfiQBXMXDpiqYYILvbMBS6XbRnvbbdLZsm3/ZDHo6GL6m1C27YTgjEuvB6ZqBO1LXSxpR/Wq0pYRXpiqYbIbuth63Jgu2/Z63Jh2V/qGqZr8rfS32u8TAimIBEVGJKTWJDZqNW5MMdlrQrBW9B9f5Q0hFYQrIz31hezViTtOAwO6XDwQjV4ntaKjxhMEo/lcGf+uwBGRUf0KgVSMBEU8Q4IiniFBEc+QoMgPMMFJrfNqiZNbcGLc41KWIv0arav5jn8cQiDfoXJnspNNknZ0fNzjEg67Z0hQxDMkKOIZEhTxDPl/FUFX18Jo3nhC2oZjPZ+sFJ6kpcmJVxRpYGsWDkTrq1kwuTI+tOx5D81Btd9vd1+yHkffQWsAAAAASUVORK5CYII="
+                alt=""
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <label class="gold-labels" for="password">Password</label>
+              <input
+                class="input-styles"
+                type="password"
+                name="password"
+                id="password"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex-row-center mt-2">
+            <button class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1">
+              Sign in
+            </button>
+          </div>
+        </form>
+        <div id="error-message-sign-in-form"></div>
+      </div>
+
+      <div class="hidden relative" id="register-form">
+        <form
+          id="reg-form"
+          method="post"
+          class="form-styles form-padding"
+          name="register"
+        >
+          <div class="flex flex-row relative"></div>
+          <h1 class="h1-styles form-title-styles mb-4">Register</h1>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="name">Name</label>
+            <input
+              class="input-styles"
+              id="name"
+              type="text"
+              name="name"
+              pattern="^[a-zA-Z0-9_]+$"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="emailReg">Email</label>
+            <input
+              class="input-styles"
+              id="emailReg"
+              type="email"
+              name="emailReg"
+              pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="passwordReg">Password</label>
+            <input
+              class="input-styles"
+              type="password"
+              name="passwordReg"
+              id="passwordReg"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bio">Bio</label>
+            <textarea
+              class="text-area-styles"
+              id="bio"
+              type="text"
+              name="bio"
+              maxlength="160"
+            >
+            </textarea>
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatarUrl">Avatar url</label>
+            <input
+              class="input-styles"
+              id="avatarUrl"
+              type="url"
+              name="avatarUrl"
+              pattern="https?://.+"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label class="gold-labels" for="avatarAlt">Avatar alt</label>
+            <input
+              class="input-styles"
+              id="avatarAlt"
+              type="text"
+              name="avatarAlt"
+              maxlength="120"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerUrl">Banner url</label>
+            <input
+              class="input-styles"
+              id="bannerUrl"
+              type="url"
+              name="bannerUrl"
+              pattern="https?://.+"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="gold-labels" for="bannerAlt">Banner alt</label>
+            <input
+              class="input-styles"
+              id="bannerAlt"
+              type="text"
+              name="bannerAlt"
+              maxlength="120"
+            />
+          </div>
+          <div class="flex-row-center">
+            <button
+              class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1 mt-4"
+            >
+              Register
+            </button>
+          </div>
+          <p id="error-message-reg-form"></p>
+        </form>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-text-layout">
+        <a href="">Contact</a>
+        <a href="">About</a>
+        <a href="">Policies</a>
+        <a href="">Terms and Conditions</a>
+      </div>
+      <div class="social-media-icons-box">
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-facebook-desktop.png"
+            alt="facebook icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-instagram-desktop.png"
+            alt="instagram icon"
+          />
+        </a>
+        <a href="">
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-twitter-desktop.png"
+            alt="twitter icon"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

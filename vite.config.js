@@ -20,7 +20,7 @@ export default defineConfig({
     nodePolyfills(),
   ],
   appType: 'mpa',
-  base: '',
+  base: '/JS2-Semester-Project-2/',
   build: {
     target: 'esnext',
 
