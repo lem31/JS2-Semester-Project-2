@@ -73,7 +73,7 @@
 }
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
-  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
+  @apply bg-primary font-extrabold text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
 }
 
 .close-button-auth {
@@ -263,7 +263,8 @@
 }
 
 .footer {
-  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[14px] md:text-base text-[var(--secondary-color)] font-[var(--Font-1)];
+  font-family: var(--Font-2);
+  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[16px] md:text-base text-[var(--secondary-color)]  font-bold;
 }
 
 .social-media-icons {
@@ -275,7 +276,7 @@
 }
 
 .footer-text-layout {
-  @apply grid grid-cols-2 md:flex md:flex-row  items-start justify-start gap-2 md:gap-2;
+  @apply grid grid-cols-2 md:flex md:flex-row  items-center justify-start gap-2 md:gap-2;
 }
 
 .image-container-individual-listing {
