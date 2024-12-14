@@ -1,6 +1,7 @@
 import { API_AUTH_REGISTER } from '../constants.js';
 import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
+import { displayErrorMessage } from '../bids/place.js';
 
 const REG_FORM = document.getElementById('reg-form');
 const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
@@ -40,6 +41,13 @@ export async function signIn(event) {
       body: JSON.stringify(REQUEST_BODY_SIGN_IN),
     });
 
+    if (!RESPONSE.ok) {
+      return RESPONSE.json().then((errorResponse) => {
+        const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
+        displayErrorMessage(errorMessage);
+        throw new Error('Failed to post bid');
+      });
+    }
     if (!REQUEST_BODY_SIGN_IN.email) {
       ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Email is required';
       return;

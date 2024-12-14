@@ -3,6 +3,7 @@ import { isLoggedIn } from '../../ui/listing/read.js';
 import { toggleCarouselImages } from '../../ui/listing/read.js';
 import { closePlaceBidForm } from '../../ui/listing/read.js';
 import { displayListingIdInUrlOnListingPage } from '../../ui/listing/read.js';
+import { postBidToAPI } from '../../api/bids/place.js';
 
 /**
  * @function createAllListingsElements

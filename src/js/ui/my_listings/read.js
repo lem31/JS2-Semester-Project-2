@@ -10,6 +10,7 @@ import { displayListingIdInUrlOnEditPage } from '../../ui/listing/edit.js';
 import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
 import { addHoverEffectToListing } from '../all_listings/read.js';
+import { postBidToAPI } from '../../api/bids/place.js';
 
 /**
  * @function createMyListingsElements
