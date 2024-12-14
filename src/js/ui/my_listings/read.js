@@ -9,6 +9,8 @@ import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
 import { addHoverEffectToListing } from '../all_listings/read.js';
 import { postBidToAPI } from '../../api/bids/place.js';
+import prevImage from '../../../../images/icons8-left-100.png';
+import nextImage from '../../../../images/icons8-right-100.png';
 
 /**
  * @function createMyListingsElements
@@ -104,8 +106,8 @@ export function createMyListingsElements(listing) {
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
   const BIDS_CONTAINER = document.createElement('div');
-  PREV_IMG.src = '../../../../images/icons8-left-100.png';
-  NEXT_IMG.src = '../../../../images/icons8-right-100.png';
+  PREV_IMG.src = prevImage;
+  NEXT_IMG.src = nextImage;
 
   const INNER_CONTAINER = document.createElement('div');
 
