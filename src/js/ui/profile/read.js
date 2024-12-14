@@ -1,6 +1,6 @@
-import coinImage from '../../../images/icons8-coins-64.png';
-import defaultAvatar from '../../../images/default-avatar.jpg';
-import defaultBanner from '../../../images/default-banner.jpg';
+import coinImage from '../../../../images/icons8-coins-64.png';
+import defaultAvatar from '../../../../images/no-photos.jpg';
+import defaultBanner from '../../../../images/no-photos.jpg';
 
 /**
  * @param {object} PROFILE - The user profile object

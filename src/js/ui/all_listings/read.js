@@ -117,6 +117,9 @@ export function createAllListingsElements(listing) {
         'z-50',
         'text-xl'
       );
+      const RECT = event.target.getBoundingClientRect();
+      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
+      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
       LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
       return;
     }

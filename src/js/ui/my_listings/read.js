@@ -131,6 +131,9 @@ export function createMyListingsElements(listing) {
         'text-xl'
       );
       LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
+      const RECT = event.target.getBoundingClientRect();
+      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
+      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
