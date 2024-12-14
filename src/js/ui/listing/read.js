@@ -296,7 +296,6 @@ export function createIndividualListingElement(listing) {
     OUTER_CONTAINER.appendChild(LISTING_CONTAINER);
   } else {
     throw new Error("Error: 'listing-container' element not found.");
-    return;
   }
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {

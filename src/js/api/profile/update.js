@@ -32,31 +32,27 @@ export async function updateProfile() {
     }),
   };
 
-  try {
-    const USER = JSON.parse(localStorage.getItem('user'));
-    const NAME = USER ? USER.name : null;
-    if (!NAME) {
-      throw new Error('User name not found in local storage.');
-    }
+  const USER = JSON.parse(localStorage.getItem('user'));
+  const NAME = USER ? USER.name : null;
+  if (!NAME) {
+    throw new Error('User name not found in local storage.');
+  }
 
-    const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
-      method: 'PUT',
-      headers: headers(),
-      body: JSON.stringify(REQUEST_BODY_UPDATE_PROFILE),
-    });
+  const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
+    method: 'PUT',
+    headers: headers(),
+    body: JSON.stringify(REQUEST_BODY_UPDATE_PROFILE),
+  });
 
-    if (RESPONSE.ok) {
-      const profileContainer = document.querySelector('#my-profile');
-      if (profileContainer) {
-        profileContainer.innerHTML = '';
-      }
-      await getUserProfile();
+  if (RESPONSE.ok) {
+    const profileContainer = document.querySelector('#my-profile');
+    if (profileContainer) {
+      profileContainer.innerHTML = '';
     }
+    await getUserProfile();
+  }
 
-    if (!RESPONSE.ok) {
-      throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-    }
-  } catch (error) {
-    throw error;
+  if (!RESPONSE.ok) {
+    throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
   }
 }

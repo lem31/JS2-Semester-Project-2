@@ -89,7 +89,6 @@ async function filterListings(category) {
     return LISTINGS;
   } catch (error) {
     throw new Error('Error fetching listings:', error);
-    return [];
   }
 }
 
@@ -123,7 +122,6 @@ async function searchListings(query) {
     return LISTINGS;
   } catch (error) {
     throw new Error('Error searching listings:', error);
-    return [];
   }
 }
 
