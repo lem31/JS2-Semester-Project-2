@@ -119,13 +119,13 @@
         </nav>
       </div>
     </header>
-    <main class="">
+    <main class="flex-1">
       <div class="flex-row-center">
-        <h1 class="h1-styles w-[120px] md:w-[400px] mt-2 mb-4">
+        <h1 class="h1-styles w-[40%] md:w-[400px] mt-2 mb-4">
           Sign in or Register an Account
         </h1>
       </div>
-      <div class="flex-row-center gap-4 mb-4">
+      <div class="flex flex-col items-center md:flex-row-center gap-4 mb-4">
         <button
           class="button-styles px-6 md:px-10 text-nowrap"
           id="sign-in-btn-tab"
@@ -139,12 +139,9 @@
 
       <div class="hidden relative" id="sign-in-form">
         <form
-          class="sign-in-form sign-in-form-styles form-styles"
+          class="sign-in-form sign-in sign-in-form-styles form-styles"
           name="sign-in"
         >
-          <div class="flex flex-row relative">
-            <button class="button-styles close-button-auth">X</button>
-          </div>
           <h1 class="h1-styles mb-4 form-title-styles">Sign in</h1>
           <div class="flex flex-row">
             <div class="mt-3">
@@ -187,7 +184,9 @@
             </div>
           </div>
           <div class="flex-row-center mt-2">
-            <button class="button-styles p-2 md:pt-0 md: pb-0">Sign in</button>
+            <button class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1">
+              Sign in
+            </button>
           </div>
         </form>
         <div id="error-message-sign-in-form"></div>
@@ -200,9 +199,7 @@
           class="form-styles reg-form-styles"
           name="register"
         >
-          <div class="flex flex-row relative">
-            <button class="button-styles close-button-auth">X</button>
-          </div>
+          <div class="flex flex-row relative"></div>
           <h1 class="h1-styles form-title-styles mb-4">Register</h1>
           <div class="flex flex-col">
             <label class="gold-labels" for="name">Name</label>
@@ -292,7 +289,9 @@
             />
           </div>
           <div class="flex-row-center">
-            <button class="button-styles p-2 md:pt-0 md: pb-0 mt-4">
+            <button
+              class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1 mt-4"
+            >
               Register
             </button>
           </div>
@@ -300,28 +299,34 @@
         </form>
       </div>
     </main>
-    <footer>
-      <div>
+    <footer class="footer">
+      <div class="footer-text-layout">
         <a href="">Contact</a>
         <a href="">About</a>
         <a href="">Policies</a>
         <a href="">Terms and Conditions</a>
       </div>
-      <div>
+      <div class="social-media-icons-box">
         <a href="">
           <img
-            src="../images/icons8-facebook-desktop.png"
+            class="social-media-icons"
+            src="../../images/icons8-facebook-desktop.png"
             alt="facebook icon"
           />
         </a>
         <a href="">
           <img
-            src="../images/icons8-instagram-desktop.png"
+            class="social-media-icons"
+            src="../../images/icons8-instagram-desktop.png"
             alt="instagram icon"
           />
         </a>
         <a href="">
-          <img src="../images/icons8-twitter-desktop.png" alt="twitter icon" />
+          <img
+            class="social-media-icons"
+            src="../../images/icons8-twitter-desktop.png"
+            alt="twitter icon"
+          />
         </a>
       </div>
     </footer>
