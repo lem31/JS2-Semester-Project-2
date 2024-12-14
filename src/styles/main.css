@@ -275,7 +275,7 @@
 }
 
 .footer-text-layout {
-  @apply grid grid-cols-2 md:flex md:flex-row  items-start justify-start gap-2 md:gap-0;
+  @apply grid grid-cols-2 md:flex md:flex-row  items-start justify-start gap-2 md:gap-2;
 }
 
 .image-container-individual-listing {
