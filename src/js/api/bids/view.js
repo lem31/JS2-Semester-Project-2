@@ -41,7 +41,10 @@ export async function fetchUserBidsFromApi() {
         createMyBidListingsElements(bid);
       });
       if (MY_BIDS.length === 0) {
-        LISTING_CONTAINER.innerHTML = '<p>No bids placed yet.</p>';
+        const NO_BID_MESSAGE = document.createElement('p');
+        NO_BID_MESSAGE.textContent = 'No bids placed yet.';
+        NO_BID_MESSAGE.classList.add('text-red-500', 'text-center', 'mt-4');
+        LISTING_CONTAINER.appendChild(NO_BID_MESSAGE);
       }
     }
   } catch (error) {

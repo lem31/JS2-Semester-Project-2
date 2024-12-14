@@ -25,11 +25,11 @@ export function createMyBidListingsElements(bid) {
 
   INNER_CONTAINER.classList.add('inner-container-styles');
 
-  IMAGE_CONTAINER.classList.add('image-container', 'imageContainer');
+  IMAGE_CONTAINER.classList.add('image-container', 'imageContainerMyBids');
 
   CAROUSEL_INNER.classList.add('carouselInner', 'carousel-inner');
 
-  LISTING_CONTAINER.classList.add('listing-container-styles', 'listing-box');
+  LISTING_CONTAINER.classList.add('listing-container-my-bids', 'listing-box');
 
   OUTER_CONTAINER.classList.add('outer-container');
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
