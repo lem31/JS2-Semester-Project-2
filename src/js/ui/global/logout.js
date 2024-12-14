@@ -13,9 +13,6 @@ function logout() {
   window.location.href = '/';
 }
 
-const ACCESS_TOKEN = localStorage.getItem('accessToken');
-console.log(ACCESS_TOKEN);
-
 export function displayLogoutBtn() {
   const ACCESS_TOKEN = localStorage.getItem('accessToken');
   if (!ACCESS_TOKEN) {

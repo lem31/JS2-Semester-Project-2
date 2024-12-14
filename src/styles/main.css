@@ -172,7 +172,7 @@
 }
 
 .seller-avatar-img {
-  @apply w-[3rem] h-[3rem] rounded-full border-2 border-[var(--primary-color)];
+  @apply w-[3rem] h-[3rem] rounded-full border-2 border-[var(--primary-color)] flex-shrink-0;
 }
 
 .carousel {
