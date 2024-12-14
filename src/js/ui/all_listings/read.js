@@ -4,6 +4,7 @@ import { toggleCarouselImages } from '../../ui/listing/read.js';
 import { closePlaceBidForm } from '../../ui/listing/read.js';
 import { displayListingIdInUrlOnListingPage } from '../../ui/listing/read.js';
 import { postBidToAPI } from '../../api/bids/place.js';
+import coinImage from '../../../../images/icons8-coins-64.png';
 
 /**
  * @function createAllListingsElements
@@ -34,8 +35,8 @@ export function createAllListingsElements(listing) {
 
   const COIN_IMAGE = document.createElement('img');
 
-  BIDS_IMAGE.src = '../../../../images/icons8-coins-64.png';
-  COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+  BIDS_IMAGE.src = coinImage;
+  COIN_IMAGE.src = coinImage;
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -246,7 +247,7 @@ export function createAllListingsElements(listing) {
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
       const BID_COIN_IMAGE = document.createElement('img');
-      BID_COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+      BID_COIN_IMAGE.src = coinImage;
       BID_COIN_IMAGE.alt = 'Coin icon';
       BID_COIN_IMAGE.classList.add('coin-icon');
 
