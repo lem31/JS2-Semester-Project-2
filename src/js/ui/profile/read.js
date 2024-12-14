@@ -1,3 +1,7 @@
+import coinImage from '../../../images/icons8-coins-64.png';
+import defaultAvatar from '../../../images/default-avatar.jpg';
+import defaultBanner from '../../../images/default-banner.jpg';
+
 /**
  * @param {object} PROFILE - The user profile object
  * @param {string} PROFILE.name - The user's name
@@ -42,19 +46,15 @@ export function displayUserProfile(PROFILE) {
   USER_PROFILE.appendChild(BIO);
   USER_PROFILE.appendChild(COIN_IMAGE_CREDITS_CONTAINER);
 
-  COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+  COIN_IMAGE.src = coinImage;
 
   USER_NAME.innerHTML = PROFILE.name || 'N/A';
   BIO.innerHTML = PROFILE.bio || 'N/A';
   BANNER.src =
-    PROFILE.banner && PROFILE.banner.url
-      ? PROFILE.banner.url
-      : '../../../../../images/default-banner.jpg';
+    PROFILE.banner && PROFILE.banner.url ? PROFILE.banner.url : defaultBanner;
 
   AVATAR.src =
-    PROFILE.avatar && PROFILE.avatar.url
-      ? PROFILE.avatar.url
-      : '../../../../../images/default-avatar.jpg';
+    PROFILE.avatar && PROFILE.avatar.url ? PROFILE.avatar.url : defaultAvatar;
 
   CREDITS.innerHTML = `My Credits:${PROFILE.credits}` || 'N/A';
 

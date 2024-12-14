@@ -1,5 +1,7 @@
 import { postBidToAPI } from '../../api/bids/place';
 import { addHoverEffectToListing } from '../all_listings/read';
+import coinImage from '../../../../images/icons8-coins-64.png';
+import noPhotosImage from '../../../../images/no-photos.jpg';
 
 export function isLoggedIn() {
   return localStorage.getItem('accessToken') !== null;
@@ -64,7 +66,7 @@ export function fetchListingImages(listing, LISTING_CONTAINER) {
 
   if (IMAGES.length === 0) {
     const defaultImage = document.createElement('img');
-    defaultImage.src = '../../../../images/no-photos.jpg';
+    defaultImage.src = noPhotosImage;
     defaultImage.alt = 'No image available';
     defaultImage.classList.add('listing-image');
     defaultImage.classList.add('carouselItem');
@@ -277,7 +279,7 @@ export function createIndividualListingElement(listing) {
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
       const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+      COIN_IMAGE.src = coinImage;
       COIN_IMAGE.alt = 'Coin icon';
       COIN_IMAGE.classList.add('coin-icon');
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);

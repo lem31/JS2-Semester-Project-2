@@ -11,6 +11,7 @@ import { addHoverEffectToListing } from '../all_listings/read.js';
 import { postBidToAPI } from '../../api/bids/place.js';
 import prevImage from '../../../../images/icons8-left-100.png';
 import nextImage from '../../../../images/icons8-right-100.png';
+import coinImage from '../../../../images/icons8-coins-64.png';
 
 /**
  * @function createMyListingsElements
@@ -50,8 +51,8 @@ export function createMyListingsElements(listing) {
 
   const COIN_IMAGE = document.createElement('img');
 
-  BIDS_IMAGE.src = '../../../../images/icons8-coins-64.png';
-  COIN_IMAGE.src = '../../../../images/icons8-coins-64.png';
+  BIDS_IMAGE.src = coinImage;
+  COIN_IMAGE.src = coinImage;
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -258,7 +259,7 @@ export function createMyListingsElements(listing) {
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
       const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '/images/icons8-coins-64.png';
+      COIN_IMAGE.src = coinImage;
       COIN_IMAGE.alt = 'Coin icon';
       COIN_IMAGE.classList.add('coin-icon');
 
