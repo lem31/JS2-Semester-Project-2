@@ -14,8 +14,9 @@ A registered user can view their listings they have created and their bids they 
 
 ## Installation
 
-1. Clone the repository from your terminal: cd ~/Documents (or the folder you want the repo to be cloned to)
-2. git clone 
-3. Navigate to the project directory : cd "project repo name"
-4. Install dependencies: npm install
-5. To start the development server: npm run dev 
+1. Clone the repository: repository link: https://github.com/lem31/JS2-Semester-Project-2.git
+2. To clone from your terminal : cd ~/Documents (or the folder you want the repo to be cloned to)
+3. Then git clone https://github.com/lem31/JS2-Semester-Project-2.git
+4. Navigate to the project directory : cd "project repo name"
+5. Install dependencies: npm install
+6. To start the development server: npm run dev 
