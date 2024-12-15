@@ -182,6 +182,9 @@ export function createIndividualListingElement(listing) {
         'text-xl'
       );
       LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
+      setTimeout(() => {
+        ERROR_MESSAGE.remove();
+      }, 1500);
       const RECT = event.target.getBoundingClientRect();
       ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
       ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
@@ -361,7 +364,8 @@ export function createIndividualListingElement(listing) {
         'bg-white',
         'text-red-500',
         'z-50',
-        'text-xl'
+        'text-xl',
+        'w-[100px]'
       );
       LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
       const RECT = event.target.getBoundingClientRect();
@@ -369,7 +373,7 @@ export function createIndividualListingElement(listing) {
       ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
       setTimeout(() => {
         ERROR_MESSAGE.remove();
-      }, 3000);
+      }, 1500);
       return;
     }
 
