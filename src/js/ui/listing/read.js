@@ -575,7 +575,7 @@ function addStylesToIndividualListingElements(
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
 
-  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout', 'mb-[80px]');
   LISTING_TITLE.classList.add('h2-styles');
   LISTING_DESCRIPTION.classList.add('body-text-styles');
   LISTING_BIDS.classList.add('h2-styles');
