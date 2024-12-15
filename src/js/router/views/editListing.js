@@ -12,7 +12,6 @@ import { displayMyBidsLinkNav } from '../../components/sidebar.js';
 import { displayCreateListingLinkNav } from '../../components/sidebar.js';
 import { displayNav } from '../../components/sidebar.js';
 import { onHoverNavLink } from '../../components/sidebar.js';
-import { on } from 'ws';
 
 displayMyListingsLinkNav();
 displayLogoutBtn();
