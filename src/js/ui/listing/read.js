@@ -278,6 +278,9 @@ export function createIndividualListingElement(listing) {
       const BIDDER_AVATAR = document.createElement('img');
       const BID_AMOUNT = document.createElement('p');
 
+      const CLOSE_BTN = document.createElement('button');
+      const CLOSE_BTN_BOX = document.createElement('div');
+
       BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
@@ -285,6 +288,29 @@ export function createIndividualListingElement(listing) {
       COIN_IMAGE.src = coinImage;
       COIN_IMAGE.alt = 'Coin icon';
       COIN_IMAGE.classList.add('coin-icon');
+
+      if (!VIEW_BIDS_CONTAINER.querySelector('.close-btn')) {
+        CLOSE_BTN_BOX.appendChild(CLOSE_BTN);
+        CLOSE_BTN.textContent = 'X';
+        CLOSE_BTN.classList.add(
+          'close-btn',
+          'button-styles',
+          'pl-2',
+          'pr-2',
+          'p-t-1',
+          'p-b-1',
+          'mr-[170px]'
+        );
+      }
+
+      CLOSE_BTN.addEventListener('click', () => {
+        if (VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')) {
+          VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+          VIEW_BIDS_CONTAINER.classList.add('hidden');
+        }
+      });
+
+      BIDDER_CONTAINER.appendChild(CLOSE_BTN_BOX);
       VIEW_BIDS_CONTAINER.appendChild(BIDDER_CONTAINER);
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_AVATAR);
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_NAME);
@@ -384,10 +410,10 @@ export function createIndividualListingElement(listing) {
         !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
       ) {
         VIEW_BIDS_CONTAINER.classList.remove('hidden');
-        VIEW_BIDS_CONTAINER.classList.add('view-bids-box');
+        VIEW_BIDS_CONTAINER.classList.add('view-bids-box', 'mt-[300px]');
       } else {
         VIEW_BIDS_CONTAINER.classList.add('hidden');
-        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box', 'mt-[300px]');
       }
     } else {
       const NO_BIDS_MESSAGE = document.createElement('p');
@@ -549,7 +575,7 @@ function addStylesToIndividualListingElements(
   LISTING_TITLE.classList.add('h2-styles');
   LISTING_DESCRIPTION.classList.add('body-text-styles');
   LISTING_BIDS.classList.add('h2-styles');
-  LISTING_END_DATE.classList.add('labels', 'max-w-[200px]', 'md:max-w-[400px]');
+  LISTING_END_DATE.classList.add('labels', 'max-w-[180px]', 'md:max-w-[400px]');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
 
   SELLER_AVATAR.classList.add('seller-avatar-img');

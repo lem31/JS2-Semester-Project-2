@@ -78,6 +78,7 @@ export function createAllListingsElements(listing) {
   const VIEW_BIDS_BUTTON = document.createElement('button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
   const VIEW_BIDS_CONTAINER = document.createElement('div');
+
   const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
@@ -247,6 +248,8 @@ export function createAllListingsElements(listing) {
       const BIDDER_NAME = document.createElement('p');
       const BIDDER_AVATAR = document.createElement('img');
       const BID_AMOUNT = document.createElement('p');
+      const CLOSE_BTN = document.createElement('button');
+      const CLOSE_BTN_BOX = document.createElement('div');
 
       BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
@@ -255,6 +258,29 @@ export function createAllListingsElements(listing) {
       BID_COIN_IMAGE.src = coinImage;
       BID_COIN_IMAGE.alt = 'Coin icon';
       BID_COIN_IMAGE.classList.add('coin-icon');
+
+      if (!VIEW_BIDS_CONTAINER.querySelector('.close-btn')) {
+        CLOSE_BTN_BOX.appendChild(CLOSE_BTN);
+        CLOSE_BTN.textContent = 'X';
+        CLOSE_BTN.classList.add(
+          'close-btn',
+          'button-styles',
+          'pl-2',
+          'pr-2',
+          'p-t-1',
+          'p-b-1',
+          'mr-[170px]'
+        );
+      }
+
+      CLOSE_BTN.addEventListener('click', () => {
+        if (VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')) {
+          VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+          VIEW_BIDS_CONTAINER.classList.add('hidden');
+        }
+      });
+
+      BIDDER_CONTAINER.appendChild(CLOSE_BTN_BOX);
 
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_AVATAR);
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_NAME);
