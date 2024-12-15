@@ -76,15 +76,14 @@ export function displayUserProfile(PROFILE) {
  */
 
 export function displayUpdateProfileForm() {
-  const UPDATE_PROFILE_FORM_BOX = document.getElementById(
-    'update-profile-form'
-  );
-  if (UPDATE_PROFILE_FORM_BOX.classList.contains('hidden')) {
-    UPDATE_PROFILE_FORM_BOX.classList.remove('hidden');
-    UPDATE_PROFILE_FORM_BOX.classList.add('flex-row-center');
-  } else if (UPDATE_PROFILE_FORM_BOX.classList.contains('flex-row-center')) {
-    UPDATE_PROFILE_FORM_BOX.classList.remove('flex-row-center');
-    UPDATE_PROFILE_FORM_BOX.classList.add('hidden');
+  const UPDATE_PROFILE_FORM = document.querySelector('.update-profile-form');
+
+  if (UPDATE_PROFILE_FORM.classList.contains('hidden')) {
+    UPDATE_PROFILE_FORM.classList.remove('hidden');
+    UPDATE_PROFILE_FORM.classList.add('form-styles');
+  } else if (UPDATE_PROFILE_FORM.classList.contains('form-styles')) {
+    UPDATE_PROFILE_FORM.classList.remove('form-styles');
+    UPDATE_PROFILE_FORM.classList.add('hidden');
   }
 }
 
