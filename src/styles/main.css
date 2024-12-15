@@ -225,6 +225,10 @@
   @apply pl-8 pr-8 pb-4;
 }
 
+.form-padding-create {
+  @apply pl-10 pr-10 pb-4;
+}
+
 .text-area-styles {
   @apply border-2 border-[var(--primary-color)] rounded-lg w-[180px] h-[95px] md:w-[201px] text-[var(--primary-color)];
 
