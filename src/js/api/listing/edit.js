@@ -10,7 +10,7 @@ import { headers } from '../headers';
  * If the request fails, an error message is logged to the console and an error message is displayed on the page.
  */
 export async function editListingInAPI(event) {
-  event.preventDefault(); // Prevent the default form submission
+  event.preventDefault();
 
   const URL_PARAMS = new URLSearchParams(window.location.search);
   const LISTING_ID = URL_PARAMS.get('id');
