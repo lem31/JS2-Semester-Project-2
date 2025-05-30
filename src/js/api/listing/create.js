@@ -63,7 +63,9 @@ export async function postCreateFormDataToAPI(formElement) {
     } else {
       return response.json().then((errorResponse) => {
         toastr.error(JSON.stringify(errorResponse).slice(22, -44));
-        const errorMessage = errorResponse.message || 'An error occurred while creating the listing.';
+        const errorMessage =
+          errorResponse.message ||
+          'An error occurred while creating the listing.';
 
         throw new Error(`Failed to create listing: ${errorMessage}`);
       });
