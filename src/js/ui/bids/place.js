@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import { postBidToAPI } from '../../api/bids/place';
 
 /**
@@ -74,6 +73,6 @@ export function onSubmitPlaceBidForm(event) {
     '.display-place-bid-form-btn'
   ).dataset.id;
 
-  let BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
+  const BID_AMOUNT = PLACE_BID_FORM.querySelector('.place-bid-input').value;
   postBidToAPI(LISTING_ID, BID_AMOUNT, event);
 }

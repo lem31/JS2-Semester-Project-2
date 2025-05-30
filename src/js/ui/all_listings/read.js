@@ -4,6 +4,11 @@ import { toggleCarouselImages } from '../../ui/listing/read.js';
 import { closePlaceBidForm } from '../../ui/listing/read.js';
 import { displayListingIdInUrlOnListingPage } from '../../ui/listing/read.js';
 import { postBidToAPI } from '../../api/bids/place.js';
+import coinImage from '../../../../images/icons8-coins-64.png';
+import prevImage from '../../../../images/icons8-left-100.png';
+import nextImage from '../../../../images/icons8-right-100.png';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function createAllListingsElements
@@ -34,8 +39,8 @@ export function createAllListingsElements(listing) {
 
   const COIN_IMAGE = document.createElement('img');
 
-  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
-  COIN_IMAGE.src = '/images/icons8-coins-64.png';
+  BIDS_IMAGE.src = coinImage;
+  COIN_IMAGE.src = coinImage;
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -75,6 +80,7 @@ export function createAllListingsElements(listing) {
   const VIEW_BIDS_BUTTON = document.createElement('button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
   const VIEW_BIDS_CONTAINER = document.createElement('div');
+
   const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
   const LISTING_BIDDERS_NAME = document.createElement('p');
   const BIDDER_AVATAR = document.createElement('img');
@@ -89,8 +95,8 @@ export function createAllListingsElements(listing) {
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
   const BIDS_CONTAINER = document.createElement('div');
-  PREV_IMG.src = '/images/icons8-left-100.png';
-  NEXT_IMG.src = '/images/icons8-right-100.png';
+  PREV_IMG.src = prevImage;
+  NEXT_IMG.src = nextImage;
 
   const INNER_CONTAINER = document.createElement('div');
 
@@ -98,7 +104,8 @@ export function createAllListingsElements(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to place a bid.');
+      toastr.error('You need to be logged in to place a bid.');
+
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
@@ -225,14 +232,39 @@ export function createAllListingsElements(listing) {
       const BIDDER_NAME = document.createElement('p');
       const BIDDER_AVATAR = document.createElement('img');
       const BID_AMOUNT = document.createElement('p');
+      const CLOSE_BTN = document.createElement('button');
+      const CLOSE_BTN_BOX = document.createElement('div');
 
       BIDDER_NAME.textContent = `Bidder: ${bid.bidder.name}`;
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
-      const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '/images/icons8-coins-64.png';
-      COIN_IMAGE.alt = 'Coin icon';
-      COIN_IMAGE.classList.add('coin-icon');
+      const BID_COIN_IMAGE = document.createElement('img');
+      BID_COIN_IMAGE.src = coinImage;
+      BID_COIN_IMAGE.alt = 'Coin icon';
+      BID_COIN_IMAGE.classList.add('coin-icon');
+
+      if (!VIEW_BIDS_CONTAINER.querySelector('.close-btn')) {
+        CLOSE_BTN_BOX.appendChild(CLOSE_BTN);
+        CLOSE_BTN.textContent = 'X';
+        CLOSE_BTN.classList.add(
+          'close-btn',
+          'button-styles',
+          'pl-2',
+          'pr-2',
+          'p-t-1',
+          'p-b-1',
+          'mr-[170px]'
+        );
+      }
+
+      CLOSE_BTN.addEventListener('click', () => {
+        if (VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')) {
+          VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
+          VIEW_BIDS_CONTAINER.classList.add('hidden');
+        }
+      });
+
+      BIDDER_CONTAINER.appendChild(CLOSE_BTN_BOX);
 
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_AVATAR);
       BIDDER_AVATAR_NAME_BOX.appendChild(BIDDER_NAME);
@@ -270,38 +302,15 @@ export function createAllListingsElements(listing) {
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to view bids.');
+      toastr.error('You need to be logged in to view bids.');
+
       return;
     }
 
     const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
     if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
-      const ERROR_MESSAGE = document.createElement('p');
+      toastr.error('Please close the current bids before opening another.');
 
-      ERROR_MESSAGE.textContent =
-        'Please close the current bids before opening another.';
-
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 3000);
       return;
     }
 
@@ -317,20 +326,7 @@ export function createAllListingsElements(listing) {
         VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
-      const NO_BIDS_MESSAGE = document.createElement('p');
-      NO_BIDS_MESSAGE.textContent = 'No bids available.';
-      NO_BIDS_MESSAGE.classList.add(
-        'no-bids-message',
-        'bg-white',
-        'text-red-500',
-        'absolute',
-        'text-xl',
-        'z-50'
-      );
-      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
-      setTimeout(() => {
-        NO_BIDS_MESSAGE.remove();
-      }, 3000);
+      toastr.error('No bids available.');
     }
   });
 

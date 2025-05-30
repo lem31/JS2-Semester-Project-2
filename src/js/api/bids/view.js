@@ -1,7 +1,8 @@
 import { headers } from '../headers';
 import { MY_BIDS_API } from '../constants';
-
 import { createMyBidListingsElements } from '../../ui/bids/view';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function fetchUserBidsFromApi
@@ -41,7 +42,7 @@ export async function fetchUserBidsFromApi() {
         createMyBidListingsElements(bid);
       });
       if (MY_BIDS.length === 0) {
-        LISTING_CONTAINER.innerHTML = '<p>No bids placed yet.</p>';
+        toastr.error('No bids placed yet.');
       }
     }
   } catch (error) {

@@ -34,16 +34,6 @@ function displaySignInForm() {
 }
 
 /**
- * @function onclickSignInBtnTab
- * @returns {void}
- * @description This function listens for a click event on the sign-in button tab and calls the displaySignInForm function.
- */
-
-export function onclickSignInBtnTab() {
-  SIGN_IN_BTN_TAB.addEventListener('click', displaySignInForm);
-}
-
-/**
  * @function displayRegForm
  * @returns {void}
  *  @description This function toggles the display of the registration form.
@@ -65,14 +55,70 @@ function displayRegForm() {
 }
 
 /**
+ * @function toggleForms
+ * @returns {void}
+ * @description This function toggles between the sign-in and registration forms.
+ */
+export function toggleForms() {
+  switch (true) {
+    case SIGN_IN_FORM_BOX.classList.contains('hidden'):
+      displaySignInForm();
+      displayRegForm();
+      displaySignInForm();
+      break;
+    case !SIGN_IN_FORM_BOX.classList.contains('hidden'):
+      displaySignInForm();
+      displayRegForm();
+      displaySignInForm();
+
+      break;
+    case !REG_FORM.classList.contains('hidden'):
+      displayRegForm();
+      displaySignInForm();
+
+      break;
+    default:
+      displaySignInForm();
+      displayRegForm();
+      break;
+  }
+}
+
+SIGN_IN_BTN_TAB.addEventListener('click', () => {
+  if (REG_FORM.classList.contains('hidden')) {
+    displaySignInForm();
+  } else {
+    toggleForms();
+  }
+});
+
+REG_BTN_TAB.addEventListener('click', () => {
+  if (SIGN_IN_FORM_BOX.classList.contains('hidden')) {
+    displayRegForm();
+  } else {
+    toggleForms();
+  }
+});
+
+/**
+ * @function onclickSignInBtnTab
+ * @returns {void}
+ * @description This function listens for a click event on the sign-in button tab and calls the displaySignInForm function.
+ */
+
+// export function onclickSignInBtnTab() {
+//   SIGN_IN_BTN_TAB.addEventListener('click', displaySignInForm);
+// }
+
+/**
  * @function onclickRegBtnTab
  * @returns {void}
  * @description This function listens for a click event on the registration button tab and calls the displayRegForm function.
  */
 
-export function onclickRegBtnTab() {
-  REG_BTN_TAB.addEventListener('click', displayRegForm);
-}
+// export function onclickRegBtnTab() {
+//   REG_BTN_TAB.addEventListener('click', displayRegForm);
+// }
 
 /**
  * @function onRegister

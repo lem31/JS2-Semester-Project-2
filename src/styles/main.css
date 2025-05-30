@@ -73,7 +73,7 @@
 }
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
-  @apply bg-primary text-secondary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
+  @apply bg-primary font-extrabold text-tertiary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
 }
 
 .close-button-auth {
@@ -152,7 +152,7 @@
 }
 
 .outer-container {
-  @apply flex flex-col w-[100%] mt-6 items-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
+  @apply flex flex-col w-[100%] mt-6 items-center justify-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
 }
 
 .link-flex {
@@ -160,7 +160,11 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center w-[300px] h-[auto] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center w-[300px] h-[500px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+}
+
+.listing-container-my-bids {
+  @apply flex flex-col md:flex-row items-center w-[300px] h-[400px] md:w-[380px] md:h-[400px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .inner-container-styles {
@@ -172,7 +176,7 @@
 }
 
 .seller-avatar-img {
-  @apply w-[3rem] h-[3rem] rounded-full border-2 border-[var(--primary-color)];
+  @apply w-[3rem] h-[3rem] rounded-full border-2 border-[var(--primary-color)] flex-shrink-0;
 }
 
 .carousel {
@@ -187,6 +191,9 @@
   @apply flex items-center relative overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
 }
 
+.imageContainerMyBids {
+  @apply flex items-center relative overflow-x-hidden w-[10rem] md:w-[15rem] rounded-lg border-2 border-[var(--primary-color)];
+}
 .carousel-container {
   @apply flex justify-between items-center relative;
 }
@@ -218,8 +225,12 @@
   @apply pl-8 pr-8 pb-4;
 }
 
+.form-padding-create {
+  @apply pl-10 pr-10 pb-4;
+}
+
 .text-area-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[150px] h-[95px] md:w-[201px] text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[180px] h-[95px] md:w-[201px] text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -252,11 +263,12 @@
 }
 
 .view-bids-box {
-  @apply flex flex-col absolute z-12  mr-[200px] md:mr-[300px] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[200px] h-[auto] border-2 border-[#e4b022] rounded-lg;
+  @apply flex flex-col absolute z-12  mr-[20px] md:mr-[150px] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[200px] h-[auto] border-2 border-[#e4b022] rounded-lg;
 }
 
 .footer {
-  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[14px] md:text-base text-[var(--secondary-color)] font-[var(--Font-1)];
+  font-family: var(--Font-2);
+  @apply grid grid-cols-2 mt-2 w-[100%] h-[80px] bg-[var(--primary-color)] text-[16px] md:text-base text-[var(--tertiary-color)]  font-bold;
 }
 
 .social-media-icons {
@@ -268,7 +280,7 @@
 }
 
 .footer-text-layout {
-  @apply grid grid-cols-2 md:flex md:flex-row  items-start justify-start gap-2 md:gap-0;
+  @apply grid grid-cols-2 md:flex md:flex-row  items-center justify-start gap-0 md:gap-2;
 }
 
 .image-container-individual-listing {

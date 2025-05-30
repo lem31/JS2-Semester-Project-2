@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../../vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Art Auction App - Create a Listing</title>
-    <script type="module" src="../../src/app.js" defer></script>
+    <script type="module" src="../../src/app.js"></script>
   </head>
   <body class="body-styles">
     <header>
@@ -20,7 +20,7 @@
             id="hamburger-icon"
             class="w-16 h-16 md:w-20 md:h-20"
             src="../../images/Hamburger-icon.png"
-            alt=""
+            alt="hamburger icon"
           />
         </button>
         <nav class="nav nav-styles">
@@ -56,7 +56,7 @@
                 <span class="span-text hidden">My Listings</span>
               </a>
             </li>
-            <li class="">
+            <li class="sidebar-li sidebar-li-layout">
               <a
                 class="nav-link link-flex"
                 id="my-bids-link-nav"
@@ -70,7 +70,7 @@
                 <span class="hidden span-text">My Bids</span>
               </a>
             </li>
-            <li class="">
+            <li id="create-listing-li" class="">
               <a
                 class="nav-link link-flex"
                 id="create-listing-link-nav"
@@ -105,7 +105,7 @@
                 <span class="hidden span-text">Sign in</span>
               </a>
             </li>
-            <li class="sign-out-btn-li">
+            <li id="sidebar-li" class="sidebar-li-layout">
               <button class="sign-out-btn nav-link link-flex">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
@@ -119,10 +119,12 @@
         </nav>
       </div>
     </header>
-    <main class="flex-1 ml-6 md:ml-0">
-      <div class="mt-8 create-form-container flex-row-center w-[100%] h-[100%]">
+    <main class="flex-1">
+      <div
+        class="mt-[150px] create-form-container flex-row-center w-[100%] h-[100%]"
+      >
         <form
-          class="form-styles w-[200px] h-[580px] md:w-[283px] p-4"
+          class="form-styles form-padding-create w-[220px] h-[auto] md:w-[283px]"
           name="create-listing"
           id="create-form"
         >
@@ -145,6 +147,7 @@
               class="text-area-styles"
               id="description"
               name="description"
+              maxlength="300"
             ></textarea>
           </div>
 
@@ -189,7 +192,7 @@
           <div class="flex-col-center-layout">
             <label class="gold-labels" for="endsAt">Ends at</label>
             <input
-              class="input-styles"
+              class="input-styles md:w-[201px]"
               id="endsAt"
               type="datetime-local"
               name="endsAt"
@@ -213,7 +216,7 @@
         <a href="">Contact</a>
         <a href="">About</a>
         <a href="">Policies</a>
-        <a href="">Terms and Conditions</a>
+        <a class="w-[100px] md:w-[200px]" href="">Terms and Conditions</a>
       </div>
       <div class="social-media-icons-box">
         <a href="">

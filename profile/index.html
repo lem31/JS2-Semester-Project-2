@@ -5,22 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Art Auction App - My Profile</title>
-    <script type="module" src="../src/app.js" defer></script>
+    <script type="module" src="../src/app.js"></script>
   </head>
   <body class="body-styles">
     <header>
       <div class="side-bar sidebar-styles">
         <img
           class="logo w-16 h-auto md:w-20 md:h-auto"
-          src="../../images/Logo.png"
+          src="../images/Logo.png"
           alt="Art logo"
         />
         <button id="hamburger-btn">
           <img
             id="hamburger-icon"
             class="w-16 h-16 md:w-20 md:h-20"
-            src="../../images/Hamburger-icon.png"
-            alt=""
+            src="../images/Hamburger-icon.png"
+            alt="hamburger icon"
           />
         </button>
         <nav class="nav nav-styles">
@@ -29,7 +29,7 @@
               <a class="nav-link link-flex" href="/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-home-Desktop.png"
+                  src="../images/icons8-home-Desktop.png"
                   alt="home icon"
                 />
                 <span class="span-text hidden">Home</span>
@@ -39,7 +39,7 @@
               <a class="nav-link link-flex" href="/profile/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-user-desktop.png"
+                  src="../images/icons8-user-desktop.png"
                   alt="profile icon"
                 />
                 <span class="span-text hidden">My Profile</span></a
@@ -50,13 +50,13 @@
               <a class="nav-link link-flex" href="/my_listings/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-my-listings-desktop.png"
+                  src="../images/icons8-my-listings-desktop.png"
                   alt="my listings icon"
                 />
                 <span class="span-text hidden">My Listings</span>
               </a>
             </li>
-            <li class="">
+            <li class="sidebar-li sidebar-li-layout">
               <a
                 class="nav-link link-flex"
                 id="my-bids-link-nav"
@@ -64,13 +64,13 @@
               >
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-bids-Desktop.png"
+                  src="../images/icons8-bids-Desktop.png"
                   alt="bids icon"
                 />
                 <span class="hidden span-text">My Bids</span>
               </a>
             </li>
-            <li class="">
+            <li id="create-listing-li" class="">
               <a
                 class="nav-link link-flex"
                 id="create-listing-link-nav"
@@ -78,7 +78,7 @@
               >
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-add-desktop.png"
+                  src="../images/icons8-add-desktop.png"
                   alt="add icon"
                 />
 
@@ -89,7 +89,7 @@
               <a class="nav-link link-flex" id="reg-link-nav" href="/auth/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-register-desktop.png"
+                  src="../images/icons8-register-desktop.png"
                   alt="register icon"
                 />
                 <span class="hidden span-text">Register</span>
@@ -99,17 +99,17 @@
               <a class="nav-link link-flex" href="/auth/">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/sign-in-desktop.png"
+                  src="../images/sign-in-desktop.png"
                   alt="sign in icon"
                 />
                 <span class="hidden span-text">Sign in</span>
               </a>
             </li>
-            <li class="sign-out-btn-li">
+            <li id="sidebar-li" class="sidebar-li-layout">
               <button class="sign-out-btn nav-link link-flex">
                 <img
                   class="w-[60px] h-[60px] md:w-[50px] md:h-[50px]"
-                  src="../../images/icons8-sign-out-desktop.png"
+                  src="../images/icons8-sign-out-desktop.png"
                   alt="sign out icon"
                 />
                 <span class="hidden span-text">Sign Out</span>
@@ -119,7 +119,7 @@
         </nav>
       </div>
     </header>
-    <main class="flex-1">
+    <main class="flex-1 mt-[150px]">
       <div class="my-profile">
         <div class="flex-row-center mt-4 mb-4">
           <h1 class="h1-styles">My Profile</h1>
@@ -134,19 +134,18 @@
           Update Profile
         </button>
       </div>
-      <div class="hidden relative flex-row-center" id="update-profile-form">
+      <div class="hidden relative flex-row-center" id="update-profile-form-box">
         <form
-          class="update-profile-form form-styles form-padding"
+          class="hidden update-profile-form form-padding"
           name="update-profile"
         >
           <h2 class="h2-styles form-title-styles">Update Profile</h2>
 
-          <div class="flex flex-col">
+          <div class="mt-4 flex flex-col">
             <label class="gold-labels" for="bio">Bio</label>
             <textarea
               class="text-area-styles"
               id="bio"
-              type="text"
               name="bio"
               maxlength="160"
             >
@@ -204,27 +203,27 @@
         <a href="">Contact</a>
         <a href="">About</a>
         <a href="">Policies</a>
-        <a href="">Terms and Conditions</a>
+        <a class="w-[100px] md:w-[200px]" href="">Terms and Conditions</a>
       </div>
       <div class="social-media-icons-box">
         <a href="">
           <img
             class="social-media-icons"
-            src="../../images/icons8-facebook-desktop.png"
+            src="../images/icons8-facebook-desktop.png"
             alt="facebook icon"
           />
         </a>
         <a href="">
           <img
             class="social-media-icons"
-            src="../../images/icons8-instagram-desktop.png"
+            src="../images/icons8-instagram-desktop.png"
             alt="instagram icon"
           />
         </a>
         <a href="">
           <img
             class="social-media-icons"
-            src="../../images/icons8-twitter-desktop.png"
+            src="../images/icons8-twitter-desktop.png"
             alt="twitter icon"
           />
         </a>

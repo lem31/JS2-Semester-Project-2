@@ -1,16 +1,19 @@
-import {
-  addHoverEffectToButtons,
-  createAllListingsElements,
-} from '../all_listings/read.js';
+import { addHoverEffectToButtons } from '../all_listings/read.js';
 import { isLoggedIn } from '../listing/read.js';
 import { fetchListingImages } from '../listing/read.js';
 import { deleteListing } from '../listing/delete.js';
 import { displayListingIdInUrlOnEditPage } from '../../ui/listing/edit.js';
+import { closePlaceBidForm } from '../listing/read.js';
 
 import { toggleCarouselImages } from '../listing/read.js';
 import { showArrowsOnHover } from '../all_listings/read.js';
 import { addHoverEffectToListing } from '../all_listings/read.js';
 import { postBidToAPI } from '../../api/bids/place.js';
+import prevImage from '../../../../images/icons8-left-100.png';
+import nextImage from '../../../../images/icons8-right-100.png';
+import coinImage from '../../../../images/icons8-coins-64.png';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function createMyListingsElements
@@ -50,11 +53,12 @@ export function createMyListingsElements(listing) {
 
   const COIN_IMAGE = document.createElement('img');
 
-  BIDS_IMAGE.src = '/images/icons8-coins-64.png';
-  COIN_IMAGE.src = '/images/icons8-coins-64.png';
+  BIDS_IMAGE.src = coinImage;
+  COIN_IMAGE.src = coinImage;
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
+  PLACE_BID_INPUT.classList.add('place-bid-input');
   PLACE_BID_SUBMIT.textContent = 'Place bid';
   PLACE_BID_SUBMIT.type = 'submit';
   CLOSE_BUTTON.textContent = 'X';
@@ -105,14 +109,15 @@ export function createMyListingsElements(listing) {
   const PREV_IMG = document.createElement('img');
   const NEXT_IMG = document.createElement('img');
   const BIDS_CONTAINER = document.createElement('div');
-  PREV_IMG.src = '/images/icons8-left-100.png';
-  NEXT_IMG.src = '/images/icons8-right-100.png';
+  PREV_IMG.src = prevImage;
+  NEXT_IMG.src = nextImage;
 
   const INNER_CONTAINER = document.createElement('div');
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to place a bid.');
+      toastr.error('You need to be logged in to place a bid.');
+
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
@@ -241,7 +246,7 @@ export function createMyListingsElements(listing) {
       BIDDER_AVATAR.src = bid.bidder.avatar.url || '';
       BID_AMOUNT.textContent = `Bid amount: ${bid.amount}`;
       const COIN_IMAGE = document.createElement('img');
-      COIN_IMAGE.src = '/images/icons8-coins-64.png';
+      COIN_IMAGE.src = coinImage;
       COIN_IMAGE.alt = 'Coin icon';
       COIN_IMAGE.classList.add('coin-icon');
 
@@ -274,39 +279,14 @@ export function createMyListingsElements(listing) {
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      alert('You need to be logged in to view bids.');
+      toastr.error('You need to be logged in to view bids.');
+
       return;
     }
 
     const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
     if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
-      const ERROR_MESSAGE = document.createElement('p');
-
-      ERROR_MESSAGE.textContent =
-        'Please close the current bids before opening another.';
-
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 3000);
-      return;
+      toastr.error('Please close the current bids before opening another.');
     }
 
     if (listing.bids && listing.bids.length > 0) {
@@ -321,20 +301,7 @@ export function createMyListingsElements(listing) {
         VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
-      const NO_BIDS_MESSAGE = document.createElement('p');
-      NO_BIDS_MESSAGE.textContent = 'No bids available.';
-      NO_BIDS_MESSAGE.classList.add(
-        'no-bids-message',
-        'bg-white',
-        'text-red-500',
-        'absolute',
-        'text-xl',
-        'z-50'
-      );
-      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
-      setTimeout(() => {
-        NO_BIDS_MESSAGE.remove();
-      }, 3000);
+      toastr.error('No bids available.');
     }
   });
 

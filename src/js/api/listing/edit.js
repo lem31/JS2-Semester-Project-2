@@ -1,5 +1,6 @@
-import { list } from 'postcss';
 import { headers } from '../headers';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function editListingInAPI
@@ -11,7 +12,7 @@ import { headers } from '../headers';
  * If the request fails, an error message is logged to the console and an error message is displayed on the page.
  */
 export async function editListingInAPI(event) {
-  event.preventDefault(); // Prevent the default form submission
+  event.preventDefault();
 
   const URL_PARAMS = new URLSearchParams(window.location.search);
   const LISTING_ID = URL_PARAMS.get('id');
@@ -44,20 +45,17 @@ export async function editListingInAPI(event) {
     );
 
     if (RESPONSE.ok) {
-      alert('Post edited successfully');
+      toastr.success('Post edited successfully!');
       setTimeout(() => {
         window.location.href = '/my_listings/';
       }, 3000);
     } else {
-      console.log('Response not OK:', RESPONSE);
       const ERROR_DATA = await RESPONSE.json();
+      toastr.error(JSON.stringify(ERROR_DATA).slice(23, -44));
       throw new Error(ERROR_DATA.message || 'Failed to edit post');
     }
   } catch (error) {
-    const ERROR_MESSAGE = document.createElement('div');
-    ERROR_MESSAGE.textContent = error.message;
-    ERROR_MESSAGE.style.color = 'red';
-    document.body.appendChild(ERROR_MESSAGE);
+    toastr.error(error.message);
   }
 }
 
@@ -80,10 +78,7 @@ export async function populateEditForm() {
       );
 
       if (!RESPONSE.ok) {
-        const ERROR_MESSAGE = document.createElement('div');
-        ERROR_MESSAGE.textContent = 'Failed to fetch listing';
-        ERROR_MESSAGE.style.color = 'red';
-        document.body.appendChild(ERROR_MESSAGE);
+        toastr.error('Failed to fetch listing');
         throw new Error('Failed to fetch listing');
       }
 

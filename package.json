@@ -8,13 +8,15 @@
     "format": "prettier --write .",
     "lint:fix": "eslint --fix .",
     "dev": "vite",
-    "build": "npm run lint && vite build",
+    "build": " npm run lint && vite build",
     "preview": "vite preview",
     "watch-tailwind": "nodemon --watch tailwind.config.js --exec 'npm run dev'"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "eslint": "^8.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "htmlhint": "^1.1.4",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.4.15",
@@ -24,6 +26,8 @@
     "vite-plugin-windicss": "^1.9.4"
   },
   "dependencies": {
-    "source-map-js": "^1.2.1"
+    "source-map-js": "^1.2.1",
+    "sweetalert2": "^11.22.0",
+    "toastr": "^2.1.4"
   }
 }

@@ -1,4 +1,3 @@
-import { headers } from '../../api/headers';
 import { editListingInAPI } from '../../api/listing/edit';
 
 export function displayListingIdInUrlOnEditPage(event) {
@@ -17,14 +16,19 @@ export function onClickAddMoreImages() {
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
       URL_INPUT.setAttribute('class', 'input');
+      URL_INPUT.classList.add('input-styles');
       EDIT_FORM.appendChild(URL_INPUT);
       const ALT_INPUT = document.createElement('input');
       ALT_INPUT.setAttribute('type', 'text');
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Image Alt');
       ALT_INPUT.setAttribute('class', 'input');
+      const ADD_MORE_IMAGES_BTN = document.getElementById(
+        'Add-image-button-edit'
+      );
       EDIT_FORM.insertBefore(URL_INPUT, ADD_MORE_IMAGES_BTN);
       EDIT_FORM.insertBefore(ALT_INPUT, URL_INPUT);
+      ALT_INPUT.classList.add('input-styles');
     });
   }
 }
@@ -38,7 +42,7 @@ export function onClickSaveListingBtn() {
       editListingInAPI(event);
     });
   } else {
-    console.error('Edit form not found');
+    throw new Error('Edit form not found');
   }
 }
 

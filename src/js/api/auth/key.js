@@ -11,21 +11,17 @@ import { API_KEY_ENDPOINT } from '../constants';
  */
 
 export async function getAPIKey() {
-  try {
-    const RESPONSE = await fetch(API_KEY_ENDPOINT, {
-      method: 'POST',
-      headers: headers(),
-      body: JSON.stringify(API_KEY_NAME),
-    });
+  const RESPONSE = await fetch(API_KEY_ENDPOINT, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify(API_KEY_NAME),
+  });
 
-    if (RESPONSE.ok) {
-      const DATA = await RESPONSE.json();
-      localStorage.setItem('apiKey', DATA.key);
-    } else {
-      const ERROR_MESSAGE = await RESPONSE.text();
-      throw new Error(`Error: ${RESPONSE.status} ${ERROR_MESSAGE}`);
-    }
-  } catch (error) {
-    throw error;
+  if (RESPONSE.ok) {
+    const DATA = await RESPONSE.json();
+    localStorage.setItem('apiKey', DATA.key);
+  } else {
+    const ERROR_MESSAGE = await RESPONSE.text();
+    throw new Error(`Error: ${RESPONSE.status} ${ERROR_MESSAGE}`);
   }
 }
