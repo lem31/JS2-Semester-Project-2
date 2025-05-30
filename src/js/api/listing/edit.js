@@ -1,4 +1,6 @@
 import { headers } from '../headers';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 /**
  * @function editListingInAPI
@@ -43,7 +45,7 @@ export async function editListingInAPI(event) {
     );
 
     if (RESPONSE.ok) {
-      alert('Post edited successfully');
+      toastr.success("Post edited successfully!");
       setTimeout(() => {
         window.location.href = '/my_listings/';
       }, 3000);
