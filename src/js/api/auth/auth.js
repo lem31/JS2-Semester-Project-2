@@ -8,7 +8,6 @@ const REG_FORM = document.getElementById('reg-form');
 
 const SIGN_IN_FORM = document.querySelector('.sign-in-form');
 
-
 /**
  *
  *
@@ -43,12 +42,12 @@ export async function signIn(event) {
     if (!RESPONSE.ok) {
       return RESPONSE.json().then((errorResponse) => {
         const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
-       toastr.error(errorMessage);
+        toastr.error(errorMessage);
         throw new Error('Failed to post bid');
       });
     }
     if (!REQUEST_BODY_SIGN_IN.email) {
-     toastr.error('Error: Email is required');
+      toastr.error('Error: Email is required');
       return;
     }
     if (!REQUEST_BODY_SIGN_IN.password) {
@@ -163,9 +162,9 @@ export async function register(event) {
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
       toastr.error('Error: User already exists');
     } else {
-     toastr.error('Error: Something went wrong');
+      toastr.error('Error: Something went wrong');
     }
   } catch (error) {
-    toastr.error( 'Error: Unable to connect to the server');
+    toastr.error('Error: Unable to connect to the server');
   }
 }

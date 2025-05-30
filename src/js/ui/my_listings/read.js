@@ -116,9 +116,7 @@ export function createMyListingsElements(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-
       toastr.error('You need to be logged in to place a bid.');
-
 
       return;
     }

@@ -22,10 +22,8 @@ export default [
       'no-multiple-empty-lines': ['error', { max: 1 }],
       'prefer-const': 'warn',
     },
-    plugins: {
-      eslint: pluginJs,
-      prettier: prettierPlugin,
-    },
+    plugins: [pluginJs, prettierPlugin],
+
   },
 
   pluginJs.configs.recommended,

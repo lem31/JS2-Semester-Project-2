@@ -1,6 +1,5 @@
 import { editListingInAPI } from '../../api/listing/edit';
 
-
 export function displayListingIdInUrlOnEditPage(event) {
   const LISTING_ID = event.target.dataset.id;
   window.location.href = `/listing/edit/?id=${LISTING_ID}`;
@@ -45,7 +44,6 @@ export function onClickSaveListingBtn() {
   } else {
     throw new Error('Edit form not found');
   }
-
 }
 
 export function onClickCancelBtn() {

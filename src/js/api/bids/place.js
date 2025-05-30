@@ -1,6 +1,6 @@
 import { headers } from '../headers';
-import toastr from "toastr";
-import "toastr/build/toastr.min.css";
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function postBidToAPI
@@ -24,10 +24,7 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       body: JSON.stringify({ amount: Number(BID_AMOUNT) }),
     });
     if (RESPONSE.ok) {
-
-     toastr.success( 'Bid posted successfully');
-
-
+      toastr.success('Bid posted successfully');
     }
     if (!RESPONSE.ok) {
       const errorResponse = await RESPONSE.json();
@@ -38,5 +35,3 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
     throw new Error('Error posting bid: ' + error.message);
   }
 }
-
-

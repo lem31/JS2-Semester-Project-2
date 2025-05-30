@@ -1,8 +1,8 @@
 import { headers } from '../headers';
 import { MY_BIDS_API } from '../constants';
 import { createMyBidListingsElements } from '../../ui/bids/view';
-import toastr from "toastr";
-import "toastr/build/toastr.min.css";
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function fetchUserBidsFromApi
