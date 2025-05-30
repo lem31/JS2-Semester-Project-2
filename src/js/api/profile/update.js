@@ -1,6 +1,9 @@
 import { API_PROFILE } from '../constants.js';
 import { headers } from '../headers.js';
 import { getUserProfile } from './read.js';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+
 
 /**
  * @async
@@ -44,13 +47,20 @@ export async function updateProfile() {
     body: JSON.stringify(REQUEST_BODY_UPDATE_PROFILE),
   });
 
+
+
   if (RESPONSE.ok) {
-    const profileContainer = document.querySelector('#my-profile');
-    if (profileContainer) {
-      profileContainer.innerHTML = '';
-    }
-    await getUserProfile();
-  }
+
+
+  toastr.success("Profile updated successfully!");
+  document.getElementById("my-profile").innerHTML = "";
+getUserProfile();
+}
+
+
+
+
+
 
   if (!RESPONSE.ok) {
     throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);

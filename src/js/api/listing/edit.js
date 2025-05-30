@@ -51,13 +51,13 @@ export async function editListingInAPI(event) {
       }, 3000);
     } else {
       const ERROR_DATA = await RESPONSE.json();
+      toastr.error(JSON.stringify(ERROR_DATA).slice(23, -44));
       throw new Error(ERROR_DATA.message || 'Failed to edit post');
     }
   } catch (error) {
-    const ERROR_MESSAGE = document.createElement('div');
-    ERROR_MESSAGE.textContent = error.message;
-    ERROR_MESSAGE.style.color = 'red';
-    document.body.appendChild(ERROR_MESSAGE);
+
+  toastr.error(error.message);
+
   }
 }
 
@@ -80,10 +80,7 @@ export async function populateEditForm() {
       );
 
       if (!RESPONSE.ok) {
-        const ERROR_MESSAGE = document.createElement('div');
-        ERROR_MESSAGE.textContent = 'Failed to fetch listing';
-        ERROR_MESSAGE.style.color = 'red';
-        document.body.appendChild(ERROR_MESSAGE);
+        toastr.error('Failed to fetch listing');
         throw new Error('Failed to fetch listing');
       }
 
