@@ -20,6 +20,11 @@ import 'toastr/build/toastr.min.css';
 //
 
 export function createAllListingsElements(listing) {
+  const highestBid = listing.bids && listing.bids.length > 0
+    ? Math.max(...listing.bids.map(bid => Number(bid.amount)))
+    : null;
+
+  const HIGHEST_BID = document.createElement('p');
   const LISTING_CONTAINER = document.createElement('div');
   const IMAGE_CONTAINER = document.createElement('div');
   IMAGE_CONTAINER.id = `image-container`;
@@ -50,6 +55,9 @@ export function createAllListingsElements(listing) {
   CLOSE_BUTTON.type = 'button';
   PLACE_BID_TITLE.textContent = 'Place Bid';
   PLACE_BID_LABEL.textContent = 'Your bid';
+  HIGHEST_BID.textContent = highestBid !== null
+    ? `Highest Bid: ${highestBid}`
+    : 'No bids placed yet.';
 
   PLACE_BID_SUBMIT_CONTAINER.appendChild(PLACE_BID_SUBMIT);
   CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
@@ -190,11 +198,14 @@ export function createAllListingsElements(listing) {
     BIDS_CONTAINER.appendChild(BIDS_IMAGE);
   }
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+  BIDS_CONTAINER.appendChild(HIGHEST_BID);
+
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
+
 
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
@@ -366,7 +377,7 @@ export function createAllListingsElements(listing) {
     BUTTON_CONTAINER,
     PREV_IMG,
     NEXT_IMG,
-    COIN_IMAGE
+    COIN_IMAGE, HIGHEST_BID
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -420,11 +431,12 @@ export function addStylesToElements(
   BUTTON_CONTAINER,
   PREV_IMG,
   NEXT_IMG,
-  COIN_IMAGE
+  COIN_IMAGE, HIGHEST_BID
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
+  HIGHEST_BID.classList.add('labels');
   LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
   LISTING_BIDS.classList.add('h2-styles');
 

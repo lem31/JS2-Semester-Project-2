@@ -21,6 +21,8 @@ export async function getMyListings() {
       headers: headers(),
     });
 
+
+
     if (!RESPONSE.ok) {
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
@@ -31,7 +33,10 @@ export async function getMyListings() {
 
     localStorage.setItem('myListings', JSON.stringify(MY_LISTINGS));
 
+
     const LISTINGS = JSON.parse(localStorage.getItem('myListings') || '[]');
+
+
 
     const LISTINGS_CONTAINER = document.getElementById('my-auction-listings');
     if (LISTINGS_CONTAINER) {
