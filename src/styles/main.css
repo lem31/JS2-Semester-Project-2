@@ -361,7 +361,8 @@ transition: opacity 0.3s ease-in-out;
 }
 
 .sidebar-height-when-closed {
-  @apply max-h-[220px] top-0 bottom-0 pt-0 overflow-y-visible;
+
+  @apply pb-32  top-0 bottom-0 pt-0 overflow-y-visible;
 }
 
 .sidebar-height-when-open {
@@ -375,6 +376,14 @@ transition: opacity 0.3s ease-in-out;
 
 .nav-hover {
   @apply w-[150px];
+}
+
+.logo-top-margin{
+  @apply mt-[310px];
+}
+
+.logo-no-margin{
+  @apply mt-0;
 }
 
 

@@ -110,11 +110,15 @@ export function displayNav() {
   const NAV_MENU = document.getElementById('nav-menu');
   const SIDEBAR = document.querySelector('.side-bar');
   const HAMBURGER_BTN = document.getElementById('hamburger-btn');
+  const LOGO = document.querySelector('.logo');
 
   HAMBURGER_BTN.addEventListener('click', () => {
     NAV_MENU.classList.toggle('hidden');
     SIDEBAR.classList.toggle('sidebar-height-when-open');
     SIDEBAR.classList.toggle('sidebar-height-when-closed');
+LOGO.classList.toggle('logo-top-margin');
+LOGO.classList.toggle('logo-no-margin');
+
   });
 }
 
