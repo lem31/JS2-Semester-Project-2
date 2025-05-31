@@ -116,12 +116,10 @@ export function displayNav() {
     NAV_MENU.classList.toggle('hidden');
     SIDEBAR.classList.toggle('sidebar-height-when-open');
     SIDEBAR.classList.toggle('sidebar-height-when-closed');
-LOGO.classList.toggle('logo-top-margin');
-LOGO.classList.toggle('logo-no-margin');
-
+    LOGO.classList.toggle('logo-top-margin');
+    LOGO.classList.toggle('logo-no-margin');
   });
 }
-
 
 export function onHoverNavLink() {
   const NAV_LINKS = document.querySelectorAll('.nav-link');
@@ -134,21 +132,21 @@ export function onHoverNavLink() {
     link.addEventListener('mouseover', () => {
       clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
-      span.classList.remove('hidden');
-      span.classList.add('span-text-hover');
-      NAV.classList.add('nav-hover');
-      NAV_MENU.classList.add('nav-styles-hover');
+        span.classList.remove('hidden');
+        span.classList.add('span-text-hover');
+        NAV.classList.add('nav-hover');
+        NAV_MENU.classList.add('nav-styles-hover');
       });
     });
 
     link.addEventListener('mouseout', () => {
       hoverTimeout = setTimeout(() => {
-      SPAN_TEXT.forEach((span) => {
-        span.classList.remove('span-text-hover');
-        span.classList.add('hidden');
-        NAV.classList.remove('nav-hover');
-        NAV_MENU.classList.remove('nav-styles-hover');
-      });
+        SPAN_TEXT.forEach((span) => {
+          span.classList.remove('span-text-hover');
+          span.classList.add('hidden');
+          NAV.classList.remove('nav-hover');
+          NAV_MENU.classList.remove('nav-styles-hover');
+        });
       }, 5000);
     });
     link.addEventListener('mouseout', () => {

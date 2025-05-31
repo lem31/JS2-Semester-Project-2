@@ -146,12 +146,15 @@
 }
 
 .sidebar-height-when-closed {
-  @apply max-h-[100px] top-0 bottom-0 pt-0 overflow-y-visible;
+  @apply max-h-[100px] top-0 bottom-0 pt-0;
+  overflow-y: visible
 }
 
 .sidebar-height-when-open {
   @apply h-80 w-auto top-0 bottom-0 pt-0 overflow-y-scroll;
 }
+
+.search-category-box{ @apply flex flex-col w-full h-[100px]  }
 
 .nav-styles {
   @apply flex flex-row;
@@ -337,6 +340,8 @@
  .hamburger{
   display: block;
 }
+
+.search-category-box{ @apply  h-[50px]  }
 
 /* .nav-menu{
   @apply hidden;
