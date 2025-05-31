@@ -110,20 +110,14 @@ export function displayNav() {
   const NAV_MENU = document.getElementById('nav-menu');
   const SIDEBAR = document.querySelector('.side-bar');
   const HAMBURGER_BTN = document.getElementById('hamburger-btn');
+
   HAMBURGER_BTN.addEventListener('click', () => {
-    if (NAV_MENU.classList.contains('hidden')) {
-      SIDEBAR.classList.remove('sidebar-height-when-closed');
-      SIDEBAR.classList.add('sidebar-height-when-open');
-      NAV_MENU.classList.remove('hidden');
-      NAV_MENU.classList.add('nav-styles');
-    } else {
-      NAV_MENU.classList.add('hidden');
-      SIDEBAR.classList.remove('sidebar-height-when-open');
-      SIDEBAR.classList.add('sidebar-height-when-closed');
-      NAV_MENU.classList.remove('nav-styles');
-    }
+    NAV_MENU.classList.toggle('hidden');
+    SIDEBAR.classList.toggle('sidebar-height-when-open');
+    SIDEBAR.classList.toggle('sidebar-height-when-closed');
   });
 }
+
 
 export function onHoverNavLink() {
   const NAV_LINKS = document.querySelectorAll('.nav-link');
@@ -131,13 +125,27 @@ export function onHoverNavLink() {
   const NAV = document.querySelector('.nav');
   const NAV_MENU = document.getElementById('nav-menu');
   NAV_LINKS.forEach((link) => {
+    let hoverTimeout;
+
     link.addEventListener('mouseover', () => {
+      clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
-        span.classList.remove('hidden');
-        span.classList.add('span-text-hover');
-        NAV.classList.add('nav-hover');
-        NAV_MENU.classList.add('nav-styles-hover');
+      span.classList.remove('hidden');
+      span.classList.add('span-text-hover');
+      NAV.classList.add('nav-hover');
+      NAV_MENU.classList.add('nav-styles-hover');
       });
+    });
+
+    link.addEventListener('mouseout', () => {
+      hoverTimeout = setTimeout(() => {
+      SPAN_TEXT.forEach((span) => {
+        span.classList.remove('span-text-hover');
+        span.classList.add('hidden');
+        NAV.classList.remove('nav-hover');
+        NAV_MENU.classList.remove('nav-styles-hover');
+      });
+      }, 5000);
     });
     link.addEventListener('mouseout', () => {
       SPAN_TEXT.forEach((span) => {
