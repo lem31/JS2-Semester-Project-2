@@ -33,7 +33,6 @@ export async function getAllArtAuctionListings() {
 
     const LISTINGS = JSON.parse(localStorage.getItem('allListings') || '[]');
 
-
     const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
     if (LISTINGS_CONTAINER) {
       LISTINGS.forEach((listing) => {
