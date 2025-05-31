@@ -8,34 +8,8 @@
     <script type="module" src="./src/app.js"></script>
   </head>
   <body class="body-styles">
-    <header class="w-full h-42 pt-6">
-      <div class="search-bar search-bar-layout sidebar-height-when-closed">
-        <div
-          class="flex-col-center-layout md:flex md:flex-row gap-2 relative h-20"
-        >
-          <input
-            type="text"
-            id="search-bar"
-            class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
-            placeholder="Search listings..."
-          />
-          <div
-            class="absolute w-[200px] mb-16 md:w-[480px] md:mb-8 flex flex-row"
-          >
-            <img
-              src="./images/icons8-search-50.png"
-              alt="search icon"
-              class="search-icon w-8 h-8 absolute"
-            />
-          </div>
-          <button
-            id="search-button"
-            class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
-          >
-            Search
-          </button>
-        </div>
-      </div>
+    <header class="w-full pt-6 flex flex-row h-64">
+
       <div class="side-bar sidebar-styles">
         <img
           class="logo w-16 h-auto md:w-20 md:h-auto"
@@ -145,14 +119,36 @@
           </ul>
         </nav>
       </div>
-    </header>
-    <main class="flex-1">
-      <div class="flex-row-center">
-        <h1 class="h1-styles w-[180px] md:w-[300px] mt-8 md:mt-0 text-center">
-          Current Auction Listings
-        </h1>
+      <div class="search-category-box flex flex-col w-full">
+      <div class="search-bar search-bar-layout sidebar-height-when-closed">
+        <div
+          class="flex-col-center-layout md:flex md:flex-row gap-2 relative h-20"
+        >
+          <input
+            type="text"
+            id="search-bar"
+            class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
+            placeholder="Search listings..."
+          />
+          <div
+            class="absolute w-[200px] mb-16 md:w-[480px] md:mb-8 flex flex-row"
+          >
+            <img
+              src="./images/icons8-search-50.png"
+              alt="search icon"
+              class="search-icon w-8 h-8 absolute"
+            />
+          </div>
+          <button
+            id="search-button"
+            class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
+          >
+            Search
+          </button>
+        </div>
       </div>
-      <div class="Categories flex-row-center">
+
+       <div class="Categories flex-row-center">
         <ul class="two-column-layout md:flex md:justify-center gap-4 w-[70%]">
           <li>
             <a
@@ -189,6 +185,15 @@
           </li>
         </ul>
       </div>
+      </div>
+    </header>
+    <main class="flex-1">
+      <div class="flex-row-center">
+        <h1 class="h1-styles w-[180px] md:w-[300px] mt-8 md:mt-0 text-center">
+          Current Auction Listings
+        </h1>
+      </div>
+
 
       <div id="all-auction-listings"></div>
     </main>

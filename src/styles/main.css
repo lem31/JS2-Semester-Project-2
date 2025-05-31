@@ -120,6 +120,16 @@
   @apply rounded-full border-2 border-[var(--primary-color)];
 }
 
+/* .header-styles{
+  @apply w-full h-42 pt-6
+} */
+
+@layer utilities {
+  .z-12 {
+    z-index: 12;
+  }
+}
+
 .sidebar-styles {
   @apply flex flex-col items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
 }
@@ -305,4 +315,10 @@
 
 .profile-avatar {
   @apply absolute w-[127px] h-[127px] md:w-[170px] md:h-[170px] rounded-full border-2 border-[var(--primary-color)];
+}
+
+
+@media (max-width:767px){
+
+
 }
