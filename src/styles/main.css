@@ -131,7 +131,10 @@
 }
 
 .sidebar-styles {
-  @apply flex flex-col items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
+  @apply flex flex-row items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] ;
+}
+.hamburger{
+  display: none;
 }
 
 .sidebar-height-when-closed {
@@ -319,6 +322,11 @@
 
 
 @media (max-width:767px){
+  .sidebar-styles{
+ @apply flex flex-col items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;}
 
+ .hamburger{
+  display: block;
+}
 
 }
