@@ -20,9 +20,10 @@ import 'toastr/build/toastr.min.css';
 //
 
 export function createAllListingsElements(listing) {
-  const highestBid = listing.bids && listing.bids.length > 0
-    ? Math.max(...listing.bids.map(bid => Number(bid.amount)))
-    : null;
+  const highestBid =
+    listing.bids && listing.bids.length > 0
+      ? Math.max(...listing.bids.map((bid) => Number(bid.amount)))
+      : null;
 
   const HIGHEST_BID = document.createElement('p');
   const LISTING_CONTAINER = document.createElement('div');
@@ -55,9 +56,8 @@ export function createAllListingsElements(listing) {
   CLOSE_BUTTON.type = 'button';
   PLACE_BID_TITLE.textContent = 'Place Bid';
   PLACE_BID_LABEL.textContent = 'Your bid';
-  HIGHEST_BID.textContent = highestBid !== null
-    ? `Highest Bid: ${highestBid}`
-    : 'No bids placed yet.';
+  HIGHEST_BID.textContent =
+    highestBid !== null ? `Highest Bid: ${highestBid}` : 'No bids placed yet.';
 
   PLACE_BID_SUBMIT_CONTAINER.appendChild(PLACE_BID_SUBMIT);
   CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
@@ -200,12 +200,10 @@ export function createAllListingsElements(listing) {
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   BIDS_CONTAINER.appendChild(HIGHEST_BID);
 
-
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
-
 
   TEXT_BUTTON_CONTAINER.appendChild(VIEW_LISTING_BTN_CONTAINER);
   BUTTON_CONTAINER.appendChild(PLACE_BID_BUTTON);
@@ -377,7 +375,8 @@ export function createAllListingsElements(listing) {
     BUTTON_CONTAINER,
     PREV_IMG,
     NEXT_IMG,
-    COIN_IMAGE, HIGHEST_BID
+    COIN_IMAGE,
+    HIGHEST_BID
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -431,7 +430,8 @@ export function addStylesToElements(
   BUTTON_CONTAINER,
   PREV_IMG,
   NEXT_IMG,
-  COIN_IMAGE, HIGHEST_BID
+  COIN_IMAGE,
+  HIGHEST_BID
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles');
