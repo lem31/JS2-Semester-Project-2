@@ -375,7 +375,7 @@ transition: opacity 0.3s ease-in-out;
 }
 
 .nav-menu{
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col items-center justify-center gap-4 pt-2 pb-2;
 }
 
 .nav-styles {
@@ -401,7 +401,7 @@ transition: opacity 0.3s ease-in-out;
 }
 
 .logo-top-margin{
-  @apply mt-[310px];
+  @apply mt-[360px];
 }
 
 .logo-no-margin{
