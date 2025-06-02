@@ -497,6 +497,12 @@ display: flex;
   items-center: center;
   justify-items: center;
 }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 }
 
 @media (max-width: 384px) {
