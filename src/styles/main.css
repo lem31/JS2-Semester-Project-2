@@ -163,7 +163,7 @@
   @apply h-80 w-auto top-0 bottom-0 pt-0 overflow-y-scroll;
 }
 
-.search-category-box{ @apply flex flex-col items-center w-[100%] h-[100px];  }
+.search-category-box{ @apply flex flex-col items-center w-[100%] h-auto gap-0;  }
 
 .desktop-category-div{
   @apply flex flex-row;
@@ -185,9 +185,6 @@
   @apply flex flex-row text-[var(--secondary-color)];
 }
 
-.nav-hover {
-  @apply w-full;
-}
 
 .outer-container {
   @apply flex flex-col w-[100%] mt-6 items-center justify-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
