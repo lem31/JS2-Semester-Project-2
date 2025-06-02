@@ -86,7 +86,7 @@
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
   @apply bg-primary font-extrabold text-tertiary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
-  padding: 10px 20px;
+  padding: 10px 25px;
 }
 
 .close-button-auth {
@@ -212,7 +212,7 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center w-[300px] h-[380px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center w-[380px] h-[420px] pr-4  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .listing-header {
