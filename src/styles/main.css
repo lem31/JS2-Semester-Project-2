@@ -215,7 +215,7 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center w-[300px] h-[320px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center w-[300px] h-[380px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .listing-header{
@@ -378,6 +378,11 @@
 
  .hamburger{
   display: block;
+}
+
+.auth-main{
+  @apply mt-20;
+
 }
 
 .search-category-box{ @apply  h-[50px] gap-4;  }

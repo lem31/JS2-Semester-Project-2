@@ -65,13 +65,6 @@ export async function signIn(event) {
         'You have successfully signed in, you will be redirected to your profile'
       );
 
-      const loadingSymbol = document.createElement('div');
-      loadingSymbol.className = 'loading-symbol';
-      loadingSymbol.style.color = 'white';
-      loadingSymbol.classList.add('loading-symbol', 'bg-black');
-      loadingSymbol.textContent = 'Loading...';
-      document.body.appendChild(loadingSymbol);
-
       setTimeout(() => {
         window.location.href = '/profile/';
       }, 2000);
@@ -149,12 +142,6 @@ export async function register(event) {
 
     if (RESPONSE.ok) {
       toastr.success('Thank you for registering, please wait');
-
-      const loadingSymbol = document.createElement('div');
-      loadingSymbol.className = 'loading-symbol';
-      loadingSymbol.classList.add('loading-symbol');
-      loadingSymbol.textContent = 'Loading...';
-      document.body.appendChild(loadingSymbol);
 
       setTimeout(() => {
         window.location.href = '/auth/';
