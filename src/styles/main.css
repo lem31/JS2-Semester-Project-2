@@ -86,6 +86,7 @@
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
   @apply bg-primary font-extrabold text-tertiary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
+  padding: 10px 20px;
 }
 
 .close-button-auth {
