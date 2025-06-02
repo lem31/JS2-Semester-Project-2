@@ -10,6 +10,7 @@ import { displayMyListingsLinkNav } from '../../components/sidebar.js';
 import { displayProfileLinkNav } from '../..//components/sidebar.js';
 import { displayMyBidsLinkNav } from '../../components/sidebar.js';
 import { displayCreateListingLinkNav } from '../../components/sidebar.js';
+import { filterSelected } from '../../components/search.js';
 
 displayMyListingsLinkNav();
 displayLogoutBtn();
@@ -23,3 +24,4 @@ getAllArtAuctionListings();
 onClickSearchButton();
 displayNav();
 onHoverNavLink();
+filterSelected();

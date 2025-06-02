@@ -4,6 +4,8 @@ import { ALL_LISTINGS_API } from '../constants';
 import { createIndividualListingElement } from '../../ui/listing/read.js';
 
 import { createAllListingsElements } from '../../ui/all_listings/read.js';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function getAllArtAuctionListings
@@ -56,10 +58,7 @@ export async function displayIndividualListing() {
       );
 
       if (!RESPONSE.ok) {
-        const ERROR_MESSAGE = document.createElement('div');
-        ERROR_MESSAGE.textContent = 'Failed to fetch listing';
-        ERROR_MESSAGE.style.color = 'red';
-        document.body.appendChild(ERROR_MESSAGE);
+        toastr.error('Failed to fetch listing');
         throw new Error('Failed to fetch listing');
       }
 
@@ -68,10 +67,7 @@ export async function displayIndividualListing() {
 
       const LISTING_CONTAINER = document.getElementById('all-auction-listings');
       if (!LISTING_CONTAINER) {
-        const ERROR_MESSAGE = document.createElement('div');
-        ERROR_MESSAGE.textContent = 'Listing container not found';
-        ERROR_MESSAGE.style.color = 'red';
-        document.body.appendChild(ERROR_MESSAGE);
+        toastr.error('Listing container not found');
         throw new Error('Listing container not found');
       }
       LISTING_CONTAINER.innerHTML = '';

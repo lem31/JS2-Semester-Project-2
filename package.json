@@ -26,6 +26,8 @@
     "vite-plugin-windicss": "^1.9.4"
   },
   "dependencies": {
-    "source-map-js": "^1.2.1"
+    "source-map-js": "^1.2.1",
+    "sweetalert2": "^11.22.0",
+    "toastr": "^2.1.4"
   }
 }

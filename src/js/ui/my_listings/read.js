@@ -12,6 +12,8 @@ import { postBidToAPI } from '../../api/bids/place.js';
 import prevImage from '../../../../images/icons8-left-100.png';
 import nextImage from '../../../../images/icons8-right-100.png';
 import coinImage from '../../../../images/icons8-coins-64.png';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function createMyListingsElements
@@ -114,29 +116,8 @@ export function createMyListingsElements(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      const ERROR_MESSAGE = document.createElement('p');
-      ERROR_MESSAGE.textContent = 'You need to be logged in to place a bid.';
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 1500);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
+      toastr.error('You need to be logged in to place a bid.');
+
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
@@ -203,7 +184,7 @@ export function createMyListingsElements(listing) {
 
   const urlPattern = new RegExp(
     '^(https?:\\/\\/)?' +
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
       '((\\d{1,3}\\.){3}\\d{1,3}))' +
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
       '(\\?[;&a-z\\d%_.~+=-]*)?' +
@@ -298,62 +279,14 @@ export function createMyListingsElements(listing) {
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      const ERROR_MESSAGE = document.createElement('p');
-      ERROR_MESSAGE.textContent = 'You need to be logged in to view bids.';
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl',
-        'w-[100px]'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 1500);
+      toastr.error('You need to be logged in to view bids.');
+
       return;
     }
 
     const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
     if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
-      const ERROR_MESSAGE = document.createElement('p');
-
-      ERROR_MESSAGE.textContent =
-        'Please close the current bids before opening another.';
-
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 3000);
-      return;
+      toastr.error('Please close the current bids before opening another.');
     }
 
     if (listing.bids && listing.bids.length > 0) {
@@ -368,20 +301,7 @@ export function createMyListingsElements(listing) {
         VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
-      const NO_BIDS_MESSAGE = document.createElement('p');
-      NO_BIDS_MESSAGE.textContent = 'No bids available.';
-      NO_BIDS_MESSAGE.classList.add(
-        'no-bids-message',
-        'bg-white',
-        'text-red-500',
-        'absolute',
-        'text-xl',
-        'z-50'
-      );
-      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
-      setTimeout(() => {
-        NO_BIDS_MESSAGE.remove();
-      }, 3000);
+      toastr.error('No bids available.');
     }
   });
 

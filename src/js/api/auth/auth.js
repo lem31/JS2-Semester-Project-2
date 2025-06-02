@@ -1,14 +1,12 @@
 import { API_AUTH_REGISTER } from '../constants.js';
 import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
-import { displayErrorMessage } from '../bids/place.js';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 const REG_FORM = document.getElementById('reg-form');
-const ERROR_MESSAGE = document.getElementById('error-message-reg-form');
+
 const SIGN_IN_FORM = document.querySelector('.sign-in-form');
-const ERROR_MESSAGE_SIGN_IN = document.getElementById(
-  'error-message-sign-in-form'
-);
 
 /**
  *
@@ -44,16 +42,16 @@ export async function signIn(event) {
     if (!RESPONSE.ok) {
       return RESPONSE.json().then((errorResponse) => {
         const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
-        displayErrorMessage(errorMessage);
+        toastr.error(errorMessage);
         throw new Error('Failed to post bid');
       });
     }
     if (!REQUEST_BODY_SIGN_IN.email) {
-      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Email is required';
+      toastr.error('Error: Email is required');
       return;
     }
     if (!REQUEST_BODY_SIGN_IN.password) {
-      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Password is required';
+      toastr.error('Error: Password is required');
       return;
     }
 
@@ -63,28 +61,20 @@ export async function signIn(event) {
       const TOKEN = INFO.accessToken;
       localStorage.setItem('accessToken', TOKEN);
       localStorage.setItem('user', JSON.stringify(INFO));
-      ERROR_MESSAGE.textContent =
-        'You have successfully signed in, you will be redirected to your profile';
-      ERROR_MESSAGE.style.color = 'green';
-
-      const loadingSymbol = document.createElement('div');
-      loadingSymbol.className = 'loading-symbol';
-      loadingSymbol.style.color = 'white';
-      loadingSymbol.classList.add('loading-symbol', 'bg-black');
-      loadingSymbol.textContent = 'Loading...';
-      document.body.appendChild(loadingSymbol);
+      toastr.success(
+        'You have successfully signed in, you will be redirected to your profile'
+      );
 
       setTimeout(() => {
         window.location.href = '/profile/';
       }, 2000);
     } else if (RESPONSE.status === 401) {
-      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Invalid email or password';
+      toastr.error('Error: Invalid email or password');
     } else {
-      ERROR_MESSAGE_SIGN_IN.textContent = 'Error: Something went wrong';
+      toastr.error('Error: Something went wrong');
     }
   } catch (error) {
-    ERROR_MESSAGE_SIGN_IN.textContent =
-      'Error: Unable to connect to the server';
+    toastr.error('Error: Unable to connect to the server');
   }
 }
 
@@ -133,43 +123,35 @@ export async function register(event) {
 
     if (!RESPONSE.ok) {
       const errorResponse = await RESPONSE.json();
-      displayErrorMessage(JSON.stringify(errorResponse).slice(23, -44));
+      toastr.error(JSON.stringify(errorResponse).slice(23, -44));
       throw new Error('Failed to post bid');
     }
 
     if (!REQUEST_BODY_REG.email) {
-      ERROR_MESSAGE.textContent = 'Error: Email is required';
+      toastr.error('Error: Email is required');
       return;
     }
     if (!REQUEST_BODY_REG.password) {
-      ERROR_MESSAGE.textContent = 'Error: Password is required';
+      toastr.error('Error: Password is required');
       return;
     }
     if (REQUEST_BODY_REG.password.length < 8) {
-      ERROR_MESSAGE.textContent =
-        'Error: Password must be at least 8 characters long';
+      toastr.error('Error: Password must be at least 8 characters long');
       return;
     }
 
     if (RESPONSE.ok) {
-      ERROR_MESSAGE.textContent = 'Thank you for registering, please wait';
-      ERROR_MESSAGE.classList.add('text-green-500', 'text-center', 'w-[200px]');
-
-      const loadingSymbol = document.createElement('div');
-      loadingSymbol.className = 'loading-symbol';
-      loadingSymbol.classList.add('loading-symbol');
-      loadingSymbol.textContent = 'Loading...';
-      document.body.appendChild(loadingSymbol);
+      toastr.success('Thank you for registering, please wait');
 
       setTimeout(() => {
         window.location.href = '/auth/';
       }, 2000);
     } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
-      ERROR_MESSAGE.textContent = 'Error: User already exists';
+      toastr.error('Error: User already exists');
     } else {
-      ERROR_MESSAGE.textContent = 'Error: Something went wrong';
+      toastr.error('Error: Something went wrong');
     }
   } catch (error) {
-    ERROR_MESSAGE.textContent = 'Error: Unable to connect to the server';
+    toastr.error('Error: Unable to connect to the server');
   }
 }

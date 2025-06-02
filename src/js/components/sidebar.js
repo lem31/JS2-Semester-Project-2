@@ -110,17 +110,20 @@ export function displayNav() {
   const NAV_MENU = document.getElementById('nav-menu');
   const SIDEBAR = document.querySelector('.side-bar');
   const HAMBURGER_BTN = document.getElementById('hamburger-btn');
+  const LOGO = document.querySelector('.logo');
+
   HAMBURGER_BTN.addEventListener('click', () => {
-    if (NAV_MENU.classList.contains('hidden')) {
-      SIDEBAR.classList.remove('sidebar-height-when-closed');
-      SIDEBAR.classList.add('sidebar-height-when-open');
-      NAV_MENU.classList.remove('hidden');
-      NAV_MENU.classList.add('nav-styles');
+    NAV_MENU.classList.toggle('hidden');
+    SIDEBAR.classList.toggle('sidebar-height-when-open');
+    SIDEBAR.classList.toggle('sidebar-height-when-closed');
+    const ACCESS_TOKEN = localStorage.getItem('accessToken');
+
+    if (ACCESS_TOKEN) {
+      LOGO.classList.toggle('logo-no-margin');
+      LOGO.classList.toggle('logo-margin-logged-in-closed');
     } else {
-      NAV_MENU.classList.add('hidden');
-      SIDEBAR.classList.remove('sidebar-height-when-open');
-      SIDEBAR.classList.add('sidebar-height-when-closed');
-      NAV_MENU.classList.remove('nav-styles');
+      LOGO.classList.toggle('logo-top-margin');
+      LOGO.classList.toggle('logo-no-margin');
     }
   });
 }
@@ -130,22 +133,42 @@ export function onHoverNavLink() {
   const SPAN_TEXT = document.querySelectorAll('.span-text');
   const NAV = document.querySelector('.nav');
   const NAV_MENU = document.getElementById('nav-menu');
+  const SIDEBAR = document.querySelector('.side-bar');
+  let hoverTimeout;
+
   NAV_LINKS.forEach((link) => {
     link.addEventListener('mouseover', () => {
+      clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
         span.classList.remove('hidden');
         span.classList.add('span-text-hover');
-        NAV.classList.add('nav-hover');
-        NAV_MENU.classList.add('nav-styles-hover');
       });
+      NAV.classList.add('nav-hover');
+      NAV_MENU.classList.add('nav-styles-hover');
     });
+
     link.addEventListener('mouseout', () => {
+      hoverTimeout = setTimeout(() => {
+        if (!NAV.classList.contains('nav-hover')) return;
+        SPAN_TEXT.forEach((span) => {
+          span.classList.remove('span-text-hover');
+          span.classList.add('hidden');
+        });
+        NAV.classList.remove('nav-hover');
+        NAV_MENU.classList.remove('nav-styles-hover');
+      }, 1500);
+    });
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    if (!SIDEBAR.contains(event.target)) {
+      clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
         span.classList.remove('span-text-hover');
         span.classList.add('hidden');
-        NAV.classList.remove('nav-hover');
-        NAV_MENU.classList.remove('nav-styles-hover');
       });
-    });
+      NAV.classList.remove('nav-hover');
+      NAV_MENU.classList.remove('nav-styles-hover');
+    }
   });
 }

@@ -7,6 +7,8 @@ import { postBidToAPI } from '../../api/bids/place.js';
 import coinImage from '../../../../images/icons8-coins-64.png';
 import prevImage from '../../../../images/icons8-left-100.png';
 import nextImage from '../../../../images/icons8-right-100.png';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function createAllListingsElements
@@ -18,6 +20,12 @@ import nextImage from '../../../../images/icons8-right-100.png';
 //
 
 export function createAllListingsElements(listing) {
+  const highestBid =
+    listing.bids && listing.bids.length > 0
+      ? Math.max(...listing.bids.map((bid) => Number(bid.amount)))
+      : null;
+
+  const HIGHEST_BID = document.createElement('p');
   const LISTING_CONTAINER = document.createElement('div');
   const IMAGE_CONTAINER = document.createElement('div');
   IMAGE_CONTAINER.id = `image-container`;
@@ -48,6 +56,8 @@ export function createAllListingsElements(listing) {
   CLOSE_BUTTON.type = 'button';
   PLACE_BID_TITLE.textContent = 'Place Bid';
   PLACE_BID_LABEL.textContent = 'Your bid';
+  HIGHEST_BID.textContent =
+    highestBid !== null ? `Highest Bid: ${highestBid}` : 'No bids placed yet.';
 
   PLACE_BID_SUBMIT_CONTAINER.appendChild(PLACE_BID_SUBMIT);
   CLOSE_BUTTON_CONTAINER.appendChild(CLOSE_BUTTON);
@@ -70,7 +80,7 @@ export function createAllListingsElements(listing) {
   const SELLER_AVATAR = document.createElement('img');
   const SELLER_INFO_BOX = document.createElement('div');
   const LISTING_TITLE = document.createElement('h2');
-  const LISTING_DESCRIPTION = document.createElement('p');
+
   const LISTING_BIDS = document.createElement('p');
   const LISTING_END_DATE = document.createElement('p');
   const BUTTON_CONTAINER = document.createElement('div');
@@ -102,32 +112,8 @@ export function createAllListingsElements(listing) {
 
   PLACE_BID_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      const ERROR_MESSAGE = document.createElement('p');
-      ERROR_MESSAGE.textContent = 'You need to be logged in to place a bid.';
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl',
-        'w-[100px]',
-        'ml-[50px]'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 1500);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
+      toastr.error('You need to be logged in to place a bid.');
+
       return;
     }
     if (PLACE_BID_FORM.style.display === 'none') {
@@ -169,9 +155,9 @@ export function createAllListingsElements(listing) {
       : 'No bids';
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
 
-  LISTING_TITLE.textContent = listing.title || 'No title available';
-  LISTING_DESCRIPTION.textContent =
-    listing.description || 'No description available';
+  LISTING_TITLE.textContent = listing.title?.trim()
+    ? listing.title
+    : 'No title available';
 
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
@@ -193,27 +179,15 @@ export function createAllListingsElements(listing) {
   NEXT_BUTTON.appendChild(NEXT_IMG);
   PREV_BUTTON.appendChild(PREV_IMG);
 
-  const urlPattern = new RegExp(
-    '^(https?:\\/\\/)?' +
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' +
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
-      '(\\?[;&a-z\\d%_.~+=-]*)?' +
-      '(\\#[-a-z\\d_]*)?$',
-    'i'
-  );
-
-  if (!urlPattern.test(listing.title)) {
-    TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-  }
+  BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   if (isLoggedIn()) {
     BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+    BIDS_CONTAINER.appendChild(HIGHEST_BID);
   }
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
-  TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
@@ -324,61 +298,15 @@ export function createAllListingsElements(listing) {
 
   VIEW_BIDS_BUTTON.addEventListener('click', () => {
     if (!isLoggedIn()) {
-      const ERROR_MESSAGE = document.createElement('p');
-      ERROR_MESSAGE.textContent = 'You need to be logged in to view bids.';
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl',
-        'w-[100px]'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 1500);
+      toastr.error('You need to be logged in to view bids.');
+
       return;
     }
 
     const OPEN_BIDS_CONTAINER = document.querySelector('.view-bids-box');
     if (OPEN_BIDS_CONTAINER && OPEN_BIDS_CONTAINER !== VIEW_BIDS_CONTAINER) {
-      const ERROR_MESSAGE = document.createElement('p');
+      toastr.error('Please close the current bids before opening another.');
 
-      ERROR_MESSAGE.textContent =
-        'Please close the current bids before opening another.';
-
-      ERROR_MESSAGE.classList.add(
-        'error-message',
-        'no-bids-message',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        'transform',
-        '-translate-x-1/2',
-        '-translate-y-1/2',
-        'bg-white',
-        'text-red-500',
-        'z-50',
-        'text-xl'
-      );
-      LISTING_CONTAINER.appendChild(ERROR_MESSAGE);
-      const RECT = event.target.getBoundingClientRect();
-      ERROR_MESSAGE.style.top = `${RECT.top + window.scrollY}px`;
-      ERROR_MESSAGE.style.left = `${RECT.left + window.scrollX}px`;
-      setTimeout(() => {
-        ERROR_MESSAGE.remove();
-      }, 3000);
       return;
     }
 
@@ -394,20 +322,7 @@ export function createAllListingsElements(listing) {
         VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
-      const NO_BIDS_MESSAGE = document.createElement('p');
-      NO_BIDS_MESSAGE.textContent = 'No bids available.';
-      NO_BIDS_MESSAGE.classList.add(
-        'no-bids-message',
-        'bg-white',
-        'text-red-500',
-        'absolute',
-        'text-xl',
-        'z-50'
-      );
-      LISTING_CONTAINER.appendChild(NO_BIDS_MESSAGE);
-      setTimeout(() => {
-        NO_BIDS_MESSAGE.remove();
-      }, 3000);
+      toastr.error('No bids available.');
     }
   });
 
@@ -447,7 +362,8 @@ export function createAllListingsElements(listing) {
     BUTTON_CONTAINER,
     PREV_IMG,
     NEXT_IMG,
-    COIN_IMAGE
+    COIN_IMAGE,
+    HIGHEST_BID
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -501,11 +417,13 @@ export function addStylesToElements(
   BUTTON_CONTAINER,
   PREV_IMG,
   NEXT_IMG,
-  COIN_IMAGE
+  COIN_IMAGE,
+  HIGHEST_BID
 ) {
   SELLER_NAME.classList.add('labels');
-  LISTING_TITLE.classList.add('h2-styles');
+  LISTING_TITLE.classList.add('h2-styles', 'listing-header');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
+  HIGHEST_BID.classList.add('labels');
   LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
   LISTING_BIDS.classList.add('h2-styles');
 
@@ -539,24 +457,10 @@ export function addStylesToElements(
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
-  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
-  VIEW_BIDS_BUTTON.classList.add(
-    'view-bids-btn',
-    'button-styles',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout', 'relative');
+  VIEW_BIDS_BUTTON.classList.add('view-bids-btn', 'button-styles');
   SELLER_AVATAR.classList.add('seller-avatar-img');
-  PLACE_BID_BUTTON.classList.add(
-    'display-place-bid-form-btn',
-    'button-styles',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn', 'button-styles');
   VIEW_LISTING_BTN.classList.add(
     'button-styles',
     'view-listing-btn',
@@ -569,7 +473,7 @@ export function addStylesToElements(
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   SELLER_INFO_BOX.classList.add('flex-row-center');
-  BIDS_CONTAINER.classList.add('flex-row-center');
+  BIDS_CONTAINER.classList.add('flex-col-center');
 
   OUTER_CONTAINER.classList.add('outer-container');
 

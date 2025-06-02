@@ -1,4 +1,6 @@
 import { headers } from '../headers';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function postBidToAPI
@@ -22,50 +24,14 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       body: JSON.stringify({ amount: Number(BID_AMOUNT) }),
     });
     if (RESPONSE.ok) {
-      const SUCCESS_MESSAGE = document.createElement('p');
-      SUCCESS_MESSAGE.textContent = 'Bid posted successfully';
-      SUCCESS_MESSAGE.style.color = 'green';
-      document.body.appendChild(SUCCESS_MESSAGE);
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 3000);
+      toastr.success('Bid posted successfully');
     }
     if (!RESPONSE.ok) {
       const errorResponse = await RESPONSE.json();
-      displayErrorMessage(JSON.stringify(errorResponse).slice(23, -44));
+      toastr.error(JSON.stringify(errorResponse).slice(23, -44));
       throw new Error('Failed to post bid');
     }
   } catch (error) {
     throw new Error('Error posting bid: ' + error.message);
   }
-}
-
-/**
- * @function displayErrorMessage
- * @param {string} message
- * @description This function displays an error message to the user.
- */
-export function displayErrorMessage(message) {
-  const ERROR_MESSAGE_CONTAINER = document.createElement('div');
-  ERROR_MESSAGE_CONTAINER.classList.add(
-    'error-message',
-    'text-red-500',
-    'fixed',
-    'top-1/2',
-    'left-1/2',
-    'transform',
-    '-translate-x-1/2',
-    '-translate-y-1/2',
-    'bg-white',
-    'p-4',
-    'border',
-    'border-red-500',
-    'z-50'
-  );
-  ERROR_MESSAGE_CONTAINER.textContent = message;
-  document.body.appendChild(ERROR_MESSAGE_CONTAINER);
-
-  setTimeout(() => {
-    ERROR_MESSAGE_CONTAINER.remove();
-  }, 5000);
 }
