@@ -184,9 +184,9 @@ export function createAllListingsElements(listing) {
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   if (isLoggedIn()) {
     BIDS_CONTAINER.appendChild(BIDS_IMAGE);
+    BIDS_CONTAINER.appendChild(HIGHEST_BID);
   }
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
-  BIDS_CONTAINER.appendChild(HIGHEST_BID);
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
@@ -457,24 +457,10 @@ export function addStylesToElements(
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
-  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
-  VIEW_BIDS_BUTTON.classList.add(
-    'view-bids-btn',
-    'button-styles',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout', 'relative');
+  VIEW_BIDS_BUTTON.classList.add('view-bids-btn', 'button-styles');
   SELLER_AVATAR.classList.add('seller-avatar-img');
-  PLACE_BID_BUTTON.classList.add(
-    'display-place-bid-form-btn',
-    'button-styles',
-    'pl-3',
-    'pr-3',
-    'pt-1',
-    'pb-1'
-  );
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn', 'button-styles');
   VIEW_LISTING_BTN.classList.add(
     'button-styles',
     'view-listing-btn',
