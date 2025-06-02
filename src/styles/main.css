@@ -372,6 +372,8 @@
 
 
 
+
+
 @media (max-width:767px){
   .sidebar-styles{
  @apply flex flex-col gap-0 items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;}
@@ -387,13 +389,7 @@
 
 .search-category-box{ @apply  h-[50px] gap-4;  }
 
-.hidden-auth{
-  display: none;
-  position: absolute;
-  top: 0;
-  left:50%;
-  transform: translateX(-50%);
-}
+
 
 .hidden{
   visibility: hidden;
@@ -431,7 +427,7 @@ transition: opacity 0.3s ease-in-out;
 }
 
 .nav-styles {
-  @apply flex flex-col items-center justify-center gap-2;
+  @apply flex flex-col items-center justify-center gap-2 ;
 }
 
 .sidebar-height-when-closed {
@@ -440,7 +436,7 @@ transition: opacity 0.3s ease-in-out;
 }
 
 .sidebar-height-when-open {
-  @apply h-auto ;
+  @apply h-auto;
 }
 
 
