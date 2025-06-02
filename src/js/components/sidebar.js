@@ -126,17 +126,18 @@ export function onHoverNavLink() {
   const SPAN_TEXT = document.querySelectorAll('.span-text');
   const NAV = document.querySelector('.nav');
   const NAV_MENU = document.getElementById('nav-menu');
-  NAV_LINKS.forEach((link) => {
-    let hoverTimeout;
+  const SIDEBAR = document.querySelector('.side-bar');
+  let hoverTimeout;
 
+  NAV_LINKS.forEach((link) => {
     link.addEventListener('mouseover', () => {
       clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
         span.classList.remove('hidden');
         span.classList.add('span-text-hover');
-        NAV.classList.add('nav-hover');
-        NAV_MENU.classList.add('nav-styles-hover');
       });
+      NAV.classList.add('nav-hover');
+      NAV_MENU.classList.add('nav-styles-hover');
     });
 
     link.addEventListener('mouseout', () => {
@@ -144,18 +145,23 @@ export function onHoverNavLink() {
         SPAN_TEXT.forEach((span) => {
           span.classList.remove('span-text-hover');
           span.classList.add('hidden');
-          NAV.classList.remove('nav-hover');
-          NAV_MENU.classList.remove('nav-styles-hover');
         });
+        NAV.classList.remove('nav-hover');
+        NAV_MENU.classList.remove('nav-styles-hover');
       }, 5000);
     });
-    link.addEventListener('mouseout', () => {
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    if (!SIDEBAR.contains(event.target)) {
+      clearTimeout(hoverTimeout);
       SPAN_TEXT.forEach((span) => {
         span.classList.remove('span-text-hover');
         span.classList.add('hidden');
-        NAV.classList.remove('nav-hover');
-        NAV_MENU.classList.remove('nav-styles-hover');
       });
-    });
+      NAV.classList.remove('nav-hover');
+      NAV_MENU.classList.remove('nav-styles-hover');
+    }
   });
 }
+
