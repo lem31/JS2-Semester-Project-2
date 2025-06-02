@@ -458,7 +458,7 @@ export function addStylesToElements(
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
-  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout');
+  TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout', 'relative');
 VIEW_BIDS_BUTTON.classList.add(
   'view-bids-btn',
   'button-styles',

@@ -327,7 +327,8 @@
 }
 
 .view-bids-box {
-  @apply flex flex-col absolute z-12  mr-[20px] md:mr-[150px] bg-[var(--tertiary-color)] items-center justify-center gap-2 w-[200px] h-[auto] border-2 border-[#e4b022] rounded-lg;
+  @apply flex flex-col absolute top-[100%] z-12 bg-[var(--tertiary-color)] items-center gap-10 w-[200px]  border-2 border-[#e4b022] rounded-lg max-h-[200px] overflow-y-scroll ;
+
 }
 
 .footer {
@@ -362,7 +363,7 @@ display: flex;
 
 
 .listing-container-individual-listing {
-  @apply flex flex-col items-center justify-center overflow-y-scroll;
+  @apply h-auto flex flex-col items-center justify-center mb-[200px] relative;
 }
 
 .listing-images-individual-listing {

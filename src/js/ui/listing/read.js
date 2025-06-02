@@ -349,10 +349,10 @@ export function createIndividualListingElement(listing) {
         !VIEW_BIDS_CONTAINER.classList.contains('view-bids-box')
       ) {
         VIEW_BIDS_CONTAINER.classList.remove('hidden');
-        VIEW_BIDS_CONTAINER.classList.add('view-bids-box', 'mt-[300px]');
+        VIEW_BIDS_CONTAINER.classList.add('view-bids-box' );
       } else {
         VIEW_BIDS_CONTAINER.classList.add('hidden');
-        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box', 'mt-[300px]');
+        VIEW_BIDS_CONTAINER.classList.remove('view-bids-box');
       }
     } else {
       toastr.error('No bids available.');
@@ -450,7 +450,8 @@ function addStylesToIndividualListingElements(
     'form-styles',
     'w-[280px]',
     'h-[218px]',
-    'absolute'
+    'absolute',
+   'top-[20%]',
   );
   PLACE_BID_FORM_CONTAINER.classList.add('relative');
   PLACE_BID_INPUT.classList.add('place-bid-input', 'input-styles');
