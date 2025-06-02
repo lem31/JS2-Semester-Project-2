@@ -24,7 +24,7 @@ export async function getAllArtAuctionListings() {
   const isCacheExpired =
     !lastFetchedTime || Date.now() - lastFetchedTime > CACHE_EXPIRATION;
 
-    toastr.info("Loading listing, please wait...", {
+  toastr.info('Loading listing, please wait...', {
     timeOut: 0,
     extendedTimeOut: 0,
     closeButton: true,
@@ -61,12 +61,12 @@ export async function getAllArtAuctionListings() {
     localStorage.setItem(CACHE_KEY, JSON.stringify(ALL_LISTINGS));
     localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now());
 
-     toastr.clear();
-    toastr.success("Listings loaded successfully!");
+    toastr.clear();
+    toastr.success('Listings loaded successfully!');
 
     displayListings(ALL_LISTINGS);
   } catch (error) {
-    console.error('Error fetching listings', error);
+    throw new Error('Error fetching listings', error);
   }
 }
 
@@ -98,7 +98,7 @@ export async function displayIndividualListing() {
   const isCacheExpired =
     !lastFetchedTime || Date.now() - lastFetchedTime > CACHE_EXPIRATION;
 
-    toastr.info("Loading listing, please wait...", {
+  toastr.info('Loading listing, please wait...', {
     timeOut: 0,
     extendedTimeOut: 0,
     closeButton: true,
@@ -107,7 +107,6 @@ export async function displayIndividualListing() {
   await new Promise((resolve) => setTimeout(resolve, 100));
 
   if (cachedListing && !isCacheExpired) {
-    console.log('Using cached listing');
     renderListing(cachedListing);
     return;
   }
