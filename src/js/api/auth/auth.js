@@ -32,6 +32,15 @@ export async function signIn(event) {
     password: SIGN_IN_FORM_DATA.password,
   };
 
+  const CACHE_KEY = `signIn-${REQUEST_BODY_SIGN_IN.email}`;
+
+  const cachedResponse = localStorage.getItem(CACHE_KEY);
+  if (cachedResponse) {
+    const USER_DATA = JSON.parse(cachedResponse);
+    handleSuccessfulLogin(USER_DATA);
+    return;
+  }
+
   try {
     const RESPONSE = await fetch(API_AUTH_SIGN_IN, {
       method: 'POST',
@@ -43,39 +52,32 @@ export async function signIn(event) {
       return RESPONSE.json().then((errorResponse) => {
         const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
         toastr.error(errorMessage);
-        throw new Error('Failed to post bid');
+        throw new Error('Failed to sign in');
       });
-    }
-    if (!REQUEST_BODY_SIGN_IN.email) {
-      toastr.error('Error: Email is required');
-      return;
-    }
-    if (!REQUEST_BODY_SIGN_IN.password) {
-      toastr.error('Error: Password is required');
-      return;
     }
 
     const USER_DATA = await RESPONSE.json();
-    const INFO = USER_DATA.data;
-    if (RESPONSE.ok) {
-      const TOKEN = INFO.accessToken;
-      localStorage.setItem('accessToken', TOKEN);
-      localStorage.setItem('user', JSON.stringify(INFO));
-      toastr.success(
-        'You have successfully signed in, you will be redirected to your profile'
-      );
+    localStorage.setItem(CACHE_KEY, JSON.stringify(USER_DATA));
 
-      setTimeout(() => {
-        window.location.href = '/profile/';
-      }, 2000);
-    } else if (RESPONSE.status === 401) {
-      toastr.error('Error: Invalid email or password');
-    } else {
-      toastr.error('Error: Something went wrong');
-    }
+    handleSuccessfulLogin(USER_DATA);
   } catch (error) {
     toastr.error('Error: Unable to connect to the server');
   }
+}
+
+function handleSuccessfulLogin(USER_DATA) {
+  const INFO = USER_DATA.data;
+  const TOKEN = INFO.accessToken;
+
+  localStorage.setItem('accessToken', TOKEN);
+  localStorage.setItem('user', JSON.stringify(INFO));
+
+  toastr.success(
+    'You have successfully signed in, redirecting to your profile...'
+  );
+  setTimeout(() => {
+    window.location.href = '/profile/';
+  }, 2000);
 }
 
 /**
@@ -101,18 +103,23 @@ export async function register(event) {
     password: REG_FORM_DATA.passwordReg,
     bio: REG_FORM_DATA.bio,
     avatar: REG_FORM_DATA.avatarUrl
-      ? {
-          url: REG_FORM_DATA.avatarUrl,
-          alt: REG_FORM_DATA.avatarAlt,
-        }
+      ? { url: REG_FORM_DATA.avatarUrl, alt: REG_FORM_DATA.avatarAlt }
       : undefined,
     banner: REG_FORM_DATA.bannerUrl
-      ? {
-          url: REG_FORM_DATA.bannerUrl,
-          alt: REG_FORM_DATA.bannerAlt,
-        }
+      ? { url: REG_FORM_DATA.bannerUrl, alt: REG_FORM_DATA.bannerAlt }
       : undefined,
   };
+
+  const CACHE_KEY = `register-${REQUEST_BODY_REG.email}`;
+
+  const cachedResponse = localStorage.getItem(CACHE_KEY);
+  if (cachedResponse) {
+    toastr.success('Registration is already cached, redirecting...');
+    setTimeout(() => {
+      window.location.href = '/auth/';
+    }, 2000);
+    return;
+  }
 
   try {
     const RESPONSE = await fetch(API_AUTH_REGISTER, {
@@ -124,33 +131,15 @@ export async function register(event) {
     if (!RESPONSE.ok) {
       const errorResponse = await RESPONSE.json();
       toastr.error(JSON.stringify(errorResponse).slice(23, -44));
-      throw new Error('Failed to post bid');
+      throw new Error('Failed to register');
     }
 
-    if (!REQUEST_BODY_REG.email) {
-      toastr.error('Error: Email is required');
-      return;
-    }
-    if (!REQUEST_BODY_REG.password) {
-      toastr.error('Error: Password is required');
-      return;
-    }
-    if (REQUEST_BODY_REG.password.length < 8) {
-      toastr.error('Error: Password must be at least 8 characters long');
-      return;
-    }
+    localStorage.setItem(CACHE_KEY, JSON.stringify(REQUEST_BODY_REG));
 
-    if (RESPONSE.ok) {
-      toastr.success('Thank you for registering, please wait');
-
-      setTimeout(() => {
-        window.location.href = '/auth/';
-      }, 2000);
-    } else if (RESPONSE.status === 400 || RESPONSE.status === 409) {
-      toastr.error('Error: User already exists');
-    } else {
-      toastr.error('Error: Something went wrong');
-    }
+    toastr.success('Thank you for registering, redirecting...');
+    setTimeout(() => {
+      window.location.href = '/auth/';
+    }, 2000);
   } catch (error) {
     toastr.error('Error: Unable to connect to the server');
   }

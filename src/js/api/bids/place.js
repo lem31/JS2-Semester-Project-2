@@ -16,6 +16,13 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
   event.preventDefault();
 
   const URL = `https://v2.api.noroff.dev/auction/listings/${LISTING_ID}/bids`;
+  const CACHE_KEY = `bid-${LISTING_ID}`;
+
+  const cachedBid = localStorage.getItem(CACHE_KEY);
+  if (cachedBid && JSON.parse(cachedBid).amount === Number(BID_AMOUNT)) {
+    toastr.warning('You have already placed this bid.');
+    return;
+  }
 
   try {
     const RESPONSE = await fetch(URL, {
@@ -23,15 +30,17 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       headers: headers(),
       body: JSON.stringify({ amount: Number(BID_AMOUNT) }),
     });
+
     if (RESPONSE.ok) {
       toastr.success('Bid posted successfully');
-    }
-    if (!RESPONSE.ok) {
+      const responseData = await RESPONSE.json();
+      localStorage.setItem(CACHE_KEY, JSON.stringify(responseData));
+    } else {
       const errorResponse = await RESPONSE.json();
       toastr.error(JSON.stringify(errorResponse).slice(23, -44));
       throw new Error('Failed to post bid');
     }
   } catch (error) {
-    throw new Error('Error posting bid: ' + error.message);
+    toastr.error('Error posting bid: ' + error.message);
   }
 }
