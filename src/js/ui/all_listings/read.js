@@ -179,16 +179,6 @@ export function createAllListingsElements(listing) {
   NEXT_BUTTON.appendChild(NEXT_IMG);
   PREV_BUTTON.appendChild(PREV_IMG);
 
-  const urlPattern = new RegExp(
-    '^(https?:\\/\\/)?' +
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
-      '((\\d{1,3}\\.){3}\\d{1,3}))' +
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
-      '(\\?[;&a-z\\d%_.~+=-]*)?' +
-      '(\\#[-a-z\\d_]*)?$',
-    'i'
-  );
-
   BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);

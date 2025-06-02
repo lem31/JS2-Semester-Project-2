@@ -28,8 +28,6 @@ export async function filterListingsByCategory(category) {
   }
 }
 
-const CATEGORIES = ['photography', 'sculpture', 'modern', 'contemporary'];
-
 /**
  * @function onClickSearchButton
  * @description Adds an event listener to the search button
