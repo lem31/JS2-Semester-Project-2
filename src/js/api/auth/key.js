@@ -2,6 +2,8 @@ import { headers } from '../headers';
 import { API_KEY_NAME } from '../constants';
 import { API_KEY_ENDPOINT } from '../constants';
 import { handleApiError } from '../errorHandling';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @async

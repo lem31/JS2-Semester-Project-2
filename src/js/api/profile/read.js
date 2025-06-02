@@ -2,6 +2,8 @@ import { headers } from '../headers';
 import { API_PROFILE } from '../constants';
 import { displayUserProfile } from '../../ui/profile/read';
 import { handleApiError } from '../errorHandling';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @async

@@ -2,6 +2,8 @@ import { MY_LISTINGS_API } from '../constants.js';
 import { headers } from '../headers.js';
 import { createMyListingsElements } from '../../ui/my_listings/read.js';
 import { handleApiError } from '../errorHandling.js';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function getMyListings
