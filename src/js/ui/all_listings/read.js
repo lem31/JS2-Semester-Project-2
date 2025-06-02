@@ -80,7 +80,7 @@ export function createAllListingsElements(listing) {
   const SELLER_AVATAR = document.createElement('img');
   const SELLER_INFO_BOX = document.createElement('div');
   const LISTING_TITLE = document.createElement('h2');
-  const LISTING_DESCRIPTION = document.createElement('p');
+
   const LISTING_BIDS = document.createElement('p');
   const LISTING_END_DATE = document.createElement('p');
   const BUTTON_CONTAINER = document.createElement('div');
@@ -155,9 +155,9 @@ export function createAllListingsElements(listing) {
       : 'No bids';
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
 
-  LISTING_TITLE.textContent = listing.title || 'No title available';
-  LISTING_DESCRIPTION.textContent =
-    listing.description || 'No description available';
+  LISTING_TITLE.textContent = listing.title?.trim()
+    ? listing.title
+    : 'No title available';
 
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
@@ -179,19 +179,7 @@ export function createAllListingsElements(listing) {
   NEXT_BUTTON.appendChild(NEXT_IMG);
   PREV_BUTTON.appendChild(PREV_IMG);
 
-  const urlPattern = new RegExp(
-    '^(https?:\\/\\/)?' +
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' +
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
-      '(\\?[;&a-z\\d%_.~+=-]*)?' +
-      '(\\#[-a-z\\d_]*)?$',
-    'i'
-  );
-
-  if (!urlPattern.test(listing.title)) {
-    TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-  }
+  BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   if (isLoggedIn()) {
@@ -200,7 +188,6 @@ export function createAllListingsElements(listing) {
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   BIDS_CONTAINER.appendChild(HIGHEST_BID);
 
-  TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
@@ -434,7 +421,7 @@ export function addStylesToElements(
   HIGHEST_BID
 ) {
   SELLER_NAME.classList.add('labels');
-  LISTING_TITLE.classList.add('h2-styles');
+  LISTING_TITLE.classList.add('h2-styles', 'listing-header');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
   HIGHEST_BID.classList.add('labels');
   LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
@@ -500,7 +487,7 @@ export function addStylesToElements(
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   SELLER_INFO_BOX.classList.add('flex-row-center');
-  BIDS_CONTAINER.classList.add('flex-row-center');
+  BIDS_CONTAINER.classList.add('flex-col-center');
 
   OUTER_CONTAINER.classList.add('outer-container');
 

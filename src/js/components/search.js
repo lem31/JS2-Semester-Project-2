@@ -10,40 +10,23 @@ import { createAllListingsElements } from '../ui/all_listings/read.js';
  * @exports filterListingsByCategory
  */
 
-function filterListingsByCategory(category) {
-  const categoryElement = document.querySelector(
-    `.category[data-category="${category}"]`
-  );
-  if (categoryElement) {
-    categoryElement.addEventListener('click', async (event) => {
-      event.preventDefault();
+export async function filterListingsByCategory(category) {
+  if (!category) {
+    throw new Error('Category is empty.');
+  }
 
-      const resultsContainer = document.getElementById('all-auction-listings');
-      if (resultsContainer) {
-        resultsContainer.innerHTML = '';
-      }
+  const resultsContainer = document.getElementById('all-auction-listings');
+  if (resultsContainer) {
+    resultsContainer.innerHTML = '';
+  }
 
-      try {
-        if (category) {
-          const results = await filterListings(category);
-          displayResults(results);
-        } else {
-          throw new Error('Category is empty');
-        }
-      } catch (error) {
-        throw new Error('Error fetching listings:', error);
-      }
-    });
-  } else {
-    throw new Error(`Element not found for category: ${category}`);
+  try {
+    const results = await filterListings(category);
+    displayResults(results);
+  } catch (error) {
+    throw new Error(`Error fetching listings for category: ${category}`, error);
   }
 }
-
-const CATEGORIES = ['photography', 'sculpture', 'modern', 'contemporary'];
-
-CATEGORIES.forEach((category) => {
-  filterListingsByCategory(category);
-});
 
 /**
  * @function onClickSearchButton
@@ -68,6 +51,14 @@ export function onClickSearchButton() {
       displayResults(results);
     });
 }
+
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.category-hover')) {
+    event.preventDefault();
+    const category = event.target.getAttribute('data-category');
+    filterListingsByCategory(category);
+  }
+});
 
 async function filterListings(category) {
   const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(category)}&_seller=true&_bids=true&_active=true}`;
@@ -144,5 +135,23 @@ export function displayResults(listings) {
     listings.forEach((listing) => {
       createAllListingsElements(listing);
     });
+  }
+}
+
+function categorySelectListener() {
+  const select = document.getElementById('category-select');
+  if (select) {
+    select.addEventListener('change', function () {
+      const category = select.value;
+      filterListingsByCategory(category);
+    });
+  }
+}
+
+export function filterSelected() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', categorySelectListener);
+  } else {
+    categorySelectListener();
   }
 }
