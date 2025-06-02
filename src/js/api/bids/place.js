@@ -1,6 +1,7 @@
 import { headers } from '../headers';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @function postBidToAPI
@@ -31,16 +32,10 @@ export async function postBidToAPI(LISTING_ID, BID_AMOUNT, event) {
       body: JSON.stringify({ amount: Number(BID_AMOUNT) }),
     });
 
-    if (RESPONSE.ok) {
-      toastr.success('Bid posted successfully');
-      const responseData = await RESPONSE.json();
-      localStorage.setItem(CACHE_KEY, JSON.stringify(responseData));
-    } else {
-      const errorResponse = await RESPONSE.json();
-      toastr.error(JSON.stringify(errorResponse).slice(23, -44));
-      throw new Error('Failed to post bid');
-    }
+    const responseData = await handleApiError(RESPONSE, 'postBid');
+    toastr.success('Bid posted successfully');
+    localStorage.setItem(CACHE_KEY, JSON.stringify(responseData));
   } catch (error) {
-    toastr.error('Error posting bid: ' + error.message);
+    toastr.error(error.message);
   }
 }

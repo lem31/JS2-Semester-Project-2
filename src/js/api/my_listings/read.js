@@ -1,6 +1,9 @@
 import { MY_LISTINGS_API } from '../constants.js';
 import { headers } from '../headers.js';
 import { createMyListingsElements } from '../../ui/my_listings/read.js';
+import { handleApiError } from '../errorHandling.js';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @function getMyListings
@@ -13,7 +16,8 @@ export async function getMyListings() {
   try {
     const ACCESS_TOKEN = localStorage.getItem('accessToken');
     if (!ACCESS_TOKEN) {
-      throw new Error('No access token found. Please log in.');
+      toastr.error('No access token found. Please log in.');
+      return;
     }
 
     const RESPONSE = await fetch(MY_LISTINGS_API, {
@@ -21,11 +25,7 @@ export async function getMyListings() {
       headers: headers(),
     });
 
-    if (!RESPONSE.ok) {
-      throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-    }
-
-    const DATA = await RESPONSE.json();
+    const DATA = await handleApiError(RESPONSE, 'getMyListings');
 
     const MY_LISTINGS = DATA.data || [];
 
@@ -40,6 +40,6 @@ export async function getMyListings() {
       });
     }
   } catch (error) {
-    throw new Error('Error fetching listings');
+    toastr.error(error.message);
   }
 }
