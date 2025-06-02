@@ -203,7 +203,7 @@
 }
 
 .outer-container {
-  @apply flex flex-col w-[100%] items-center justify-center md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
+  @apply flex flex-col w-[100%] items-center justify-center mt-[20px] md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-4 gap-y-4 md:gap-y-4;
 }
 
 .link-flex {
