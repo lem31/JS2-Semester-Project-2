@@ -155,7 +155,8 @@ export function createAllListingsElements(listing) {
       : 'No bids';
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
 
-  LISTING_TITLE.textContent = listing.title || 'No title available';
+ LISTING_TITLE.textContent = listing.title?.trim() ? listing.title : 'No title available';
+
 
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
@@ -179,7 +180,7 @@ export function createAllListingsElements(listing) {
 
   const urlPattern = new RegExp(
     '^(https?:\\/\\/)?' +
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
       '((\\d{1,3}\\.){3}\\d{1,3}))' +
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
       '(\\?[;&a-z\\d%_.~+=-]*)?' +
@@ -187,9 +188,9 @@ export function createAllListingsElements(listing) {
     'i'
   );
 
-  if (!urlPattern.test(listing.title)) {
-    TEXT_BUTTON_CONTAINER.appendChild(LISTING_TITLE);
-  }
+
+    BIDS_CONTAINER.appendChild(LISTING_TITLE);
+
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   if (isLoggedIn()) {
@@ -497,7 +498,7 @@ export function addStylesToElements(
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
   SELLER_INFO_BOX.classList.add('flex-row-center');
-  BIDS_CONTAINER.classList.add('flex-row-center');
+  BIDS_CONTAINER.classList.add('flex-col-center');
 
   OUTER_CONTAINER.classList.add('outer-container');
 

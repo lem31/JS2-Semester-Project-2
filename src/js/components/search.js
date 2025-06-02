@@ -32,10 +32,10 @@ export async function filterListingsByCategory(category) {
 
 const CATEGORIES = ['photography', 'sculpture', 'modern', 'contemporary'];
 
-CATEGORIES.forEach((category) => {
-  filterListingsByCategory(category);
+// CATEGORIES.forEach((category) => {
+//   filterListingsByCategory(category);
 
-});
+// });
 
 
 
