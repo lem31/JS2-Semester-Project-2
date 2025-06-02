@@ -13,9 +13,35 @@ import 'toastr/build/toastr.min.css';
  * @returns {Promise<void>}
  * @throws {Error}
  */
-
 export async function getAllArtAuctionListings() {
+  const CACHE_KEY = 'allListings';
+  const CACHE_TIMESTAMP_KEY = 'allListingsTimestamp';
+  const CACHE_EXPIRATION = 5 * 60 * 1000;
+
+  const cachedListings = JSON.parse(localStorage.getItem(CACHE_KEY));
+  const lastFetchedTime = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+
+  const isCacheExpired =
+    !lastFetchedTime || Date.now() - lastFetchedTime > CACHE_EXPIRATION;
+
+  if (cachedListings && !isCacheExpired) {
+
+    displayListings(cachedListings);
+    return;
+  }
+
+
+
   try {
+
+    toastr.info("Loading listings, please wait...", {
+      timeOut: 0,
+      extendedTimeOut: 0,
+      closeButton: true,
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     const RESPONSE = await fetch(ALL_LISTINGS_API, {
       method: 'GET',
       headers: headers(),
@@ -26,21 +52,26 @@ export async function getAllArtAuctionListings() {
     }
 
     const DATA = await RESPONSE.json();
-
     const ALL_LISTINGS = DATA.data || [];
 
-    localStorage.setItem('allListings', JSON.stringify(ALL_LISTINGS));
+    localStorage.setItem(CACHE_KEY, JSON.stringify(ALL_LISTINGS));
+    localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now());
 
-    const LISTINGS = JSON.parse(localStorage.getItem('allListings') || '[]');
-
-    const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
-    if (LISTINGS_CONTAINER) {
-      LISTINGS.forEach((listing) => {
-        createAllListingsElements(listing, LISTINGS_CONTAINER);
-      });
-    }
+    displayListings(ALL_LISTINGS);
   } catch (error) {
-    throw new Error('Error fetching listings');
+    console.error('Error fetching listings', error);
+  }
+}
+
+function displayListings(listings) {
+
+  const LISTINGS_CONTAINER = document.getElementById('all-auction-listings');
+  if (LISTINGS_CONTAINER) {
+    LISTINGS_CONTAINER.innerHTML = '';
+    listings.forEach((listing) => {
+
+      createAllListingsElements(listing, LISTINGS_CONTAINER);
+    });
   }
 }
 
