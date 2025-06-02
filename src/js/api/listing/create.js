@@ -2,7 +2,7 @@ import { API_CREATE_LISTING } from '../constants';
 import { headers } from '../headers';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { handleApiError } from '../handleApiError';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @function createListingRequestBody

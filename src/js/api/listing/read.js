@@ -4,7 +4,7 @@ import { createIndividualListingElement } from '../../ui/listing/read.js';
 import { createAllListingsElements } from '../../ui/all_listings/read.js';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { handleApiError } from './errorHandling';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @function getAllArtAuctionListings
