@@ -106,6 +106,9 @@ export function displayCreateListingLinkNav() {
   }
 }
 
+
+
+
 export function displayNav() {
   const NAV_MENU = document.getElementById('nav-menu');
   const SIDEBAR = document.querySelector('.side-bar');
@@ -116,8 +119,19 @@ export function displayNav() {
     NAV_MENU.classList.toggle('hidden');
     SIDEBAR.classList.toggle('sidebar-height-when-open');
     SIDEBAR.classList.toggle('sidebar-height-when-closed');
-    LOGO.classList.toggle('logo-top-margin');
-    LOGO.classList.toggle('logo-no-margin');
+const ACCESS_TOKEN = localStorage.getItem("accessToken");
+console.log("Access Token:", ACCESS_TOKEN);
+
+  if (ACCESS_TOKEN) {
+
+         LOGO.classList.toggle("logo-no-margin");
+   LOGO.classList.toggle("logo-margin-logged-in-closed");
+
+    } else {
+
+       LOGO.classList.toggle("logo-top-margin");
+ LOGO.classList.toggle("logo-no-margin");
+    }
   });
 }
 
@@ -142,13 +156,14 @@ export function onHoverNavLink() {
 
     link.addEventListener('mouseout', () => {
       hoverTimeout = setTimeout(() => {
+         if (!NAV.classList.contains("nav-hover")) return;
         SPAN_TEXT.forEach((span) => {
           span.classList.remove('span-text-hover');
           span.classList.add('hidden');
         });
         NAV.classList.remove('nav-hover');
         NAV_MENU.classList.remove('nav-styles-hover');
-      }, 5000);
+      }, 1500);
     });
   });
 
