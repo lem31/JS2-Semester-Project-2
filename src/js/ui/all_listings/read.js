@@ -155,8 +155,9 @@ export function createAllListingsElements(listing) {
       : 'No bids';
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
 
- LISTING_TITLE.textContent = listing.title?.trim() ? listing.title : 'No title available';
-
+  LISTING_TITLE.textContent = listing.title?.trim()
+    ? listing.title
+    : 'No title available';
 
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
@@ -188,9 +189,7 @@ export function createAllListingsElements(listing) {
     'i'
   );
 
-
-    BIDS_CONTAINER.appendChild(LISTING_TITLE);
-
+  BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
   TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
   if (isLoggedIn()) {

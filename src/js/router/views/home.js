@@ -10,7 +10,7 @@ import { displayMyListingsLinkNav } from '../../components/sidebar.js';
 import { displayProfileLinkNav } from '../..//components/sidebar.js';
 import { displayMyBidsLinkNav } from '../../components/sidebar.js';
 import { displayCreateListingLinkNav } from '../../components/sidebar.js';
-import {filterSelected} from '../../components/search.js'
+import { filterSelected } from '../../components/search.js';
 
 displayMyListingsLinkNav();
 displayLogoutBtn();
@@ -25,4 +25,3 @@ onClickSearchButton();
 displayNav();
 onHoverNavLink();
 filterSelected();
-

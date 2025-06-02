@@ -12,8 +12,7 @@ import { createAllListingsElements } from '../ui/all_listings/read.js';
 
 export async function filterListingsByCategory(category) {
   if (!category) {
-   throw new Error('Category is empty.');
-
+    throw new Error('Category is empty.');
   }
 
   const resultsContainer = document.getElementById('all-auction-listings');
@@ -25,7 +24,7 @@ export async function filterListingsByCategory(category) {
     const results = await filterListings(category);
     displayResults(results);
   } catch (error) {
-   throw new Error(`Error fetching listings for category: ${category}`, error);
+    throw new Error(`Error fetching listings for category: ${category}`, error);
   }
 }
 

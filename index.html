@@ -9,14 +9,13 @@
   </head>
   <body class="body-styles">
     <header class="header-styles">
-
       <div class="side-bar sidebar-styles">
         <div class="logo-container">
-        <img
-          class="logo w-16 logo-no-margin "
-          src="images/Logo.png"
-          alt="Art logo"
-        />
+          <img
+            class="logo w-16 logo-no-margin"
+            src="images/Logo.png"
+            alt="Art logo"
+          />
         </div>
         <button id="hamburger-btn" class="hamburger">
           <img
@@ -123,59 +122,83 @@
       </div>
 
       <div class="search-category-box">
-
-      <div class="search-bar search-bar-layout ">
-        <div
-          class=" search-cat-box-mobile flex-col-center-layout md:flex md:flex-row gap-2 relative h-20"
-        >
-          <input
-            type="text"
-            id="search-bar"
-            class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
-            placeholder="Search listings..."
-          />
+        <div class="search-bar search-bar-layout">
           <div
-            class="absolute w-[200px] mb-16 md:w-[480px] md:mb-8 flex flex-row"
+            class="search-cat-box-mobile flex-col-center-layout md:flex md:flex-row gap-2 relative h-20"
           >
-            <img
-              src="./images/icons8-search-50.png"
-              alt="search icon"
-              class="search-icon w-8 h-8 absolute"
+            <input
+              type="text"
+              id="search-bar"
+              class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
+              placeholder="Search listings..."
             />
-          </div>
+            <div
+              class="absolute w-[200px] mb-16 md:w-[480px] md:mb-8 flex flex-row"
+            >
+              <img
+                src="./images/icons8-search-50.png"
+                alt="search icon"
+                class="search-icon w-8 h-8 absolute"
+              />
+            </div>
 
-          <div class="search-button-box">
-          <button
-            id="search-button"
-            class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
-          >
-            Search
-          </button>
+            <div class="search-button-box">
+              <button
+                id="search-button"
+                class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="Categories">
+          <select id="category-select" class="mobile-select">
+            <option value="contemporary">Contemporary Art</option>
+            <option value="modern">Modern Art</option>
+            <option value="photography">Photography</option>
+            <option value="sculpture">Sculptures</option>
+          </select>
+
+          <div class="desktop-category-div">
+            <ul class="desktop-select">
+              <li>
+                <a
+                  class="h2-styles text-2xl category category-hover"
+                  data-category="contemporary"
+                  href=""
+                  >Contemporary Art</a
+                >
+              </li>
+              <li>
+                <a
+                  class="h2-styles text-2xl category category-hover"
+                  data-category="modern"
+                  href=""
+                  >Modern Art</a
+                >
+              </li>
+              <li>
+                <a
+                  class="h2-styles text-2xl category category-hover"
+                  data-category="photography"
+                  href=""
+                  >Photography</a
+                >
+              </li>
+              <li>
+                <a
+                  class="h2-styles text-2xl category category-hover"
+                  data-category="sculpture"
+                  href=""
+                  >Sculptures</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-
-       <div class="Categories">
-
-  <select id="category-select" class="mobile-select">
-    <option value="contemporary">Contemporary Art</option>
-    <option value="modern">Modern Art</option>
-    <option value="photography">Photography</option>
-    <option value="sculpture">Sculptures</option>
-  </select>
-
-<div class="desktop-category-div">
-  <ul class="desktop-select  ">
-    <li><a class=" h2-styles text-2xl category category-hover" data-category="contemporary" href="">Contemporary Art</a></li>
-    <li><a class="h2-styles text-2xl category category-hover" data-category="modern" href="">Modern Art</a></li>
-    <li><a class="h2-styles text-2xl category category-hover" data-category="photography" href="">Photography</a></li>
-    <li><a class="h2-styles text-2xl category category-hover" data-category="sculpture" href="">Sculptures</a></li>
-  </ul>
-  </div>
-</div>
-
-      </div>
-
     </header>
     <main class="flex-1">
       <div class="flex-row-center">
@@ -183,7 +206,6 @@
           Current Auction Listings
         </h1>
       </div>
-
 
       <div id="all-auction-listings"></div>
     </main>
