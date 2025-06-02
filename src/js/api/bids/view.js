@@ -3,6 +3,7 @@ import { MY_BIDS_API } from '../constants';
 import { createMyBidListingsElements } from '../../ui/bids/view';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @function fetchUserBidsFromApi
@@ -28,7 +29,7 @@ export async function fetchUserBidsFromApi() {
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
 
-    const DATA = await RESPONSE.json();
+   const DATA = await handleApiError(RESPONSE, "fetchUserBids");
     const MY_BIDS = DATA.data || [];
 
     localStorage.setItem('myBids', JSON.stringify(MY_BIDS));
@@ -42,10 +43,10 @@ export async function fetchUserBidsFromApi() {
         createMyBidListingsElements(bid);
       });
       if (MY_BIDS.length === 0) {
-        toastr.error('No bids placed yet.');
+        toastr.warning('No bids placed yet.');
       }
     }
-  } catch (error) {
-    throw new Error(`Error fetching listings: ${error.message}`);
+  }catch (error) {
+    toastr.error(error.message);
   }
 }

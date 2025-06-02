@@ -3,6 +3,7 @@ import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import {handleApiError} from '../errorHandling.js';
 
 const REG_FORM = document.getElementById('reg-form');
 
@@ -32,53 +33,27 @@ export async function signIn(event) {
     password: SIGN_IN_FORM_DATA.password,
   };
 
-  const CACHE_KEY = `signIn-${REQUEST_BODY_SIGN_IN.email}`;
-
-  const cachedResponse = localStorage.getItem(CACHE_KEY);
-  if (cachedResponse) {
-    const USER_DATA = JSON.parse(cachedResponse);
-    handleSuccessfulLogin(USER_DATA);
-    return;
-  }
-
   try {
     const RESPONSE = await fetch(API_AUTH_SIGN_IN, {
-      method: 'POST',
+      method: "POST",
       headers: headers(),
       body: JSON.stringify(REQUEST_BODY_SIGN_IN),
     });
 
-    if (!RESPONSE.ok) {
-      return RESPONSE.json().then((errorResponse) => {
-        const errorMessage = JSON.stringify(errorResponse).slice(22, -44);
-        toastr.error(errorMessage);
-        throw new Error('Failed to sign in');
-      });
-    }
+    const USER_DATA = await handleApiError(RESPONSE, "signIn");
 
-    const USER_DATA = await RESPONSE.json();
-    localStorage.setItem(CACHE_KEY, JSON.stringify(USER_DATA));
+    localStorage.setItem("accessToken", USER_DATA.data.accessToken);
+    localStorage.setItem("user", JSON.stringify(USER_DATA.data));
 
-    handleSuccessfulLogin(USER_DATA);
+    toastr.success("You have successfully signed in, redirecting...");
+    setTimeout(() => {
+      window.location.href = "/profile/";
+    }, 2000);
   } catch (error) {
-    toastr.error('Error: Unable to connect to the server');
+    toastr.error(error.message);
   }
 }
 
-function handleSuccessfulLogin(USER_DATA) {
-  const INFO = USER_DATA.data;
-  const TOKEN = INFO.accessToken;
-
-  localStorage.setItem('accessToken', TOKEN);
-  localStorage.setItem('user', JSON.stringify(INFO));
-
-  toastr.success(
-    'You have successfully signed in, redirecting to your profile...'
-  );
-  setTimeout(() => {
-    window.location.href = '/profile/';
-  }, 2000);
-}
 
 /**
  * @param {*} event
@@ -110,37 +85,20 @@ export async function register(event) {
       : undefined,
   };
 
-  const CACHE_KEY = `register-${REQUEST_BODY_REG.email}`;
-
-  const cachedResponse = localStorage.getItem(CACHE_KEY);
-  if (cachedResponse) {
-    toastr.success('Registration is already cached, redirecting...');
-    setTimeout(() => {
-      window.location.href = '/auth/';
-    }, 2000);
-    return;
-  }
-
   try {
     const RESPONSE = await fetch(API_AUTH_REGISTER, {
-      method: 'POST',
+      method: "POST",
       headers: headers(),
       body: JSON.stringify(REQUEST_BODY_REG),
     });
 
-    if (!RESPONSE.ok) {
-      const errorResponse = await RESPONSE.json();
-      toastr.error(JSON.stringify(errorResponse).slice(23, -44));
-      throw new Error('Failed to register');
-    }
+   await handleApiError(RESPONSE, "register");
 
-    localStorage.setItem(CACHE_KEY, JSON.stringify(REQUEST_BODY_REG));
-
-    toastr.success('Thank you for registering, redirecting...');
+    toastr.success("Thank you for registering, redirecting...");
     setTimeout(() => {
-      window.location.href = '/auth/';
+      window.location.href = "/auth/";
     }, 2000);
   } catch (error) {
-    toastr.error('Error: Unable to connect to the server');
+    toastr.error(error.message);
   }
 }

@@ -1,11 +1,10 @@
 import { headers } from '../headers';
-
 import { ALL_LISTINGS_API } from '../constants';
 import { createIndividualListingElement } from '../../ui/listing/read.js';
-
 import { createAllListingsElements } from '../../ui/all_listings/read.js';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { handleApiError } from './errorHandling';
 
 /**
  * @function getAllArtAuctionListings
@@ -51,11 +50,7 @@ export async function getAllArtAuctionListings() {
       headers: headers(),
     });
 
-    if (!RESPONSE.ok) {
-      throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-    }
-
-    const DATA = await RESPONSE.json();
+    const DATA = await handleApiError(RESPONSE, 'getAllListings');
     const ALL_LISTINGS = DATA.data || [];
 
     localStorage.setItem(CACHE_KEY, JSON.stringify(ALL_LISTINGS));
@@ -66,7 +61,7 @@ export async function getAllArtAuctionListings() {
 
     displayListings(ALL_LISTINGS);
   } catch (error) {
-    throw new Error('Error fetching listings', error);
+    toastr.error(error.message);
   }
 }
 
@@ -133,7 +128,10 @@ export async function displayIndividualListing() {
       throw new Error('Failed to fetch listing');
     }
 
-    const LISTING_DATA = await RESPONSE.json();
+    const LISTING_DATA = await handleApiError(
+      RESPONSE,
+      'displayIndividualListing'
+    );
     const LISTING = LISTING_DATA.data;
 
     localStorage.setItem(CACHE_KEY, JSON.stringify(LISTING));
@@ -145,8 +143,7 @@ export async function displayIndividualListing() {
     renderListing(LISTING);
   } catch (error) {
     toastr.clear();
-    toastr.error('Error fetching listing');
-    throw new Error('Error fetching listing');
+    toastr.error(error.message);
   }
 }
 

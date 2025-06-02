@@ -1,6 +1,7 @@
 import { headers } from '../headers';
 import { API_PROFILE } from '../constants';
 import { displayUserProfile } from '../../ui/profile/read';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @async
@@ -12,6 +13,7 @@ import { displayUserProfile } from '../../ui/profile/read';
  */
 
 export async function getUserProfile() {
+  try{
   const USER = JSON.parse(localStorage.getItem('user'));
   const NAME = USER ? USER.name : null;
   if (!NAME) {
@@ -22,13 +24,12 @@ export async function getUserProfile() {
     headers: headers(),
   });
 
-  if (!RESPONSE.ok) {
-    throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-  }
+const DATA = await handleApiError(RESPONSE, "getUserProfile");
 
-  const data = await RESPONSE.json();
-
-  const PROFILE = data.data || {};
+  const PROFILE = DATA.data || {};
 
   displayUserProfile(PROFILE);
+  } catch (error) {
+    toastr.error(error.message);
+  }
 }
