@@ -199,7 +199,14 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center w-[300px] h-[500px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col md:flex-row items-center w-[300px] h-[320px] md:w-[380px]  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+}
+
+.listing-header{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
 }
 
 .listing-container-my-bids {
@@ -411,6 +418,10 @@ transition: opacity 0.3s ease-in-out;
 
 .logo-no-margin{
   @apply mt-0;
+}
+
+.listing-container-styles{
+  @apply h-[500px]
 }
 
 

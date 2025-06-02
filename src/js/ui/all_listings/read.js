@@ -80,7 +80,7 @@ export function createAllListingsElements(listing) {
   const SELLER_AVATAR = document.createElement('img');
   const SELLER_INFO_BOX = document.createElement('div');
   const LISTING_TITLE = document.createElement('h2');
-  const LISTING_DESCRIPTION = document.createElement('p');
+
   const LISTING_BIDS = document.createElement('p');
   const LISTING_END_DATE = document.createElement('p');
   const BUTTON_CONTAINER = document.createElement('div');
@@ -156,8 +156,6 @@ export function createAllListingsElements(listing) {
   VIEW_BIDS_BUTTON.textContent = 'View Bids';
 
   LISTING_TITLE.textContent = listing.title || 'No title available';
-  LISTING_DESCRIPTION.textContent =
-    listing.description || 'No description available';
 
   const END_DATE = new Date(listing.endsAt);
   const OPTIONS = {
@@ -200,7 +198,6 @@ export function createAllListingsElements(listing) {
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
   BIDS_CONTAINER.appendChild(HIGHEST_BID);
 
-  TEXT_BUTTON_CONTAINER.appendChild(LISTING_DESCRIPTION);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
@@ -434,7 +431,7 @@ export function addStylesToElements(
   HIGHEST_BID
 ) {
   SELLER_NAME.classList.add('labels');
-  LISTING_TITLE.classList.add('h2-styles');
+  LISTING_TITLE.classList.add('h2-styles', 'listing-header');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
   HIGHEST_BID.classList.add('labels');
   LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
