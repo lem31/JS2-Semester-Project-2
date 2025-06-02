@@ -32,6 +32,18 @@
   @apply ml-20;
 }
 
+.auth-main{
+  @apply mt-32;
+  height: max-content;
+}
+
+.auth-box {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .two-column-layout {
   @apply grid  grid-cols-2  items-center justify-center;
 }
@@ -143,6 +155,10 @@
 .header-styles {
   @apply w-full flex flex-col h-56 fixed bg-black z-10 border-2 border-[var(--primary-color)];
 
+}
+
+.header-styles-other-pages{
+   @apply w-full flex flex-col h-24 fixed bg-black z-10 border-2 border-[var(--primary-color)];
 }
 
 .sidebar-styles {
@@ -366,7 +382,13 @@
 
 .search-category-box{ @apply  h-[50px] gap-4;  }
 
-
+.hidden-auth{
+  display: none;
+  position: absolute;
+  top: 0;
+  left:50%;
+  transform: translateX(-50%);
+}
 
 .hidden{
   visibility: hidden;
@@ -378,9 +400,21 @@ transition: opacity 0.3s ease-in-out;
   @apply flex flex-row h-40;
 }
 
+.header-styles-other-pages{
+  @apply flex flex-row h-24 border-none;
+}
+
 .mobile-select {
-  @apply block border text-white px-2 py-1 rounded !important;
+  @apply block border w-[200px] text-white px-2 py-1 rounded !important;
   visibility: visible;
+  z-index:1;
+  position: relative;
+  appearance:none;
+}
+
+.mobile-select:focus{
+  position: relative;
+  z-index: 10;
 }
 
 .desktop-select{
@@ -430,9 +464,11 @@ transition: opacity 0.3s ease-in-out;
 
 @media (max-width:384px){
   .Categories{
-    width: 265px;
+    width: 295px;
+    height: 300px;
     display: flex;
     justify-content: end;
+    position: relative
   }
 
   .search-bar-layout {

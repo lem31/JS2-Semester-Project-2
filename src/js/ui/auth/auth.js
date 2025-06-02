@@ -17,14 +17,14 @@ const SIGN_IN_FORM = document.querySelector('.sign-in-form');
 
 function displaySignInForm() {
   if (
-    SIGN_IN_FORM_BOX.classList.contains('hidden') &&
-    REG_FORM.classList.contains('hidden')
+    SIGN_IN_FORM_BOX.classList.contains('hidden-auth') &&
+    REG_FORM.classList.contains('hidden-auth')
   ) {
-    SIGN_IN_FORM_BOX.classList.remove('hidden');
+    SIGN_IN_FORM_BOX.classList.remove('hidden-auth');
     SIGN_IN_FORM_BOX.classList.add('flex-row-center', 'w-[100%]', 'h-[100%]');
-    REG_FORM.classList.add('hidden');
+    REG_FORM.classList.add('hidden-auth');
   } else {
-    SIGN_IN_FORM_BOX.classList.add('hidden');
+    SIGN_IN_FORM_BOX.classList.add('hidden-auth');
     SIGN_IN_FORM_BOX.classList.remove(
       'flex-row-center',
       'w-[100%]',
@@ -41,14 +41,14 @@ function displaySignInForm() {
 
 function displayRegForm() {
   if (
-    REG_FORM.classList.contains('hidden') &&
-    SIGN_IN_FORM_BOX.classList.contains('hidden')
+    REG_FORM.classList.contains('hidden-auth') &&
+    SIGN_IN_FORM_BOX.classList.contains('hidden-auth')
   ) {
-    REG_FORM.classList.remove('hidden');
+    REG_FORM.classList.remove('hidden-auth');
     REG_FORM.classList.add('flex-row-center', 'w-[100%]', 'h-[100%]');
-    SIGN_IN_FORM_BOX.classList.add('hidden');
+    SIGN_IN_FORM_BOX.classList.add('hidden-auth');
   } else {
-    REG_FORM.classList.add('hidden');
+    REG_FORM.classList.add('hidden-auth');
 
     REG_FORM.classList.remove('flex-row-center', 'w-[100%]', 'h-[100%]');
   }
@@ -61,18 +61,18 @@ function displayRegForm() {
  */
 export function toggleForms() {
   switch (true) {
-    case SIGN_IN_FORM_BOX.classList.contains('hidden'):
+    case SIGN_IN_FORM_BOX.classList.contains('hidden-auth'):
       displaySignInForm();
       displayRegForm();
       displaySignInForm();
       break;
-    case !SIGN_IN_FORM_BOX.classList.contains('hidden'):
+    case !SIGN_IN_FORM_BOX.classList.contains('hidden-auth'):
       displaySignInForm();
       displayRegForm();
       displaySignInForm();
 
       break;
-    case !REG_FORM.classList.contains('hidden'):
+    case !REG_FORM.classList.contains('hidden-auth'):
       displayRegForm();
       displaySignInForm();
 
@@ -85,7 +85,7 @@ export function toggleForms() {
 }
 
 SIGN_IN_BTN_TAB.addEventListener('click', () => {
-  if (REG_FORM.classList.contains('hidden')) {
+  if (REG_FORM.classList.contains('hidden-auth')) {
     displaySignInForm();
   } else {
     toggleForms();
@@ -93,7 +93,7 @@ SIGN_IN_BTN_TAB.addEventListener('click', () => {
 });
 
 REG_BTN_TAB.addEventListener('click', () => {
-  if (SIGN_IN_FORM_BOX.classList.contains('hidden')) {
+  if (SIGN_IN_FORM_BOX.classList.contains('hidden-auth')) {
     displayRegForm();
   } else {
     toggleForms();
