@@ -3,7 +3,7 @@ import { API_AUTH_SIGN_IN } from '../constants.js';
 import { headers } from '../headers.js';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import {handleApiError} from '../errorHandling.js';
+import { handleApiError } from '../errorHandling.js';
 
 const REG_FORM = document.getElementById('reg-form');
 
@@ -35,25 +35,24 @@ export async function signIn(event) {
 
   try {
     const RESPONSE = await fetch(API_AUTH_SIGN_IN, {
-      method: "POST",
+      method: 'POST',
       headers: headers(),
       body: JSON.stringify(REQUEST_BODY_SIGN_IN),
     });
 
-    const USER_DATA = await handleApiError(RESPONSE, "signIn");
+    const USER_DATA = await handleApiError(RESPONSE, 'signIn');
 
-    localStorage.setItem("accessToken", USER_DATA.data.accessToken);
-    localStorage.setItem("user", JSON.stringify(USER_DATA.data));
+    localStorage.setItem('accessToken', USER_DATA.data.accessToken);
+    localStorage.setItem('user', JSON.stringify(USER_DATA.data));
 
-    toastr.success("You have successfully signed in, redirecting...");
+    toastr.success('You have successfully signed in, redirecting...');
     setTimeout(() => {
-      window.location.href = "/profile/";
+      window.location.href = '/profile/';
     }, 2000);
   } catch (error) {
     toastr.error(error.message);
   }
 }
-
 
 /**
  * @param {*} event
@@ -87,16 +86,16 @@ export async function register(event) {
 
   try {
     const RESPONSE = await fetch(API_AUTH_REGISTER, {
-      method: "POST",
+      method: 'POST',
       headers: headers(),
       body: JSON.stringify(REQUEST_BODY_REG),
     });
 
-   await handleApiError(RESPONSE, "register");
+    await handleApiError(RESPONSE, 'register');
 
-    toastr.success("Thank you for registering, redirecting...");
+    toastr.success('Thank you for registering, redirecting...');
     setTimeout(() => {
-      window.location.href = "/auth/";
+      window.location.href = '/auth/';
     }, 2000);
   } catch (error) {
     toastr.error(error.message);

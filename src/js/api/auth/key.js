@@ -14,17 +14,16 @@ import { handleApiError } from '../errorHandling';
 export async function getAPIKey() {
   try {
     const RESPONSE = await fetch(API_KEY_ENDPOINT, {
-      method: "POST",
+      method: 'POST',
       headers: headers(),
       body: JSON.stringify(API_KEY_NAME),
     });
 
-    const DATA = await handleApiError(RESPONSE, "getAPIKey");
+    const DATA = await handleApiError(RESPONSE, 'getAPIKey');
 
-    localStorage.setItem("apiKey", DATA.key);
+    localStorage.setItem('apiKey', DATA.key);
     return DATA.key;
   } catch (error) {
     toastr.error(error.message);
   }
 }
-

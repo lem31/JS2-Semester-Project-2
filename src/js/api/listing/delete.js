@@ -21,15 +21,14 @@ export async function removeListingFromAPI(LISTING_ID) {
       }
     );
 
-    await handleApiError(RESPONSE, "removeListing");
+    await handleApiError(RESPONSE, 'removeListing');
 
+    toastr.success('Post deleted successfully <br> Please Wait...');
 
-      toastr.success('Post deleted successfully <br> Please Wait...');
-
-      setTimeout(() => {
-        window.location.href = '/my_listings/';
-      }, 3000);
-    }catch (error) {
+    setTimeout(() => {
+      window.location.href = '/my_listings/';
+    }, 3000);
+  } catch (error) {
     toastr.error(error.message);
   }
 }

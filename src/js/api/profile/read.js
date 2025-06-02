@@ -13,22 +13,22 @@ import { handleApiError } from '../errorHandling';
  */
 
 export async function getUserProfile() {
-  try{
-  const USER = JSON.parse(localStorage.getItem('user'));
-  const NAME = USER ? USER.name : null;
-  if (!NAME) {
-    throw new Error('User name not found in local storage.');
-  }
-  const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
-    method: 'GET',
-    headers: headers(),
-  });
+  try {
+    const USER = JSON.parse(localStorage.getItem('user'));
+    const NAME = USER ? USER.name : null;
+    if (!NAME) {
+      throw new Error('User name not found in local storage.');
+    }
+    const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
+      method: 'GET',
+      headers: headers(),
+    });
 
-const DATA = await handleApiError(RESPONSE, "getUserProfile");
+    const DATA = await handleApiError(RESPONSE, 'getUserProfile');
 
-  const PROFILE = DATA.data || {};
+    const PROFILE = DATA.data || {};
 
-  displayUserProfile(PROFILE);
+    displayUserProfile(PROFILE);
   } catch (error) {
     toastr.error(error.message);
   }

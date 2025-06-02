@@ -29,7 +29,7 @@ export async function fetchUserBidsFromApi() {
       throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
     }
 
-   const DATA = await handleApiError(RESPONSE, "fetchUserBids");
+    const DATA = await handleApiError(RESPONSE, 'fetchUserBids');
     const MY_BIDS = DATA.data || [];
 
     localStorage.setItem('myBids', JSON.stringify(MY_BIDS));
@@ -46,7 +46,7 @@ export async function fetchUserBidsFromApi() {
         toastr.warning('No bids placed yet.');
       }
     }
-  }catch (error) {
+  } catch (error) {
     toastr.error(error.message);
   }
 }

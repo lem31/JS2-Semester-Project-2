@@ -14,7 +14,7 @@ export async function getMyListings() {
   try {
     const ACCESS_TOKEN = localStorage.getItem('accessToken');
     if (!ACCESS_TOKEN) {
-      toastr.error("No access token found. Please log in.");
+      toastr.error('No access token found. Please log in.');
       return;
     }
 
@@ -23,9 +23,7 @@ export async function getMyListings() {
       headers: headers(),
     });
 
-
-
-  const DATA = await handleApiError(RESPONSE, "getMyListings");
+    const DATA = await handleApiError(RESPONSE, 'getMyListings');
 
     const MY_LISTINGS = DATA.data || [];
 
@@ -40,6 +38,6 @@ export async function getMyListings() {
       });
     }
   } catch (error) {
-     toastr.error(error.message);
+    toastr.error(error.message);
   }
 }
