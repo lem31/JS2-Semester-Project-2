@@ -12,8 +12,8 @@ import { createAllListingsElements } from '../ui/all_listings/read.js';
 
 export async function filterListingsByCategory(category) {
   if (!category) {
-    console.error('Category is empty.');
-    return;
+   throw new Error('Category is empty.');
+
   }
 
   const resultsContainer = document.getElementById('all-auction-listings');
@@ -25,19 +25,11 @@ export async function filterListingsByCategory(category) {
     const results = await filterListings(category);
     displayResults(results);
   } catch (error) {
-    console.error(`Error fetching listings for category: ${category}`, error);
+   throw new Error(`Error fetching listings for category: ${category}`, error);
   }
 }
 
-
 const CATEGORIES = ['photography', 'sculpture', 'modern', 'contemporary'];
-
-// CATEGORIES.forEach((category) => {
-//   filterListingsByCategory(category);
-
-// });
-
-
 
 /**
  * @function onClickSearchButton
@@ -63,17 +55,13 @@ export function onClickSearchButton() {
     });
 }
 
-
-
-  document.addEventListener("click", (event) => {
-    if (event.target.matches(".category-hover")) {
-      event.preventDefault();
-      const category = event.target.getAttribute("data-category");
-      filterListingsByCategory(category);
-    }
-  });
-
-
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.category-hover')) {
+    event.preventDefault();
+    const category = event.target.getAttribute('data-category');
+    filterListingsByCategory(category);
+  }
+});
 
 async function filterListings(category) {
   const API_URL = `https://v2.api.noroff.dev/auction/listings/search?q=${encodeURIComponent(category)}&_seller=true&_bids=true&_active=true}`;
@@ -153,21 +141,19 @@ export function displayResults(listings) {
   }
 }
 
- function categorySelectListener() {
-    const select = document.getElementById("category-select");
-    if (select) {
-      select.addEventListener("change", function () {
-        const category = select.value;
-        filterListingsByCategory(category);
-      });
-    }
+function categorySelectListener() {
+  const select = document.getElementById('category-select');
+  if (select) {
+    select.addEventListener('change', function () {
+      const category = select.value;
+      filterListingsByCategory(category);
+    });
   }
+}
 
 export function filterSelected() {
-
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", categorySelectListener);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', categorySelectListener);
   } else {
     categorySelectListener();
   }

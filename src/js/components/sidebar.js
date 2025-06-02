@@ -120,7 +120,7 @@ export function displayNav() {
     SIDEBAR.classList.toggle('sidebar-height-when-open');
     SIDEBAR.classList.toggle('sidebar-height-when-closed');
 const ACCESS_TOKEN = localStorage.getItem("accessToken");
-console.log("Access Token:", ACCESS_TOKEN);
+
 
   if (ACCESS_TOKEN) {
 
