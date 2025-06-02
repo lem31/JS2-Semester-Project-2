@@ -223,7 +223,7 @@
   max-width: 100%;
 }
 
-.h1-home-box{
+.h1-home-box {
   @apply mt-[250px] mb-8;
 }
 
@@ -327,8 +327,7 @@
 }
 
 .view-bids-box {
-  @apply flex flex-col absolute top-[100%] z-12 bg-[var(--tertiary-color)] items-center gap-10 w-[200px]  border-2 border-[#e4b022] rounded-lg max-h-[200px] overflow-y-scroll ;
-
+  @apply flex flex-col absolute top-[100%] z-12 bg-[var(--tertiary-color)] items-center gap-10 w-[200px]  border-2 border-[#e4b022] rounded-lg max-h-[200px] overflow-y-scroll;
 }
 
 .footer {
@@ -349,8 +348,7 @@
 }
 
 .image-container-individual-listing {
-
-display: flex;
+  display: flex;
   flex-direction: row;
   gap: 10px;
   padding: 10px;
@@ -361,15 +359,14 @@ display: flex;
   justify-items: center;
 }
 
-
 .listing-container-individual-listing {
   @apply h-auto flex flex-col items-center justify-center mb-[200px] relative;
 }
 
 .listing-images-individual-listing {
-  @apply border-[var(--primary-color)] border-2 ;
-max-width: 300px;
-max-height: 500px;
+  @apply border-[var(--primary-color)] border-2;
+  max-width: 300px;
+  max-height: 500px;
 
   border-radius: 8px;
 }
@@ -391,9 +388,9 @@ max-height: 500px;
     @apply flex flex-col gap-0 items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
   }
 
-  .h1-home-box{
-  @apply mt-[150px] mb-8;
-}
+  .h1-home-box {
+    @apply mt-[150px] mb-8;
+  }
 
   .hamburger {
     display: block;
@@ -479,25 +476,22 @@ max-height: 500px;
   }
 
   .listing-images-individual-listing {
+    max-width: 300px;
+  }
 
-max-width: 300px;
-
-}
-
-.image-container-individual-listing {
-
-display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 50vw;
-  max-height: 500px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  items-center: center;
-  justify-items: center;
-}
+  .image-container-individual-listing {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 50vw;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    items-center: center;
+    justify-items: center;
+  }
 
   .hidden {
     visibility: hidden;
@@ -528,8 +522,6 @@ display: flex;
     @apply flex flex-row justify-center w-[200px];
   }
   .listing-images-individual-listing {
-
-max-width: 200px;
-
-}
+    max-width: 200px;
+  }
 }

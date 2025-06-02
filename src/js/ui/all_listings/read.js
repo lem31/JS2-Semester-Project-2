@@ -188,7 +188,6 @@ export function createAllListingsElements(listing) {
   }
   BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
 
-
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
@@ -459,17 +458,9 @@ export function addStylesToElements(
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');
   TEXT_BUTTON_CONTAINER.classList.add('flex-col-center-layout', 'relative');
-VIEW_BIDS_BUTTON.classList.add(
-  'view-bids-btn',
-  'button-styles',
-
-);
+  VIEW_BIDS_BUTTON.classList.add('view-bids-btn', 'button-styles');
   SELLER_AVATAR.classList.add('seller-avatar-img');
-  PLACE_BID_BUTTON.classList.add(
-    'display-place-bid-form-btn',
-    'button-styles',
-
-  );
+  PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn', 'button-styles');
   VIEW_LISTING_BTN.classList.add(
     'button-styles',
     'view-listing-btn',
