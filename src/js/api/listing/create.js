@@ -2,6 +2,7 @@ import { API_CREATE_LISTING } from '../constants';
 import { headers } from '../headers';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { handleApiError } from '../errorHandling';
 
 /**
  * @function createListingRequestBody
@@ -44,33 +45,22 @@ function createListingRequestBody(formElement) {
 export async function postCreateFormDataToAPI(formElement) {
   try {
     const LISTING_REQUEST_BODY = createListingRequestBody(formElement);
-    const response = await fetch(API_CREATE_LISTING, {
+    const RESPONSE = await fetch(API_CREATE_LISTING, {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify(LISTING_REQUEST_BODY),
     });
 
-    if (response.ok) {
-      const DATA = await response.json();
+    const DATA = await handleApiError(RESPONSE, 'postCreateListing');
 
-      toastr.success('Listing created successfully!<br> Please wait...');
+    toastr.success('Listing created successfully!<br> Please wait...');
 
-      setTimeout(() => {
-        window.location.href = '/my_listings/';
-      }, 3000);
+    setTimeout(() => {
+      window.location.href = '/my_listings/';
+    }, 3000);
 
-      return DATA;
-    } else {
-      return response.json().then((errorResponse) => {
-        toastr.error(JSON.stringify(errorResponse).slice(22, -44));
-        const errorMessage =
-          errorResponse.message ||
-          'An error occurred while creating the listing.';
-
-        throw new Error(`Failed to create listing: ${errorMessage}`);
-      });
-    }
+    return DATA;
   } catch (error) {
-    throw new Error(`HTTP error: ${error.message}`);
+    toastr.error(error.message);
   }
 }

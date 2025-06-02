@@ -1,6 +1,9 @@
 import { headers } from '../headers';
 import { API_PROFILE } from '../constants';
 import { displayUserProfile } from '../../ui/profile/read';
+import { handleApiError } from '../errorHandling';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 /**
  * @async
@@ -12,23 +15,23 @@ import { displayUserProfile } from '../../ui/profile/read';
  */
 
 export async function getUserProfile() {
-  const USER = JSON.parse(localStorage.getItem('user'));
-  const NAME = USER ? USER.name : null;
-  if (!NAME) {
-    throw new Error('User name not found in local storage.');
+  try {
+    const USER = JSON.parse(localStorage.getItem('user'));
+    const NAME = USER ? USER.name : null;
+    if (!NAME) {
+      throw new Error('User name not found in local storage.');
+    }
+    const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
+      method: 'GET',
+      headers: headers(),
+    });
+
+    const DATA = await handleApiError(RESPONSE, 'getUserProfile');
+
+    const PROFILE = DATA.data || {};
+
+    displayUserProfile(PROFILE);
+  } catch (error) {
+    toastr.error(error.message);
   }
-  const RESPONSE = await fetch(`${API_PROFILE}${NAME}`, {
-    method: 'GET',
-    headers: headers(),
-  });
-
-  if (!RESPONSE.ok) {
-    throw new Error(`HTTP error! status: ${RESPONSE.status || 'unknown'}`);
-  }
-
-  const data = await RESPONSE.json();
-
-  const PROFILE = data.data || {};
-
-  displayUserProfile(PROFILE);
 }
