@@ -4,9 +4,9 @@
 </div>
 
 <h2> 📽  <strong>Video Demo </strong></h2>
-<video width="600" controls>
-  <source src="../JS2-Semester-Project-2/Videos/ProjectSnippet.mov" type="video/quicktime">
-</video>
+
+  <img src="../JS2-Semester-Project-2/images/SProject2Clip.gif" />
+
 
 <h2> 🖼 <strong> Overview </strong> </h2> <br>
 My Auction App is an online auction platform where users can register, browse listings, place bids, and manage their profiles. Registered users can create listings, track bids, view total credit, and update personal information.
