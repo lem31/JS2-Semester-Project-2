@@ -489,7 +489,7 @@ export function addStylesToElements(
     'p-t-1',
     'p-b-1'
   );
-  PLACE_BID_TITLE.classList.add('h2-styles', 'form-title-styles');
+  PLACE_BID_TITLE.classList.add('h2-styles', 'form-title-styles', 'w-[120px]');
 
   PREV_BUTTON.classList.add('carousel-control-left');
   NEXT_BUTTON.classList.add('carousel-control-right');

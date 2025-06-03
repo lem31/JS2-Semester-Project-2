@@ -255,7 +255,7 @@
 }
 
 .imageContainer {
-  @apply flex  items-center relative w-[15rem] md:w-[20rem] md:h-[20rem] rounded-lg border-2 border-[var(--primary-color)];
+  @apply flex  items-center relative w-[15rem] md:w-[300px] md:h-[max-content] rounded-lg border-2 border-[var(--primary-color)];
 }
 
 .imageContainer img {
