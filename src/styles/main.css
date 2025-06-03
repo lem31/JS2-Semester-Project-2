@@ -401,7 +401,7 @@
   }
 
   .search-category-box {
-    @apply h-[50px] gap-4;
+    @apply h-[50px] gap-4 pt-4;
   }
 
   .hidden {
@@ -472,7 +472,7 @@
   }
 
   .listing-container-styles {
-    @apply h-[500px];
+    @apply h-[500px] w-[300px];
   }
 
   .listing-images-individual-listing {
@@ -523,5 +523,9 @@
   }
   .listing-images-individual-listing {
     max-width: 200px;
+  }
+
+   .listing-container-styles {
+    @apply h-[500px] w-[250px] pl-4;
   }
 }

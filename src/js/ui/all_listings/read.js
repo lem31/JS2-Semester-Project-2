@@ -44,9 +44,13 @@ export function createAllListingsElements(listing) {
   const BIDS_IMAGE_INPUT_CONTAINER = document.createElement('div');
 
   const COIN_IMAGE = document.createElement('img');
+  const COIN_IMAGE_TWO = document.createElement('img');
 
   BIDS_IMAGE.src = coinImage;
   COIN_IMAGE.src = coinImage;
+  COIN_IMAGE.alt = coinImage;;
+  COIN_IMAGE_TWO.src = coinImage;
+  COIN_IMAGE_TWO.alt = coinImage;
 
   PLACE_BID_FORM.style.display = 'none';
   PLACE_BID_INPUT.placeholder = 'Enter bid amount';
@@ -87,6 +91,8 @@ export function createAllListingsElements(listing) {
   const PLACE_BID_BUTTON = document.createElement('button');
   const VIEW_BIDS_BUTTON = document.createElement('button');
   const TEXT_BUTTON_CONTAINER = document.createElement('div');
+  const COIN_AMOUNT_DIV = document.createElement('div');
+  const COIN_AMOUNT_DIV_TWO = document.createElement('div');
   const VIEW_BIDS_CONTAINER = document.createElement('div');
 
   const LISTING_BIDS_COUNT_TOTAL = document.createElement('p');
@@ -181,14 +187,32 @@ export function createAllListingsElements(listing) {
 
   BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
-  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
-  if (isLoggedIn()) {
-    BIDS_CONTAINER.appendChild(BIDS_IMAGE);
-    BIDS_CONTAINER.appendChild(HIGHEST_BID);
-  }
-  BIDS_CONTAINER.appendChild(LISTING_BIDS_COUNT_TOTAL);
+TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
+
+
+const coinImageForBidsCount = document.createElement('img');
+coinImageForBidsCount.src = coinImage;
+coinImageForBidsCount.alt = 'Coin icon';
+coinImageForBidsCount.className = COIN_IMAGE.className;
+
+const coinImageForHighestBid = document.createElement('img');
+coinImageForHighestBid.src = coinImage;
+coinImageForHighestBid.alt = 'Coin icon';
+coinImageForHighestBid.className = COIN_IMAGE_TWO.className;
+
+if (isLoggedIn()) {
+  COIN_AMOUNT_DIV.appendChild(coinImageForBidsCount);
+  COIN_AMOUNT_DIV.appendChild(LISTING_BIDS_COUNT_TOTAL);
+  TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV);
+
+  COIN_AMOUNT_DIV_TWO.appendChild(coinImageForHighestBid);
+  COIN_AMOUNT_DIV_TWO.appendChild(HIGHEST_BID);
+  TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV_TWO);
+}
+
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
+
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_END_DATE);
   TEXT_BUTTON_CONTAINER.appendChild(SELLER_INFO_BOX);
 
@@ -238,7 +262,8 @@ export function createAllListingsElements(listing) {
       BID_COIN_IMAGE.src = coinImage;
       BID_COIN_IMAGE.alt = 'Coin icon';
       BID_COIN_IMAGE.classList.add('coin-icon');
-
+      COIN_AMOUNT_DIV.classList.add('flex', 'flex-row', 'gap-2');
+      COIN_AMOUNT_DIV_TWO.classList.add('flex', 'flex-row', 'gap-2');
       if (!VIEW_BIDS_CONTAINER.querySelector('.close-btn')) {
         CLOSE_BTN_BOX.appendChild(CLOSE_BTN);
         CLOSE_BTN.textContent = 'X';
@@ -363,7 +388,9 @@ export function createAllListingsElements(listing) {
     PREV_IMG,
     NEXT_IMG,
     COIN_IMAGE,
-    HIGHEST_BID
+    HIGHEST_BID,
+     coinImageForBidsCount,
+    coinImageForHighestBid
   );
 
   CLOSE_BUTTON.addEventListener('click', (event) =>
@@ -418,14 +445,23 @@ export function addStylesToElements(
   PREV_IMG,
   NEXT_IMG,
   COIN_IMAGE,
-  HIGHEST_BID
+  HIGHEST_BID,
+    coinImageForBidsCount,
+    coinImageForHighestBid
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles', 'listing-header');
   LISTING_BIDS_COUNT_TOTAL.classList.add('labels');
   HIGHEST_BID.classList.add('labels');
-  LISTING_END_DATE.classList.add('labels', 'max-w-[150px]', 'mb-2');
+  LISTING_END_DATE.classList.add('labels', 'mb-2', 'text-center');
   LISTING_BIDS.classList.add('h2-styles');
+
+    coinImageForBidsCount.classList.add(
+    'w-[32px]',
+    'h-[32px]');
+    coinImageForHighestBid.classList.add(
+    'w-[32px]',
+    'h-[32px]');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
 
@@ -472,7 +508,7 @@ export function addStylesToElements(
   );
 
   VIEW_BIDS_CONTAINER.classList.add('hidden');
-  SELLER_INFO_BOX.classList.add('flex-row-center');
+  SELLER_INFO_BOX.classList.add('flex-row-center', 'gap-2', 'p-2');
   BIDS_CONTAINER.classList.add('flex-col-center');
 
   OUTER_CONTAINER.classList.add('outer-container');
