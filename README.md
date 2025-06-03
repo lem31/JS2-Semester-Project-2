@@ -3,17 +3,17 @@
   <br><br>
 </div>
 
-📽 <h2> <strong>Video Demo </strong></h2>
-<img src="./src/Videos/ScreenRecording2025-05-29at11.12.09-ezgif.com-video-to-gif-converter.gif" width="600">
+<h2> 📽  <strong>Video Demo </strong></h2>
+<img src="../JS2-Semester-Project-2/Videos/ProjectSnippet.mov" width="600">
 
-🖼 <h2> <strong> Overview </strong> </h2> <br>
+<h2> 🖼 <strong> Overview </strong> </h2> <br>
 My Auction App is an online auction platform where users can register, browse listings, place bids, and manage their profiles. Registered users can create listings, track bids, view total credit, and update personal information.
 
-🎨 <h2> <strong> Design </strong> </h2> <br>
+ <h2> 🎨<strong> Design </strong> </h2> <br>
 ✅ Prototype: Created in Figma for desktop and mobile
 [Visit the design page](https://www.figma.com/design/JBtLZ0fc77LB7C1CHkam1P/Untitled?node-id=21-683&t=odFKwnukHUqS8KYy-1)
 
-📦 <h3> <strong> Installation </strong> </h3>
+<h3>📦  <strong> Installation </strong> </h3>
 
 **Clone the repository**
 
@@ -43,7 +43,7 @@ npm run build
 
 npm run preview
 
-🔄 <h3> <strong> Watching Tailwind CSS Changes </strong> </h3>
+<h3> 🔄 <strong> Watching Tailwind CSS Changes </strong> </h3>
 
 npm run watch-tailwind
 
