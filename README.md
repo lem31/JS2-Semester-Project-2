@@ -49,7 +49,7 @@ npm run preview
 
 npm run watch-tailwind
 
-🔧 <h3> <strong> Linting and Formatting </strong> </h3>
+ <h3>🔧 <strong> Linting and Formatting </strong> </h3>
 
 **Check linting issues**
 
