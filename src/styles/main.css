@@ -251,7 +251,6 @@
 
 .carouselInner {
   @apply flex flex-row transition-transform duration-300 ease-in-out;
-
 }
 
 .imageContainer {
@@ -260,7 +259,7 @@
 
 .imageContainer img {
   @apply w-[20rem] h-[15rem] rounded-lg;
-  object-fit:cover;
+  object-fit: cover;
 }
 
 .imageContainerMyBids {
@@ -275,12 +274,13 @@
   }
   .font-custom1 {
     font-family: var(--Font-1);
-  }}
+  }
+}
 .carousel-control-left {
   @apply absolute left-[-2px] top-[50%] transform -translate-y-1/2   z-20;
 }
 
-.carousel-control-left img{
+.carousel-control-left img {
   @apply w-[82px] h-[82px];
 }
 .carousel-control-right {
@@ -288,7 +288,7 @@
   z-index: 1000;
 }
 
-.carousel-control-right img{
+.carousel-control-right img {
   @apply w-[82px] h-[82px];
 }
 
@@ -540,7 +540,7 @@
     max-width: 200px;
   }
 
-   .listing-container-styles {
-    @apply h-[640px] w-[250px] ;
+  .listing-container-styles {
+    @apply h-[640px] w-[250px];
   }
 }

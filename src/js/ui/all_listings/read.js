@@ -48,7 +48,7 @@ export function createAllListingsElements(listing) {
 
   BIDS_IMAGE.src = coinImage;
   COIN_IMAGE.src = coinImage;
-  COIN_IMAGE.alt = coinImage;;
+  COIN_IMAGE.alt = coinImage;
   COIN_IMAGE_TWO.src = coinImage;
   COIN_IMAGE_TWO.alt = coinImage;
 
@@ -187,29 +187,27 @@ export function createAllListingsElements(listing) {
 
   BIDS_CONTAINER.appendChild(LISTING_TITLE);
 
-TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
+  TEXT_BUTTON_CONTAINER.appendChild(BIDS_CONTAINER);
 
+  const coinImageForBidsCount = document.createElement('img');
+  coinImageForBidsCount.src = coinImage;
+  coinImageForBidsCount.alt = 'Coin icon';
+  coinImageForBidsCount.className = COIN_IMAGE.className;
 
-const coinImageForBidsCount = document.createElement('img');
-coinImageForBidsCount.src = coinImage;
-coinImageForBidsCount.alt = 'Coin icon';
-coinImageForBidsCount.className = COIN_IMAGE.className;
+  const coinImageForHighestBid = document.createElement('img');
+  coinImageForHighestBid.src = coinImage;
+  coinImageForHighestBid.alt = 'Coin icon';
+  coinImageForHighestBid.className = COIN_IMAGE_TWO.className;
 
-const coinImageForHighestBid = document.createElement('img');
-coinImageForHighestBid.src = coinImage;
-coinImageForHighestBid.alt = 'Coin icon';
-coinImageForHighestBid.className = COIN_IMAGE_TWO.className;
+  if (isLoggedIn()) {
+    COIN_AMOUNT_DIV.appendChild(coinImageForBidsCount);
+    COIN_AMOUNT_DIV.appendChild(LISTING_BIDS_COUNT_TOTAL);
+    TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV);
 
-if (isLoggedIn()) {
-  COIN_AMOUNT_DIV.appendChild(coinImageForBidsCount);
-  COIN_AMOUNT_DIV.appendChild(LISTING_BIDS_COUNT_TOTAL);
-  TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV);
-
-  COIN_AMOUNT_DIV_TWO.appendChild(coinImageForHighestBid);
-  COIN_AMOUNT_DIV_TWO.appendChild(HIGHEST_BID);
-  TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV_TWO);
-}
-
+    COIN_AMOUNT_DIV_TWO.appendChild(coinImageForHighestBid);
+    COIN_AMOUNT_DIV_TWO.appendChild(HIGHEST_BID);
+    TEXT_BUTTON_CONTAINER.appendChild(COIN_AMOUNT_DIV_TWO);
+  }
 
   TEXT_BUTTON_CONTAINER.appendChild(LISTING_BIDS);
 
@@ -389,7 +387,7 @@ if (isLoggedIn()) {
     NEXT_IMG,
     COIN_IMAGE,
     HIGHEST_BID,
-     coinImageForBidsCount,
+    coinImageForBidsCount,
     coinImageForHighestBid
   );
 
@@ -446,8 +444,8 @@ export function addStylesToElements(
   NEXT_IMG,
   COIN_IMAGE,
   HIGHEST_BID,
-    coinImageForBidsCount,
-    coinImageForHighestBid
+  coinImageForBidsCount,
+  coinImageForHighestBid
 ) {
   SELLER_NAME.classList.add('labels');
   LISTING_TITLE.classList.add('h2-styles', 'listing-header');
@@ -456,12 +454,8 @@ export function addStylesToElements(
   LISTING_END_DATE.classList.add('labels', 'mb-2', 'text-center');
   LISTING_BIDS.classList.add('h2-styles');
 
-    coinImageForBidsCount.classList.add(
-    'w-[32px]',
-    'h-[32px]');
-    coinImageForHighestBid.classList.add(
-    'w-[32px]',
-    'h-[32px]');
+  coinImageForBidsCount.classList.add('w-[32px]', 'h-[32px]');
+  coinImageForHighestBid.classList.add('w-[32px]', 'h-[32px]');
 
   PLACE_BID_BUTTON.classList.add('display-place-bid-form-btn');
 
