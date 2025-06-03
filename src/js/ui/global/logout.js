@@ -1,3 +1,18 @@
+/**
+ * Adds a click event listener to the logout button that logs the user out when clicked.
+ * @function
+ */
+
+/**
+ * Logs the user out by removing the access token from localStorage and redirecting to the homepage.
+ * @private
+ * @function
+ */
+
+/**
+ * Displays or hides the logout button in the sidebar based on the presence of an access token.
+ * @function
+ */
 const LOGOUT_BTN = document.querySelector('.sign-out-btn');
 const LOGOUT_BTN_LI = document.getElementById('sidebar-li');
 

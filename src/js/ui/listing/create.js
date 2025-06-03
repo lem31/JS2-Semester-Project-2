@@ -1,12 +1,15 @@
-import { postCreateFormDataToAPI } from '../../api/listing/create';
+/**
+ * Attaches a submit event listener to the create listing form.
+ * On form submission, prevents default behavior and sends form data to the API.
+ */
 
 /**
- * @function onCreateListing
- * @returns {void}
- * @description This function initiates the creation of a new listing once the create listing form is submitted.
- * @listens submit
- * @fires postCreateFormDataToAPI
+ * Attaches a click event listener to the "Add More Images" button.
+ * On click, dynamically adds new input fields for image URL and alt text to the form.
  */
+
+import { postCreateFormDataToAPI } from '../../api/listing/create';
+
 export function onCreateListing() {
   const CREATE_LISTING_FORM = document.getElementById('create-form');
   if (CREATE_LISTING_FORM) {
