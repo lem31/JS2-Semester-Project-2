@@ -1,3 +1,20 @@
+/**
+ * Redirects to the edit page for a listing, appending the listing ID to the URL.
+ * @param {Event} event - The click event containing the listing ID in its dataset.
+ */
+
+/**
+ * Adds event listener to the "Add More Images" button, dynamically adding input fields for image URLs and alts to the edit form.
+ */
+
+/**
+ * Adds submit event listener to the edit form, triggering the API call to save the edited listing.
+ * @throws {Error} If the edit form is not found in the DOM.
+ */
+
+/**
+ * Adds click event listener to the cancel button, redirecting the user to the "My Listings" page.
+ */
 import { editListingInAPI } from '../../api/listing/edit';
 
 export function displayListingIdInUrlOnEditPage(event) {

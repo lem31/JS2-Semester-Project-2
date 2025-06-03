@@ -1,3 +1,14 @@
+/**
+ * Handles API errors by parsing the response and throwing a user-friendly error message based on context.
+ *
+ * @async
+ * @function handleApiError
+ * @param {Response} response - The fetch API response object.
+ * @param {string} context - The context in which the API call was made (e.g., 'signIn', 'register', etc.).
+ * @throws {Error} Throws an error with a user-friendly message if the response is not ok.
+ * @returns {Promise<Object>} The parsed JSON response if the request was successful.
+ */
+
 export async function handleApiError(response, context) {
   if (!response.ok) {
     const errorData = await response.json();
