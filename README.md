@@ -5,7 +5,7 @@
 
 <h2> 📽  <strong>Video Demo </strong></h2>
 
-  <img src="../JS2-Semester-Project-2/images/SProject2Clip.gif" />
+  ![Video Demo](./images/SProject2Clip.gif)
 
 
 <h2> 🖼 <strong> Overview </strong> </h2> <br>
