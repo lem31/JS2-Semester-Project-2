@@ -212,7 +212,7 @@
 }
 
 .listing-container-styles {
-  @apply flex flex-col md:flex-row items-center w-[380px] h-[420px] pr-4  justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
+  @apply flex flex-col items-center w-[380px] h-[420px] md:h-[650px] pr-4 pl-4 justify-center gap-2  border-2 border-[var(--primary-color)] rounded-lg;
 }
 
 .listing-header {
@@ -237,6 +237,7 @@
 
 .listing-image-styles {
   @apply w-[20rem]  rounded-lg;
+  object-fit: cover;
 }
 
 .seller-avatar-img {
@@ -244,7 +245,8 @@
 }
 
 .carousel {
-  @apply flex justify-between align-middle overflow-hidden relative w-10;
+  @apply flex justify-between items-center overflow-hidden relative w-full;
+  position: relative;
 }
 
 .carouselInner {
@@ -252,7 +254,12 @@
 }
 
 .imageContainer {
-  @apply flex items-center relative overflow-x-hidden w-[10rem] md:w-[20rem] rounded-lg border-2 border-[var(--primary-color)];
+  @apply flex  items-center relative w-[15rem] md:w-[300px] md:h-[max-content] rounded-lg border-2 border-[var(--primary-color)];
+}
+
+.imageContainer img {
+  @apply w-[20rem] h-[15rem] rounded-lg;
+  object-fit: cover;
 }
 
 .imageContainerMyBids {
@@ -270,11 +277,19 @@
   }
 }
 .carousel-control-left {
-  @apply absolute right-28  w-[50px] h-[50px] md:w-[80px] md:h-[80px] md:right-24  transform translate-y-0;
+  @apply absolute left-[-2px] top-[50%] transform -translate-y-1/2   z-20;
 }
 
+.carousel-control-left img {
+  @apply w-[82px] h-[82px];
+}
 .carousel-control-right {
-  @apply absolute w-[50px] h-[50px] md:w-[80px] md:h-[80px]  left-28 md:left-24  transform translate-y-0;
+  @apply absolute right-[-2px] top-[50%] transform -translate-y-1/2   z-20;
+  z-index: 1000;
+}
+
+.carousel-control-right img {
+  @apply w-[82px] h-[82px];
 }
 
 .form-title-styles {
@@ -401,7 +416,7 @@
   }
 
   .search-category-box {
-    @apply h-[50px] gap-4;
+    @apply h-[50px] gap-4 pt-4;
   }
 
   .hidden {
@@ -472,7 +487,7 @@
   }
 
   .listing-container-styles {
-    @apply h-[500px];
+    @apply h-[620px] w-[300px];
   }
 
   .listing-images-individual-listing {
@@ -523,5 +538,9 @@
   }
   .listing-images-individual-listing {
     max-width: 200px;
+  }
+
+  .listing-container-styles {
+    @apply h-[640px] w-[250px];
   }
 }

@@ -1,50 +1,87 @@
-# JS2-Semester-Project-2
+<div align="center">
+  <h1><strong>My Auction App 🎨</strong></h1>
+  <br><br>
+</div>
 
-## Description
+📽 <h2> <strong>Video Demo </strong></h2>
+<img src="./src/Videos/ScreenRecording2025-05-29at11.12.09-ezgif.com-video-to-gif-converter.gif" width="600">
 
-This is an art auction app where a user can register an account, login and logout.
-An unregistered user can browse through listing but cannot view bids.
-A registered user can create a listing.
-A registered user can browse through listings, view bids and place bids.
-A registered user can view their profile and update it. They can also view their total credit on their profile page.
-A registered user can view their listings they have created and their bids they have made.
+🖼 <h2> <strong> Overview </strong> </h2> <br>
+My Auction App is an online auction platform where users can register, browse listings, place bids, and manage their profiles. Registered users can create listings, track bids, view total credit, and update personal information.
 
-## Table of Contents
+🎨 <h2> <strong> Design </strong> </h2> <br>
+✅ Prototype: Created in Figma for desktop and mobile
+[Visit the design page](https://www.figma.com/design/JBtLZ0fc77LB7C1CHkam1P/Untitled?node-id=21-683&t=odFKwnukHUqS8KYy-1)
 
--Installation
--Usage
--License
+📦 <h3> <strong> Installation </strong> </h3>
 
-## Installation
+**Clone the repository**
 
-1. Clone the repository: repository link: https://github.com/lem31/JS2-Semester-Project-2.git
-2. To clone from your terminal : cd ~/Documents (or the folder you want the repo to be cloned to)
-3. Then git clone https://github.com/lem31/JS2-Semester-Project-2.git
-4. Navigate to the project directory : cd "project repo name"
-5. Install dependencies: npm install
+git clone https://github.com/lem31/JS2-Semester-Project-2.git
 
-## Usage
+**Navigate to the project directory**
 
-# To start the development server:
+cd my-auction-app
 
-1. npm run dev
-2. You will see a local host link which you can open in your browser, something like:
-   http://localhost:2000
+**Install Dependencies by running**
 
-# To build for production:
+npm install
 
-1.  npm run build
+<h3> <strong> Running the Development Server </strong> </h3>
 
-# Previewing the Production Build
+**Start the app locally by running**
 
-4.  To preview the production build locally, run : npm run preview
+npm run dev
 
-# Watching Tailwind CSS Changes
+<h3> <strong> Build for Production </strong> </h3>
 
-5.  To automatically restart the development server when changes are made to the tailwind.config.js file, use: npm run watch-tailwind
+**Run the following**
 
-# Linting and Formatting
+npm run build
 
-1.  To lint your code, run : npm run lint
-2.  To automatically fix linting errors, use: npm run lint:fix
-3.  To format your code with Prettier, run: npm run format
+**Preview Production Build**
+
+npm run preview
+
+🔄 <h3> <strong> Watching Tailwind CSS Changes </strong> </h3>
+
+npm run watch-tailwind
+
+🔧 <h3> <strong> Linting and Formatting </strong> </h3>
+
+**Check linting issues**
+
+npm run lint
+
+**Auto-fix linting errors**
+
+npm run lint:fix
+
+**Format with Prettier**
+
+npm run format
+
+✨ Features
+
+<table> <tr> <th><strong>📜<h4> User Registration & Login </h4></strong></th> <th><strong> 🖼 <h4> Create & Manage Listings </h4> </strong></th> <th><strong> 💰 <h4> Bidding System </h4> </strong></th> <th><strong> 👤 <h4> User Profile & Credit </h4> </strong></th> <th><strong> 📡 <h4> API Integration </h4> </strong></th> <th><strong> 🎨 <h4> Responsive Design </h4> </strong></th> </tr> <tr> <td>Users can register, login, and logout</td> <td>Registered users can create and update auctions</td> <td>Bidding system with auction tracking</td> <td>User credit management and listing history</td> <td>Data fetched from an auction API</td> <td>Optimized UI with TailwindCSS</td> </tr> </table>
+
+🛠 Tech Stack
+
+<table> <tr> <th align='center'> ✨ <strong><h4>Frontend</h4></strong> </th> <th align='center'> 🎨 <strong><h4>UI Components</h4></strong> </th> <th align='center'> 🗂️ <strong><h4>State Management</h4></strong> </th> <th align='center'> 🛣️ <strong><h4>Routing</h4></strong> </th> <th align='center'> 📝 <strong><h4>Form Validation</h4></strong> </th> <th align='center'> 🛠️ <strong><h4>Development Tools</h4></strong> </th> </tr> <tr> <td>React, Vite</td> <td>Material-UI (MUI), Tailwind CSS</td> <td>Context API</td> <td>React Router</td> <td>Yup, React Hook Form</td> <td>ESLint, Prettier, GitHub Actions, Nodemon</td> </tr> </table>
+
+🔗 API Integration
+Listings and user data are fetched from:
+
+🔗 API URL: https://v2.api.noroff.dev/auction
+
+🤝 How to Contribute
+Fork the repository
+
+Create a new branch (feature/new-feature)
+
+Submit a Pull Request
+
+🚀 [Visit the Deployed Version](https://art-auction-app-meyer.vercel.app/)
+
+📝 License
+This project is licensed under MIT.
