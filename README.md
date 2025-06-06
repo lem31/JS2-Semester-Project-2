@@ -69,7 +69,7 @@ npm run format
 
 🛠 Tech Stack
 
-<table> <tr> <th align='center'> ✨ <strong><h4>Frontend</h4></strong> </th> <th align='center'> 🎨 <strong><h4>UI Components</h4></strong> </th> <th align='center'> 🗂️ <strong><h4>State Management</h4></strong> </th> <th align='center'> 🛣️ <strong><h4>Routing</h4></strong> </th> <th align='center'> 📝 <strong><h4>Form Validation</h4></strong> </th> <th align='center'> 🛠️ <strong><h4>Development Tools</h4></strong> </th> </tr> <tr> <td> Vite</td> <td>Material-UI (MUI), Tailwind CSS, Post CSS, toastr</td> <td>API</td> <td>ESLint, Prettier</td> </tr> </table>
+<table> <tr> <th align='center'> ✨ <strong><h4>Frontend</h4></strong> </th> <th align='center'> 🎨 <strong><h4>UI Components</h4></strong> </th> <th align='center'> 🗂️ <strong><h4>State Management</h4></strong> </th>  <th align='center'> 🛠️ <strong><h4>Development Tools</h4></strong> </th> </tr> <tr> <td> Vite</td> <td>Material-UI (MUI), Tailwind CSS, Post CSS, toastr</td> <td>API</td> <td>ESLint, Prettier</td> </tr> </table>
 
 🔗 API Integration
 Listings and user data are fetched from:
