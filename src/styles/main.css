@@ -157,7 +157,7 @@
 }
 
 .header-styles-other-pages {
-  @apply w-full flex flex-col h-24 fixed bg-black z-10 border-2 border-[var(--primary-color)];
+  @apply pt-2 w-full flex flex-col h-24 fixed bg-black z-10 border-2 border-[var(--primary-color)];
 }
 
 .sidebar-styles {
