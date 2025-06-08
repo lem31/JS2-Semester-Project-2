@@ -27,4 +27,6 @@ onClickAddMoreImages();
 onClickSaveListingBtn();
 onClickCancelBtn();
 displayNav();
-onHoverNavLink();
+if (window.innerWidth >= 768) {
+    onHoverNavLink();
+}
