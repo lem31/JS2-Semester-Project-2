@@ -32,7 +32,6 @@
 }
 
 .auth-main {
-  @apply mt-32;
   height: max-content;
 }
 
@@ -410,10 +409,6 @@
     display: block;
   }
 
-  .auth-main {
-    @apply mt-20;
-  }
-
   .search-category-box {
     @apply h-[50px] gap-4 pt-4;
   }
@@ -537,10 +532,6 @@
 
   .hamburger {
     display: block;
-  }
-
-  .auth-main {
-    @apply mt-20;
   }
 
   .search-category-box {
