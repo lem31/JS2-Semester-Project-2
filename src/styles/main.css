@@ -82,7 +82,7 @@
 }
 .button-styles {
   font-size: var(--Button-and-Input-mobile-font-size);
-  @apply bg-primary font-extrabold text-tertiary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
+  @apply bg-primary  text-tertiary font-custom2 rounded-lg hover:shadow-custom active:shadow-custom2  md:text-sm;
   padding: 6px 25px;
 }
 
@@ -543,7 +543,7 @@
   }
 
   .h1-home-box {
-    @apply mt-[0] mb-8;
+    @apply mt-[200px] mb-8;
   }
 
   .hamburger {
