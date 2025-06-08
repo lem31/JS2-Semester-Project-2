@@ -24,6 +24,6 @@ getAllArtAuctionListings();
 onClickSearchButton();
 displayNav();
 if (window.innerWidth >= 768) {
-    onHoverNavLink();
+  onHoverNavLink();
 }
 filterSelected();
