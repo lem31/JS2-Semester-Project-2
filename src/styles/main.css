@@ -109,11 +109,12 @@
 
 .mobile-select {
   visibility: hidden;
-  @apply p-0;
+
+  @apply p-0 w-[200px];
 }
 
 .search-input {
-  @apply border-2 border-[var(--primary-color)] rounded-lg text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg text-[var(--primary-color)] w-[150px];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -553,10 +554,10 @@
   }
 
   .mobile-select {
-    @apply block border w-[200px] text-white px-2 py-1 rounded !important;
+    @apply block border w-[150px] text-white px-2 py-1 rounded !important;
     visibility: visible;
     z-index: 1;
-    position: relative;
+
     appearance: none;
   }
 
@@ -609,20 +610,22 @@
   }
 
   .Categories {
-    width: 295px;
+    width: 100%;
     height: 300px;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: end;
     position: relative;
   }
 
   .search-bar-layout {
-    @apply flex flex-row justify-end;
-    width: 300px;
+    @apply flex flex-row justify-end w-[100%];
+
   }
 
   .search-cat-box-mobile {
-    @apply w-[800px] flex flex-col items-end;
+    @apply w-[100%] flex flex-col items-end;
   }
 
   .search-button-box {
