@@ -286,6 +286,8 @@
   }
 }
 .carousel-control-left {
+   @apply absolute left-[-2px] top-[50%] transform -translate-y-1/2   z-20;
+  z-index: 1000;
 }
 
 .carousel-control-left img {
@@ -492,7 +494,7 @@
     @apply mt-[0px];
   }
   .listing-container-styles {
-    @apply h-[620px] w-[300px];
+    @apply h-auto w-[300px];
   }
 
   .listing-images-individual-listing {
@@ -650,7 +652,7 @@
   }
 
   .listing-container-styles {
-    @apply h-[640px] w-[250px];
+    @apply h-auto w-[250px];
   }
 
   .desktop-category-div {
