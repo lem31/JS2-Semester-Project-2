@@ -25,4 +25,6 @@ getUserProfile();
 onClickUpdateProfileBtn();
 onSubmitUpdateProfileForm();
 displayNav();
-onHoverNavLink();
+if (window.innerWidth >= 768) {
+  onHoverNavLink();
+}

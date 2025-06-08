@@ -8,7 +8,7 @@
     <script type="module" src="../src/app.js"></script>
   </head>
   <body class="body-styles">
-    <header class="header-styles">
+    <header class="border-none">
       <div class="side-bar sidebar-styles">
         <div class="logo-container">
           <img
@@ -122,88 +122,9 @@
           </ul>
         </nav>
       </div>
-
-      <div class="search-category-box">
-        <div class="search-bar search-bar-layout">
-          <div
-            class="search-cat-box-mobile flex-col-center-layout md:flex md:flex-row gap-2 relative h-20"
-          >
-            <input
-              type="text"
-              id="search-bar"
-              class="search-input pl-10 pr-22 p-2 md:pl-14 md:pr-32 gold-labels"
-              placeholder="Search listings..."
-            />
-            <div
-              class="absolute w-[180px] mb-[80px] md:w-[460px] md:mb-8 flex flex-row"
-            >
-              <img
-                src="../images/icons8-search-50.png"
-                alt="search icon"
-                class="search-icon w-6 h-6 md:w-8 md:h-8 absolute"
-              />
-            </div>
-
-            <div class="search-button-box">
-              <button
-                id="search-button"
-                class="button-styles md:pl-8 md:pr-8 pl-3 pr-3"
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="Categories">
-          <select id="category-select" class="mobile-select">
-            <option value="contemporary">Contemporary Art</option>
-            <option value="modern">Modern Art</option>
-            <option value="photography">Photography</option>
-            <option value="sculpture">Sculptures</option>
-          </select>
-
-          <div class="desktop-category-div">
-            <ul class="desktop-select">
-              <li>
-                <a
-                  class="h2-styles text-2xl category category-hover"
-                  data-category="contemporary"
-                  href=""
-                  >Contemporary Art</a
-                >
-              </li>
-              <li>
-                <a
-                  class="h2-styles text-2xl category category-hover"
-                  data-category="modern"
-                  href=""
-                  >Modern Art</a
-                >
-              </li>
-              <li>
-                <a
-                  class="h2-styles text-2xl category category-hover"
-                  data-category="photography"
-                  href=""
-                  >Photography</a
-                >
-              </li>
-              <li>
-                <a
-                  class="h2-styles text-2xl category category-hover"
-                  data-category="sculpture"
-                  href=""
-                  >Sculptures</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </header>
     <main class="flex-1">
-      <div class="flex-row-center">
+      <div class="flex-row-center mt-[40px]">
         <h1 class="h1-styles">Your Bids</h1>
       </div>
       <div id="my-bid-listings-container"></div>

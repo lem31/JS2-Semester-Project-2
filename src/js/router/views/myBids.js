@@ -22,4 +22,6 @@ displayCreateListingLinkNav();
 fetchUserBidsFromApi();
 
 displayNav();
-onHoverNavLink();
+if (window.innerWidth >= 768) {
+  onHoverNavLink();
+}
