@@ -452,7 +452,7 @@
     @apply mt-[0px];
   }
   .desktop-select {
-    @apply hidden;
+    display: none !important;
   }
 
   .nav-menu {
@@ -515,7 +515,7 @@
   }
 
   .desktop-category-div {
-    @apply hidden;
+   display: none !important;
   }
   .sidebar-li-layout {
     @apply flex flex-row items-center;
@@ -582,7 +582,7 @@
   }
 
   .desktop-select {
-    @apply hidden;
+display: none !important;
   }
 
   .nav-menu {
@@ -646,7 +646,7 @@
   }
 
   .desktop-category-div {
-    @apply hidden;
+   display: none !important;
   }
 
   .sign-out-btn {
