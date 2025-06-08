@@ -625,7 +625,7 @@
   }
 
   .search-cat-box-mobile {
-    @apply w-[100%] flex flex-col items-end;
+    @apply w-[100%] flex flex-col items-end h-[80px];
   }
 
   .search-button-box {
