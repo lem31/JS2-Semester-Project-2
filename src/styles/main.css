@@ -398,7 +398,7 @@
 }
 
 @media (min-width: 385px) and (max-width: 767px) {
- .sidebar-styles {
+  .sidebar-styles {
     @apply flex flex-col  gap-0 items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
   }
 
@@ -448,7 +448,7 @@
   .logo-margin-logged-in-closed {
     @apply mt-[150px];
   }
-.logo-margin-logged-in-open {
+  .logo-margin-logged-in-open {
     @apply mt-[0px];
   }
   .desktop-select {
@@ -456,14 +456,14 @@
   }
 
   .nav-menu {
-  @apply flex flex-col h-[120px] mt-[10px] overflow-x-auto whitespace-nowrap;
+    @apply flex flex-col h-[120px] mt-[10px] overflow-x-auto whitespace-nowrap;
   }
 
   .nav-styles {
     @apply flex flex-col items-center justify-center gap-2;
   }
 
-.sidebar-height-when-closed {
+  .sidebar-height-when-closed {
     @apply h-auto mt-[1px] pb-[80px] pt-[60px] flex flex-col justify-center top-0 bottom-0 overflow-y-visible;
   }
 
@@ -515,23 +515,21 @@
   }
 
   .desktop-category-div {
-  @apply hidden;
-}
+    @apply hidden;
+  }
   .sidebar-li-layout {
-  @apply flex flex-row items-center ;
+    @apply flex flex-row items-center;
   }
 }
 
 @media (max-width: 384px) {
-
-   .sidebar-styles {
+  .sidebar-styles {
     @apply flex flex-col  gap-0 items-center z-12 justify-center bg-black border-2 border-[var(--primary-color)] fixed top-0;
   }
 
   .sidebar-li-layout {
-  @apply flex flex-row items-center ;
+    @apply flex flex-row items-center;
   }
-
 
   .h1-home-box {
     @apply mt-[150px] mb-8;
@@ -539,9 +537,7 @@
 
   .hamburger {
     display: block;
-
   }
-
 
   .auth-main {
     @apply mt-20;
@@ -557,7 +553,7 @@
     transition: opacity 0.3s ease-in-out;
   }
 
-    .header-styles {
+  .header-styles {
     @apply flex flex-row h-40;
   }
 
@@ -590,15 +586,14 @@
   }
 
   .nav-menu {
-@apply flex flex-col h-[120px] mt-[10px] overflow-x-auto whitespace-nowrap;
-}
-
-
-  .nav-styles {
-    @apply flex flex-col items-center justify-center gap-2  ;
+    @apply flex flex-col h-[120px] mt-[10px] overflow-x-auto whitespace-nowrap;
   }
 
- .sidebar-height-when-closed {
+  .nav-styles {
+    @apply flex flex-col items-center justify-center gap-2;
+  }
+
+  .sidebar-height-when-closed {
     @apply h-auto mt-[1px] pb-[80px] pt-[60px] flex flex-col justify-center top-0 bottom-0 overflow-y-visible;
   }
 
@@ -606,7 +601,7 @@
     @apply h-auto;
   }
 
-.nav-styles-hover {
+  .nav-styles-hover {
     @apply flex flex-col items-start justify-center gap-2;
   }
 
@@ -651,10 +646,10 @@
   }
 
   .desktop-category-div {
-  @apply hidden;
-}
+    @apply hidden;
+  }
 
-.sign-out-btn{
- @apply mt-[-10px] mb-[10px] ;
-}
+  .sign-out-btn {
+    @apply mt-[-10px] mb-[10px];
+  }
 }

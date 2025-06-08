@@ -124,7 +124,6 @@ export function displayNav() {
     } else {
       LOGO.classList.toggle('logo-top-margin');
       LOGO.classList.toggle('logo-no-margin');
-
     }
   });
 }
