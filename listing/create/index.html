@@ -126,7 +126,7 @@
     </header>
     <main class="flex-1">
       <div
-        class="mt-[40px] pl-[10px] pr-[10px] create-form-container flex-row-center w-[100%] h-[100%]"
+        class="mt-[140px] md:mt-[40px] lg:mt-[40px] xl:mt-[40px] pl-[10px] pr-[10px] create-form-container flex-row-center w-[100%] h-[100%]"
       >
         <form
           class="form-styles form-padding-create h-[auto]"
@@ -135,7 +135,7 @@
         >
           <h1 class="h1-styles form-title-styles mb-4">Create a Listing</h1>
 
-          <div class="flex flex-col items-start">
+          <div class="flex flex-col items-start w-full">
             <label class="gold-labels mb-2" for="title">Title</label>
             <input
               class="input-styles md:w-[201px]"
@@ -146,7 +146,7 @@
             />
           </div>
 
-          <div class="flex flex-col items-start">
+          <div class="flex flex-col items-start w-full">
             <label class="gold-labels mt-2 mb-2" for="description"
               >Description</label
             >
@@ -158,7 +158,7 @@
             ></textarea>
           </div>
 
-          <div class="flex flex-col items-start">
+          <div class="flex flex-col items-start w-full">
             <label class="gold-labels mt-2 mb-2" for="tags">Tags</label>
             <input
               class="input-styles md:w-[201px]"
@@ -168,7 +168,10 @@
             />
           </div>
 
-          <div id="url-container" class="flex flex-col w-full items-start">
+          <div
+            id="url-container"
+            class="flex flex-col w-full h-auto items-start"
+          >
             <div class="flex flex-col items-start w-full">
               <label class="gold-labels mt-2 mb-2" for="urls">Image Url</label>
               <input
@@ -190,7 +193,7 @@
               />
             </div>
           </div>
-          <div class="flex flex-col items-start">
+          <div class="flex flex-col items-start w-full">
             <button
               class="button-styles mt-2 p-1 pl-2 pr-2"
               id="Add-image-button"
@@ -198,7 +201,7 @@
               Add more images
             </button>
           </div>
-          <div class="flex flex-col items-start mt-2">
+          <div class="flex flex-col items-start mt-2 w-full">
             <label class="gold-labels mb-2 mt-2" for="endsAt">Ends at</label>
             <input
               class="input-styles md:w-[201px]"
