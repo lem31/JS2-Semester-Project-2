@@ -26,11 +26,23 @@ export function onClickAddMoreImages() {
     ADD_MORE_IMAGES_BTN.addEventListener('click', () => {
       const URL_CONTAINER = document.getElementById('url-container');
       const ALT_INPUT_BOX = document.createElement('div');
-      ALT_INPUT_BOX.classList.add('alt-input-box');
+      ALT_INPUT_BOX.classList.add(
+        'alt-input-box',
+        'flex',
+        'flex-col',
+        'items-start',
+        'w-full'
+      );
       const URL_INPUT_BOX = document.createElement('div');
-      URL_INPUT_BOX.classList.add('url-input-box', 'mb-2', 'mt-2', 'w-full');
+      URL_INPUT_BOX.classList.add(
+        'url-input-box',
+        'flex',
+        'flex-col',
+        'items-start',
+        'w-full'
+      );
       const IMAGE_INPUT_GROUP = document.createElement('div');
-      IMAGE_INPUT_GROUP.classList.add('image-input-group');
+      IMAGE_INPUT_GROUP.classList.add('image-input-group', 'w-full');
       const REMOVE_BTN = document.createElement('button');
       REMOVE_BTN.type = 'button';
       REMOVE_BTN.textContent = 'Remove';
@@ -49,8 +61,6 @@ export function onClickAddMoreImages() {
       ALT_LABEL.classList.add('gold-labels', 'mt-2', 'mb-2');
 
       ALT_LABEL.setAttribute('for', `image-alt-${Date.now()}`);
-      URL_INPUT_BOX.classList.add('flex', 'flex-col', 'items-start', 'w-full');
-      ALT_INPUT_BOX.classList.add('flex', 'flex-col', 'items-start', 'w-full');
 
       const URL_INPUT = document.createElement('input');
       URL_INPUT.setAttribute('type', 'url');
