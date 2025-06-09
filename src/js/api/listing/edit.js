@@ -93,9 +93,24 @@ export async function populateEditForm() {
           const mediaItemContainer = document.createElement('div');
           mediaItemContainer.classList.add('media-input-group', 'mb-2');
           const URL_DIV = document.createElement('div');
-          URL_DIV.classList.add('flex', 'flex-col');
+          URL_DIV.classList.add(
+            'flex',
+            'flex-col',
+            'w-[200px]',
+            'md:w-[300px]',
+            'lg:w-[400px]',
+            'xl:w-[500px]'
+          );
           const ALT_DIV = document.createElement('div');
-          ALT_DIV.classList.add('flex', 'flex-col');
+
+          ALT_DIV.classList.add(
+            'flex',
+            'flex-col',
+            'w-[200px]',
+            'md:w-[300px]',
+            'lg:w-[400px]',
+            'xl:w-[500px]'
+          );
 
           const URL_INPUT = document.createElement('input');
           URL_INPUT.value = element.url;
