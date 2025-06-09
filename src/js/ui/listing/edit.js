@@ -29,8 +29,26 @@ export function onClickAddMoreImages() {
       const URL_CONTAINER = document.getElementById('url-container');
       const URL_DIV = document.createElement('div');
       const ALT_DIV = document.createElement('div');
-      URL_DIV.classList.add('flex', 'flex-col', 'align-items-start', 'mb-2');
-      ALT_DIV.classList.add('flex', 'flex-col', 'align-items-start', 'mb-2');
+      URL_DIV.classList.add(
+        'flex',
+        'flex-col',
+        'align-items-start',
+        'mb-2',
+        'w-[200px]',
+        'md:w-[300px]',
+        'lg:w-[400px]',
+        'xl:w-[500px]'
+      );
+      ALT_DIV.classList.add(
+        'flex',
+        'flex-col',
+        'align-items-start',
+        'mb-2',
+        'w-[200px]',
+        'md:w-[300px]',
+        'lg:w-[400px]',
+        'xl:w-[500px]'
+      );
 
       const IMAGE_INPUT_WRAPPER = document.createElement('div');
       IMAGE_INPUT_WRAPPER.classList.add(
@@ -38,7 +56,11 @@ export function onClickAddMoreImages() {
         'flex',
         'flex-col',
         'items-start',
-        'mb-2'
+        'mb-2',
+        'w-[200px]',
+        'md:w-[300px]',
+        'lg:w-[400px]',
+        'xl:w-[500px]'
       );
 
       const URL_LABEL = document.createElement('label');
@@ -50,7 +72,7 @@ export function onClickAddMoreImages() {
       URL_INPUT.setAttribute('type', 'url');
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
-      URL_INPUT.setAttribute('class', 'input', 'input-styles');
+      URL_INPUT.classList.add('input', 'input-styles', 'w-[100%]');
       URL_INPUT.setAttribute('id', 'urlInput');
 
       const ALT_LABEL = document.createElement('label');
@@ -62,7 +84,7 @@ export function onClickAddMoreImages() {
       ALT_INPUT.setAttribute('type', 'text');
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Alt text');
-      ALT_INPUT.setAttribute('class', 'input', 'input-styles');
+      ALT_INPUT.classList.add('input', 'input-styles', 'w-[100%]');
       ALT_INPUT.setAttribute('id', 'altInput');
 
       const REMOVE_BTN_DIV = document.createElement('div');
