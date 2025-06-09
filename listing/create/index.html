@@ -129,14 +129,14 @@
         class="mt-[40px] create-form-container flex-row-center w-[100%] h-[100%]"
       >
         <form
-          class="form-styles form-padding-create w-[220px] h-[auto] md:w-[283px]"
+          class="form-styles form-padding-create h-[auto]"
           name="create-listing"
           id="create-form"
         >
           <h1 class="h1-styles form-title-styles mb-4">Create a Listing</h1>
 
-          <div class="flex-col-center-layout">
-            <label class="gold-labels" for="title">Title</label>
+          <div class="flex flex-col items-start">
+            <label class="gold-labels mb-2" for="title">Title</label>
             <input
               class="input-styles md:w-[201px]"
               id="title"
@@ -146,8 +146,10 @@
             />
           </div>
 
-          <div class="flex-col-center-layout">
-            <label class="gold-labels" for="description">Description</label>
+          <div class="flex flex-col items-start">
+            <label class="gold-labels mt-2 mb-2" for="description"
+              >Description</label
+            >
             <textarea
               class="text-area-styles"
               id="description"
@@ -156,8 +158,8 @@
             ></textarea>
           </div>
 
-          <div class="flex-col-center-layout">
-            <label class="gold-labels" for="tags">Tags</label>
+          <div class="flex flex-col items-start">
+            <label class="gold-labels mt-2 mb-2" for="tags">Tags</label>
             <input
               class="input-styles md:w-[201px]"
               id="tags"
@@ -166,27 +168,29 @@
             />
           </div>
 
-          <div id="url-container" class="flex-col-center-layout">
-            <label class="gold-labels" for="urls">Image Url</label>
-            <input
-              class="input-styles md:w-[201px]"
-              type="url"
-              name="urls"
-              id="urls"
-              placeholder="Image url"
-            />
+          <div id="url-container" class="flex flex-col w-full items-start">
+            <div class="flex flex-col items-start w-full">
+              <label class="gold-labels mt-2 mb-2" for="urls">Image Url</label>
+              <input
+                class="input-styles w-full md:w-[300px] lg:w-[400px] xl:w-[500px]"
+                type="url"
+                name="urls"
+                id="urls"
+                placeholder="Image url"
+              />
+            </div>
+            <div class="flex flex-col items-start w-full">
+              <label class="gold-labels mt-2 mb-2" for="alts">Image Alt</label>
+              <input
+                class="input-styles w-full md:w-[300px] lg:w-[400px] xl:w-[500px]"
+                id="alts"
+                type="text"
+                name="alts"
+                placeholder="Alt text"
+              />
+            </div>
           </div>
-          <div id="alt-container" class="flex-col-center-layout">
-            <label class="gold-labels" for="alts">Image alt</label>
-            <input
-              class="input-styles md:w-[201px]"
-              id="alts"
-              type="text"
-              name="alts"
-              placeholder="Image Alt"
-            />
-          </div>
-          <div class="flex-row-center">
+          <div class="flex flex-col items-start">
             <button
               class="button-styles mt-2 p-1 pl-2 pr-2"
               id="Add-image-button"
@@ -194,8 +198,8 @@
               Add more images
             </button>
           </div>
-          <div class="flex-col-center-layout">
-            <label class="gold-labels" for="endsAt">Ends at</label>
+          <div class="flex flex-col items-start mt-2">
+            <label class="gold-labels mb-2 mt-2" for="endsAt">Ends at</label>
             <input
               class="input-styles md:w-[201px]"
               id="endsAt"
