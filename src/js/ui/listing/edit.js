@@ -27,14 +27,19 @@ export function onClickAddMoreImages() {
   if (ADD_MORE_IMAGES_BTN) {
     ADD_MORE_IMAGES_BTN.addEventListener('click', () => {
       const URL_CONTAINER = document.getElementById('url-container');
-const URL_DIV = document.createElement('div');
-const ALT_DIV = document.createElement('div');
+      const URL_DIV = document.createElement('div');
+      const ALT_DIV = document.createElement('div');
       URL_DIV.classList.add('flex', 'flex-col', 'align-items-start', 'mb-2');
       ALT_DIV.classList.add('flex', 'flex-col', 'align-items-start', 'mb-2');
 
       const IMAGE_INPUT_WRAPPER = document.createElement('div');
-      IMAGE_INPUT_WRAPPER.classList.add('image-input-wrapper', 'flex', 'flex-col', 'items-start', 'mb-2');
-
+      IMAGE_INPUT_WRAPPER.classList.add(
+        'image-input-wrapper',
+        'flex',
+        'flex-col',
+        'items-start',
+        'mb-2'
+      );
 
       const URL_LABEL = document.createElement('label');
       URL_LABEL.setAttribute('for', 'urls');
@@ -48,7 +53,6 @@ const ALT_DIV = document.createElement('div');
       URL_INPUT.setAttribute('class', 'input input-styles mt-2 mb-2 mr-2');
       URL_INPUT.setAttribute('id', 'urlInput');
 
-
       const ALT_LABEL = document.createElement('label');
       ALT_LABEL.setAttribute('for', 'alts');
       ALT_LABEL.textContent = 'Image Alt';
@@ -61,26 +65,25 @@ const ALT_DIV = document.createElement('div');
       ALT_INPUT.setAttribute('class', 'input input-styles mt-2 mb-2 mr-2');
       ALT_INPUT.setAttribute('id', 'altInput');
 
-const REMOVE_BTN_DIV = document.createElement('div');
+      const REMOVE_BTN_DIV = document.createElement('div');
       REMOVE_BTN_DIV.classList.add('flex', 'justify-start', 'w-full');
       const REMOVE_BTN = document.createElement('button');
       REMOVE_BTN.type = 'button';
       REMOVE_BTN.textContent = 'Remove';
       REMOVE_BTN.classList.add('button-styles', 'ml-2');
       REMOVE_BTN.addEventListener('click', () => {
-      IMAGE_INPUT_WRAPPER.remove();
+        IMAGE_INPUT_WRAPPER.remove();
       });
-URL_DIV.appendChild(URL_LABEL);
+      URL_DIV.appendChild(URL_LABEL);
       URL_DIV.appendChild(URL_INPUT);
       ALT_DIV.appendChild(ALT_LABEL);
       ALT_DIV.appendChild(ALT_INPUT);
-REMOVE_BTN_DIV.appendChild(REMOVE_BTN);
+      REMOVE_BTN_DIV.appendChild(REMOVE_BTN);
       IMAGE_INPUT_WRAPPER.appendChild(URL_DIV);
 
       IMAGE_INPUT_WRAPPER.appendChild(ALT_DIV);
 
       IMAGE_INPUT_WRAPPER.appendChild(REMOVE_BTN_DIV);
-
 
       URL_CONTAINER.appendChild(IMAGE_INPUT_WRAPPER);
     });

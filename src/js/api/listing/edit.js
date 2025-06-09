@@ -90,7 +90,6 @@ export async function populateEditForm() {
         const URL_BOX = document.getElementById('url-container');
 
         LISTING.data.media.forEach((element, index) => {
-
           const mediaItemContainer = document.createElement('div');
           mediaItemContainer.classList.add('media-input-group', 'mb-2');
           const URL_DIV = document.createElement('div');
@@ -105,8 +104,6 @@ export async function populateEditForm() {
           URL_INPUT.classList.add('input', 'input-styles', 'mb-2', 'mt-2');
           URL_INPUT.setAttribute('placeholder', 'Image URL');
 
-
-
           const ALT_INPUT = document.createElement('input');
           ALT_INPUT.setAttribute('type', 'text');
           ALT_INPUT.value = element.alt || '';
@@ -114,35 +111,34 @@ export async function populateEditForm() {
           ALT_INPUT.classList.add('input', 'input-styles', 'mb-2', 'mt-2');
           ALT_INPUT.setAttribute('placeholder', 'Alt text');
 
-            const URL_LABEL = document.createElement('label');
-            URL_LABEL.innerText = 'Image URL';
-            URL_LABEL.setAttribute('for', `media-url-${index}`);
-            URL_LABEL.classList.add('label','gold-labels', 'mb-1');
-            URL_INPUT.id = `media-url-${index}`;
+          const URL_LABEL = document.createElement('label');
+          URL_LABEL.innerText = 'Image URL';
+          URL_LABEL.setAttribute('for', `media-url-${index}`);
+          URL_LABEL.classList.add('label', 'gold-labels', 'mb-1');
+          URL_INPUT.id = `media-url-${index}`;
 
-            const ALT_LABEL = document.createElement('label');
-            ALT_LABEL.innerText = 'Alt text';
-            ALT_LABEL.setAttribute('for', `media-alt-${index}`);
-            ALT_LABEL.classList.add('label', 'gold-labels', 'mb-1');
-            ALT_INPUT.id = `media-alt-${index}`;
+          const ALT_LABEL = document.createElement('label');
+          ALT_LABEL.innerText = 'Alt text';
+          ALT_LABEL.setAttribute('for', `media-alt-${index}`);
+          ALT_LABEL.classList.add('label', 'gold-labels', 'mb-1');
+          ALT_INPUT.id = `media-alt-${index}`;
           const REMOVE_BUTTON = document.createElement('button');
           REMOVE_BUTTON.type = 'button';
           REMOVE_BUTTON.innerText = 'Remove';
           REMOVE_BUTTON.classList.add('button-styles', 'mt-2');
 
-            REMOVE_BUTTON.onclick = () => {
+          REMOVE_BUTTON.onclick = () => {
             mediaItemContainer.remove();
-            };
+          };
 
-            URL_DIV.appendChild(URL_LABEL);
-            URL_DIV.appendChild(URL_INPUT);
-            ALT_DIV.appendChild(ALT_LABEL);
-            ALT_DIV.appendChild(ALT_INPUT);
+          URL_DIV.appendChild(URL_LABEL);
+          URL_DIV.appendChild(URL_INPUT);
+          ALT_DIV.appendChild(ALT_LABEL);
+          ALT_DIV.appendChild(ALT_INPUT);
 
           mediaItemContainer.appendChild(URL_DIV);
           mediaItemContainer.appendChild(ALT_DIV);
           mediaItemContainer.appendChild(REMOVE_BUTTON);
-
 
           URL_BOX.appendChild(mediaItemContainer);
         });
