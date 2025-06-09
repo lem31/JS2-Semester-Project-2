@@ -173,7 +173,7 @@
 
             <div class="flex flex-row">
               <div class="mt-4 md:mt-[12px] w-[30px] relative">
-         
+
                 <img
                   class="w-[32px] h-[30px] md:w-[42px] md:h-[36px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px]"
                   src="/images/icons8-password-50.png"
@@ -209,31 +209,36 @@
             name="register"
           >
             <div class="flex flex-row relative"></div>
-            <h1 class="h1-styles form-title-styles mb-4 w-full">Register</h1>
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="name">Name</label>
-              <input
-                class="input-styles"
-                id="name"
-                type="text"
-                name="name"
-                pattern="^[a-zA-Z0-9_]+$"
-                required
-              />
+             <h1 class="h1-styles mb-4 form-title-styles w-full">Sign in</h1>
+            <div class="flex flex-row items-center">
+              <div class="w-[30px] h-[10px] md:h-[10px] lg:h-[26px] xl:-h-[26px] relative">
+                <img
+                  class="w-[32px] pt-[20px] h-[32px] md:w-[42px] md:h-[30px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px]"
+                  src="/images/icons8-username-64.png"
+                  alt="username icon"
+                />
+              </div>
+              <div class="flex flex-col">
+                <label class="gold-labels" for="email">Email</label>
+                <input
+                  class="input-styles w-[120px] md:w-[200px]"
+                  id="email"
+                  type="email"
+                  name="email"
+                  required
+                />
+              </div>
             </div>
 
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="emailReg">Email</label>
-              <input
-                class="input-styles"
-                id="emailReg"
-                type="email"
-                name="emailReg"
-                pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
-                required
-              />
-            </div>
+            <div class="flex flex-row items-center ">
+              <div class="w-[30px] h-[20px] md:h-[26px] lg:h-[26px] xl:-h-[26px] relative">
+                <img
+                  class="w-[32px] h-[30px] md:w-[42px] md:h-[36px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px] "
+                  src="/images/icons8-password-50.png"
+                  alt="password icon"
 
+                />
+              </div>
             <div class="flex flex-col w-full">
               <label class="gold-labels" for="passwordReg">Password</label>
               <input
