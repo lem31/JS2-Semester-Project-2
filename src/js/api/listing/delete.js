@@ -21,7 +21,16 @@ export async function removeListingFromAPI(LISTING_ID) {
       }
     );
 
-    await handleApiError(RESPONSE, 'removeListing');
+    const TEXT_RESPONSE = await RESPONSE.text();
+    if (TEXT_RESPONSE) {
+      try {
+        await handleApiError(RESPONSE, 'removeListing');
+      } catch {
+        toastr.warn(
+          'No valid JSON response from API. This might be expected for DELETE requests.'
+        );
+      }
+    }
 
     toastr.success('Post deleted successfully <br> Please Wait...');
 
