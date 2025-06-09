@@ -320,7 +320,7 @@
 }
 
 .text-area-styles {
-  @apply border-2 border-[var(--primary-color)] rounded-lg w-[180px] h-[95px] md:w-[201px] text-[var(--primary-color)];
+  @apply border-2 border-[var(--primary-color)] rounded-lg w-[400px] h-[95px] text-[var(--primary-color)];
 
   &:hover {
     @apply border-2 border-[var(--primary-color)] bg-black shadow-custom;
@@ -536,6 +536,10 @@
   .search-icon {
     @apply ml-0 mr-4 mt-[-28px] w-8 h-8 absolute;
   }
+
+  .text-area-styles {
+    @apply w-[200px];
+  }
 }
 
 @media (max-width: 384px) {
@@ -670,5 +674,9 @@
 
   .search-icon {
     @apply ml-2 mt-[-26px] w-6 h-6 absolute;
+  }
+
+  .text-area-styles {
+    @apply w-[200px];
   }
 }

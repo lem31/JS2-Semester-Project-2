@@ -50,7 +50,7 @@ export function onClickAddMoreImages() {
       URL_INPUT.setAttribute('type', 'url');
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
-      URL_INPUT.setAttribute('class', 'input input-styles mt-2 mb-2 mr-2');
+      URL_INPUT.setAttribute('class', 'input', 'input-styles' );
       URL_INPUT.setAttribute('id', 'urlInput');
 
       const ALT_LABEL = document.createElement('label');
@@ -61,8 +61,8 @@ export function onClickAddMoreImages() {
       const ALT_INPUT = document.createElement('input');
       ALT_INPUT.setAttribute('type', 'text');
       ALT_INPUT.setAttribute('name', 'alts');
-      ALT_INPUT.setAttribute('placeholder', 'Image Alt');
-      ALT_INPUT.setAttribute('class', 'input input-styles mt-2 mb-2 mr-2');
+      ALT_INPUT.setAttribute('placeholder', 'Alt text');
+      ALT_INPUT.setAttribute('class', 'input', 'input-styles');
       ALT_INPUT.setAttribute('id', 'altInput');
 
       const REMOVE_BTN_DIV = document.createElement('div');
