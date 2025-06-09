@@ -24,7 +24,7 @@ export function onClickAddMoreImages() {
   const ADD_MORE_IMAGES_BTN = document.getElementById('Add-image-button');
   if (ADD_MORE_IMAGES_BTN) {
     ADD_MORE_IMAGES_BTN.addEventListener('click', () => {
-      const CREATE_FORM = document.getElementById('create-form');
+
       const URL_CONTAINER = document.getElementById('url-container');
       const ALT_INPUT_BOX = document.createElement('div');
       ALT_INPUT_BOX.classList.add('alt-input-box');
