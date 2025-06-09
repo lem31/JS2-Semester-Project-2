@@ -29,7 +29,7 @@ export function onClickAddMoreImages() {
       const ALT_INPUT_BOX = document.createElement('div');
       ALT_INPUT_BOX.classList.add('alt-input-box');
       const URL_INPUT_BOX = document.createElement('div');
-      URL_INPUT_BOX.classList.add('url-input-box');
+      URL_INPUT_BOX.classList.add('url-input-box', 'mb-2', 'mt-2', 'w-full');
       const IMAGE_INPUT_GROUP = document.createElement('div');
       IMAGE_INPUT_GROUP.classList.add('image-input-group');
 
@@ -41,10 +41,6 @@ export function onClickAddMoreImages() {
         IMAGE_INPUT_GROUP.remove();
       });
 
-      IMAGE_INPUT_GROUP.appendChild(URL_INPUT_BOX);
-      IMAGE_INPUT_GROUP.appendChild(ALT_INPUT_BOX);
-      IMAGE_INPUT_GROUP.appendChild(REMOVE_BTN);
-
       URL_CONTAINER.appendChild(IMAGE_INPUT_GROUP);
       const URL_LABEL = document.createElement('label');
       URL_LABEL.textContent = 'Image Url';
@@ -55,27 +51,31 @@ export function onClickAddMoreImages() {
       ALT_LABEL.classList.add('gold-labels', 'mt-2', 'mb-2');
 
       ALT_LABEL.setAttribute('for', `image-alt-${Date.now()}`);
-      URL_INPUT_BOX.classList.add('flex', 'flex-col', 'w-full');
-      ALT_INPUT_BOX.classList.add('flex', 'flex-col', 'w-full');
+      URL_INPUT_BOX.classList.add('flex', 'flex-col', 'items-start', 'w-full');
+      ALT_INPUT_BOX.classList.add('flex', 'flex-col', 'items-start', 'w-full');
 
       const URL_INPUT = document.createElement('input');
       URL_INPUT.setAttribute('type', 'url');
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
       URL_INPUT.setAttribute('class', 'input');
-      CREATE_FORM.appendChild(URL_INPUT);
+
       const ALT_INPUT = document.createElement('input');
       ALT_INPUT.setAttribute('type', 'text');
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Alt text');
       ALT_INPUT.setAttribute('class', 'input');
-      URL_INPUT.classList.add('input-styles', 'mb-2');
-      ALT_INPUT.classList.add('input-styles', 'mb-2');
+      URL_INPUT.classList.add('input-styles', 'mb-2', 'mt-2', 'w-full');
+      ALT_INPUT.classList.add('input-styles', 'mb-2', 'mt-2', 'w-full');
 
       URL_INPUT_BOX.appendChild(URL_LABEL);
       URL_INPUT_BOX.appendChild(URL_INPUT);
       ALT_INPUT_BOX.appendChild(ALT_LABEL);
       ALT_INPUT_BOX.appendChild(ALT_INPUT);
+
+      IMAGE_INPUT_GROUP.appendChild(URL_INPUT_BOX);
+      IMAGE_INPUT_GROUP.appendChild(ALT_INPUT_BOX);
+      IMAGE_INPUT_GROUP.appendChild(REMOVE_BTN);
 
       URL_CONTAINER.appendChild(IMAGE_INPUT_GROUP);
     });

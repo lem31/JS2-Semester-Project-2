@@ -308,7 +308,7 @@
 }
 
 .form-styles {
-  @apply flex flex-col border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center w-[100%] gap-2;
+  @apply flex flex-col border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center w-[100%] max-w-[max-content] gap-2;
 }
 
 .form-padding {
