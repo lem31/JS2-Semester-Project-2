@@ -24,7 +24,6 @@ export function onClickAddMoreImages() {
   const ADD_MORE_IMAGES_BTN = document.getElementById('Add-image-button');
   if (ADD_MORE_IMAGES_BTN) {
     ADD_MORE_IMAGES_BTN.addEventListener('click', () => {
-
       const URL_CONTAINER = document.getElementById('url-container');
       const ALT_INPUT_BOX = document.createElement('div');
       ALT_INPUT_BOX.classList.add('alt-input-box');
@@ -32,7 +31,6 @@ export function onClickAddMoreImages() {
       URL_INPUT_BOX.classList.add('url-input-box', 'mb-2', 'mt-2', 'w-full');
       const IMAGE_INPUT_GROUP = document.createElement('div');
       IMAGE_INPUT_GROUP.classList.add('image-input-group');
-
       const REMOVE_BTN = document.createElement('button');
       REMOVE_BTN.type = 'button';
       REMOVE_BTN.textContent = 'Remove';
