@@ -91,12 +91,16 @@ export async function populateEditForm() {
 
         LISTING.data.media.forEach((element, index) => {
           const mediaItemContainer = document.createElement('div');
-          mediaItemContainer.classList.add('media-input-group', 'mb-2');
+          mediaItemContainer.classList.add(
+            'media-input-group',
+            'mb-2',
+            'w-[100%]'
+          );
           const URL_DIV = document.createElement('div');
           URL_DIV.classList.add(
             'flex',
             'flex-col',
-            'w-[200px]',
+            'w-[100%]',
             'md:w-[300px]',
             'lg:w-[400px]',
             'xl:w-[500px]'
@@ -106,7 +110,7 @@ export async function populateEditForm() {
           ALT_DIV.classList.add(
             'flex',
             'flex-col',
-            'w-[200px]',
+            'w-[100%]',
             'md:w-[300px]',
             'lg:w-[400px]',
             'xl:w-[500px]'
