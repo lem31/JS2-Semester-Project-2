@@ -50,7 +50,7 @@ export function onClickAddMoreImages() {
       URL_INPUT.setAttribute('type', 'url');
       URL_INPUT.setAttribute('name', 'urls');
       URL_INPUT.setAttribute('placeholder', 'Image URL');
-      URL_INPUT.setAttribute('class', 'input', 'input-styles' );
+      URL_INPUT.setAttribute('class', 'input', 'input-styles');
       URL_INPUT.setAttribute('id', 'urlInput');
 
       const ALT_LABEL = document.createElement('label');

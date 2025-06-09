@@ -101,7 +101,7 @@ export async function populateEditForm() {
           URL_INPUT.value = element.url;
           URL_INPUT.setAttribute('name', 'urls');
           URL_INPUT.setAttribute('type', 'url');
-          URL_INPUT.classList.add('input', 'input-styles', 'mb-2', 'mt-2' );
+          URL_INPUT.classList.add('input', 'input-styles', 'mb-2', 'mt-2');
           URL_INPUT.setAttribute('placeholder', 'Image URL');
 
           const ALT_INPUT = document.createElement('input');
