@@ -88,7 +88,6 @@ export async function populateEditForm() {
 
       if (LISTING.data.media && Array.isArray(LISTING.data.media)) {
         const URL_BOX = document.getElementById('url-container');
-
         LISTING.data.media.forEach((element, index) => {
           const mediaItemContainer = document.createElement('div');
           mediaItemContainer.classList.add(
