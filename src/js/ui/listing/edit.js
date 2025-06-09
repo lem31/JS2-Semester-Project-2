@@ -87,10 +87,6 @@ export function onClickAddMoreImages() {
       ALT_INPUT.setAttribute('type', 'text');
       ALT_INPUT.setAttribute('name', 'alts');
       ALT_INPUT.setAttribute('placeholder', 'Alt text');
-
-
-     
-
       ALT_INPUT.classList.add('input', 'input-styles', 'w-[100%]');
 
       ALT_INPUT.setAttribute('id', 'altInput');
