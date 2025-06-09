@@ -143,24 +143,26 @@
           </button>
         </div>
 
-        <div class="hidden relative" id="sign-in-form">
+        <div class="hidden relative w-full pl-[10px] pr-[10px]" id="sign-in-form">
           <form
-            class="sign-in-form sign-in form-padding form-styles w-[220px] md:w-[20rem] lg:w-[20rem] xl:w-[25rem]"
+            class="sign-in-form sign-in form-padding form-styles w-full"
             name="sign-in"
           >
             <h1 class="h1-styles mb-4 form-title-styles w-full">Sign in</h1>
+
             <div class="flex flex-row">
               <div class="relative mt-4">
                 <img
                   class="w-[32px] h-[32px] md:w-[40px] md:h-[40px]"
+
                   src="/images/icons8-username-64.png"
                   alt="username icon"
                 />
               </div>
-              <div class="flex flex-col">
+              <div class="flex flex-col w-full">
                 <label class="gold-labels" for="email">Email</label>
                 <input
-                  class="input-styles w-[120px] md:w-[200px]"
+                  class="input-styles w-full"
                   id="email"
                   type="email"
                   name="email"
@@ -171,6 +173,7 @@
 
             <div class="flex flex-row">
               <div class="mt-4 md:mt-[12px] w-[30px] relative">
+         
                 <img
                   class="w-[32px] h-[30px] md:w-[42px] md:h-[36px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px]"
                   src="/images/icons8-password-50.png"
@@ -178,10 +181,10 @@
                 />
               </div>
 
-              <div class="flex flex-col">
+              <div class="flex flex-col w-full">
                 <label class="gold-labels" for="password">Password</label>
                 <input
-                  class="input-styles w-[120px] md:w-[200px]"
+                  class="input-styles w-full"
                   type="password"
                   name="password"
                   id="password"
@@ -198,16 +201,16 @@
           <div id="error-message-sign-in-form"></div>
         </div>
 
-        <div class="hidden relative" id="register-form">
+        <div class="hidden relative w-full pl-[10px] pr-[10px]" id="register-form">
           <form
             id="reg-form"
             method="post"
-            class="form-styles form-padding w-[250px] md:w-[20rem] lg:w-[20rem] xl:w-[25rem]"
+            class="form-styles form-padding w-full "
             name="register"
           >
             <div class="flex flex-row relative"></div>
-            <h1 class="h1-styles form-title-styles mb-4">Register</h1>
-            <div class="flex flex-col">
+            <h1 class="h1-styles form-title-styles mb-4 w-full">Register</h1>
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="name">Name</label>
               <input
                 class="input-styles"
@@ -219,7 +222,7 @@
               />
             </div>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="emailReg">Email</label>
               <input
                 class="input-styles"
@@ -231,7 +234,7 @@
               />
             </div>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="passwordReg">Password</label>
               <input
                 class="input-styles"
@@ -242,7 +245,7 @@
                 required
               />
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col items-start w-full">
               <label class="gold-labels" for="bio">Bio</label>
               <textarea
                 class="text-area-styles"
@@ -252,7 +255,7 @@
               >
               </textarea>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="avatarUrl">Avatar url</label>
               <input
                 class="input-styles"
@@ -263,7 +266,7 @@
               />
             </div>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="avatarAlt">Avatar alt</label>
               <input
                 class="input-styles"
@@ -273,7 +276,7 @@
                 maxlength="120"
               />
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="bannerUrl">Banner url</label>
               <input
                 class="input-styles"
@@ -283,7 +286,7 @@
                 pattern="https?://.+"
               />
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <label class="gold-labels" for="bannerAlt">Banner alt</label>
               <input
                 class="input-styles"
