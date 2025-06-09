@@ -143,7 +143,10 @@
           </button>
         </div>
 
-        <div class="hidden relative w-full pl-[10px] pr-[10px]" id="sign-in-form">
+        <div
+          class="hidden relative w-full pl-[10px] pr-[10px]"
+          id="sign-in-form"
+        >
           <form
             class="sign-in-form sign-in form-padding form-styles w-full"
             name="sign-in"
@@ -154,7 +157,6 @@
               <div class="relative mt-4">
                 <img
                   class="w-[32px] h-[32px] md:w-[40px] md:h-[40px]"
-
                   src="/images/icons8-username-64.png"
                   alt="username icon"
                 />
@@ -173,7 +175,6 @@
 
             <div class="flex flex-row">
               <div class="mt-4 md:mt-[12px] w-[30px] relative">
-
                 <img
                   class="w-[32px] h-[30px] md:w-[42px] md:h-[36px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px]"
                   src="/images/icons8-password-50.png"
@@ -201,114 +202,126 @@
           <div id="error-message-sign-in-form"></div>
         </div>
 
-        <div class="hidden relative w-full pl-[10px] pr-[10px]" id="register-form">
+        <div
+          class="hidden relative w-full pl-[10px] pr-[10px]"
+          id="register-form"
+        >
           <form
             id="reg-form"
             method="post"
-            class="form-styles form-padding w-full "
+            class="register-form form-padding flex flex-col form-styles w-full"
             name="register"
           >
-            <div class="flex flex-row relative"></div>
-             <h1 class="h1-styles mb-4 form-title-styles w-full">Sign in</h1>
-            <div class="flex flex-row items-center">
-              <div class="w-[30px] h-[10px] md:h-[10px] lg:h-[26px] xl:-h-[26px] relative">
-                <img
-                  class="w-[32px] pt-[20px] h-[32px] md:w-[42px] md:h-[30px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px]"
-                  src="/images/icons8-username-64.png"
-                  alt="username icon"
-                />
+            <div class="flex flex-row relative">
+              <h1 class="h1-styles mb-4 form-title-styles w-full">Register</h1>
+            </div>
+
+             <div class="flex flex-col w-full">
+                  <label class="gold-labels" for="name">Name</label>
+
+                  <input
+                    class="input-styles w-full"
+                    id="name"
+                    type="name"
+                    name="name"
+                    required
+                  />
+                </div>
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex flex-row">
+
+                <div class="flex flex-col w-full">
+                  <label class="gold-labels" for="emailreg">Email</label>
+
+                  <input
+                    class="input-styles w-full"
+                    id="emailreg"
+                    type="email"
+                    name="emailReg"
+                    required
+                  />
+                </div>
               </div>
-              <div class="flex flex-col">
-                <label class="gold-labels" for="email">Email</label>
+
+              <div class="flex flex-row">
+
+                <div class="flex flex-col w-full">
+                  <label class="gold-labels" for="passwordReg">Password</label>
+
+                  <input
+                    class="input-styles w-full"
+                    type="password"
+                    name="passwordReg"
+                    id="passwordReg"
+                    minlength="8"
+                    required
+                  />
+                </div>
+              </div>
+              <!-- Bio -->
+              <div class="flex flex-col w-full">
+                <label class="gold-labels" for="bio">Bio</label>
+                <textarea
+                  class="text-area-styles"
+                  id="bio"
+                  name="bio"
+                  maxlength="160"
+                ></textarea>
+              </div>
+              <!-- Avatar URL -->
+              <div class="flex flex-col w-full">
+                <label class="gold-labels" for="avatarUrl">Avatar url</label>
                 <input
-                  class="input-styles w-[120px] md:w-[200px]"
-                  id="email"
-                  type="email"
-                  name="email"
-                  required
+                  class="input-styles w-full"
+                  id="avatarUrl"
+                  type="url"
+                  name="avatarUrl"
+                  pattern="https?://.+"
                 />
               </div>
-            </div>
-
-            <div class="flex flex-row items-center ">
-              <div class="w-[30px] h-[20px] md:h-[26px] lg:h-[26px] xl:-h-[26px] relative">
-                <img
-                  class="w-[32px] h-[30px] md:w-[42px] md:h-[36px] lg:w-[42px] lg:h-[36px] xl:w-[42px] xl:h-[36px] "
-                  src="/images/icons8-password-50.png"
-                  alt="password icon"
-
+              <!-- Avatar Alt -->
+              <div class="flex flex-col w-full">
+                <label class="gold-labels" for="avatarAlt">Avatar alt</label>
+                <input
+                  class="input-styles w-full"
+                  id="avatarAlt"
+                  type="text"
+                  name="avatarAlt"
+                  maxlength="120"
                 />
               </div>
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="passwordReg">Password</label>
-              <input
-                class="input-styles"
-                type="password"
-                name="passwordReg"
-                id="passwordReg"
-                minlength="8"
-                required
-              />
+              <!-- Banner URL -->
+              <div class="flex flex-col w-full">
+                <label class="gold-labels" for="bannerUrl">Banner url</label>
+                <input
+                  class="input-styles w-full"
+                  id="bannerUrl"
+                  type="url"
+                  name="bannerUrl"
+                  pattern="https?://.+"
+                />
+              </div>
+              <!-- Banner Alt -->
+              <div class="flex flex-col w-full">
+                <label class="gold-labels" for="bannerAlt">Banner alt</label>
+                <input
+                  class="input-styles w-full"
+                  id="bannerAlt"
+                  type="text"
+                  name="bannerAlt"
+                  maxlength="120"
+                />
+              </div>
+              <!-- Register Button -->
+              <div class="flex-row-center">
+                <button
+                  class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1 mt-4"
+                >
+                  Register
+                </button>
+              </div>
+              <p id="error-message-reg-form"></p>
             </div>
-            <div class="flex flex-col items-start w-full">
-              <label class="gold-labels" for="bio">Bio</label>
-              <textarea
-                class="text-area-styles"
-                id="bio"
-                name="bio"
-                maxlength="160"
-              >
-              </textarea>
-            </div>
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="avatarUrl">Avatar url</label>
-              <input
-                class="input-styles"
-                id="avatarUrl"
-                type="url"
-                name="avatarUrl"
-                pattern="https?://.+"
-              />
-            </div>
-
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="avatarAlt">Avatar alt</label>
-              <input
-                class="input-styles"
-                id="avatarAlt"
-                type="text"
-                name="avatarAlt"
-                maxlength="120"
-              />
-            </div>
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="bannerUrl">Banner url</label>
-              <input
-                class="input-styles"
-                id="bannerUrl"
-                type="url"
-                name="bannerUrl"
-                pattern="https?://.+"
-              />
-            </div>
-            <div class="flex flex-col w-full">
-              <label class="gold-labels" for="bannerAlt">Banner alt</label>
-              <input
-                class="input-styles"
-                id="bannerAlt"
-                type="text"
-                name="bannerAlt"
-                maxlength="120"
-              />
-            </div>
-            <div class="flex-row-center">
-              <button
-                class="button-styles pt-2 pb-2 pl-2 pr-2 md:pt-1 md:pb-1 mt-4"
-              >
-                Register
-              </button>
-            </div>
-            <p id="error-message-reg-form"></p>
           </form>
         </div>
       </div>
