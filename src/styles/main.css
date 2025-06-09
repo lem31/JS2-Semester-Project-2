@@ -308,11 +308,7 @@
 }
 
 .form-styles {
-
-
-
   @apply flex flex-col border-4 border-[var(--primary-color)] bg-[var(--tertiary-color)] items-center justify-center w-[100%] gap-2;
-
 }
 
 .form-padding {
@@ -374,10 +370,10 @@
 }
 
 .footer-text-layout {
-  @apply grid md:flex md:flex-row  items-center justify-start gap-0 md:gap-2;
+  @apply flex flex-row flex-wrap  items-center justify-start gap-0 gap-2;
 }
 
-.footer-text-layout a{
+.footer-text-layout a {
   @apply text-[var(--tertiary-color)] hover:text-[var(--secondary-color)] transition-colors duration-300 text-xs md:text-sm lg:text-base;
 }
 
